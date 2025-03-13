@@ -6,8 +6,8 @@ import {
   Calendar, 
   User, 
   ArrowRight,
-  MapPin,
-  List
+  Grid,
+  LayoutList
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -129,7 +129,7 @@ const ProjectsList: React.FC = () => {
               )}
               onClick={() => setActiveView("grid")}
             >
-              <List size={16} className="mr-1" />
+              <Grid size={16} className="mr-1" />
               Grid
             </Button>
             <Button 
@@ -141,7 +141,7 @@ const ProjectsList: React.FC = () => {
               )}
               onClick={() => setActiveView("list")}
             >
-              <MapPin size={16} className="mr-1" />
+              <LayoutList size={16} className="mr-1" />
               List
             </Button>
           </div>
