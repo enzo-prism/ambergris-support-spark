@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ProjectsHeader from "@/components/ProjectsHeader";
 import ProjectsList from "@/components/ProjectsList";
 import MembershipPromo from "@/components/MembershipPromo";
+import TransparencySection from "@/components/TransparencySection";
 
 const Projects: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const Projects: React.FC = () => {
       <Navbar />
       <ProjectsHeader />
       <ProjectsList />
+      <TransparencySection />
       <MembershipPromo />
       <Footer />
     </div>

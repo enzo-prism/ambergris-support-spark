@@ -1,9 +1,30 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Download, BarChart2, PieChart } from "lucide-react";
+import { 
+  CheckCircle, 
+  Download, 
+  BarChart2, 
+  PieChart, 
+  ArrowUpRight,
+  DollarSign,
+  Receipt,
+  Users
+} from "lucide-react";
+import { 
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from "@/components/ui/table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const TransparencySection: React.FC = () => {
+  const [selectedTab, setSelectedTab] = useState("promise");
+
   const transparencyFeatures = [
     {
       icon: <BarChart2 className="h-6 w-6 text-belize-green" />,
@@ -23,9 +44,12 @@ const TransparencySection: React.FC = () => {
   ];
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="inline-block px-3 py-1 bg-belize-green/10 text-belize-green rounded-full text-sm font-medium mb-4">
+            100% Transparent
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Transparency Promise</h2>
           <p className="text-lg text-gray-700">
             We believe in complete transparency. Every dollar is accounted for, and we're proud to share 
@@ -35,8 +59,11 @@ const TransparencySection: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-10 mb-16">
           {transparencyFeatures.map((feature, index) => (
-            <div key={index} className="text-center">
-              <div className="bg-white w-16 h-16 rounded-full shadow-md flex items-center justify-center mx-auto mb-6">
+            <div 
+              key={index} 
+              className="text-center bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+            >
+              <div className="bg-belize-light w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
@@ -45,74 +72,291 @@ const TransparencySection: React.FC = () => {
           ))}
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">100% Donation Model</h3>
-              <p className="text-gray-700 mb-6">
-                All administrative costs are covered by the owners of Canary Cove, 
-                ensuring that <span className="font-bold">100% of your donation</span> goes directly 
-                to programs benefiting children in Belize.
-              </p>
-              <p className="text-gray-700 mb-8">
-                This means your entire contribution – every cent – goes toward making a real 
-                difference in a child's life, not to overhead or administrative expenses.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700">No staff salaries paid from donations</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700">No fundraising costs deducted from donations</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                  <p className="text-gray-700">No operational expenses taken from donations</p>
-                </div>
-              </div>
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-16">
+          <Tabs 
+            defaultValue="promise" 
+            value={selectedTab} 
+            onValueChange={setSelectedTab}
+            className="w-full"
+          >
+            <div className="bg-belize-blue/5 px-6 pt-4">
+              <TabsList className="grid grid-cols-3 bg-transparent h-auto p-0 mb-0">
+                <TabsTrigger 
+                  value="promise" 
+                  className={`py-3 text-base ${selectedTab === "promise" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                >
+                  Donation Model
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="reports" 
+                  className={`py-3 text-base ${selectedTab === "reports" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                >
+                  Financial Reports
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="projects" 
+                  className={`py-3 text-base ${selectedTab === "projects" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                >
+                  Project Financials
+                </TabsTrigger>
+              </TabsList>
             </div>
-            <div>
-              <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                <h4 className="font-bold text-lg mb-4">Latest Financial Reports</h4>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700">January 2023 Financial Report</span>
-                    <Button variant="outline" size="sm" className="flex items-center gap-2">
-                      <Download className="h-4 w-4" />
-                      PDF
-                    </Button>
+            
+            <TabsContent value="promise" className="p-6 md:p-10 mt-0">
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">100% Donation Model</h3>
+                  <p className="text-gray-700 mb-6">
+                    All administrative costs are covered by the owners of Canary Cove, 
+                    ensuring that <span className="font-bold text-belize-green">100% of your donation</span> goes directly 
+                    to programs benefiting children in Belize.
+                  </p>
+                  <p className="text-gray-700 mb-8">
+                    This means your entire contribution – every cent – goes toward making a real 
+                    difference in a child's life, not to overhead or administrative expenses.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                      <p className="text-gray-700">No staff salaries paid from donations</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                      <p className="text-gray-700">No fundraising costs deducted from donations</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
+                      <p className="text-gray-700">No operational expenses taken from donations</p>
+                    </div>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700">February 2023 Financial Report</span>
-                    <Button variant="outline" size="sm" className="flex items-center gap-2">
-                      <Download className="h-4 w-4" />
-                      PDF
-                    </Button>
+                </div>
+                <div className="bg-belize-light p-6 rounded-lg relative">
+                  <div className="absolute top-3 right-3 bg-white text-xs font-medium text-belize-green px-2 py-1 rounded-full">
+                    Fully Transparent
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-700">March 2023 Financial Report</span>
-                    <Button variant="outline" size="sm" className="flex items-center gap-2">
-                      <Download className="h-4 w-4" />
-                      PDF
-                    </Button>
+                  <h4 className="font-bold text-lg mb-2">Our Only Expenses</h4>
+                  <p className="text-gray-700 mb-6">
+                    The only deductions from donations are:
+                  </p>
+                  <div className="space-y-6">
+                    <div className="bg-white p-4 rounded-lg flex items-start gap-4">
+                      <span className="bg-belize-green/10 text-belize-green p-2 rounded">
+                        <Receipt className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h5 className="font-bold mb-1">Credit Card Processing</h5>
+                        <p className="text-sm text-gray-600">2.9% fee through Stripe payment processing</p>
+                      </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg flex items-start gap-4">
+                      <span className="bg-belize-green/10 text-belize-green p-2 rounded">
+                        <DollarSign className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <h5 className="font-bold mb-1">Money Transfer</h5>
+                        <p className="text-sm text-gray-600">3.5% fee to wire money from USA to Belize</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-600 italic mb-2">All other overhead is underwritten by our founding partners</p>
+                    <p className="font-medium text-belize-green">93.6% of every dollar directly funds our projects</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-belize-light p-6 rounded-lg">
-                <h4 className="font-bold text-lg mb-4">Annual Impact Report</h4>
-                <p className="text-gray-700 mb-4">
-                  Our detailed annual report covers all programs, financial data, and impact metrics 
-                  for the year.
-                </p>
-                <Button className="w-full flex items-center justify-center gap-2 bg-belize-green hover:bg-opacity-90">
-                  <Download className="h-4 w-4" />
-                  Download 2023 Annual Report
-                </Button>
+            </TabsContent>
+            
+            <TabsContent value="reports" className="p-6 md:p-10 mt-0">
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <h3 className="text-2xl font-bold mb-6">Latest Financial Reports</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <span className="text-gray-700">January 2023 Financial Report</span>
+                      <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Download className="h-4 w-4" />
+                        PDF
+                      </Button>
+                    </div>
+                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <span className="text-gray-700">February 2023 Financial Report</span>
+                      <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Download className="h-4 w-4" />
+                        PDF
+                      </Button>
+                    </div>
+                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                      <span className="text-gray-700">March 2023 Financial Report</span>
+                      <Button variant="outline" size="sm" className="flex items-center gap-2">
+                        <Download className="h-4 w-4" />
+                        PDF
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="mt-8">
+                    <h4 className="font-bold text-lg mb-4">Annual Impact Report</h4>
+                    <p className="text-gray-700 mb-4">
+                      Our detailed annual report covers all programs, financial data, and impact metrics 
+                      for the year.
+                    </p>
+                    <Button className="w-full flex items-center justify-center gap-2 bg-belize-green hover:bg-opacity-90">
+                      <Download className="h-4 w-4" />
+                      Download 2023 Annual Report
+                    </Button>
+                  </div>
+                </div>
+                <div className="bg-white p-6 border border-gray-200 rounded-lg relative">
+                  <div className="absolute -top-4 -right-4 bg-belize-yellow text-white text-xs font-bold px-3 py-1 rounded-full">
+                    New
+                  </div>
+                  <h4 className="font-bold text-xl mb-6">Our Financial Commitment</h4>
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-gray-700">All project goals, costs, and fundraising results are published online regularly</p>
+                    </li>
+                    <li className="flex gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-gray-700">Financial reports are available for download and review by the public</p>
+                    </li>
+                    <li className="flex gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-gray-700">Project-specific breakdowns show exactly how funds were allocated</p>
+                    </li>
+                    <li className="flex gap-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-gray-700">Third-party audits verify our financial records annually</p>
+                    </li>
+                  </ul>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="flex justify-between items-center">
+                      <div className="flex gap-2 items-center">
+                        <span className="bg-belize-green/10 p-1.5 rounded">
+                          <Users className="h-4 w-4 text-belize-green" />
+                        </span>
+                        <span className="font-medium">501(c)(3) Non-Profit</span>
+                      </div>
+                      <span className="text-gray-500 text-sm">TAX ID: 81-2841433</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </TabsContent>
+            
+            <TabsContent value="projects" className="p-6 md:p-10 mt-0">
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold">Sample Project Breakdown</h3>
+                  <Button variant="outline" className="text-belize-green border-belize-green hover:bg-belize-green hover:text-white flex items-center gap-2">
+                    View All Projects <ArrowUpRight className="h-4 w-4" />
+                  </Button>
+                </div>
+                
+                <div className="bg-belize-light/30 p-6 rounded-lg mb-8">
+                  <h4 className="text-xl font-bold mb-3">Week #4 Summer Camp at Basil Jones, Mile 14, Ambergris Caye</h4>
+                  <p className="text-gray-700 mb-6">
+                    Financial breakdown of our summer camp project, showing complete transparency in how funds were raised and spent.
+                    All money is in Belize Dollars (BZD).
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h5 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 bg-belize-green text-white rounded-full flex items-center justify-center text-sm">$</span>
+                        Donations Received
+                      </h5>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="w-[60%]">Source</TableHead>
+                            <TableHead className="text-right">Amount (BZD)</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell>Finn & Martini Customer Donations</TableCell>
+                            <TableCell className="text-right">$400</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>Canary Cove Guest Donations</TableCell>
+                            <TableCell className="text-right">$150</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>San Pedro LobsterFestival Donations</TableCell>
+                            <TableCell className="text-right">$500</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>Finn & Martini ($2 per martini in June)</TableCell>
+                            <TableCell className="text-right">$700</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>Belize Kids.org Matching Funds</TableCell>
+                            <TableCell className="text-right">$2,000</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-bold">Total Monetary Donations</TableCell>
+                            <TableCell className="text-right font-bold">$3,850</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                      <p className="text-sm text-gray-600 mt-3">
+                        Additional in-kind donations: School and art supplies donated by Miss San Pedro High School 2016-2017 and Finn & Martini
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h5 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                        <span className="w-8 h-8 bg-belize-yellow text-white rounded-full flex items-center justify-center text-sm">$</span>
+                        Expenditures
+                      </h5>
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead className="w-[60%]">Item</TableHead>
+                            <TableHead className="text-right">Amount (BZD)</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          <TableRow>
+                            <TableCell>20 Children Sponsored @ $150 each</TableCell>
+                            <TableCell className="text-right">$3,000</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>15 Sets of Twin Sheets</TableCell>
+                            <TableCell className="text-right" rowSpan={2}>$850</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell>8 Stand Up Fans (Simon Quan, Belize City)</TableCell>
+                          </TableRow>
+                          <TableRow>
+                            <TableCell className="font-bold">Total Expenditures</TableCell>
+                            <TableCell className="text-right font-bold">$3,850</TableCell>
+                          </TableRow>
+                        </TableBody>
+                      </Table>
+                      <p className="text-sm italic text-gray-600 mt-4 text-center">
+                        All overhead costs are underwritten by our founding partners
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h5 className="font-bold text-lg mb-4 text-center">Project Results</h5>
+                  <div className="flex justify-center mb-4">
+                    <img 
+                      src="/lovable-uploads/d0cf5c69-dc26-4c5e-9ebe-18ea1a2d19d5.png" 
+                      alt="Happy kids at Basil Jones Summer Camp" 
+                      className="rounded-lg max-w-full h-auto max-h-[300px] object-cover"
+                    />
+                  </div>
+                  <p className="text-center text-lg font-medium text-belize-green">
+                    Happy Kids – Our Ultimate Goal Achieved
+                  </p>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </section>
