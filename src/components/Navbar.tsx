@@ -47,6 +47,12 @@ const Navbar: React.FC = () => {
           >
             Projects
           </Link>
+          <Link 
+            to="/leadership"
+            className="text-gray-700 hover:text-belize-blue font-medium"
+          >
+            Leadership
+          </Link>
           <button 
             onClick={() => scrollToSection("impact")}
             className="text-gray-700 hover:text-belize-blue font-medium"
@@ -95,6 +101,13 @@ const Navbar: React.FC = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Projects
+            </Link>
+            <Link 
+              to="/leadership"
+              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Leadership
             </Link>
             <button 
               onClick={() => scrollToSection("impact")}
