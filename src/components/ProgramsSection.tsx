@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 const ProgramsSection: React.FC = () => {
   const programs = [
     {
-      icon: <GraduationCap className="h-10 w-10 text-belize-blue" />,
+      icon: <GraduationCap className="h-10 w-10 text-belize-green" />,
       title: "Education Support",
       description: "Providing school supplies, scholarships, and tutoring programs to ensure every child has access to quality education.",
       color: "bg-belize-light"
@@ -21,7 +21,7 @@ const ProgramsSection: React.FC = () => {
       icon: <Home className="h-10 w-10 text-belize-coral" />,
       title: "Community Development",
       description: "Building safe spaces for children to learn, play, and grow within their communities.",
-      color: "bg-orange-50"
+      color: "bg-yellow-50"
     },
     {
       icon: <BookOpen className="h-10 w-10 text-belize-green" />,

@@ -6,17 +6,17 @@ import { CheckCircle, Download, BarChart2, PieChart } from "lucide-react";
 const TransparencySection: React.FC = () => {
   const transparencyFeatures = [
     {
-      icon: <BarChart2 className="h-6 w-6 text-belize-blue" />,
+      icon: <BarChart2 className="h-6 w-6 text-belize-green" />,
       title: "Monthly Financial Reports",
       description: "We publish detailed reports of all fundraising activities and expenses every month."
     },
     {
-      icon: <PieChart className="h-6 w-6 text-belize-blue" />,
+      icon: <PieChart className="h-6 w-6 text-belize-green" />,
       title: "Program Impact Metrics",
       description: "Clear metrics on how our programs are making a difference in children's lives."
     },
     {
-      icon: <CheckCircle className="h-6 w-6 text-belize-blue" />,
+      icon: <CheckCircle className="h-6 w-6 text-belize-green" />,
       title: "Third-Party Audits",
       description: "Annual third-party audits ensure accountability and transparency."
     }
@@ -106,7 +106,7 @@ const TransparencySection: React.FC = () => {
                   Our detailed annual report covers all programs, financial data, and impact metrics 
                   for the year.
                 </p>
-                <Button className="w-full flex items-center justify-center gap-2 bg-belize-blue hover:bg-opacity-90">
+                <Button className="w-full flex items-center justify-center gap-2 bg-belize-green hover:bg-opacity-90">
                   <Download className="h-4 w-4" />
                   Download 2023 Annual Report
                 </Button>

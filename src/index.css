@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 142 52% 50%;  /* Changed from blue to green */
+    --primary: 142 52% 50%;  /* Green */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -33,7 +33,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 52% 50%;  /* Changed from blue to green */
+    --ring: 142 52% 50%;  /* Green */
 
     --radius: 0.5rem;
 
@@ -57,7 +57,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142 52% 50%;  /* Changed from blue to green */
+    --primary: 142 52% 50%;  /* Green */
     --primary-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -74,7 +74,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 142 52% 50%;  /* Changed from blue to green */
+    --ring: 142 52% 50%;  /* Green */
     
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -97,7 +97,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-belize-green;  /* Changed from text-belize-blue */
+    @apply font-heading text-belize-green;
   }
 }
 
@@ -115,15 +115,15 @@
   }
   
   .input-donate {
-    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-green;  /* Changed from ring-belize-blue */
+    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-green;
   }
 
   .card-highlight {
-    @apply border-l-4 border-belize-green shadow-md hover:shadow-lg transition-all;  /* Changed from border-belize-blue */
+    @apply border-l-4 border-belize-green shadow-md hover:shadow-lg transition-all;
   }
 
   .gradient-blue-light {
-    @apply bg-gradient-to-r from-belize-green to-belize-light;  /* Changed from from-belize-blue */
+    @apply bg-gradient-to-r from-belize-green to-belize-light;
   }
   
   .section-title {

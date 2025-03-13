@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,7 +73,7 @@ const DonationForm: React.FC = () => {
             <div className="space-y-6">
               <div className="flex gap-4 items-start">
                 <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
-                  <DollarSign className="h-6 w-6 text-belize-blue" />
+                  <DollarSign className="h-6 w-6 text-belize-green" />
                 </div>
                 <div>
                   <h4 className="font-bold text-lg mb-1">$25</h4>
@@ -113,7 +114,7 @@ const DonationForm: React.FC = () => {
             
             <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
               <div className="flex items-center gap-3 mb-4">
-                <Award className="h-6 w-6 text-belize-blue" />
+                <Award className="h-6 w-6 text-belize-green" />
                 <h4 className="font-bold">Tax Deductible</h4>
               </div>
               <p className="text-gray-700">
@@ -151,8 +152,8 @@ const DonationForm: React.FC = () => {
                               htmlFor={`amount-${amount}`}
                               className={`flex justify-center items-center px-4 py-3 rounded-md border cursor-pointer transition-all ${
                                 donationAmount === amount
-                                  ? "bg-belize-blue text-white border-belize-blue"
-                                  : "bg-white text-gray-700 border-gray-200 hover:border-belize-blue"
+                                  ? "bg-belize-green text-white border-belize-green"
+                                  : "bg-white text-gray-700 border-gray-200 hover:border-belize-green"
                               }`}
                             >
                               ${amount}
