@@ -157,28 +157,47 @@ const Leadership: React.FC = () => {
               {/* US Board */}
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 text-belize-blue text-center">U.S. Board of Directors</h2>
-                <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md p-6 max-w-3xl mx-auto">
-                  <p className="text-gray-700 mb-4">
-                    In the USA, BelizeKids.org is a 501c(3) non-profit organization.
-                  </p>
-                  <p className="text-gray-700 mb-4">
-                    The US board of Directors are:
-                  </p>
-                  <ul className="list-disc pl-6 text-gray-700">
-                    <li className="mb-2"><span className="font-semibold">Don Listwin</span> (President)</li>
-                    <li className="mb-2"><span className="font-semibold">Hilary Valentine</span> (Treasurer)</li>
-                    <li><span className="font-semibold">Mark Evans</span> (Secretary)</li>
-                  </ul>
-                  
-                  <div className="mt-6 pt-6 border-t border-gray-200">
-                    <h3 className="text-xl font-bold mb-2 text-belize-blue">Mark Evans</h3>
-                    <p className="text-gray-700">
-                      Mark has 40 years experience in Advertising, Marketing, Sales, Business Development and 
-                      Business Analytics. In addition to co-founding an advertising agency specializing in 
-                      marketing strategy, public relations and advertising Mr. Evans has been an executive with 
-                      various software startups as well as larger Internet tech companies such as Netscape, 
-                      eBay and Google.
-                    </p>
+                <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                  {/* Don Listwin (US Board) */}
+                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Don Listwin</h3>
+                      <p className="text-belize-teal font-medium mb-4">President</p>
+                      <p className="text-gray-700">
+                        In the USA, BelizeKids.org is a 501c(3) non-profit organization led by Don Listwin as President.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Hilary Valentine (US Board) */}
+                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Hilary Valentine</h3>
+                      <p className="text-belize-teal font-medium mb-4">Treasurer</p>
+                      <p className="text-gray-700">
+                        Hilary Valentine serves as Treasurer on the US Board of Directors for BelizeKids.org.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Mark Evans (US Board) */}
+                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Mark Evans</h3>
+                      <p className="text-belize-teal font-medium mb-4">Secretary</p>
+                      <div className="text-gray-700 space-y-4">
+                        <p>
+                          Mark has 40 years experience in Advertising, Marketing, Sales, Business Development and 
+                          Business Analytics.
+                        </p>
+                        <p>
+                          In addition to co-founding an advertising agency specializing in 
+                          marketing strategy, public relations and advertising Mr. Evans has been an executive with 
+                          various software startups as well as larger Internet tech companies such as Netscape, 
+                          eBay and Google.
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
