@@ -63,14 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom color palette for BelizeKids
+				// Custom color palette for BelizeKids - replacing blue with green
 				belize: {
-					blue: '#0FA0CE',
+					blue: '#3CB371', // Changed from #0FA0CE to green
 					teal: '#20B2AA',
 					green: '#3CB371',
 					sand: '#F5DEB3',
 					coral: '#FF7F50',
-					light: '#E6F7FF'
+					light: '#E6FFF0'  // Changed from #E6F7FF to a light green tint
 				}
 			},
 			fontFamily: {

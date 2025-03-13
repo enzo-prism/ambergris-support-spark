@@ -24,33 +24,33 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-6 text-belize-blue relative inline-block">
+            <h3 className="font-bold text-lg mb-6 text-belize-green relative inline-block">
               Quick Links
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-blue"></span>
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-green"></span>
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#about" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#about" className="text-gray-600 hover:text-belize-green transition-colors">
                   About Us
                 </a>
               </li>
               <li>
-                <a href="#programs" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#programs" className="text-gray-600 hover:text-belize-green transition-colors">
                   Our Programs
                 </a>
               </li>
               <li>
-                <a href="#impact" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#impact" className="text-gray-600 hover:text-belize-green transition-colors">
                   Our Impact
                 </a>
               </li>
               <li>
-                <a href="#donate" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#donate" className="text-gray-600 hover:text-belize-green transition-colors">
                   Donate
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#contact" className="text-gray-600 hover:text-belize-green transition-colors">
                   Contact Us
                 </a>
               </li>
@@ -58,28 +58,28 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-6 text-belize-blue relative inline-block">
+            <h3 className="font-bold text-lg mb-6 text-belize-green relative inline-block">
               Legal
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-blue"></span>
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-green"></span>
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors">
                   Privacy Policy
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors">
                   Terms of Service
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors">
                   Financial Reports
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-belize-blue transition-colors">
+                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors">
                   Annual Reports
                 </a>
               </li>
@@ -87,9 +87,9 @@ const Footer: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="font-bold text-lg mb-6 text-belize-blue relative inline-block">
+            <h3 className="font-bold text-lg mb-6 text-belize-green relative inline-block">
               Newsletter
-              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-blue"></span>
+              <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-green"></span>
             </h3>
             <p className="text-gray-600 mb-4">
               Subscribe to receive updates about our programs and impact.
@@ -98,9 +98,9 @@ const Footer: React.FC = () => {
               <input 
                 type="email" 
                 placeholder="Your email address" 
-                className="bg-gray-100 text-gray-700 px-4 py-2 rounded-l-md flex-grow focus:outline-none focus:ring-1 focus:ring-belize-blue border border-gray-200"
+                className="bg-gray-100 text-gray-700 px-4 py-2 rounded-l-md flex-grow focus:outline-none focus:ring-1 focus:ring-belize-green border border-gray-200"
               />
-              <button className="bg-belize-blue text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-colors">
+              <button className="bg-belize-green text-white px-4 py-2 rounded-r-md hover:bg-opacity-90 transition-colors">
                 Subscribe
               </button>
             </div>
