@@ -28,22 +28,22 @@ const ImpactSection: React.FC = () => {
 
   const impactStories = [
     {
-      name: "Maria",
-      age: 10,
-      story: "Maria received a scholarship that allowed her to continue her education. She excels in mathematics and dreams of becoming an engineer.",
-      image: "https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: "Vision Clinic",
+      age: "",
+      story: "Our vision clinics have provided hundreds of children with eye exams and glasses, greatly improving their ability to learn and participate in school activities.",
+      image: "/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png",
     },
     {
-      name: "Carlos",
-      age: 8,
-      story: "Carlos joined our after-school program where he discovered his passion for art. His paintings have been featured in local exhibitions.",
-      image: "https://images.unsplash.com/photo-1548187669-7b58fdd9e591?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: "Eye Testing",
+      age: "",
+      story: "By identifying vision problems early, we help ensure children can succeed academically and develop the skills they need for a bright future.",
+      image: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
     },
     {
-      name: "Sofia",
-      age: 12,
-      story: "Sofia's health improved dramatically after joining our nutrition program. She's now an active participant in our sports initiatives.",
-      image: "https://images.unsplash.com/photo-1592850923600-970e0e5f0fea?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+      name: "Healthcare Access",
+      age: "",
+      story: "Our healthcare initiatives provide essential medical services to children who might otherwise go without proper care, improving their overall wellbeing.",
+      image: "/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png",
     },
   ];
 
@@ -113,11 +113,11 @@ const ImpactSection: React.FC = () => {
               <div key={index} className="bg-gray-50 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
                 <img 
                   src={story.image} 
-                  alt={`${story.name}'s story`} 
+                  alt={`${story.name}`} 
                   className="w-full h-48 object-cover"
                 />
                 <div className="p-6">
-                  <h4 className="font-bold text-xl mb-1">{story.name}, {story.age}</h4>
+                  <h4 className="font-bold text-xl mb-1">{story.name}{story.age ? `, ${story.age}` : ''}</h4>
                   <p className="text-gray-700">{story.story}</p>
                 </div>
               </div>

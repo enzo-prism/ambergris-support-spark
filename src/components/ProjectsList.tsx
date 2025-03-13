@@ -18,7 +18,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 30, 2023",
     excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
-    imageSrc: "/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png",
+    imageSrc: "/lovable-uploads/20afad96-a69a-4127-822c-f95dc36b74e3.png",
     slug: "october-vision-clinic",
   },
   {
@@ -27,7 +27,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "November 22, 2022",
     excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's.",
-    imageSrc: "https://images.unsplash.com/photo-1482275548304-a58859dc31b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png",
     slug: "dollar-a-dive-program",
   },
   {
@@ -36,7 +36,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 27, 2022",
     excerpt: "BelizeKids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year.",
-    imageSrc: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
     slug: "second-vision-screening-machine",
   },
   {
@@ -45,7 +45,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 7, 2022",
     excerpt: "Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between BelizeKids.Org and Finn & Martini Lounge and Restaurant.",
-    imageSrc: "https://images.unsplash.com/photo-1472898965229-f9b06b9c9bbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/d0cf5c69-dc26-4c5e-9ebe-18ea1a2d19d5.png",
     slug: "camp-basil-jones",
   },
   {
@@ -54,7 +54,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 20, 2022",
     excerpt: "Just last week BelizeKids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.",
-    imageSrc: "https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/ef657229-fafe-4b76-83f7-88bce76133af.png",
     slug: "eye-screening-equipment",
   },
   {
@@ -63,7 +63,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 9, 2022",
     excerpt: "Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.",
-    imageSrc: "https://images.unsplash.com/photo-1469571486292-b53601010972?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png",
     slug: "fundraising-camp-basil-jones",
   },
   {
@@ -72,7 +72,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "June 14, 2022",
     excerpt: "San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.",
-    imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png",
     slug: "sprc-primary-school",
   },
   {
@@ -81,7 +81,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 1, 2021",
     excerpt: "In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.",
-    imageSrc: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/378a9d5e-a28f-46e3-b7b3-548b5d1bc855.png",
     slug: "equipment-donation-hol-chan",
   },
 ];

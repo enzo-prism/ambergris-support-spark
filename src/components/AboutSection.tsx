@@ -17,8 +17,8 @@ const AboutSection: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1560367918-bed51f9dff43?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-              alt="Children in Belize" 
+              src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" 
+              alt="Children at San Pedro Lions Club" 
               className="rounded-lg shadow-lg"
             />
           </div>

@@ -64,7 +64,7 @@ const ProgramsSection: React.FC = () => {
             with plans to expand nationwide.
           </p>
           <img 
-            src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+            src="/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png" 
             alt="Children participating in programs" 
             className="rounded-lg shadow-lg max-w-4xl mx-auto"
           />

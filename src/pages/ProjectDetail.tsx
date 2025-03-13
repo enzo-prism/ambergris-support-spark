@@ -13,7 +13,7 @@ const projects = [
     title: "October Vision Clinic is a Huge Success",
     author: "Rebecca Coutant",
     date: "October 30, 2023",
-    imageSrc: "/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png",
+    imageSrc: "/lovable-uploads/20afad96-a69a-4127-822c-f95dc36b74e3.png",
     content: `
       <p>BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.</p>
       <p>The clinic was held over three days at the San Pedro Community Center, with volunteer optometrists from the United States and Belize working tirelessly to serve as many children as possible.</p>
@@ -27,7 +27,7 @@ const projects = [
     title: "BelizeKids is Excited to Announce Our #DollaADive Program",
     author: "Rebecca Coutant",
     date: "November 22, 2022",
-    imageSrc: "https://images.unsplash.com/photo-1482275548304-a58859dc31b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png",
     content: `
       <p>If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's. Over the decades since, Ambergris has become a bustling tourist mecca, arguably the most popular destination in all of Belize.</p>
       <p>Our #DollaADive program is simple: for every dive conducted by participating dive shops, $1 is donated to BelizeKids.org to support our vision care and educational programs for children in Belize.</p>
@@ -40,7 +40,7 @@ const projects = [
     title: "BelizeKids.Org Donates a Second Vision Screening Machine To San Pedro's Lions Club",
     author: "Rebecca Coutant",
     date: "August 27, 2022",
-    imageSrc: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
     content: `
       <p>BelizeKids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year. Before these donations, two similar machines were shared between the various Lions' Clubs of Belize and used to identify vision issues for all school children in the country.</p>
       <p>The Plus Optix Vision Screener is a state-of-the-art device that allows for quick and accurate vision screening, especially for young children. It can detect common vision problems such as nearsightedness, farsightedness, astigmatism, and other eye issues.</p>
@@ -53,7 +53,7 @@ const projects = [
     title: "BelizeKids.Org and Finn & Martini Sponsor Week Four of Camp Basil Jones on North Ambergris Caye",
     author: "Rebecca Coutant",
     date: "August 7, 2022",
-    imageSrc: "https://images.unsplash.com/photo-1472898965229-f9b06b9c9bbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/d0cf5c69-dc26-4c5e-9ebe-18ea1a2d19d5.png",
     content: `
       <p>Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between BelizeKids.Org and Finn & Martini Lounge and Restaurant.</p>
       <p>The fourth week of the camp, organized by San Pedro's Mito Paz, welcomed 20+ kids from San Pedro, Caye Caulker and some villages on the mainland. The kids learned about our reef, our environment and the impact that human activities can have on them.</p>
@@ -67,7 +67,7 @@ const projects = [
     title: "BelizeKids.Org Donates Eye Screening Equipment to the Lions' Den in San Pedro",
     author: "Rebecca Coutant",
     date: "July 20, 2022",
-    imageSrc: "https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    imageSrc: "/lovable-uploads/ef657229-fafe-4b76-83f7-88bce76133af.png",
     content: `
       <p>Just last week BelizeKids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.</p>
       <p>The donation of a new Plus Optix Screening Device by BelizeKids.org will help the effort immensely. It will allow for more efficient and accurate screening of children's vision, helping to identify problems early when they can be most effectively addressed.</p>
@@ -75,7 +75,44 @@ const projects = [
       <p>We're proud to support the important work being done by the Lions' Den and look forward to hearing about the impact this equipment has on their vision screening program.</p>
     `
   },
-  // Additional project details would be included here
+  // Additional project details
+  {
+    slug: "fundraising-camp-basil-jones",
+    title: "BelizeKids.Org and Finn & Martini Raise Money for Ambergris Caye's Camp Basil Jones",
+    author: "Rebecca Coutant",
+    date: "July 9, 2022",
+    imageSrc: "/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png",
+    content: `
+      <p>Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.</p>
+      <p>The joint fundraising effort between BelizeKids.Org and Finn & Martini Lounge and Restaurant was a great success, raising enough money to sponsor the fourth week of the camp.</p>
+      <p>We would like to thank everyone who contributed to this fundraising effort, especially the patrons of Finn & Martini who generously donated to this cause. Your support has made it possible for more children to experience the educational opportunities provided by Camp Basil Jones.</p>
+    `
+  },
+  {
+    slug: "sprc-primary-school",
+    title: "Working with SPRC Primary, San Pedro, Belize's Largest Public School",
+    author: "Rebecca Coutant",
+    date: "June 14, 2022",
+    imageSrc: "/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png",
+    content: `
+      <p>San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.</p>
+      <p>BelizeKids.org has been working closely with the school to address some of their most pressing needs, including infrastructure improvements and educational resources.</p>
+      <p>Our recent initiatives include providing new classroom furniture, supporting their reading program with new books, and funding structural improvements to ensure a safe learning environment for all students.</p>
+      <p>We are committed to continuing our support of SPRC Primary and other schools in Belize, as we believe that education is the foundation for a bright future.</p>
+    `
+  },
+  {
+    slug: "equipment-donation-hol-chan",
+    title: "Canary Cove Donates Equipment to San Pedro Tour Guide Association & Hol Chan Marine Reserve",
+    author: "Rebecca Coutant",
+    date: "October 1, 2021",
+    imageSrc: "/lovable-uploads/378a9d5e-a28f-46e3-b7b3-548b5d1bc855.png",
+    content: `
+      <p>In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.</p>
+      <p>Mexico Rock is now designated a "no-take zone" just like Hol Chan, and these mooring buoys will help to protect the coral reef by providing secure mooring points for boats, eliminating the need to drop anchors that can damage the fragile ecosystem.</p>
+      <p>This donation is part of our commitment to preserving the natural beauty and biodiversity of Belize's marine environment, which is not only important for its ecological value but also vital for the tourism industry that supports many local communities.</p>
+    `
+  }
 ];
 
 const ProjectDetail: React.FC = () => {
