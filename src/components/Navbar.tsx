@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Heart, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -94,8 +94,11 @@ const Navbar: React.FC = () => {
     >
       <div className="container-custom flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2 z-20">
-          <Heart className="h-6 w-6 text-belize-coral" />
-          <span className="font-heading font-bold text-2xl text-belize-blue">BelizeKids</span>
+          <img 
+            src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
+            alt="BelizeKIDS.ORG Logo" 
+            className="h-10 w-auto"
+          />
         </Link>
 
         {/* Desktop Menu */}
@@ -145,8 +148,11 @@ const Navbar: React.FC = () => {
             <div className="px-6 py-4 flex flex-col space-y-6">
               <div className="flex justify-between items-center">
                 <Link to="/" className="flex items-center space-x-2">
-                  <Heart className="h-5 w-5 text-belize-coral" />
-                  <span className="font-heading font-bold text-xl text-belize-blue">BelizeKids</span>
+                  <img 
+                    src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
+                    alt="BelizeKIDS.ORG Logo" 
+                    className="h-8 w-auto"
+                  />
                 </Link>
                 <SheetClose className="rounded-full h-7 w-7 flex items-center justify-center">
                   <X size={18} />

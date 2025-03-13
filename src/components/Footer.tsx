@@ -1,6 +1,5 @@
 
 import React from "react";
-import { Heart } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +9,12 @@ const Footer: React.FC = () => {
       <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10 border-b border-gray-800">
           <div>
-            <div className="flex items-center space-x-2 mb-6">
-              <Heart className="h-6 w-6 text-belize-coral" />
-              <span className="font-heading font-bold text-2xl text-white">BelizeKids</span>
+            <div className="mb-6">
+              <img 
+                src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
+                alt="BelizeKIDS.ORG Logo" 
+                className="h-12 w-auto"
+              />
             </div>
             <p className="text-gray-400 mb-6">
               Supporting children in Belize through education, healthcare, and community programs.
