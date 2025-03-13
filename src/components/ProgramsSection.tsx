@@ -12,28 +12,32 @@ const ProgramsSection: React.FC = () => {
       title: "School Support",
       description: "Investing in educational infrastructure, supplies, and resources to help schools provide better learning environments for children.",
       color: "bg-belize-green",
-      hoverColor: "hover:bg-belize-green/90"
+      hoverColor: "hover:bg-belize-green/90",
+      category: "education"
     },
     {
       icon: <HeartPulse className="h-12 w-12 text-white" />,
       title: "Healthcare Expansion",
       description: "Supporting and expanding healthcare services to ensure children receive the medical attention they need to thrive.",
       color: "bg-belize-teal",
-      hoverColor: "hover:bg-belize-teal/90"
+      hoverColor: "hover:bg-belize-teal/90",
+      category: "healthcare"
     },
     {
       icon: <Home className="h-12 w-12 text-white" />,
       title: "Parks & Playgrounds",
       description: "Building and maintaining safe recreational spaces where children can play, exercise, and develop social skills.",
       color: "bg-belize-coral",
-      hoverColor: "hover:bg-belize-coral/90"
+      hoverColor: "hover:bg-belize-coral/90",
+      category: "environment"
     },
     {
       icon: <BookOpen className="h-12 w-12 text-white" />,
       title: "Scholarship Programs",
       description: "Providing educational scholarships to help talented students overcome financial barriers and achieve their potential.",
       color: "bg-belize-blue",
-      hoverColor: "hover:bg-belize-blue/90"
+      hoverColor: "hover:bg-belize-blue/90",
+      category: "education"
     }
   ];
 
@@ -67,9 +71,11 @@ const ProgramsSection: React.FC = () => {
                 </CardDescription>
               </CardContent>
               <CardFooter className="px-6 pb-6">
-                <Button variant="ghost" className="p-0 h-auto text-belize-green hover:text-belize-blue hover:bg-transparent">
-                  Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                </Button>
+                <Link to={`/projects?tab=${program.category}`}>
+                  <Button variant="ghost" className="p-0 h-auto text-belize-green hover:text-belize-blue hover:bg-transparent">
+                    Learn more <ArrowRight className="ml-1 h-4 w-4" />
+                  </Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}

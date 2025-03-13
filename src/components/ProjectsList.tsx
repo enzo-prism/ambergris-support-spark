@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
@@ -11,10 +10,9 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
-// Mock data for projects/blog posts
 const projectPosts = [
   {
     id: 1,
@@ -99,9 +97,18 @@ const projectPosts = [
 ];
 
 const ProjectsList: React.FC = () => {
+  const location = useLocation();
   const [activeView, setActiveView] = useState<"grid" | "list">("grid");
   const [activeTab, setActiveTab] = useState<string>("all");
   
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const tabParam = searchParams.get('tab');
+    if (tabParam && ['healthcare', 'education', 'environment', 'fundraising', 'all'].includes(tabParam)) {
+      setActiveTab(tabParam);
+    }
+  }, [location.search]);
+
   const filteredProjects = activeTab === "all" 
     ? projectPosts 
     : projectPosts.filter(project => project.category === activeTab);
@@ -110,7 +117,11 @@ const ProjectsList: React.FC = () => {
     <div className="py-16 bg-gray-50">
       <div className="container-custom max-w-6xl">
         <div className="flex flex-col md:flex-row justify-between items-center mb-10">
-          <Tabs defaultValue="all" className="w-full max-w-md" onValueChange={(value) => setActiveTab(value)}>
+          <Tabs 
+            value={activeTab} 
+            className="w-full max-w-md" 
+            onValueChange={(value) => setActiveTab(value)}
+          >
             <TabsList className="w-full bg-white border">
               <TabsTrigger value="all" className="flex-1">All</TabsTrigger>
               <TabsTrigger value="healthcare" className="flex-1">Healthcare</TabsTrigger>
