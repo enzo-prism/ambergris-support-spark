@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -9,6 +10,10 @@ const Leadership: React.FC = () => {
       <Helmet>
         <title>Leadership - BelizeKids.org</title>
         <meta name="description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
+        <meta property="og:title" content="Leadership - BelizeKids.org" />
+        <meta property="og:description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
+        <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
+        <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
       <main className="pt-20">

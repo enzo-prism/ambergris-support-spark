@@ -1,5 +1,7 @@
+
 import React from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -120,6 +122,14 @@ const ProjectDetail: React.FC = () => {
   if (!project) {
     return (
       <div className="min-h-screen">
+        <Helmet>
+          <title>Project Not Found - BelizeKids.org</title>
+          <meta name="description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
+          <meta property="og:title" content="Project Not Found - BelizeKids.org" />
+          <meta property="og:description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
+          <meta property="og:image" content="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" />
+          <meta property="og:type" content="article" />
+        </Helmet>
         <Navbar />
         <div className="container-custom py-32 text-center">
           <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
@@ -137,6 +147,14 @@ const ProjectDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>{project.title} - BelizeKids.org</title>
+        <meta name="description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
+        <meta property="og:title" content={`${project.title} - BelizeKids.org`} />
+        <meta property="og:description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
+        <meta property="og:image" content={project.imageSrc} />
+        <meta property="og:type" content="article" />
+      </Helmet>
       <Navbar />
       
       <div className="pt-24 pb-16">
