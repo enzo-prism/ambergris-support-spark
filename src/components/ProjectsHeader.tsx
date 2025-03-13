@@ -9,8 +9,8 @@ const ProjectsHeader: React.FC = () => {
         <div className="h-1 w-24 bg-belize-yellow mb-6"></div>
         <p className="text-lg text-gray-700 max-w-3xl">
           Follow our journey as we work to improve the lives of children in Belize through investments in schools, 
-          parks, healthcare, and scholarships. With complete transparency, we share our initiatives, 
-          progress, and success stories.
+          parks, healthcare, and scholarships. With complete transparency, we share the impact of your 
+          contributions and the progress of our initiatives.
         </p>
       </div>
     </div>

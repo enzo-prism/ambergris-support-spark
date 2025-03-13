@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const Footer: React.FC = () => {
@@ -20,7 +19,11 @@ const Footer: React.FC = () => {
               Improving the lives of children in Belize through investments in education, healthcare, parks, and scholarships.
             </p>
             <p className="text-gray-600 mb-1">501(c)(3) Non-Profit Organization</p>
-            <p className="text-gray-600">EIN: 12-3456789</p>
+            <p className="text-gray-600 mb-1">TAX ID: 81-2841433</p>
+            <address className="text-gray-600 not-italic">
+              PO BOX 620134<br/>
+              Woodside, CA 94062
+            </address>
           </div>
           
           <div>

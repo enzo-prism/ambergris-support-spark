@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -93,8 +94,9 @@ const ContactSection: React.FC = () => {
                     <p className="text-gray-600">
                       BelizeKids.org<br />
                       501(c)(3) Non-Profit<br />
-                      123 Charity Lane<br />
-                      Miami, FL 33101
+                      TAX ID: 81-2841433<br />
+                      PO BOX 620134<br />
+                      Woodside, CA 94062
                     </p>
                   </div>
                 </div>

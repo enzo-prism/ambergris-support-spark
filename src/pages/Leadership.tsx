@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -164,7 +163,7 @@ const Leadership: React.FC = () => {
                       <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
                       <p className="text-belize-teal font-medium mb-4">President</p>
                       <p className="text-gray-700">
-                        In the USA, BelizeKids.org is a 501c(3) non-profit organization led by Don Listwin as President.
+                        In the USA, BelizeKids.org (TAX ID: 81-2841433) is a 501c(3) non-profit organization led by Don Listwin as President.
                       </p>
                     </div>
                   </div>
