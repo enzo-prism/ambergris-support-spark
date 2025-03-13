@@ -97,7 +97,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading;
+    @apply font-heading text-belize-blue;
   }
 }
 
@@ -116,5 +116,21 @@
   
   .input-donate {
     @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-blue;
+  }
+
+  .card-highlight {
+    @apply border-l-4 border-belize-blue shadow-md hover:shadow-lg transition-all;
+  }
+
+  .gradient-blue-light {
+    @apply bg-gradient-to-r from-belize-blue to-belize-light;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-6 text-center;
+  }
+  
+  .section-title-left {
+    @apply text-3xl md:text-4xl font-bold mb-6;
   }
 }

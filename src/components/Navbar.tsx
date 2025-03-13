@@ -109,20 +109,22 @@ const Navbar: React.FC = () => {
                 <Link 
                   to={item.to!}
                   className={cn(
-                    "text-gray-700 hover:text-belize-blue font-medium transition-colors",
+                    "text-gray-700 hover:text-belize-blue font-medium transition-colors relative group",
                     location.pathname === item.to && "text-belize-blue font-semibold"
                   )}
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-belize-blue transition-all group-hover:w-full"></span>
                 </Link>
               )}
               
               {item.type === "scroll" && (
                 <button 
                   onClick={item.action}
-                  className="text-gray-700 hover:text-belize-blue font-medium transition-colors"
+                  className="text-gray-700 hover:text-belize-blue font-medium transition-colors relative group"
                 >
                   {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-belize-blue transition-all group-hover:w-full"></span>
                 </button>
               )}
             </React.Fragment>
@@ -130,7 +132,7 @@ const Navbar: React.FC = () => {
           
           <Button 
             onClick={() => scrollToSection("donate")}
-            className="bg-belize-coral hover:bg-opacity-90 text-white transition-all hover:shadow-md"
+            className="bg-belize-blue hover:bg-belize-blue/90 text-white transition-all hover:shadow-md"
           >
             Donate Now
           </Button>
@@ -139,12 +141,12 @@ const Navbar: React.FC = () => {
         {/* Mobile Menu with Sheet Component */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-gray-700">
+            <Button variant="ghost" size="icon" className="text-belize-blue">
               <Menu size={24} />
               <span className="sr-only">Open main menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="p-0 w-[300px]">
+          <SheetContent side="right" className="p-0 w-[300px] border-l-4 border-belize-blue">
             <div className="px-6 py-4 flex flex-col space-y-6">
               <div className="flex justify-between items-center">
                 <Link to="/" className="flex items-center space-x-2">
@@ -154,7 +156,7 @@ const Navbar: React.FC = () => {
                     className="h-8 w-auto"
                   />
                 </Link>
-                <SheetClose className="rounded-full h-7 w-7 flex items-center justify-center">
+                <SheetClose className="rounded-full h-7 w-7 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
                   <X size={18} />
                   <span className="sr-only">Close</span>
                 </SheetClose>
@@ -171,7 +173,7 @@ const Navbar: React.FC = () => {
                       <Link 
                         to={item.to!}
                         className={cn(
-                          "flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium",
+                          "flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium border-b border-gray-100",
                           location.pathname === item.to && "text-belize-blue font-semibold"
                         )}
                       >
@@ -180,7 +182,7 @@ const Navbar: React.FC = () => {
                     ) : (
                       <button 
                         onClick={item.action}
-                        className="flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium text-left"
+                        className="flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
                       >
                         {item.label}
                       </button>
@@ -192,7 +194,7 @@ const Navbar: React.FC = () => {
               <SheetClose asChild>
                 <Button 
                   onClick={() => scrollToSection("donate")}
-                  className="bg-belize-coral hover:bg-opacity-90 text-white w-full"
+                  className="bg-belize-blue hover:bg-opacity-90 text-white w-full"
                 >
                   Donate Now
                 </Button>

@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex items-center pt-16 bg-gradient-to-b from-belize-light to-white overflow-hidden">
+    <div className="relative min-h-screen flex items-center pt-16 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute top-0 left-0 w-64 h-64 bg-belize-blue rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-belize-teal rounded-full blur-3xl translate-x-1/2"></div>
@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
             <Button 
               onClick={scrollToDonate}
-              className="button-donate text-lg px-8 py-6"
+              className="bg-belize-blue hover:bg-belize-blue/90 text-white text-lg px-8 py-6"
             >
               Donate Now
               <ArrowRight className="ml-2 h-5 w-5" />
@@ -52,14 +52,14 @@ const Hero: React.FC = () => {
         </div>
         <div className="flex-1 relative">
           <div className="relative w-full max-w-md mx-auto animate-float">
-            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-blue/10">
               <img 
                 src="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" 
                 alt="Children in Belize at vision clinic" 
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border-l-4 border-belize-blue">
               <p className="font-bold text-belize-blue">100%</p>
               <p className="text-sm">Directly to programs</p>
             </div>
