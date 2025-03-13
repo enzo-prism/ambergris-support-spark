@@ -22,18 +22,17 @@ const Hero: React.FC = () => {
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Improving the Lives of <span className="text-belize-green">Children</span> in Belize
-            <br />Building a <span className="text-belize-yellow">Brighter Future</span>
+            Empowering Belizean Children to Build a <span className="text-belize-green">Brighter Future</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0">
-            We invest in schools, parks, healthcare, and scholarships with 100% transparency, ensuring that every contribution directly benefits Belizean children.
+            Investing in Belizean children's education, health, and well-being with complete transparency.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
             <Button 
               onClick={scrollToDonate}
               className="bg-belize-green hover:bg-belize-green/90 text-white text-lg px-8 py-6"
             >
-              Donate Now
+              Make a Difference Today
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
@@ -46,7 +45,7 @@ const Hero: React.FC = () => {
                 }
               }}
             >
-              Learn More
+              Discover Our Impact
             </Button>
           </div>
         </div>
@@ -55,7 +54,7 @@ const Hero: React.FC = () => {
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <img 
                 src="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" 
-                alt="Children in Belize at vision clinic" 
+                alt="A Belizean child receives compassionate care from a dedicated healthcare professional in a well-equipped clinic, surrounded by tools that transform lives." 
                 className="object-cover w-full h-full"
               />
             </div>
