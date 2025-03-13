@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -19,7 +18,7 @@ const projects = [
       <p>The clinic was held over three days at the San Pedro Community Center, with volunteer optometrists from the United States and Belize working tirelessly to serve as many children as possible.</p>
       <p>One of the most rewarding moments was seeing the expressions on children's faces when they put on their new glasses for the first time and could see clearly. For many, it was a life-changing experience that will significantly improve their ability to learn and participate in school.</p>
       <p>We'd like to extend a special thank you to Dr. James Wilson and his team for donating their time and expertise, as well as to our donors who made this event possible by funding the equipment and glasses.</p>
-      <p>Based on the success of this clinic, we're planning to expand this program to other communities in Belize in the coming year.</p>
+      <p>Based on the success of this clinic, we're planning to expand this healthcare initiative to other communities in Belize in the coming year, aligning with our mission to improve the lives of kids throughout Belize.</p>
     `
   },
   {
@@ -32,7 +31,7 @@ const projects = [
       <p>If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's. Over the decades since, Ambergris has become a bustling tourist mecca, arguably the most popular destination in all of Belize.</p>
       <p>Our #DollaADive program is simple: for every dive conducted by participating dive shops, $1 is donated to BelizeKids.org to support our vision care and educational programs for children in Belize.</p>
       <p>Participating dive shops receive promotional materials and recognition on our website and social media channels. Most importantly, they get to contribute to the wellbeing of the children who are the future of Belize.</p>
-      <p>If you're a dive shop owner interested in participating in the #DollaADive program, please contact us for more information. Together, we can make a difference in the lives of children in Belize.</p>
+      <p>This program exemplifies our mission to build a framework that identifies community goals and cements local relationships, providing a means for businesses to donate with confidence and complete transparency.</p>
     `
   },
   {
@@ -75,7 +74,6 @@ const projects = [
       <p>We're proud to support the important work being done by the Lions' Den and look forward to hearing about the impact this equipment has on their vision screening program.</p>
     `
   },
-  // Additional project details
   {
     slug: "fundraising-camp-basil-jones",
     title: "BelizeKids.Org and Finn & Martini Raise Money for Ambergris Caye's Camp Basil Jones",
@@ -143,11 +141,11 @@ const ProjectDetail: React.FC = () => {
       
       <div className="pt-24 pb-16">
         <div className="container-custom">
-          <Link to="/projects" className="inline-flex items-center text-belize-blue hover:underline mb-6">
+          <Link to="/projects" className="inline-flex items-center text-belize-green hover:underline mb-6">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to all projects
           </Link>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-belize-blue mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-belize-green mb-4">
             {project.title}
           </h1>
           
@@ -176,9 +174,9 @@ const ProjectDetail: React.FC = () => {
           
           <div className="mt-12 border-t pt-8">
             <h3 className="text-xl font-bold mb-4">Help Support Our Work</h3>
-            <p className="mb-6">Your donations allow us to continue providing essential services to children in Belize.</p>
+            <p className="mb-6">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
             <Button 
-              className="bg-belize-coral hover:bg-opacity-90 text-white"
+              className="bg-belize-yellow hover:bg-opacity-90 text-white"
               onClick={() => {
                 const donateElement = document.getElementById("donate");
                 if (donateElement) {

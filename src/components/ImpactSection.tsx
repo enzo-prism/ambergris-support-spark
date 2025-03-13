@@ -7,7 +7,7 @@ import { Book, User, School } from "lucide-react";
 const ImpactSection: React.FC = () => {
   const impactStats = [
     {
-      icon: <User className="h-8 w-8 text-belize-blue" />,
+      icon: <User className="h-8 w-8 text-belize-green" />,
       count: "500+",
       label: "Children Supported",
       color: "bg-belize-light",
@@ -19,7 +19,7 @@ const ImpactSection: React.FC = () => {
       color: "bg-green-50",
     },
     {
-      icon: <School className="h-8 w-8 text-belize-coral" />,
+      icon: <School className="h-8 w-8 text-belize-yellow" />,
       count: "12",
       label: "Schools Partnered With",
       color: "bg-orange-50",
@@ -30,19 +30,19 @@ const ImpactSection: React.FC = () => {
     {
       name: "Vision Clinic",
       age: "",
-      story: "Our vision clinics have provided hundreds of children with eye exams and glasses, greatly improving their ability to learn and participate in school activities.",
+      story: "Our vision clinics provide hundreds of children with eye exams and glasses, significantly improving their ability to learn and participate in school activities.",
       image: "/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png",
     },
     {
       name: "Eye Testing",
       age: "",
-      story: "By identifying vision problems early, we help ensure children can succeed academically and develop the skills they need for a bright future.",
+      story: "By identifying vision problems early, we help ensure children have the foundation they need for academic success and future opportunities.",
       image: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
     },
     {
       name: "Healthcare Access",
       age: "",
-      story: "Our healthcare initiatives provide essential medical services to children who might otherwise go without proper care, improving their overall wellbeing.",
+      story: "Our healthcare initiatives expand medical services to children who might otherwise go without proper care, improving their overall wellbeing and future prospects.",
       image: "/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png",
     },
   ];
@@ -53,8 +53,7 @@ const ImpactSection: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Impact</h2>
           <p className="text-lg text-gray-700">
-            Every donation makes a real difference in the lives of children across Belize. 
-            Here's how your support is changing lives.
+            With complete transparency, we show how your support directly improves the lives of children across Belize.
           </p>
         </div>
 
@@ -77,28 +76,28 @@ const ImpactSection: React.FC = () => {
           <div className="max-w-3xl mx-auto space-y-6">
             <div>
               <div className="flex justify-between mb-2">
-                <span className="font-medium">Education Initiatives</span>
+                <span className="font-medium">School Support</span>
                 <span className="font-medium">45%</span>
               </div>
               <Progress value={45} className="h-3" />
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <span className="font-medium">Health & Nutrition</span>
+                <span className="font-medium">Healthcare Expansion</span>
                 <span className="font-medium">30%</span>
               </div>
               <Progress value={30} className="h-3" />
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <span className="font-medium">Community Development</span>
+                <span className="font-medium">Parks & Playgrounds</span>
                 <span className="font-medium">15%</span>
               </div>
               <Progress value={15} className="h-3" />
             </div>
             <div>
               <div className="flex justify-between mb-2">
-                <span className="font-medium">Enrichment Programs</span>
+                <span className="font-medium">Scholarship Programs</span>
                 <span className="font-medium">10%</span>
               </div>
               <Progress value={10} className="h-3" />

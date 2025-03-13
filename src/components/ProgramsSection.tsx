@@ -7,26 +7,26 @@ const ProgramsSection: React.FC = () => {
   const programs = [
     {
       icon: <GraduationCap className="h-10 w-10 text-belize-green" />,
-      title: "Education Support",
-      description: "Providing school supplies, scholarships, and tutoring programs to ensure every child has access to quality education.",
+      title: "School Support",
+      description: "Investing in educational infrastructure, supplies, and resources to help schools provide better learning environments for children.",
       color: "bg-belize-light"
     },
     {
       icon: <HeartPulse className="h-10 w-10 text-belize-teal" />,
-      title: "Healthcare Initiatives",
-      description: "Supporting medical checkups, nutrition programs, and health education to keep children healthy and thriving.",
+      title: "Healthcare Expansion",
+      description: "Supporting and expanding healthcare services to ensure children receive the medical attention they need to thrive.",
       color: "bg-green-50"
     },
     {
-      icon: <Home className="h-10 w-10 text-belize-coral" />,
-      title: "Community Development",
-      description: "Building safe spaces for children to learn, play, and grow within their communities.",
+      icon: <Home className="h-10 w-10 text-belize-yellow" />,
+      title: "Parks & Playgrounds",
+      description: "Building and maintaining safe recreational spaces where children can play, exercise, and develop social skills.",
       color: "bg-yellow-50"
     },
     {
       icon: <BookOpen className="h-10 w-10 text-belize-green" />,
-      title: "Enrichment Programs",
-      description: "Offering arts, sports, and cultural programs that develop children's talents and broaden their horizons.",
+      title: "Scholarship Programs",
+      description: "Providing educational scholarships to help talented students overcome financial barriers and achieve their potential.",
       color: "bg-blue-50"
     }
   ];
@@ -37,8 +37,8 @@ const ProgramsSection: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Programs</h2>
           <p className="text-lg text-gray-700">
-            Through our various programs, we address the diverse needs of children in Belize, 
-            focusing on education, health, and community development.
+            Through our targeted programs, we address the diverse needs of children in Belize, 
+            focusing on education, healthcare, and community development.
           </p>
         </div>
 
@@ -60,8 +60,8 @@ const ProgramsSection: React.FC = () => {
         
         <div className="mt-16 text-center">
           <p className="text-lg font-medium text-gray-700 mb-8">
-            Our programs are constantly evolving to meet the changing needs of children across Belize, 
-            with plans to expand nationwide.
+            Our programs continually evolve to meet the changing needs of children across Belize, 
+            with a focus on sustainable, community-driven solutions.
           </p>
           <img 
             src="/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png" 

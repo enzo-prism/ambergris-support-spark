@@ -9,29 +9,29 @@ const Leadership: React.FC = () => {
     <>
       <Helmet>
         <title>Leadership - BelizeKids.org</title>
-        <meta name="description" content="Meet the leadership team behind BelizeKids.org" />
+        <meta name="description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
       </Helmet>
       <Navbar />
       <main className="pt-20">
         <section className="section-padding bg-white">
           <div className="container-custom">
             <div className="max-w-4xl mx-auto mb-12 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-belize-blue">Our Leadership</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-belize-green">Our Leadership</h1>
               <p className="text-lg text-gray-700">
                 Meet the dedicated team behind BelizeKids.org who are committed to improving the lives 
-                of children in Belize through education, healthcare, and community development.
+                of children in Belize through investments in schools, parks and playgrounds, healthcare, and scholarships.
               </p>
             </div>
 
             <div className="grid gap-12 mb-20">
               {/* Founders Section */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-blue text-center">Co-Founders</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-green text-center">Co-Founders</h2>
                 <div className="grid md:grid-cols-2 gap-10">
                   {/* Don Listwin */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Don Listwin</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
                       <p className="text-belize-teal font-medium mb-4">Co-Founder</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
@@ -57,7 +57,7 @@ const Leadership: React.FC = () => {
                   {/* Hilary Valentine */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Hilary Valentine</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Hilary Valentine</h3>
                       <p className="text-belize-teal font-medium mb-4">Co-Founder</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
@@ -81,15 +81,15 @@ const Leadership: React.FC = () => {
 
               {/* Belize Leadership */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-blue text-center">Leadership in Belize</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-green text-center">Leadership in Belize</h2>
                 <p className="text-center text-lg mb-8">
-                  In Belize, the founders have enthusiastically enlisted the input and assistance of the following community members.
+                  In Belize, the founders have enlisted the input and assistance of these dedicated community members to identify local needs and implement effective solutions.
                 </p>
                 <div className="grid md:grid-cols-3 gap-6">
                   {/* Rebecca Coutant */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Rebecca Coutant</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Rebecca Coutant</h3>
                       <p className="text-belize-teal font-medium mb-4">Co-Executive Director in Belize</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
@@ -111,7 +111,7 @@ const Leadership: React.FC = () => {
                   {/* Gil Nunez */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Gil Nunez</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Gil Nunez</h3>
                       <p className="text-belize-teal font-medium mb-4">Treasurer in Belize</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
@@ -133,7 +133,7 @@ const Leadership: React.FC = () => {
                   {/* Jeff Spiegel */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Jeff Spiegel</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Jeff Spiegel</h3>
                       <p className="text-belize-teal font-medium mb-4">Co-Executive Director in Belize</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
@@ -156,12 +156,12 @@ const Leadership: React.FC = () => {
 
               {/* US Board */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-belize-blue text-center">U.S. Board of Directors</h2>
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-belize-green text-center">U.S. Board of Directors</h2>
                 <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                   {/* Don Listwin (US Board) */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Don Listwin</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
                       <p className="text-belize-teal font-medium mb-4">President</p>
                       <p className="text-gray-700">
                         In the USA, BelizeKids.org is a 501c(3) non-profit organization led by Don Listwin as President.
@@ -172,7 +172,7 @@ const Leadership: React.FC = () => {
                   {/* Hilary Valentine (US Board) */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Hilary Valentine</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Hilary Valentine</h3>
                       <p className="text-belize-teal font-medium mb-4">Treasurer</p>
                       <p className="text-gray-700">
                         Hilary Valentine serves as Treasurer on the US Board of Directors for BelizeKids.org.
@@ -183,7 +183,7 @@ const Leadership: React.FC = () => {
                   {/* Mark Evans (US Board) */}
                   <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-blue">Mark Evans</h3>
+                      <h3 className="text-xl font-bold mb-2 text-belize-green">Mark Evans</h3>
                       <p className="text-belize-teal font-medium mb-4">Secretary</p>
                       <div className="text-gray-700 space-y-4">
                         <p>

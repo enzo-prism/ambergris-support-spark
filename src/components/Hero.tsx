@@ -22,23 +22,23 @@ const Hero: React.FC = () => {
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 text-center lg:text-left">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Helping <span className="text-belize-blue">Children</span> in Belize
-            <br />Build a <span className="text-belize-coral">Brighter Future</span>
+            Improving the Lives of <span className="text-belize-green">Children</span> in Belize
+            <br />Building a <span className="text-belize-yellow">Brighter Future</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto lg:mx-0">
-            100% of your donation goes directly to supporting children in Belize through education, healthcare, and community programs.
+            We invest in schools, parks, healthcare, and scholarships with 100% transparency, ensuring that every contribution directly benefits Belizean children.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
             <Button 
               onClick={scrollToDonate}
-              className="bg-belize-blue hover:bg-belize-blue/90 text-white text-lg px-8 py-6"
+              className="bg-belize-green hover:bg-belize-green/90 text-white text-lg px-8 py-6"
             >
               Donate Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
               variant="outline" 
-              className="border-belize-blue text-belize-blue hover:bg-belize-blue hover:text-white text-lg px-8 py-6"
+              className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white text-lg px-8 py-6"
               onClick={() => {
                 const aboutElement = document.getElementById("about");
                 if (aboutElement) {
@@ -52,15 +52,15 @@ const Hero: React.FC = () => {
         </div>
         <div className="flex-1 relative">
           <div className="relative w-full max-w-md mx-auto animate-float">
-            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-blue/10">
+            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <img 
                 src="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" 
                 alt="Children in Belize at vision clinic" 
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border-l-4 border-belize-blue">
-              <p className="font-bold text-belize-blue">100%</p>
+            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
+              <p className="font-bold text-belize-green">100%</p>
               <p className="text-sm">Directly to programs</p>
             </div>
           </div>

@@ -9,8 +9,7 @@ const AboutSection: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">About BelizeKids</h2>
           <p className="text-lg text-gray-700">
-            BelizeKids.org is a non-profit organization dedicated to supporting children in Belize, 
-            currently focusing on the island of Ambergris Caye with plans to expand nationwide.
+            BelizeKids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.
           </p>
         </div>
 
@@ -23,17 +22,15 @@ const AboutSection: React.FC = () => {
             />
           </div>
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-belize-blue">Our Mission</h3>
+            <h3 className="text-2xl font-bold mb-4 text-belize-green">Our Mission</h3>
             <p className="text-gray-700 mb-6">
-              Belize, an English-speaking country in Central America, has a young and culturally diverse population, 
-              but many children face economic and educational challenges. We're committed to providing resources, 
-              support, and opportunities to help these children thrive.
+              Our mission is to improve the lives of kids in Belize. We invest in projects to help schools, build and maintain parks and playgrounds, support and expand healthcare, and provide scholarships.
             </p>
             
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 bg-belize-light p-3 rounded-full">
-                  <Heart className="h-6 w-6 text-belize-blue" />
+                  <Heart className="h-6 w-6 text-belize-green" />
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">100% Donation Model</h4>
@@ -43,21 +40,21 @@ const AboutSection: React.FC = () => {
               
               <div className="flex gap-4">
                 <div className="flex-shrink-0 bg-belize-light p-3 rounded-full">
-                  <Globe className="h-6 w-6 text-belize-blue" />
+                  <Globe className="h-6 w-6 text-belize-green" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Local & International Support</h4>
-                  <p className="text-gray-600">We raise funds through partnerships with local businesses and hotels, as well as through our U.S.-based 501(c)(3) non-profit.</p>
+                  <h4 className="font-bold mb-1">Community Partnerships</h4>
+                  <p className="text-gray-600">We build a framework to identify community goals and cement local relationships, enabling individuals and businesses to donate with confidence.</p>
                 </div>
               </div>
               
               <div className="flex gap-4">
                 <div className="flex-shrink-0 bg-belize-light p-3 rounded-full">
-                  <Award className="h-6 w-6 text-belize-blue" />
+                  <Award className="h-6 w-6 text-belize-green" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Full Transparency</h4>
-                  <p className="text-gray-600">We publish monthly reports on fundraising, spending, and program impact to maintain complete transparency.</p>
+                  <h4 className="font-bold mb-1">Complete Transparency</h4>
+                  <p className="text-gray-600">We operate with complete transparency, publishing detailed reports on fundraising, spending, and program impact.</p>
                 </div>
               </div>
             </div>

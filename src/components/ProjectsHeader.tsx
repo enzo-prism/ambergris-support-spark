@@ -6,10 +6,11 @@ const ProjectsHeader: React.FC = () => {
     <div className="pt-24 pb-12 bg-gradient-to-b from-belize-light to-white">
       <div className="container-custom">
         <h1 className="text-4xl md:text-5xl font-bold text-belize-green mb-4">Our Projects</h1>
-        <div className="h-1 w-24 bg-belize-coral mb-6"></div>
+        <div className="h-1 w-24 bg-belize-yellow mb-6"></div>
         <p className="text-lg text-gray-700 max-w-3xl">
-          Follow our journey as we work to improve the lives of children in Belize.
-          Here you'll find updates on our latest initiatives, events, and success stories.
+          Follow our journey as we work to improve the lives of children in Belize through investments in schools, 
+          parks, healthcare, and scholarships. With complete transparency, we share our initiatives, 
+          progress, and success stories.
         </p>
       </div>
     </div>

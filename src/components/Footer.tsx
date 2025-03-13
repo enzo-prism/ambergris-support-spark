@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-gray-600 mb-6">
-              Supporting children in Belize through education, healthcare, and community programs.
+              Improving the lives of children in Belize through investments in education, healthcare, parks, and scholarships.
             </p>
             <p className="text-gray-600 mb-1">501(c)(3) Non-Profit Organization</p>
             <p className="text-gray-600">EIN: 12-3456789</p>
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
               <span className="absolute -bottom-2 left-0 w-12 h-1 bg-belize-green"></span>
             </h3>
             <p className="text-gray-600 mb-4">
-              Subscribe to receive updates about our programs and impact.
+              Subscribe to receive updates about our projects and impact.
             </p>
             <div className="flex items-center">
               <input 
