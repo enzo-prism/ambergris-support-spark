@@ -29,9 +29,9 @@ const Index: React.FC = () => {
       <AboutSection />
       <ProgramsSection />
       <ProjectsPreview />
+      <ImpactSection />
       <MembershipPromo />
       <DonationForm />
-      <ImpactSection />
       <TransparencySection />
       <ContactSection />
       <Footer />
