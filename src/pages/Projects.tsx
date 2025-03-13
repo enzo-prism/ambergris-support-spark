@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectsHeader from "@/components/ProjectsHeader";
 import ProjectsList from "@/components/ProjectsList";
+import MembershipPromo from "@/components/MembershipPromo";
 
 const Projects: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const Projects: React.FC = () => {
       <Navbar />
       <ProjectsHeader />
       <ProjectsList />
+      <MembershipPromo />
       <Footer />
     </div>
   );

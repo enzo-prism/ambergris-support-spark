@@ -72,6 +72,11 @@ const Navbar: React.FC = () => {
       type: "link"
     },
     {
+      label: "Membership",
+      to: "/membership",
+      type: "link"
+    },
+    {
       label: "Impact",
       action: () => scrollToSection("impact"),
       type: "scroll"

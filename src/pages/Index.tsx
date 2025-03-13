@@ -11,6 +11,7 @@ import ImpactSection from "@/components/ImpactSection";
 import TransparencySection from "@/components/TransparencySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import MembershipPromo from "@/components/MembershipPromo";
 
 const Index: React.FC = () => {
   return (
@@ -28,6 +29,7 @@ const Index: React.FC = () => {
       <AboutSection />
       <ProgramsSection />
       <ProjectsPreview />
+      <MembershipPromo />
       <DonationForm />
       <ImpactSection />
       <TransparencySection />
