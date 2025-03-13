@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu with Sheet Component - Fixed double X icon issue */}
+        {/* Mobile Menu with Sheet Component - Fix for double X icon issue */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
@@ -165,6 +165,7 @@ const Navbar: React.FC = () => {
                 </Link>
                 <SheetClose className="rounded-full h-9 w-9 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
                   <X size={20} />
+                  <span className="sr-only">Close menu</span>
                 </SheetClose>
               </div>
               

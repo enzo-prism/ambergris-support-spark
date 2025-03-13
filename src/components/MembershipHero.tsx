@@ -12,7 +12,7 @@ const MembershipHero: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-[80vh] flex items-center pt-44 sm:pt-28 pb-16 sm:pb-10 px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
+    <div className="relative min-h-[80vh] flex items-center pt-24 sm:pt-28 pb-16 sm:pb-10 px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute top-0 left-0 w-64 h-64 bg-belize-blue rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-belize-teal rounded-full blur-3xl translate-x-1/2"></div>
