@@ -123,9 +123,9 @@ const ProjectDetail: React.FC = () => {
     return (
       <div className="min-h-screen">
         <Helmet>
-          <title>Project Not Found - BelizeKids.org</title>
+          <title>Not Found</title>
           <meta name="description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
-          <meta property="og:title" content="Project Not Found - BelizeKids.org" />
+          <meta property="og:title" content="Not Found" />
           <meta property="og:description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
           <meta property="og:image" content="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" />
           <meta property="og:type" content="article" />
@@ -148,9 +148,9 @@ const ProjectDetail: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>{project.title} - BelizeKids.org</title>
+        <title>Project Detail</title>
         <meta name="description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
-        <meta property="og:title" content={`${project.title} - BelizeKids.org`} />
+        <meta property="og:title" content={`Project Detail`} />
         <meta property="og:description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
         <meta property="og:image" content={project.imageSrc} />
         <meta property="og:type" content="article" />

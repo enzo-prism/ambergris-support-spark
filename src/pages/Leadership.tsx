@@ -19,9 +19,9 @@ const Leadership: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Leadership - Belize Kids.org</title>
+        <title>Our Team</title>
         <meta name="description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
-        <meta property="og:title" content="Leadership - Belize Kids.org" />
+        <meta property="og:title" content="Our Team" />
         <meta property="og:description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
         <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
         <meta property="og:type" content="website" />

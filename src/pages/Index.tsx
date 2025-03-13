@@ -17,9 +17,9 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Belize Kids.org - Improving the Lives of Children in Belize</title>
+        <title>Belize Kids</title>
         <meta name="description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
-        <meta property="og:title" content="Belize Kids.org - Improving the Lives of Children in Belize" />
+        <meta property="og:title" content="Belize Kids" />
         <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
         <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
         <meta property="og:type" content="website" />
