@@ -17,195 +17,203 @@ const Leadership: React.FC = () => {
       </Helmet>
       <Navbar />
       <main className="pt-20">
-        <section className="section-padding bg-white">
-          <div className="container-custom">
-            <div className="max-w-4xl mx-auto mb-12 text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-belize-green">Our Leadership</h1>
-              <p className="text-lg text-gray-700">
-                Meet the dedicated team behind Belize Kids.org who are committed to improving the lives 
-                of children in Belize through investments in schools, parks and playgrounds, healthcare, and scholarships.
+        <section className="py-16 bg-white">
+          <div className="container-custom max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            {/* Introduction */}
+            <div className="max-w-4xl mx-auto mb-16 text-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-belize-green">Leadership</h1>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                At Belize Kids, our leadership team is a diverse group of passionate individuals united by a shared 
+                commitment to improving the lives of children in Belize. With backgrounds spanning technology, 
+                philanthropy, education, and local business, our leaders bring a wealth of experience and a deep 
+                connection to the communities we serve. Together, they work to ensure that every child on Ambergris 
+                Caye—and beyond—has access to the education, healthcare, and opportunities they deserve.
               </p>
             </div>
 
-            <div className="grid gap-12 mb-20">
-              {/* Founders Section */}
+            <div className="space-y-20">
+              {/* Meet Our Leaders */}
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-green text-center">Co-Founders</h2>
-                <div className="grid md:grid-cols-2 gap-10">
-                  {/* Don Listwin */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
-                      <p className="text-belize-teal font-medium mb-4">Co-Founder</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          Don Listwin is founder of Belize Kids.Org. Don spent his career building the Internet 
-                          highlighted by a decade at Cisco Systems. Following a public company stint at Openwave 
-                          building the mobile Internet, Don left the high-tech world to focus on cancer research 
-                          in the field of early detection.
-                        </p>
-                        <p>
-                          In 2004, Don created the Canary Foundation which has emerged as the world's largest 
-                          research initiative in early cancer detection. An avid scuba diver, Don and his wife 
-                          bought property on Ambergris Caye and now live part time in Belize.
-                        </p>
-                        <p>
-                          Over the past 5 years, Don and his wife have invested in the children on the island by 
-                          building and refurbishing schools and parks. In an effort to partner more closely with 
-                          businesses on the island to support kids needs, Don founded Belize Kids.Org.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                <h2 className="text-3xl font-bold mb-12 text-belize-green text-center">Meet Our Leaders</h2>
 
-                  {/* Hilary Valentine */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Hilary Valentine</h3>
-                      <p className="text-belize-teal font-medium mb-4">Co-Founder</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          Hilary is a partner at Black & White Design and currently serves on the Board of 
-                          Directors of the Valentine Family Foundation and the Canary Foundation.
-                        </p>
-                        <p>
-                          Hilary served on the Room to Read Board of Directors from 2003 to 2012 and was Co-Chair 
-                          of the Board of Directors from 2005 to 2008 and was Chair of the Board of Directors 
-                          from 2008 to 2010. Hilary is currently the Room to Read Emeritus Board Chair.
-                        </p>
-                        <p>
-                          She also serves on the Emeritus Board of Breast Cancer Connections. Hilary graduated 
-                          with a BS in Psychology from St. Lawrence University.
-                        </p>
-                      </div>
-                    </div>
+                {/* Don Listwin */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Don Listwin, Co-Founder</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      Don Listwin is the visionary behind Belize Kids. With a distinguished career in technology, 
+                      including a decade at Cisco Systems and leadership in building the mobile internet at Openwave, 
+                      Don has always been at the forefront of innovation. In 2004, he shifted his focus to philanthropy, 
+                      founding the Canary Foundation, the world's largest research initiative for early cancer detection.
+                    </p>
+                    <p>
+                      An avid scuba diver, Don and his wife fell in love with Ambergris Caye, where they now live part-time. 
+                      Over the years, they have invested deeply in the island's children by building and refurbishing schools 
+                      and parks. In founding Belize Kids, Don sought to partner more closely with local businesses to meet 
+                      the needs of the community's youngest members. His leadership is driven by a passion for creating 
+                      lasting, positive change.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hilary Valentine */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Hilary Valentine, Co-Founder</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      Hilary Valentine brings a unique blend of design expertise and philanthropic leadership to Belize Kids. 
+                      As a partner at Black & White Design, she has a keen eye for creating impactful solutions. Hilary's 
+                      dedication to education and children's welfare is evident in her extensive board leadership, including 
+                      serving as Chair of the Board of Directors for Room to Read from 2008 to 2010 and now as Emeritus Board Chair.
+                    </p>
+                    <p>
+                      She also serves on the boards of the Valentine Family Foundation and the Canary Foundation. With a BS in 
+                      Psychology from St. Lawrence University, Hilary's work is guided by a deep understanding of human needs and 
+                      a commitment to fostering growth and opportunity for children around the world.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Rebecca Coutant */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Rebecca Coutant, Co-Executive Director in Belize</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      Rebecca Coutant's journey to Belize began after a successful career as a bond trader at Lehman Brothers 
+                      in New York. At 32, she visited Ambergris Caye and was captivated by the island and its people. Now a 
+                      full-time resident of 16 years, Rebecca has immersed herself in the community, managing a popular bar and 
+                      restaurant before launching Belize's most widely read independent blog, SanPedroScoop.com.
+                    </p>
+                    <p>
+                      Through her writing, she explores the island's hidden gems and champions local causes. Her deep connection 
+                      to the people of Ambergris Caye and her passion for storytelling make her an invaluable leader in driving 
+                      Belize Kids' mission forward.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Gil Nunez */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Gil Nunez, Treasurer in Belize</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      With over 20 years of experience in Belize's diving industry, Gil Nunez is a true steward of the island's 
+                      natural beauty and its people. Starting as a boat-hand at age 13, Gil quickly rose through the ranks, 
+                      becoming a NAUI and PADI instructor by 1999. His expertise in diving instruction is unmatched, and he now 
+                      manages Canary Cove and Poseidon Diving Adventures, where he specializes in private charters.
+                    </p>
+                    <p>
+                      As treasurer, Gil brings not only his financial acumen but also his deep ties to the local community, 
+                      ensuring that Belize Kids' resources are used effectively to benefit the children of Ambergris Caye.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Jeff Spiegel */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Jeff Spiegel, Co-Executive Director in Belize</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      Jeff Spiegel's path to Belize was as unique as his contributions to the island. After a decade running a 
+                      successful independent record label in San Francisco, Jeff moved to Ambergris Caye 14 years ago and opened 
+                      Azul Resort & Rojo Lounge, where he served as executive chef for 10 years. Now, he is developing a remote 
+                      fly-fishing camp on the island's northern leeward side.
+                    </p>
+                    <p>
+                      Jeff's entrepreneurial spirit, creativity, and deep understanding of the local tourism industry make him 
+                      a dynamic leader for Belize Kids, where he channels his passion for the island into creating opportunities 
+                      for its children.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mark Evans */}
+                <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                  <h3 className="text-2xl font-bold mb-2 text-belize-green">Mark Evans, Secretary (US Board)</h3>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      Mark Evans brings 40 years of experience in advertising, marketing, sales, and business analytics to the 
+                      Belize Kids board. As a co-founder of an advertising agency and a former executive at tech giants like 
+                      Netscape, eBay, and Google, Mark has a proven track record of driving strategic growth.
+                    </p>
+                    <p>
+                      His expertise in marketing and business development is invaluable to Belize Kids as the organization 
+                      expands its reach and impact. Mark's commitment to using his skills for social good ensures that 
+                      Belize Kids remains focused on its mission while operating with transparency and efficiency.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Belize Leadership */}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-belize-green text-center">Leadership in Belize</h2>
-                <p className="text-center text-lg mb-8">
-                  In Belize, the founders have enlisted the input and assistance of these dedicated community members to identify local needs and implement effective solutions.
+              {/* US Board of Directors */}
+              <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                <h2 className="text-3xl font-bold mb-6 text-belize-green">Our US Board of Directors</h2>
+                <div className="prose prose-lg max-w-none text-gray-700 mb-6">
+                  <p>
+                    Belize Kids is proudly registered as a 501(c)(3) non-profit organization in the United States. 
+                    Our US board of directors plays a crucial role in guiding the organization's strategic direction 
+                    and ensuring financial transparency. The board includes:
+                  </p>
+                </div>
+                <ul className="list-none space-y-2 mb-6 text-lg">
+                  <li className="flex items-center">
+                    <span className="font-bold text-belize-green mr-2">•</span>
+                    <span className="font-bold">Don Listwin</span> – President
+                  </li>
+                  <li className="flex items-center">
+                    <span className="font-bold text-belize-green mr-2">•</span>
+                    <span className="font-bold">Hilary Valentine</span> – Treasurer
+                  </li>
+                  <li className="flex items-center">
+                    <span className="font-bold text-belize-green mr-2">•</span>
+                    <span className="font-bold">Mark Evans</span> – Secretary
+                  </li>
+                </ul>
+                <p className="text-lg text-gray-700">
+                  Together, they bring a wealth of experience and a shared passion for making 
+                  a difference in the lives of Belizean children.
                 </p>
-                <div className="grid md:grid-cols-3 gap-6">
-                  {/* Rebecca Coutant */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Rebecca Coutant</h3>
-                      <p className="text-belize-teal font-medium mb-4">Co-Executive Director in Belize</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          After working as a New York bond trader at Lehman Brothers, Rebecca visited to Ambergris 
-                          Caye at age 32 and fell in love with the island and the people. Soon, she was living here full-time.
-                        </p>
-                        <p>
-                          She managed a busy bar & restaurant and now writes Belize's most popular independent blog, 
-                          SanPedroScoop.com. It gives her a chance to travel Belize and meet people doing some really 
-                          incredible things – on and off the radar.
-                        </p>
-                        <p>
-                          Rebecca has lived, full time, in San Pedro for 9 years.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+              </div>
 
-                  {/* Gil Nunez */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Gil Nunez</h3>
-                      <p className="text-belize-teal font-medium mb-4">Treasurer in Belize</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          Gil has been working in the diving business for over 20 years in Belize. He started 
-                          working part-time when he was 13 years old with Mr. Pedro as a boat-hand and first mate.
-                        </p>
-                        <p>
-                          Over his teenage years, he became very fond of diving and completed multiple certifications 
-                          including his Open Water and advanced, to Rescue Diver, Medic and Dive master before the age of 20.
-                        </p>
-                        <p>
-                          Gil's instructional capabilities are unmatched on the island. Now he manages Canary Cove 
-                          and Poseidon Diving Adventures Dive shop where they specialize in Private charters.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Jeff Spiegel */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Jeff Spiegel</h3>
-                      <p className="text-belize-teal font-medium mb-4">Co-Executive Director in Belize</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          After a decade of running a successful independent record label, Jeff moved from San 
-                          Francisco down to Belize and opened a small boutique resort and restaurant, Azul Resort & Rojo Lounge.
-                        </p>
-                        <p>
-                          He served as the executive chef of the latter for 10 years up until the spring of 2015. 
-                          Currently, he is in the final stages of opening a small remote fly fishing camp on the 
-                          northern leeward side of the island.
-                        </p>
-                        <p>
-                          Jeff has lived full time on Ambergris Caye for 14 years.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+              {/* Shared Commitment */}
+              <div className="bg-gray-50 rounded-xl overflow-hidden shadow-md p-8 mb-12">
+                <h2 className="text-3xl font-bold mb-6 text-belize-green">A Shared Commitment to Community</h2>
+                <div className="prose prose-lg max-w-none text-gray-700">
+                  <p>
+                    Our leaders are not just figureheads—they are deeply involved in the day-to-day work of Belize Kids. 
+                    From partnering with local businesses to spearheading projects like free eye clinics and school 
+                    refurbishments, they are hands-on in their approach. Each leader's unique background and personal 
+                    connection to Belize enrich our ability to serve the community effectively.
+                  </p>
+                  <p>
+                    Whether through global expertise or local knowledge, our leadership team is united by one goal: 
+                    to create a brighter future for the children of Belize.
+                  </p>
                 </div>
               </div>
 
-              {/* US Board */}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-belize-green text-center">U.S. Board of Directors</h2>
-                <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                  {/* Don Listwin (US Board) */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
-                      <p className="text-belize-teal font-medium mb-4">President</p>
-                      <p className="text-gray-700">
-                        In the USA, Belize Kids.org (TAX ID: 81-2841433) is a 501c(3) non-profit organization led by Don Listwin as President.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Hilary Valentine (US Board) */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Hilary Valentine</h3>
-                      <p className="text-belize-teal font-medium mb-4">Treasurer</p>
-                      <p className="text-gray-700">
-                        Hilary Valentine serves as Treasurer on the US Board of Directors for Belize Kids.org.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Mark Evans (US Board) */}
-                  <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-2 text-belize-green">Mark Evans</h3>
-                      <p className="text-belize-teal font-medium mb-4">Secretary</p>
-                      <div className="text-gray-700 space-y-4">
-                        <p>
-                          Mark has 40 years experience in Advertising, Marketing, Sales, Business Development and 
-                          Business Analytics.
-                        </p>
-                        <p>
-                          In addition to co-founding an advertising agency specializing in 
-                          marketing strategy, public relations and advertising Mr. Evans has been an executive with 
-                          various software startups as well as larger Internet tech companies such as Netscape, 
-                          eBay and Google.
-                        </p>
-                      </div>
-                    </div>
+              {/* Contact Information */}
+              <div className="text-center border-t pt-10">
+                <div className="mb-6">
+                  <p className="font-bold text-xl text-belize-green">Belize Kids.Org</p>
+                  <p className="text-gray-700">TAX ID 81-2841433</p>
+                  <p className="text-gray-700">PO BOX 620134</p>
+                  <p className="text-gray-700">Woodside, CA 94062</p>
+                </div>
+                <div className="text-sm text-gray-500">
+                  Copyright © 2025 Belize Kids. All rights reserved.
+                  <div className="flex justify-center space-x-4 mt-2">
+                    <a href="/#" className="hover:text-belize-teal transition-colors">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="/#" className="hover:text-belize-teal transition-colors">Cookie Policy</a>
+                    <span>|</span>
+                    <a href="/#" className="hover:text-belize-teal transition-colors">Privacy Settings</a>
                   </div>
                 </div>
               </div>
             </div>
+            
           </div>
         </section>
       </main>
