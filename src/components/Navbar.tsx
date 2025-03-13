@@ -16,11 +16,13 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
+  const isMobile = useIsMobile();
 
   // Track scroll position to apply different styling
   useEffect(() => {
@@ -94,15 +96,15 @@ const Navbar: React.FC = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled 
           ? "bg-white/95 shadow-md backdrop-blur-sm py-2" 
-          : "bg-white/90 backdrop-blur-sm py-4"
+          : "bg-white/90 backdrop-blur-sm py-3 md:py-4"
       )}
     >
       <div className="container-custom flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2 z-20">
+        <Link to="/" className="flex items-center z-20">
           <img 
             src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
             alt="BelizeKIDS.ORG Logo" 
-            className="h-10 w-auto"
+            className="h-8 w-auto md:h-10"
           />
         </Link>
 
@@ -151,7 +153,7 @@ const Navbar: React.FC = () => {
               <span className="sr-only">Open main menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="p-0 w-[300px] border-l-4 border-belize-blue">
+          <SheetContent side="right" className="p-0 w-[85%] max-w-[300px] border-l-4 border-belize-blue">
             <div className="px-6 py-4 flex flex-col space-y-6">
               <div className="flex justify-between items-center">
                 <Link to="/" className="flex items-center space-x-2">

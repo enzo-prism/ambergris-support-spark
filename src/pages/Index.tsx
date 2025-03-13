@@ -15,7 +15,7 @@ import MembershipPromo from "@/components/MembershipPromo";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Helmet>
         <title>Belize Kids</title>
         <meta name="description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
@@ -23,6 +23,7 @@ const Index: React.FC = () => {
         <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
         <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
         <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>
       <Navbar />
       <Hero />

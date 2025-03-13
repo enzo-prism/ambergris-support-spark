@@ -92,6 +92,12 @@
     @apply border-border;
   }
 
+  html, body {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
   }
@@ -103,7 +109,7 @@
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-16 lg:py-24;
   }
   
   .container-custom {
@@ -111,11 +117,11 @@
   }
   
   .button-donate {
-    @apply bg-belize-coral hover:bg-opacity-90 text-white font-bold py-3 px-6 rounded-md transition-all;
+    @apply bg-belize-coral hover:bg-opacity-90 text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-md transition-all;
   }
   
   .input-donate {
-    @apply w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-green;
+    @apply w-full p-2 md:p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-green;
   }
 
   .card-highlight {
@@ -127,10 +133,38 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-6 text-center;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center;
   }
   
   .section-title-left {
-    @apply text-3xl md:text-4xl font-bold mb-6;
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6;
   }
+}
+
+/* Add responsive helper classes */
+.mobile-only {
+  @apply block md:hidden;
+}
+
+.desktop-only {
+  @apply hidden md:block;
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, 
+  a, 
+  input[type="submit"], 
+  input[type="button"], 
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Fix side-scrolling issues */
+.overflow-fix {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
