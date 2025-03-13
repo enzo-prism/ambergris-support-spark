@@ -18,7 +18,7 @@ const BoardSection: React.FC<BoardSectionProps> = ({ members }) => {
         <h2 className="text-3xl font-bold mb-6 text-belize-green">Our US Board of Directors</h2>
         <div className="prose prose-lg max-w-none text-gray-700 mb-6">
           <p>
-            BelizeKids is proudly registered as a 501(c)(3) non-profit organization in the United States. 
+            Belize Kids is proudly registered as a 501(c)(3) non-profit organization in the United States. 
             Our US board of directors plays a crucial role in guiding the organization's strategic direction 
             and ensuring financial transparency. The board includes:
           </p>

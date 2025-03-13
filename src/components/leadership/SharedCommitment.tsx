@@ -9,7 +9,7 @@ const SharedCommitment: React.FC = () => {
         <h2 className="text-3xl font-bold mb-6 text-belize-green">A Shared Commitment to Community</h2>
         <div className="prose prose-lg max-w-none text-gray-700">
           <p>
-            Our leaders are not just figureheads—they are deeply involved in the day-to-day work of BelizeKids. 
+            Our leaders are not just figureheads—they are deeply involved in the day-to-day work of Belize Kids. 
             From partnering with local businesses to spearheading projects like free eye clinics and school 
             refurbishments, they are hands-on in their approach. Each leader's unique background and personal 
             connection to Belize enrich our ability to serve the community effectively.

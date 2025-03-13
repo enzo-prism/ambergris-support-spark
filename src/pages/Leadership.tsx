@@ -19,9 +19,9 @@ const Leadership: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Leadership - BelizeKids.org</title>
+        <title>Leadership - Belize Kids.org</title>
         <meta name="description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
-        <meta property="og:title" content="Leadership - BelizeKids.org" />
+        <meta property="og:title" content="Leadership - Belize Kids.org" />
         <meta property="og:description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
         <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
         <meta property="og:type" content="website" />
@@ -40,7 +40,7 @@ const Leadership: React.FC = () => {
                 <h1 className="text-4xl md:text-5xl font-bold text-belize-green">Leadership</h1>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                At BelizeKids, our leadership team is a diverse group of passionate individuals united by a shared 
+                At Belize Kids, our leadership team is a diverse group of passionate individuals united by a shared 
                 commitment to improving the lives of children in Belize. With backgrounds spanning technology, 
                 philanthropy, education, and local business, our leaders bring a wealth of experience and a deep 
                 connection to the communities we serve. Together, they work to ensure that every child on Ambergris 
@@ -64,7 +64,7 @@ const Leadership: React.FC = () => {
                     bio={
                       <>
                         <p>
-                          Don Listwin is the visionary behind BelizeKids. With a distinguished career in technology, 
+                          Don Listwin is the visionary behind Belize Kids. With a distinguished career in technology, 
                           including a decade at Cisco Systems and leadership in building the mobile internet at Openwave, 
                           Don has always been at the forefront of innovation. In 2004, he shifted his focus to philanthropy, 
                           founding the Canary Foundation, the world's largest research initiative for early cancer detection.
@@ -72,7 +72,7 @@ const Leadership: React.FC = () => {
                         <p>
                           An avid scuba diver, Don and his wife fell in love with Ambergris Caye, where they now live part-time. 
                           Over the years, they have invested deeply in the island's children by building and refurbishing schools 
-                          and parks. In founding BelizeKids, Don sought to partner more closely with local businesses to meet 
+                          and parks. In founding Belize Kids, Don sought to partner more closely with local businesses to meet 
                           the needs of the community's youngest members. His leadership is driven by a passion for creating 
                           lasting, positive change.
                         </p>
@@ -87,7 +87,7 @@ const Leadership: React.FC = () => {
                     bio={
                       <>
                         <p>
-                          Hilary Valentine brings a unique blend of design expertise and philanthropic leadership to BelizeKids. 
+                          Hilary Valentine brings a unique blend of design expertise and philanthropic leadership to Belize Kids. 
                           As a partner at Black & White Design, she has a keen eye for creating impactful solutions. Hilary's 
                           dedication to education and children's welfare is evident in her extensive board leadership, including 
                           serving as Chair of the Board of Directors for Room to Read from 2008 to 2010 and now as Emeritus Board Chair.
@@ -116,7 +116,7 @@ const Leadership: React.FC = () => {
                         <p>
                           Through her writing, she explores the island's hidden gems and champions local causes. Her deep connection 
                           to the people of Ambergris Caye and her passion for storytelling make her an invaluable leader in driving 
-                          BelizeKids' mission forward.
+                          Belize Kids' mission forward.
                         </p>
                       </>
                     }
@@ -136,7 +136,7 @@ const Leadership: React.FC = () => {
                         </p>
                         <p>
                           As treasurer, Gil brings not only his financial acumen but also his deep ties to the local community, 
-                          ensuring that BelizeKids' resources are used effectively to benefit the children of Ambergris Caye.
+                          ensuring that Belize Kids' resources are used effectively to benefit the children of Ambergris Caye.
                         </p>
                       </>
                     }
@@ -156,7 +156,7 @@ const Leadership: React.FC = () => {
                         </p>
                         <p>
                           Jeff's entrepreneurial spirit, creativity, and deep understanding of the local tourism industry make him 
-                          a dynamic leader for BelizeKids, where he channels his passion for the island into creating opportunities 
+                          a dynamic leader for Belize Kids, where he channels his passion for the island into creating opportunities 
                           for its children.
                         </p>
                       </>
@@ -171,13 +171,13 @@ const Leadership: React.FC = () => {
                       <>
                         <p>
                           Mark Evans brings 40 years of experience in advertising, marketing, sales, and business analytics to the 
-                          BelizeKids board. As a co-founder of an advertising agency and a former executive at tech giants like 
+                          Belize Kids board. As a co-founder of an advertising agency and a former executive at tech giants like 
                           Netscape, eBay, and Google, Mark has a proven track record of driving strategic growth.
                         </p>
                         <p>
-                          His expertise in marketing and business development is invaluable to BelizeKids as the organization 
+                          His expertise in marketing and business development is invaluable to Belize Kids as the organization 
                           expands its reach and impact. Mark's commitment to using his skills for social good ensures that 
-                          BelizeKids remains focused on its mission while operating with transparency and efficiency.
+                          Belize Kids remains focused on its mission while operating with transparency and efficiency.
                         </p>
                       </>
                     }
@@ -199,7 +199,7 @@ const Leadership: React.FC = () => {
               <div className="text-center border-t border-belize-sand/30 pt-10 mt-16">
                 <div className="inline-flex items-center justify-center gap-2 mb-6">
                   <HeartHandshake className="text-belize-coral" />
-                  <p className="font-bold text-xl text-belize-green">BelizeKids.Org</p>
+                  <p className="font-bold text-xl text-belize-green">Belize Kids.Org</p>
                 </div>
                 <div className="mb-4">
                   <p className="text-gray-700">TAX ID 81-2841433</p>
@@ -208,7 +208,7 @@ const Leadership: React.FC = () => {
                 </div>
                 <Separator className="max-w-xs mx-auto mb-4 bg-belize-sand/30" />
                 <div className="text-sm text-gray-500">
-                  Copyright © 2025 BelizeKids. All rights reserved.
+                  Copyright © 2025 Belize Kids. All rights reserved.
                   <div className="flex justify-center space-x-4 mt-2">
                     <a href="/#" className="hover:text-belize-teal transition-colors">Privacy Policy</a>
                     <span>|</span>
