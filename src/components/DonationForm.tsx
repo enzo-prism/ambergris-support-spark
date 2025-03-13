@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DollarSign, CreditCard, Calendar, Award } from "lucide-react";
-import { useToast } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 
 const DonationForm: React.FC = () => {
   const { toast } = useToast();
