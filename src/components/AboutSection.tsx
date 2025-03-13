@@ -10,9 +10,9 @@ const AboutSection: React.FC = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">Our Mission</span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">About BelizeKids</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">About Belize Kids</h2>
           <p className="text-lg text-gray-700">
-            BelizeKids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.
+            Belize Kids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.
           </p>
         </div>
 

@@ -16,10 +16,10 @@ const NotFound = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <Helmet>
-        <title>Page Not Found - BelizeKids.org</title>
-        <meta name="description" content="Sorry, the page you are looking for cannot be found. Return to the BelizeKids.org home page." />
-        <meta property="og:title" content="Page Not Found - BelizeKids.org" />
-        <meta property="og:description" content="Sorry, the page you are looking for cannot be found. Return to the BelizeKids.org home page." />
+        <title>Page Not Found - Belize Kids.org</title>
+        <meta name="description" content="Sorry, the page you are looking for cannot be found. Return to the Belize Kids.org home page." />
+        <meta property="og:title" content="Page Not Found - Belize Kids.org" />
+        <meta property="og:description" content="Sorry, the page you are looking for cannot be found. Return to the Belize Kids.org home page." />
         <meta property="og:image" content="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" />
         <meta property="og:type" content="website" />
       </Helmet>

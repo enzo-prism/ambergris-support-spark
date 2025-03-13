@@ -12,9 +12,9 @@ const Membership: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Become a Member - BelizeKids.org</title>
+        <title>Become a Member - Belize Kids.org</title>
         <meta name="description" content="Join our monthly giving program and help improve education and healthcare for children in Belize. For just $20 a month, you can make a lasting impact." />
-        <meta property="og:title" content="Become a Member - BelizeKids.org" />
+        <meta property="og:title" content="Become a Member - Belize Kids.org" />
         <meta property="og:description" content="Join our monthly giving program and help improve education and healthcare for children in Belize. For just $20 a month, you can make a lasting impact." />
         <meta property="og:image" content="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" />
         <meta property="og:type" content="website" />

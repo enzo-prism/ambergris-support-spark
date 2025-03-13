@@ -8,9 +8,9 @@ const Leadership: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Leadership - BelizeKids.org</title>
+        <title>Leadership - Belize Kids.org</title>
         <meta name="description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
-        <meta property="og:title" content="Leadership - BelizeKids.org" />
+        <meta property="og:title" content="Leadership - Belize Kids.org" />
         <meta property="og:description" content="Meet the leadership team dedicated to improving the lives of children in Belize" />
         <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
         <meta property="og:type" content="website" />
@@ -22,7 +22,7 @@ const Leadership: React.FC = () => {
             <div className="max-w-4xl mx-auto mb-12 text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 text-belize-green">Our Leadership</h1>
               <p className="text-lg text-gray-700">
-                Meet the dedicated team behind BelizeKids.org who are committed to improving the lives 
+                Meet the dedicated team behind Belize Kids.org who are committed to improving the lives 
                 of children in Belize through investments in schools, parks and playgrounds, healthcare, and scholarships.
               </p>
             </div>
@@ -39,7 +39,7 @@ const Leadership: React.FC = () => {
                       <p className="text-belize-teal font-medium mb-4">Co-Founder</p>
                       <div className="text-gray-700 space-y-4">
                         <p>
-                          Don Listwin is founder of BelizeKids.Org. Don spent his career building the Internet 
+                          Don Listwin is founder of Belize Kids.Org. Don spent his career building the Internet 
                           highlighted by a decade at Cisco Systems. Following a public company stint at Openwave 
                           building the mobile Internet, Don left the high-tech world to focus on cancer research 
                           in the field of early detection.
@@ -52,7 +52,7 @@ const Leadership: React.FC = () => {
                         <p>
                           Over the past 5 years, Don and his wife have invested in the children on the island by 
                           building and refurbishing schools and parks. In an effort to partner more closely with 
-                          businesses on the island to support kids needs, Don founded BelizeKids.Org.
+                          businesses on the island to support kids needs, Don founded Belize Kids.Org.
                         </p>
                       </div>
                     </div>
@@ -168,7 +168,7 @@ const Leadership: React.FC = () => {
                       <h3 className="text-xl font-bold mb-2 text-belize-green">Don Listwin</h3>
                       <p className="text-belize-teal font-medium mb-4">President</p>
                       <p className="text-gray-700">
-                        In the USA, BelizeKids.org (TAX ID: 81-2841433) is a 501c(3) non-profit organization led by Don Listwin as President.
+                        In the USA, Belize Kids.org (TAX ID: 81-2841433) is a 501c(3) non-profit organization led by Don Listwin as President.
                       </p>
                     </div>
                   </div>
@@ -179,7 +179,7 @@ const Leadership: React.FC = () => {
                       <h3 className="text-xl font-bold mb-2 text-belize-green">Hilary Valentine</h3>
                       <p className="text-belize-teal font-medium mb-4">Treasurer</p>
                       <p className="text-gray-700">
-                        Hilary Valentine serves as Treasurer on the US Board of Directors for BelizeKids.org.
+                        Hilary Valentine serves as Treasurer on the US Board of Directors for Belize Kids.org.
                       </p>
                     </div>
                   </div>

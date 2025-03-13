@@ -19,7 +19,7 @@ const MembershipTestimonials: React.FC = () => {
       avatar: "/lovable-uploads/378a9d5e-a28f-46e3-b7b3-548b5d1bc855.png"
     },
     {
-      quote: "The membership program makes giving easy and effective. I appreciate how BelizeKids.org focuses on sustainable solutions rather than quick fixes.",
+      quote: "The membership program makes giving easy and effective. I appreciate how Belize Kids.org focuses on sustainable solutions rather than quick fixes.",
       name: "Jennifer Lee",
       title: "Member since 2022",
       avatar: "/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png"
@@ -32,7 +32,7 @@ const MembershipTestimonials: React.FC = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Member Stories</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Hear from some of our dedicated monthly members about why they chose to support BelizeKids.org
+            Hear from some of our dedicated monthly members about why they chose to support Belize Kids.org
           </p>
         </div>
 
