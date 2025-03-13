@@ -147,24 +147,24 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu with Sheet Component - Fixed double X icon issue */}
         <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-belize-blue">
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
               <Menu size={24} />
               <span className="sr-only">Open main menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="p-0 w-[85%] max-w-[300px] border-l-4 border-belize-blue">
-            <div className="px-6 py-4 flex flex-col space-y-6">
+          <SheetContent side="right" className="p-0 w-[90%] max-w-[300px] border-l-4 border-belize-blue">
+            <div className="px-6 py-6 flex flex-col space-y-6">
               <div className="flex justify-between items-center">
-                <Link to="/" className="flex items-center space-x-2">
+                <Link to="/" className="flex items-center">
                   <img 
                     src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
                     alt="BelizeKIDS.ORG Logo" 
                     className="h-8 w-auto"
                   />
                 </Link>
-                <SheetClose className="rounded-full h-8 w-8 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
-                  <X size={18} />
+                <SheetClose className="rounded-full h-9 w-9 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
+                  <X size={20} />
                 </SheetClose>
               </div>
               
@@ -178,7 +178,7 @@ const Navbar: React.FC = () => {
                       <Link 
                         to={item.to!}
                         className={cn(
-                          "flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium border-b border-gray-100",
+                          "flex w-full py-4 text-gray-700 hover:text-belize-blue font-medium border-b border-gray-100",
                           location.pathname === item.to && "text-belize-blue font-semibold"
                         )}
                       >
@@ -192,7 +192,7 @@ const Navbar: React.FC = () => {
                     >
                       <button 
                         onClick={item.action}
-                        className="flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
+                        className="flex w-full py-4 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
                       >
                         {item.label}
                       </button>
@@ -204,7 +204,7 @@ const Navbar: React.FC = () => {
               <SheetClose asChild>
                 <Button 
                   onClick={() => scrollToSection("donate")}
-                  className="bg-belize-blue hover:bg-opacity-90 text-white w-full"
+                  className="bg-belize-blue hover:bg-opacity-90 text-white w-full py-6"
                 >
                   Donate Now
                 </Button>

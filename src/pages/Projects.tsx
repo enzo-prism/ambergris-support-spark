@@ -18,7 +18,7 @@ const Projects: React.FC = () => {
         <meta property="og:description" content="Explore our ongoing projects improving schools, parks, healthcare, and scholarships for children in Belize with complete transparency." />
         <meta property="og:image" content="/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png" />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Helmet>
       <Navbar />
       <main>
