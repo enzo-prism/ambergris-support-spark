@@ -1,135 +1,200 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Heart, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Track scroll position to apply different styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // Only scroll if we're on the home page
+    if (location.pathname === "/") {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If we're not on the homepage, go to homepage and then scroll
+      window.location.href = `/#${id}`;
     }
-    setIsMenuOpen(false);
   };
 
+  const toggleMobileSubmenu = (menu: string) => {
+    setActiveSubmenu(activeSubmenu === menu ? null : menu);
+  };
+
+  // Navigation items structure
+  const navItems = [
+    {
+      label: "About",
+      action: () => scrollToSection("about"),
+      type: "scroll"
+    },
+    {
+      label: "Programs",
+      action: () => scrollToSection("programs"),
+      type: "scroll"
+    },
+    {
+      label: "Projects",
+      to: "/projects",
+      type: "link"
+    },
+    {
+      label: "Leadership",
+      to: "/leadership",
+      type: "link"
+    },
+    {
+      label: "Impact",
+      action: () => scrollToSection("impact"),
+      type: "scroll"
+    },
+    {
+      label: "Contact",
+      action: () => scrollToSection("contact"),
+      type: "scroll"
+    }
+  ];
+
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
-      <div className="container-custom flex justify-between items-center py-4">
-        <Link to="/" className="flex items-center space-x-2">
+    <nav 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled 
+          ? "bg-white/95 shadow-md backdrop-blur-sm py-2" 
+          : "bg-white/90 backdrop-blur-sm py-4"
+      )}
+    >
+      <div className="container-custom flex justify-between items-center">
+        <Link to="/" className="flex items-center space-x-2 z-20">
           <Heart className="h-6 w-6 text-belize-coral" />
           <span className="font-heading font-bold text-2xl text-belize-blue">BelizeKids</span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
-          <button 
-            onClick={() => scrollToSection("about")}
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            About Us
-          </button>
-          <button 
-            onClick={() => scrollToSection("programs")}
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            Programs
-          </button>
-          <Link 
-            to="/projects"
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            Projects
-          </Link>
-          <Link 
-            to="/leadership"
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            Leadership
-          </Link>
-          <button 
-            onClick={() => scrollToSection("impact")}
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            Our Impact
-          </button>
-          <button 
-            onClick={() => scrollToSection("contact")}
-            className="text-gray-700 hover:text-belize-blue font-medium"
-          >
-            Contact
-          </button>
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
+            <React.Fragment key={item.label}>
+              {item.type === "link" && (
+                <Link 
+                  to={item.to!}
+                  className={cn(
+                    "text-gray-700 hover:text-belize-blue font-medium transition-colors",
+                    location.pathname === item.to && "text-belize-blue font-semibold"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              )}
+              
+              {item.type === "scroll" && (
+                <button 
+                  onClick={item.action}
+                  className="text-gray-700 hover:text-belize-blue font-medium transition-colors"
+                >
+                  {item.label}
+                </button>
+              )}
+            </React.Fragment>
+          ))}
+          
           <Button 
             onClick={() => scrollToSection("donate")}
-            className="bg-belize-coral hover:bg-opacity-90 text-white"
+            className="bg-belize-coral hover:bg-opacity-90 text-white transition-all hover:shadow-md"
           >
             Donate Now
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-gray-700" onClick={toggleMenu}>
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden bg-white pt-2 pb-4 px-4 shadow-md">
-          <div className="flex flex-col space-y-3">
-            <button 
-              onClick={() => scrollToSection("about")}
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-            >
-              About Us
-            </button>
-            <button 
-              onClick={() => scrollToSection("programs")}
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-            >
-              Programs
-            </button>
-            <Link 
-              to="/projects"
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link 
-              to="/leadership"
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Leadership
-            </Link>
-            <button 
-              onClick={() => scrollToSection("impact")}
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-            >
-              Our Impact
-            </button>
-            <button 
-              onClick={() => scrollToSection("contact")}
-              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
-            >
-              Contact
-            </button>
-            <Button 
-              onClick={() => scrollToSection("donate")}
-              className="bg-belize-coral hover:bg-opacity-90 text-white w-full mt-2"
-            >
-              Donate Now
+        {/* Mobile Menu with Sheet Component */}
+        <Sheet>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="ghost" size="icon" className="text-gray-700">
+              <Menu size={24} />
+              <span className="sr-only">Open main menu</span>
             </Button>
-          </div>
-        </div>
-      )}
+          </SheetTrigger>
+          <SheetContent side="right" className="p-0 w-[300px]">
+            <div className="px-6 py-4 flex flex-col space-y-6">
+              <div className="flex justify-between items-center">
+                <Link to="/" className="flex items-center space-x-2">
+                  <Heart className="h-5 w-5 text-belize-coral" />
+                  <span className="font-heading font-bold text-xl text-belize-blue">BelizeKids</span>
+                </Link>
+                <SheetClose className="rounded-full h-7 w-7 flex items-center justify-center">
+                  <X size={18} />
+                  <span className="sr-only">Close</span>
+                </SheetClose>
+              </div>
+              
+              <div className="flex flex-col space-y-1">
+                {navItems.map((item) => (
+                  <SheetClose
+                    key={item.label}
+                    asChild
+                    className="w-full"
+                  >
+                    {item.type === "link" ? (
+                      <Link 
+                        to={item.to!}
+                        className={cn(
+                          "flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium",
+                          location.pathname === item.to && "text-belize-blue font-semibold"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <button 
+                        onClick={item.action}
+                        className="flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium text-left"
+                      >
+                        {item.label}
+                      </button>
+                    )}
+                  </SheetClose>
+                ))}
+              </div>
+              
+              <SheetClose asChild>
+                <Button 
+                  onClick={() => scrollToSection("donate")}
+                  className="bg-belize-coral hover:bg-opacity-90 text-white w-full"
+                >
+                  Donate Now
+                </Button>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   );
 };
