@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,10 +22,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 shadow-sm">
       <div className="container-custom flex justify-between items-center py-4">
-        <div className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
           <Heart className="h-6 w-6 text-belize-coral" />
           <span className="font-heading font-bold text-2xl text-belize-blue">BelizeKids</span>
-        </div>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
@@ -40,6 +41,12 @@ const Navbar: React.FC = () => {
           >
             Programs
           </button>
+          <Link 
+            to="/projects"
+            className="text-gray-700 hover:text-belize-blue font-medium"
+          >
+            Projects
+          </Link>
           <button 
             onClick={() => scrollToSection("impact")}
             className="text-gray-700 hover:text-belize-blue font-medium"
@@ -82,6 +89,13 @@ const Navbar: React.FC = () => {
             >
               Programs
             </button>
+            <Link 
+              to="/projects"
+              className="text-gray-700 hover:text-belize-blue py-2 font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Projects
+            </Link>
             <button 
               onClick={() => scrollToSection("impact")}
               className="text-gray-700 hover:text-belize-blue py-2 font-medium"
