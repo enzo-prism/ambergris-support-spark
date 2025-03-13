@@ -17,36 +17,72 @@ const projectPosts = [
     title: "October Vision Clinic is a Huge Success",
     author: "Rebecca Coutant",
     date: "October 30, 2023",
-    excerpt: "Our recent vision clinic in San Pedro provided free eye exams and glasses to over 200 children. Many of these children had never had their vision checked before.",
+    excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
     imageSrc: "/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png",
     slug: "october-vision-clinic",
   },
   {
     id: 2,
-    title: "New School Supplies for San Mateo",
-    author: "Michael Torres",
-    date: "September 15, 2023",
-    excerpt: "Thanks to generous donations, we were able to provide backpacks, notebooks, and other essential school supplies to 150 children in the San Mateo area.",
-    imageSrc: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    slug: "school-supplies-san-mateo",
+    title: "BelizeKids is Excited to Announce Our #DollaADive Program",
+    author: "Rebecca Coutant",
+    date: "November 22, 2022",
+    excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's.",
+    imageSrc: "https://images.unsplash.com/photo-1482275548304-a58859dc31b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "dollar-a-dive-program",
   },
   {
     id: 3,
-    title: "Summer Health Camp Reaches Record Attendance",
-    author: "Dr. James Wilson",
-    date: "August 5, 2023",
-    excerpt: "Our annual summer health camp welcomed over 300 children this year, offering dental checkups, nutritional guidance, and fun health education activities.",
-    imageSrc: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    slug: "summer-health-camp",
+    title: "BelizeKids.Org Donates a Second Vision Screening Machine To San Pedro's Lions Club",
+    author: "Rebecca Coutant",
+    date: "August 27, 2022",
+    excerpt: "BelizeKids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year.",
+    imageSrc: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "second-vision-screening-machine",
   },
   {
     id: 4,
-    title: "New Computer Lab Opens at Holy Cross School",
-    author: "Maria Johnson",
-    date: "July 10, 2023",
-    excerpt: "We're excited to announce the opening of a new computer lab at Holy Cross School in San Pedro. The lab features 20 new computers and will provide vital technology education.",
-    imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    slug: "computer-lab-holy-cross",
+    title: "BelizeKids.Org and Finn & Martini Sponsor Week Four of Camp Basil Jones",
+    author: "Rebecca Coutant",
+    date: "August 7, 2022",
+    excerpt: "Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between BelizeKids.Org and Finn & Martini Lounge and Restaurant.",
+    imageSrc: "https://images.unsplash.com/photo-1472898965229-f9b06b9c9bbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "camp-basil-jones",
+  },
+  {
+    id: 5,
+    title: "BelizeKids.Org Donates Eye Screening Equipment to the Lions' Den in San Pedro",
+    author: "Rebecca Coutant",
+    date: "July 20, 2022",
+    excerpt: "Just last week BelizeKids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.",
+    imageSrc: "https://images.unsplash.com/photo-1551884831-bbf3cdc6469e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "eye-screening-equipment",
+  },
+  {
+    id: 6,
+    title: "BelizeKids.Org and Finn & Martini Raise Money for Ambergris Caye's Camp Basil Jones",
+    author: "Rebecca Coutant",
+    date: "July 9, 2022",
+    excerpt: "Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.",
+    imageSrc: "https://images.unsplash.com/photo-1469571486292-b53601010972?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "fundraising-camp-basil-jones",
+  },
+  {
+    id: 7,
+    title: "Working with SPRC Primary, San Pedro, Belize's Largest Public School",
+    author: "Rebecca Coutant",
+    date: "June 14, 2022",
+    excerpt: "San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.",
+    imageSrc: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "sprc-primary-school",
+  },
+  {
+    id: 8,
+    title: "Canary Cove Donates Equipment to San Pedro Tour Guide Association & Hol Chan Marine Reserve",
+    author: "Rebecca Coutant",
+    date: "October 1, 2021",
+    excerpt: "In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.",
+    imageSrc: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    slug: "equipment-donation-hol-chan",
   },
 ];
 
@@ -99,9 +135,6 @@ const ProjectsList: React.FC = () => {
             </PaginationItem>
             <PaginationItem>
               <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationNext href="#" />
