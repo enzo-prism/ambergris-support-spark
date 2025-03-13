@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-16 pb-8 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
+    <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute top-0 left-0 w-64 h-64 bg-belize-blue rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-belize-teal rounded-full blur-3xl translate-x-1/2"></div>

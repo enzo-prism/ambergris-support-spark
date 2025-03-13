@@ -10,7 +10,7 @@ import TransparencySection from "@/components/TransparencySection";
 
 const Projects: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden overflow-fix">
       <Helmet>
         <title>Our Projects</title>
         <meta name="description" content="Explore our ongoing projects improving schools, parks, healthcare, and scholarships for children in Belize with complete transparency." />

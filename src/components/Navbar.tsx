@@ -145,7 +145,7 @@ const Navbar: React.FC = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu with Sheet Component */}
+        {/* Mobile Menu with Sheet Component - Fixed double X icon issue */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
             <Button variant="ghost" size="icon" className="text-belize-blue">
@@ -163,20 +163,18 @@ const Navbar: React.FC = () => {
                     className="h-8 w-auto"
                   />
                 </Link>
-                <SheetClose className="rounded-full h-7 w-7 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
+                <SheetClose className="rounded-full h-8 w-8 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
                   <X size={18} />
-                  <span className="sr-only">Close</span>
                 </SheetClose>
               </div>
               
               <div className="flex flex-col space-y-1">
                 {navItems.map((item) => (
-                  <SheetClose
-                    key={item.label}
-                    asChild
-                    className="w-full"
-                  >
-                    {item.type === "link" ? (
+                  item.type === "link" ? (
+                    <SheetClose
+                      key={item.label}
+                      asChild
+                    >
                       <Link 
                         to={item.to!}
                         className={cn(
@@ -186,15 +184,20 @@ const Navbar: React.FC = () => {
                       >
                         {item.label}
                       </Link>
-                    ) : (
+                    </SheetClose>
+                  ) : (
+                    <SheetClose
+                      key={item.label}
+                      asChild
+                    >
                       <button 
                         onClick={item.action}
                         className="flex w-full py-3 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
                       >
                         {item.label}
                       </button>
-                    )}
-                  </SheetClose>
+                    </SheetClose>
+                  )
                 ))}
               </div>
               

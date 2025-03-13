@@ -10,7 +10,7 @@ import MembershipForm from "@/components/MembershipForm";
 
 const Membership: React.FC = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-hidden overflow-fix">
       <Helmet>
         <title>Join Us</title>
         <meta name="description" content="Join our monthly giving program and help improve education and healthcare for children in Belize. For just $20 a month, you can make a lasting impact." />
