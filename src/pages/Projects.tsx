@@ -10,7 +10,7 @@ import TransparencySection from "@/components/TransparencySection";
 
 const Projects: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <Helmet>
         <title>Our Projects - Belize Kids.org</title>
         <meta name="description" content="Explore our ongoing projects improving schools, parks, healthcare, and scholarships for children in Belize with complete transparency." />
@@ -20,10 +20,12 @@ const Projects: React.FC = () => {
         <meta property="og:type" content="website" />
       </Helmet>
       <Navbar />
-      <ProjectsHeader />
-      <ProjectsList />
-      <TransparencySection />
-      <MembershipPromo />
+      <main>
+        <ProjectsHeader />
+        <ProjectsList />
+        <TransparencySection />
+        <MembershipPromo />
+      </main>
       <Footer />
     </div>
   );

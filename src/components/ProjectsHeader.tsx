@@ -1,16 +1,16 @@
 
 import React from "react";
+import { Separator } from "@/components/ui/separator";
 
 const ProjectsHeader: React.FC = () => {
   return (
-    <div className="pt-24 pb-12 bg-gradient-to-b from-belize-light to-white">
-      <div className="container-custom">
-        <h1 className="text-4xl md:text-5xl font-bold text-belize-green mb-4">Our Projects</h1>
-        <div className="h-1 w-24 bg-belize-yellow mb-6"></div>
-        <p className="text-lg text-gray-700 max-w-3xl">
-          Follow our journey as we work to improve the lives of children in Belize through investments in schools, 
-          parks, healthcare, and scholarships. With complete transparency, we share the impact of your 
-          contributions and the progress of our initiatives.
+    <div className="pt-28 pb-14 bg-white">
+      <div className="container-custom max-w-6xl">
+        <h1 className="text-4xl md:text-5xl font-bold text-belize-green mb-3">Our Projects</h1>
+        <Separator className="w-24 bg-belize-blue h-1 mb-6" />
+        <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
+          Follow our journey as we work to improve the lives of children in Belize through 
+          investments in schools, parks, healthcare, and scholarships — with complete transparency.
         </p>
       </div>
     </div>
