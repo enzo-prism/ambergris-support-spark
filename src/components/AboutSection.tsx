@@ -102,6 +102,17 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
+              <motion.div 
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg border-l-4 border-yellow-500 z-20"
+              >
+                <p className="font-bold text-belize-green text-xl">100%</p>
+                <p className="text-sm text-gray-600">Direct Investment</p>
+              </motion.div>
+              
               <AspectRatio ratio={16/9} className="bg-muted">
                 <img 
                   src="/lovable-uploads/ad0fec31-0155-4069-9599-edabffc76f25.png" 
@@ -110,17 +121,6 @@ const AboutSection: React.FC = () => {
                 />
               </AspectRatio>
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/10 via-transparent to-transparent mix-blend-overlay"></div>
-              
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute -bottom-2 -right-5 bg-white p-4 rounded-lg shadow-lg border-l-4 border-yellow-500 z-20"
-              >
-                <p className="font-bold text-belize-green text-xl">100%</p>
-                <p className="text-sm text-gray-600">Direct Investment</p>
-              </motion.div>
             </div>
           </motion.div>
         </div>
