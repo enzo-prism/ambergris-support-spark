@@ -1,30 +1,21 @@
-
 import React from "react";
 import { Heart, Users, Globe, Award, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-
 const AboutSection: React.FC = () => {
-  return (
-    <section id="about" className="section-padding bg-gradient-to-b from-white to-belize-light/50">
+  return <section id="about" className="section-padding bg-gradient-to-b from-white to-belize-light/50">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">Our Mission</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">About Belize Kids</h2>
-          <p className="text-lg text-gray-700">
-            Belize Kids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.
-          </p>
+          <p className="text-lg text-gray-700">BelizeKids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-belize-green to-belize-teal rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative">
-              <img 
-                src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" 
-                alt="Children at San Pedro Lions Club" 
-                className="rounded-lg shadow-lg w-full h-auto object-cover"
-              />
+              <img src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" alt="Children at San Pedro Lions Club" className="rounded-lg shadow-lg w-full h-auto object-cover" />
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl border-l-4 border-belize-green animate-float">
                 <p className="font-bold text-belize-green text-xl">100%</p>
                 <p className="text-sm font-medium">Donation Model</p>
@@ -109,8 +100,6 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;
