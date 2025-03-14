@@ -2,13 +2,16 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Menu, X, Eye, ChevronRight } from "lucide-react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from "@/components/ui/navigation-menu";
 import {
   Sheet,
   SheetContent,
@@ -21,7 +24,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
   const isMobile = useIsMobile();
 
   // Track scroll position to apply different styling
@@ -47,48 +49,80 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const toggleMobileSubmenu = (menu: string) => {
-    setActiveSubmenu(activeSubmenu === menu ? null : menu);
-  };
-
-  // Navigation items structure
-  const navItems = [
+  // Navigation structure with proper grouping and organization
+  const mainNavItems = [
     {
       label: "About",
-      action: () => scrollToSection("about"),
-      type: "scroll"
+      type: "scroll",
+      action: () => scrollToSection("about")
     },
     {
       label: "Programs",
-      action: () => scrollToSection("programs"),
-      type: "scroll"
+      type: "scroll",
+      action: () => scrollToSection("programs")
     },
     {
       label: "Projects",
-      to: "/projects",
-      type: "link"
+      type: "link",
+      to: "/projects"
     },
     {
       label: "Leadership",
-      to: "/leadership",
-      type: "link"
+      type: "link",
+      to: "/leadership"
+    },
+    {
+      label: "Doctors",
+      type: "link",
+      to: "/doctors",
+      highlight: true
     },
     {
       label: "Membership",
-      to: "/membership",
-      type: "link"
-    },
-    {
-      label: "Impact",
-      action: () => scrollToSection("impact"),
-      type: "scroll"
+      type: "link",
+      to: "/membership"
     },
     {
       label: "Contact",
-      action: () => scrollToSection("contact"),
-      type: "scroll"
+      type: "scroll",
+      action: () => scrollToSection("contact")
     }
   ];
+
+  // For desktop dropdown content
+  const resourcesContent = (
+    <div className="w-[400px] p-4">
+      <div className="grid grid-cols-2 gap-3">
+        <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
+          <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
+            <Eye className="mb-1 h-5 w-5 inline-block mr-2" />
+            Eye Health Services
+          </div>
+          <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
+            Find available eye doctors and specialists in your area
+          </div>
+          <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
+        </Link>
+        <Link to="/projects" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-green-50 to-green-100 p-4 no-underline outline-none transition-colors hover:from-green-100 hover:to-green-200">
+          <div className="mb-2 mt-2 text-lg font-medium text-green-700">
+            Community Projects
+          </div>
+          <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
+            Explore our ongoing community initiatives and programs
+          </div>
+          <ChevronRight className="h-4 w-4 text-green-700 mt-2 ml-auto" />
+        </Link>
+      </div>
+      <div className="mt-4 grid grid-cols-1">
+        <Button asChild variant="outline" className="w-full justify-between">
+          <Link to="/membership">
+            <span>Join our membership program</span>
+            <ChevronRight className="h-4 w-4 ml-2" />
+          </Link>
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <nav 
@@ -108,35 +142,51 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
-          {navItems.map((item) => (
-            <React.Fragment key={item.label}>
-              {item.type === "link" && (
-                <Link 
-                  to={item.to!}
-                  className={cn(
-                    "text-gray-700 hover:text-belize-blue font-medium transition-colors relative group",
-                    location.pathname === item.to && "text-belize-blue font-semibold"
+        {/* Desktop Navigation Menu */}
+        {!isMobile && (
+          <NavigationMenu className="hidden md:flex">
+            <NavigationMenuList>
+              {mainNavItems.map((item) => (
+                <NavigationMenuItem key={item.label}>
+                  {item.type === "link" ? (
+                    <Link 
+                      to={item.to!}
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "bg-transparent hover:bg-transparent",
+                        location.pathname === item.to && "font-semibold text-belize-blue",
+                        item.highlight && "text-belize-blue"
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  ) : (
+                    <button 
+                      onClick={item.action}
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        "bg-transparent hover:bg-transparent"
+                      )}
+                    >
+                      {item.label}
+                    </button>
                   )}
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-belize-blue transition-all group-hover:w-full"></span>
-                </Link>
-              )}
-              
-              {item.type === "scroll" && (
-                <button 
-                  onClick={item.action}
-                  className="text-gray-700 hover:text-belize-blue font-medium transition-colors relative group"
-                >
-                  {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-belize-blue transition-all group-hover:w-full"></span>
-                </button>
-              )}
-            </React.Fragment>
-          ))}
-          
+                </NavigationMenuItem>
+              ))}
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
+                  Resources
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  {resourcesContent}
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
+
+        <div className="hidden md:flex items-center ml-4">
           <Button 
             onClick={() => scrollToSection("donate")}
             className="bg-belize-blue hover:bg-belize-blue/90 text-white transition-all hover:shadow-md"
@@ -145,7 +195,7 @@ const Navbar: React.FC = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu with Sheet Component - Fix for double X icon issue */}
+        {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
@@ -170,36 +220,47 @@ const Navbar: React.FC = () => {
               </div>
               
               <div className="flex flex-col space-y-1">
-                {navItems.map((item) => (
-                  item.type === "link" ? (
-                    <SheetClose
-                      key={item.label}
-                      asChild
-                    >
+                {mainNavItems.map((item) => (
+                  <SheetClose
+                    key={item.label}
+                    asChild
+                  >
+                    {item.type === "link" ? (
                       <Link 
                         to={item.to!}
                         className={cn(
-                          "flex w-full py-4 text-gray-700 hover:text-belize-blue font-medium border-b border-gray-100",
-                          location.pathname === item.to && "text-belize-blue font-semibold"
+                          "flex w-full py-4 hover:text-belize-blue font-medium border-b border-gray-100",
+                          location.pathname === item.to 
+                            ? "text-belize-blue font-semibold" 
+                            : "text-gray-700",
+                          item.highlight && "text-belize-blue"
                         )}
                       >
                         {item.label}
+                        {item.highlight && <Eye className="ml-2 h-4 w-4" />}
                       </Link>
-                    </SheetClose>
-                  ) : (
-                    <SheetClose
-                      key={item.label}
-                      asChild
-                    >
+                    ) : (
                       <button 
                         onClick={item.action}
                         className="flex w-full py-4 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
                       >
                         {item.label}
                       </button>
-                    </SheetClose>
-                  )
+                    )}
+                  </SheetClose>
                 ))}
+
+                {/* Resource section on mobile */}
+                <div className="pt-4 pb-2">
+                  <div className="font-semibold text-gray-500 text-sm uppercase tracking-wider mb-2">Resources</div>
+                  <Link to="/doctors" className="flex items-center py-3 text-belize-blue hover:text-belize-blue/80">
+                    <Eye className="mr-2 h-4 w-4" />
+                    <span>Eye Health Services</span>
+                  </Link>
+                  <Link to="/projects" className="flex items-center py-3 text-gray-700 hover:text-belize-blue">
+                    Community Projects
+                  </Link>
+                </div>
               </div>
               
               <SheetClose asChild>
