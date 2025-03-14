@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 const projectPosts = [
   {
@@ -113,10 +115,37 @@ const ProjectsList: React.FC = () => {
     ? projectPosts 
     : projectPosts.filter(project => project.category === activeTab);
 
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <div className="py-16 bg-gray-50">
       <div className="container-custom max-w-6xl">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="flex flex-col md:flex-row justify-between items-center mb-10"
+        >
           <Tabs 
             value={activeTab} 
             className="w-full max-w-md" 
@@ -156,63 +185,31 @@ const ProjectsList: React.FC = () => {
               List
             </Button>
           </div>
-        </div>
+        </motion.div>
         
         {activeView === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {filteredProjects.map((post) => (
-              <Card key={post.id} className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
-                <div className="aspect-video relative overflow-hidden">
-                  <img 
-                    src={post.imageSrc} 
-                    alt={post.title} 
-                    className="object-cover w-full h-full transition-transform hover:scale-105 duration-500"
-                  />
-                  <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
-                    {post.category}
-                  </div>
-                </div>
-                <CardContent className="pt-6">
-                  <div className="flex items-center text-sm text-gray-500 mb-3 gap-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <User className="h-4 w-4" />
-                      <span>{post.author}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-belize-green mb-2 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4 line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                  <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center font-medium">
-                    Read More <ArrowRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-4 mb-12">
-            {filteredProjects.map((post) => (
-              <Card key={post.id} className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
-                <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3 aspect-video md:aspect-square relative overflow-hidden">
+              <motion.div key={post.id} variants={item}>
+                <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
+                  <div className="aspect-video relative overflow-hidden">
                     <img 
                       src={post.imageSrc} 
                       alt={post.title} 
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full transition-transform hover:scale-105 duration-500"
                     />
                     <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
                       {post.category}
                     </div>
                   </div>
-                  <div className="md:w-2/3 p-6">
-                    <div className="flex items-center text-sm text-gray-500 mb-2 gap-4">
+                  <CardContent className="pt-6">
+                    <div className="flex items-center text-sm text-gray-500 mb-3 gap-4">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         <span>{post.date}</span>
@@ -222,38 +219,93 @@ const ProjectsList: React.FC = () => {
                         <span>{post.author}</span>
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-belize-green mb-2">
+                    <h3 className="text-xl font-bold text-belize-green mb-2 line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-2">
+                    <p className="text-gray-600 mb-4 line-clamp-3">
                       {post.excerpt}
                     </p>
                     <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center font-medium">
                       Read More <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
-                  </div>
-                </div>
-              </Card>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+        ) : (
+          <motion.div 
+            className="flex flex-col gap-4 mb-12"
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
+            {filteredProjects.map((post) => (
+              <motion.div key={post.id} variants={item}>
+                <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="md:w-1/3 aspect-video md:aspect-square relative overflow-hidden">
+                      <img 
+                        src={post.imageSrc} 
+                        alt={post.title} 
+                        className="object-cover w-full h-full"
+                      />
+                      <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
+                        {post.category}
+                      </div>
+                    </div>
+                    <div className="md:w-2/3 p-6">
+                      <div className="flex items-center text-sm text-gray-500 mb-2 gap-4">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-4 w-4" />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User className="h-4 w-4" />
+                          <span>{post.author}</span>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-belize-green mb-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-600 mb-4 line-clamp-2">
+                        {post.excerpt}
+                      </p>
+                      <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center font-medium">
+                        Read More <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         )}
         
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" className="border border-gray-200" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" className="border border-gray-200">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" className="border border-gray-200" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" className="border border-gray-200" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" className="border border-gray-200">2</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" className="border border-gray-200" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </motion.div>
       </div>
     </div>
   );
