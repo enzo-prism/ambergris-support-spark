@@ -44,7 +44,7 @@ const AboutSection: React.FC = () => {
             <div className="relative">
               <img src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" alt="Children at San Pedro Lions Club" className="rounded-lg shadow-lg w-full h-auto object-cover" />
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl border-l-4 border-belize-green animate-float">
-                <p className="font-bold text-belize-green text-xl">100%</p>
+                <p className="font-bold text-belize-green text-xl">100% of Investment</p>
                 <p className="text-sm font-medium">Donation Model</p>
               </div>
             </div>

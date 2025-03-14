@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -48,7 +49,7 @@ const Hero: React.FC = () => {
               <img src="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" alt="A Belizean child receives compassionate care from a dedicated healthcare professional in a well-equipped clinic, surrounded by tools that transform lives." className="object-cover w-full h-full" />
             </div>
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
-              <p className="font-bold text-belize-green text-sm sm:text-base">100%</p>
+              <p className="font-bold text-belize-green text-sm sm:text-base">100% of Investment</p>
               <p className="text-xs sm:text-sm">Directly to programs</p>
             </div>
           </div>
