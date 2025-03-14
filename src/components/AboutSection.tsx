@@ -45,7 +45,7 @@ const AboutSection: React.FC = () => {
               <img src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" alt="Children at San Pedro Lions Club" className="rounded-lg shadow-lg w-full h-auto object-cover" />
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl border-l-4 border-belize-green animate-float">
                 <p className="font-bold text-belize-green text-xl">100% of Investment</p>
-                <p className="text-sm font-medium">Donation Model</p>
+                <p className="text-sm font-medium">Investment Model</p>
               </div>
             </div>
           </motion.div>
@@ -77,10 +77,10 @@ const AboutSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1 flex items-center">
-                    100% Donation Model
+                    100% Investment Model
                     <CheckCircle2 className="h-4 w-4 ml-2 text-belize-coral" />
                   </h4>
-                  <p className="text-gray-600">All administrative costs are covered by the owners of Canary Cove, ensuring 100% of donations directly support children.</p>
+                  <p className="text-gray-600">All administrative costs are covered by the owners of Canary Cove, ensuring 100% of investments directly support children.</p>
                 </div>
               </motion.div>
               
@@ -100,7 +100,7 @@ const AboutSection: React.FC = () => {
                     Community Partnerships
                     <CheckCircle2 className="h-4 w-4 ml-2 text-belize-coral" />
                   </h4>
-                  <p className="text-gray-600">We build a framework to identify community goals and cement local relationships, enabling individuals and businesses to donate with confidence.</p>
+                  <p className="text-gray-600">We build a framework to identify community goals and cement local relationships, enabling individuals and businesses to invest with confidence.</p>
                 </div>
               </motion.div>
               
@@ -120,7 +120,7 @@ const AboutSection: React.FC = () => {
                     Complete Transparency
                     <CheckCircle2 className="h-4 w-4 ml-2 text-belize-coral" />
                   </h4>
-                  <p className="text-gray-600">We operate with complete transparency, publishing detailed reports on fundraising, spending, and program impact.</p>
+                  <p className="text-gray-600">We operate with complete transparency, publishing detailed reports on fundraising, investments, and program impact.</p>
                 </div>
               </motion.div>
             </div>
@@ -152,9 +152,9 @@ const AboutSection: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center gap-6">
             <Users className="h-12 w-12 md:h-16 md:w-16 text-belize-coral" />
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2 text-center md:text-left">Join Our Community of Supporters</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-2 text-center md:text-left">Join Our Community of Investors</h3>
               <p className="text-gray-700 text-center md:text-left">
-                Become a part of our community dedicated to improving the lives of children in Belize. Your support makes a direct impact on education, healthcare, and community development.
+                Become a part of our community dedicated to improving the lives of children in Belize. Your investment makes a direct impact on education, healthcare, and community development.
               </p>
             </div>
             <div className="md:ml-auto w-full md:w-auto mt-4 md:mt-0">

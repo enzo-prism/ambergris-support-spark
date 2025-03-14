@@ -52,8 +52,8 @@ const DonationForm: React.FC = () => {
     e.preventDefault();
     // In a real app, this would process the payment
     toast({
-      title: "Donation Submitted",
-      description: `Thank you for your ${paymentType === "monthly" ? "monthly" : "one-time"} donation of ${getFinalAmount()}.`,
+      title: "Investment Submitted",
+      description: `Thank you for your ${paymentType === "monthly" ? "monthly" : "one-time"} investment of ${getFinalAmount()}.`,
     });
   };
 
@@ -61,15 +61,15 @@ const DonationForm: React.FC = () => {
     <section id="donate" className="section-padding bg-belize-light">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Make a Difference Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Invest in Change Today</h2>
           <p className="text-lg text-gray-700">
-            Your donation helps us support children in Belize. 100% of your contribution goes directly to our programs.
+            Your investment helps us support children in Belize. 100% of your contribution goes directly to our programs.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Your Donation Impact</h3>
+            <h3 className="text-2xl font-bold mb-4">Your Investment Impact</h3>
             <div className="space-y-6">
               <div className="flex gap-4 items-start">
                 <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
@@ -118,7 +118,7 @@ const DonationForm: React.FC = () => {
                 <h4 className="font-bold">Tax Deductible</h4>
               </div>
               <p className="text-gray-700">
-                All donations are tax-deductible through our U.S.-based 501(c)(3) non-profit organization. 
+                All investments are tax-deductible through our U.S.-based 501(c)(3) non-profit organization. 
                 You'll receive a receipt for your tax records.
               </p>
             </div>
@@ -135,7 +135,7 @@ const DonationForm: React.FC = () => {
                     </TabsList>
                     
                     <div className="mb-6">
-                      <Label className="mb-2 block">Select donation amount</Label>
+                      <Label className="mb-2 block">Select investment amount</Label>
                       <RadioGroup 
                         value={donationAmount} 
                         onValueChange={handleAmountChange}
@@ -263,7 +263,7 @@ const DonationForm: React.FC = () => {
                     </div>
                     
                     <Button type="submit" className="w-full py-6 text-lg bg-belize-coral hover:bg-opacity-90">
-                      Donate {getFinalAmount()}
+                      Invest {getFinalAmount()}
                       {paymentType === "monthly" && " Monthly"}
                     </Button>
                     

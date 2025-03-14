@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+
 const Hero: React.FC = () => {
   const scrollToDonate = () => {
     const donateElement = document.getElementById("donate");
@@ -11,6 +12,7 @@ const Hero: React.FC = () => {
       });
     }
   };
+
   return <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-24 md:pt-16 pb-16 md:pb-8 px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute top-0 left-0 w-64 h-64 bg-belize-blue rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
@@ -28,7 +30,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Button onClick={scrollToDonate} className="bg-belize-green hover:bg-belize-green/90 text-white text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto">
-              Make a Difference
+              Invest Today
               <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
             <Button variant="outline" className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto mt-2 sm:mt-0" onClick={() => {
@@ -57,4 +59,5 @@ const Hero: React.FC = () => {
       </div>
     </div>;
 };
+
 export default Hero;

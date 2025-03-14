@@ -11,10 +11,10 @@ const MembershipPromo: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="md:w-2/3">
             <h2 className="text-2xl md:text-3xl font-bold text-belize-blue mb-4">
-              Become a Monthly Member for Just $20
+              Become a Monthly Investor for Just $20
             </h2>
             <p className="text-lg text-gray-700 mb-0">
-              Join our community of supporters creating sustainable change for children in Belize through education, healthcare, and community development.
+              Join our community of investors creating sustainable change for children in Belize through education, healthcare, and community development.
             </p>
           </div>
           <div>

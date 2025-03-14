@@ -22,20 +22,20 @@ const MembershipHero: React.FC = () => {
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
         <div className="flex-1 text-center lg:text-left">
           <div className="inline-block bg-belize-green/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-belize-green text-sm sm:text-base font-medium mb-3 sm:mb-4">
-            Monthly Giving Program
+            Monthly Investment Program
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
-            Become a <span className="text-belize-green">Monthly Member</span> for $20
+            Become a <span className="text-belize-green">Monthly Investor</span> for $20
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
-            Join our community of monthly supporters helping to create lasting change for children in Belize through education and healthcare initiatives.
+            Join our community of monthly investors helping to create lasting change for children in Belize through education and healthcare initiatives.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Button 
               onClick={scrollToForm}
               className="bg-belize-green hover:bg-belize-green/90 text-white text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto"
             >
-              Become a Member
+              Become an Investor
               <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
           </div>
@@ -45,7 +45,7 @@ const MembershipHero: React.FC = () => {
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <img 
                 src="/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png" 
-                alt="Children in Belize benefiting from education and healthcare initiatives supported by monthly members" 
+                alt="Children in Belize benefiting from education and healthcare initiatives supported by monthly investors" 
                 className="object-cover w-full h-full"
               />
             </div>

@@ -13,7 +13,7 @@ const MembershipBenefits: React.FC = () => {
     {
       icon: Activity,
       title: "Impact Tracking",
-      description: "See exactly how your monthly contribution is making a difference on the ground."
+      description: "See exactly how your monthly investment is making a difference on the ground."
     },
     {
       icon: Bell,
@@ -22,18 +22,18 @@ const MembershipBenefits: React.FC = () => {
     },
     {
       icon: Users,
-      title: "Member Community",
-      description: "Join a community of like-minded supporters dedicated to helping Belizean children."
+      title: "Investor Community",
+      description: "Join a community of like-minded investors dedicated to helping Belizean children."
     },
     {
       icon: Globe,
       title: "Annual Impact Report",
-      description: "Receive a detailed annual report showing the collective impact of our membership program."
+      description: "Receive a detailed annual report showing the collective impact of our investment program."
     },
     {
       icon: Heart,
       title: "100% Direct Impact",
-      description: "Every dollar of your membership goes directly to programs, not administrative costs."
+      description: "Every dollar of your investment goes directly to programs, not administrative costs."
     }
   ];
 
@@ -41,9 +41,9 @@ const MembershipBenefits: React.FC = () => {
     <section className="py-16 bg-white">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Membership Benefits</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Investor Benefits</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            When you become a monthly member at $20/month, you're not just donating - you're joining a community committed to making a difference.
+            When you become a monthly investor at $20/month, you're not just investing - you're joining a community committed to making a difference.
           </p>
         </div>
 

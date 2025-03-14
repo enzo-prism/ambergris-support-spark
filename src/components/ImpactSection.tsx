@@ -72,7 +72,7 @@ const ImpactSection: React.FC = () => {
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Impact</h2>
           <p className="text-lg text-gray-700">
-            With complete transparency, we show how your support directly improves the lives of children across Belize.
+            With complete transparency, we show how your investments directly improve the lives of children across Belize.
           </p>
         </div>
 
