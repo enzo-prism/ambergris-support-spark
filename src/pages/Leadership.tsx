@@ -7,7 +7,14 @@ import LeaderCard from "@/components/leadership/LeaderCard";
 import BoardSection from "@/components/leadership/BoardSection";
 import SharedCommitment from "@/components/leadership/SharedCommitment";
 import { Separator } from "@/components/ui/separator";
-import { Users, Award, HeartHandshake } from "lucide-react";
+import { 
+  Briefcase, 
+  HeartHandshake, 
+  GraduationCap, 
+  Globe, 
+  Lightbulb,
+  UserCog
+} from "lucide-react";
 
 const Leadership: React.FC = () => {
   const boardMembers = [
@@ -35,10 +42,7 @@ const Leadership: React.FC = () => {
             
             {/* Introduction */}
             <div className="max-w-4xl mx-auto mb-16 text-center">
-              <div className="inline-flex items-center justify-center gap-3 mb-4 text-belize-teal">
-                <Users size={32} />
-                <h1 className="text-4xl md:text-5xl font-bold text-belize-green">Leadership</h1>
-              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-belize-green mb-4">Leadership</h1>
               <p className="text-lg text-gray-700 leading-relaxed">
                 At Belize Kids, our leadership team is a diverse group of passionate individuals united by a shared 
                 commitment to improving the lives of children in Belize. With backgrounds spanning technology, 
@@ -51,16 +55,14 @@ const Leadership: React.FC = () => {
             <div className="space-y-20">
               {/* Meet Our Leaders */}
               <div>
-                <div className="flex items-center gap-3 mb-12">
-                  <Award className="text-belize-coral" />
-                  <h2 className="text-3xl font-bold text-belize-green">Meet Our Leaders</h2>
-                </div>
+                <h2 className="text-3xl font-bold text-belize-green mb-12">Meet Our Leaders</h2>
 
                 <div className="grid grid-cols-1 gap-8 mb-16">
                   {/* Don Listwin */}
                   <LeaderCard 
                     name="Don Listwin" 
                     role="Co-Founder"
+                    icon={Briefcase}
                     bio={
                       <>
                         <p>
@@ -84,6 +86,7 @@ const Leadership: React.FC = () => {
                   <LeaderCard 
                     name="Hilary Valentine" 
                     role="Co-Founder"
+                    icon={HeartHandshake}
                     bio={
                       <>
                         <p>
@@ -105,6 +108,7 @@ const Leadership: React.FC = () => {
                   <LeaderCard 
                     name="Rebecca Coutant" 
                     role="Co-Executive Director in Belize"
+                    icon={Globe}
                     bio={
                       <>
                         <p>
@@ -126,6 +130,7 @@ const Leadership: React.FC = () => {
                   <LeaderCard 
                     name="Gil Nunez" 
                     role="Treasurer in Belize"
+                    icon={Lightbulb}
                     bio={
                       <>
                         <p>
@@ -146,6 +151,7 @@ const Leadership: React.FC = () => {
                   <LeaderCard 
                     name="Jeff Spiegel" 
                     role="Co-Executive Director in Belize"
+                    icon={GraduationCap}
                     bio={
                       <>
                         <p>
@@ -167,6 +173,7 @@ const Leadership: React.FC = () => {
                   <LeaderCard 
                     name="Mark Evans" 
                     role="Secretary (US Board)"
+                    icon={UserCog}
                     bio={
                       <>
                         <p>
@@ -198,7 +205,7 @@ const Leadership: React.FC = () => {
               {/* Contact Information */}
               <div className="text-center border-t border-belize-sand/30 pt-10 mt-16">
                 <div className="inline-flex items-center justify-center gap-2 mb-6">
-                  <HeartHandshake className="text-belize-coral" />
+                  <HeartHandshake className="text-belize-green" />
                   <p className="font-bold text-xl text-belize-green">Belize Kids.Org</p>
                 </div>
                 <div className="mb-4">
