@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const AboutSection: React.FC = () => {
   const features = [
@@ -26,7 +27,7 @@ const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div 
           className="text-center mb-16"
@@ -44,7 +45,7 @@ const AboutSection: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -100,17 +101,26 @@ const AboutSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-belize-green/10 to-belize-teal/10 transform rotate-3 rounded-2xl"></div>
-              <img 
-                src="/lovable-uploads/91073fee-cb3e-436d-aa59-320e89eab403.png" 
-                alt="Children at San Pedro Lions Club" 
-                className="relative z-10 rounded-2xl shadow-xl object-cover w-full h-auto"
-              />
-              <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl border-l-4 border-belize-green z-20">
+            <div className="relative rounded-2xl overflow-hidden">
+              <AspectRatio ratio={4/3} className="bg-muted">
+                <img 
+                  src="/lovable-uploads/d0cf5c69-dc26-4c5e-9ebe-18ea1a2d19d5.png" 
+                  alt="Belizean children learning together" 
+                  className="object-cover w-full h-full"
+                />
+              </AspectRatio>
+              <div className="absolute inset-0 bg-gradient-to-tr from-belize-green/10 via-transparent to-transparent mix-blend-overlay"></div>
+              
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg border-l-4 border-belize-green z-20"
+              >
                 <p className="font-bold text-belize-green text-xl">100%</p>
                 <p className="text-sm text-gray-600">Direct Investment</p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
