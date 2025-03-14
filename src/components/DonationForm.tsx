@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DollarSign, CreditCard, Calendar, Award } from "lucide-react";
+import { DollarSign, CreditCard, Calendar, Award, PiggyBank, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DonationForm: React.FC = () => {
@@ -61,9 +60,13 @@ const DonationForm: React.FC = () => {
     <section id="donate" className="section-padding bg-belize-light">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-2 bg-belize-coral/10 px-4 py-2 rounded-full mb-4">
+            <PiggyBank className="h-5 w-5 text-belize-coral" />
+            <span className="text-belize-coral font-semibold">One-Time Investment</span>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Invest in Change Today</h2>
           <p className="text-lg text-gray-700">
-            Your investment helps us support children in Belize. 100% of your contribution goes directly to our programs.
+            Your one-time investment helps us support children in Belize. 100% of your contribution goes directly to our programs.
           </p>
         </div>
 
@@ -130,8 +133,14 @@ const DonationForm: React.FC = () => {
                 <form onSubmit={handleSubmit}>
                   <Tabs defaultValue="oneTime" onValueChange={(val) => setPaymentType(val)}>
                     <TabsList className="grid grid-cols-2 mb-6">
-                      <TabsTrigger value="oneTime">One-time</TabsTrigger>
-                      <TabsTrigger value="monthly">Monthly</TabsTrigger>
+                      <TabsTrigger value="oneTime" className="flex items-center gap-2 py-2">
+                        <PiggyBank className="h-4 w-4" />
+                        <span>One-time</span>
+                      </TabsTrigger>
+                      <TabsTrigger value="monthly" className="flex items-center gap-2 py-2">
+                        <Users className="h-4 w-4" />
+                        <span>Monthly</span>
+                      </TabsTrigger>
                     </TabsList>
                     
                     <div className="mb-6">
@@ -262,10 +271,35 @@ const DonationForm: React.FC = () => {
                       </div>
                     </div>
                     
-                    <Button type="submit" className="w-full py-6 text-lg bg-belize-coral hover:bg-opacity-90">
-                      Invest {getFinalAmount()}
-                      {paymentType === "monthly" && " Monthly"}
+                    <Button type="submit" className={`w-full py-6 text-lg flex items-center justify-center ${
+                      paymentType === "monthly" 
+                        ? "bg-belize-blue hover:bg-belize-blue/90" 
+                        : "bg-belize-coral hover:bg-belize-coral/90"
+                    }`}>
+                      {paymentType === "monthly" ? (
+                        <>
+                          <Users className="mr-2 h-5 w-5" />
+                          Join as Member - {getFinalAmount()} Monthly
+                        </>
+                      ) : (
+                        <>
+                          <PiggyBank className="mr-2 h-5 w-5" />
+                          Invest {getFinalAmount()} Once
+                        </>
+                      )}
                     </Button>
+                    
+                    <div className="text-center mt-4">
+                      {paymentType === "monthly" ? (
+                        <p className="text-sm text-gray-600 bg-blue-50 p-2 rounded">
+                          <strong>Membership:</strong> Join our community with monthly recurring support
+                        </p>
+                      ) : (
+                        <p className="text-sm text-gray-600 bg-orange-50 p-2 rounded">
+                          <strong>One-time:</strong> Make a single contribution today
+                        </p>
+                      )}
+                    </div>
                     
                     <p className="text-center text-sm text-gray-500 mt-4">
                       Your payment information is secured with 256-bit encryption.

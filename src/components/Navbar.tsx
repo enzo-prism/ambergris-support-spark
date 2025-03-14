@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail, Info, Menu as MenuIcon } from "lucide-react";
+import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail, Info, Menu as MenuIcon, PiggyBank } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,7 +31,6 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
 
-  // Track scroll position to apply different styling
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -43,19 +41,16 @@ const Navbar: React.FC = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    // Only scroll if we're on the home page
     if (location.pathname === "/") {
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If we're not on the homepage, go to homepage and then scroll
       window.location.href = `/#${id}`;
     }
   };
 
-  // Simplified main navigation with fewer items and dropdowns
   const mainNavItems = [
     {
       label: "Home",
@@ -103,13 +98,14 @@ const Navbar: React.FC = () => {
           label: "Schedule",
           type: "link",
           to: "/doctors",
-          highlight: true,
+          hasHighlight: true,
           icon: <Calendar className="h-5 w-5" />
         },
         {
           label: "Membership",
           type: "link",
           to: "/membership",
+          hasHighlight: false,
           icon: <CreditCard className="h-5 w-5" />
         }
       ]
@@ -122,7 +118,6 @@ const Navbar: React.FC = () => {
     }
   ];
 
-  // Dropdown menu component for desktop navigation
   const NavDropdown = ({ item }: { item: any }) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -167,7 +162,6 @@ const Navbar: React.FC = () => {
     </DropdownMenu>
   );
 
-  // Resources dropdown content (kept for specific resource section)
   const ResourcesDropdown = () => (
     <Popover>
       <PopoverTrigger asChild>
@@ -189,20 +183,21 @@ const Navbar: React.FC = () => {
             </div>
             <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>
-          <Link to="/projects" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-green-50 to-green-100 p-4 no-underline outline-none transition-colors hover:from-green-100 hover:to-green-200">
-            <div className="mb-2 mt-2 text-lg font-medium text-green-700">
-              Community Projects
+          <Link to="/membership" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-100 to-blue-200 p-4 no-underline outline-none transition-colors hover:from-blue-200 hover:to-blue-300">
+            <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
+              <CreditCard className="mb-1 h-5 w-5 inline-block mr-2" />
+              Monthly Membership
             </div>
             <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-              Explore our ongoing community initiatives and programs
+              Join our exclusive $20/month membership community
             </div>
-            <ChevronRight className="h-4 w-4 text-green-700 mt-2 ml-auto" />
+            <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>
         </div>
         <div className="p-4 pt-0">
           <Button asChild variant="outline" className="w-full justify-between">
-            <Link to="/membership">
-              <span>Join our membership program</span>
+            <Link to="/projects">
+              <span>View Our Projects</span>
               <ChevronRight className="h-4 w-4 ml-2" />
             </Link>
           </Button>
@@ -211,13 +206,12 @@ const Navbar: React.FC = () => {
     </Popover>
   );
 
-  // New mobile menu item component for better visual consistency
   const MobileMenuItem = ({ 
     icon, 
     children, 
     to, 
     onClick, 
-    highlight = false,
+    hasHighlight = false,
     hasSubmenu = false,
     submenuItems = []
   }: { 
@@ -225,7 +219,7 @@ const Navbar: React.FC = () => {
     children: React.ReactNode; 
     to?: string; 
     onClick?: () => void; 
-    highlight?: boolean;
+    hasHighlight?: boolean;
     hasSubmenu?: boolean;
     submenuItems?: any[];
   }) => {
@@ -238,7 +232,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsOpen(!isOpen)}
             className={cn(
               "flex items-center justify-between gap-3 py-3 px-3 rounded-md transition-colors cursor-pointer",
-              highlight ? "text-belize-blue font-medium" : "text-gray-700",
+              hasHighlight ? "text-belize-blue font-medium" : "text-gray-700",
               "hover:bg-gray-50 active:bg-gray-100"
             )}
           >
@@ -271,7 +265,7 @@ const Navbar: React.FC = () => {
     const content = (
       <div className={cn(
         "flex items-center gap-3 py-3 px-3 rounded-md transition-colors",
-        highlight ? "text-belize-blue font-medium" : "text-gray-700",
+        hasHighlight ? "text-belize-blue font-medium" : "text-gray-700",
         !to && "hover:bg-gray-50 active:bg-gray-100"
       )}>
         {icon && <span className="text-belize-blue">{icon}</span>}
@@ -303,7 +297,6 @@ const Navbar: React.FC = () => {
     return content;
   };
 
-  // Mobile section header component
   const MobileSectionHeader = ({ children }: { children: React.ReactNode }) => (
     <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 px-3 pt-5 pb-2">
       {children}
@@ -328,7 +321,6 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        {/* Desktop Navigation Menu */}
         {!isMobile && (
           <div className="hidden md:flex items-center space-x-1">
             {mainNavItems.map((item, index) => (
@@ -363,18 +355,17 @@ const Navbar: React.FC = () => {
         )}
 
         <div className="hidden md:flex items-center ml-4 space-x-2">
-          {/* Resources button in the right section */}
           <ResourcesDropdown />
           
           <Button 
             onClick={() => scrollToSection("donate")}
-            className="bg-belize-blue hover:bg-belize-blue/90 text-white transition-all hover:shadow-md"
+            className="bg-belize-coral hover:bg-belize-coral/90 text-white transition-all hover:shadow-md flex items-center gap-2"
           >
-            Donate Now
+            <PiggyBank className="h-4 w-4" />
+            Invest Today
           </Button>
         </div>
 
-        {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
@@ -384,7 +375,6 @@ const Navbar: React.FC = () => {
           </SheetTrigger>
           <SheetContent side="right" className="p-0 w-[85%] max-w-[300px] border-none">
             <div className="flex flex-col h-full bg-white">
-              {/* Header */}
               <div className="flex items-center justify-between border-b p-4">
                 <Link to="/" className="flex items-center">
                   <img 
@@ -399,7 +389,6 @@ const Navbar: React.FC = () => {
                 </SheetClose>
               </div>
               
-              {/* Navigation Items */}
               <div className="flex-1 overflow-auto py-2 px-1">
                 <div className="space-y-1">
                   {mainNavItems.map((item, index) => {
@@ -431,12 +420,11 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
               
-              {/* Donate Button */}
               <div className="p-4 border-t mt-auto">
                 <SheetClose asChild>
                   <Button 
                     onClick={() => scrollToSection("donate")}
-                    className="bg-belize-blue hover:bg-belize-blue/90 text-white w-full py-5"
+                    className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full py-5"
                   >
                     Donate Now
                   </Button>

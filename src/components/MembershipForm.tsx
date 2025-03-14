@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -7,7 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Lock, CreditCard, Mail, User, Phone } from "lucide-react";
+import { Lock, CreditCard, Mail, User, Phone, Users } from "lucide-react";
 
 const formSchema = z.object({
   firstName: z.string().min(2, { message: "First name is required" }),
@@ -33,8 +32,6 @@ const MembershipForm: React.FC = () => {
   const onSubmit = (data: FormValues) => {
     console.log("Form submitted:", data);
     
-    // Here you would typically integrate with a payment processor
-    // For now, we'll just show a success message
     toast({
       title: "Membership registration started",
       description: "Thank you for your interest! We'll contact you shortly to complete your membership setup.",
@@ -47,11 +44,19 @@ const MembershipForm: React.FC = () => {
     <section id="membership-form" className="py-16 bg-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
+              <Users className="h-5 w-5 text-belize-blue" />
+              <span className="text-belize-blue font-semibold">Monthly Membership</span>
+            </div>
+            <h2 className="text-3xl font-bold text-belize-blue">Join Our Community</h2>
+          </div>
+          
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="bg-belize-green p-8 text-white">
-                <h2 className="text-2xl font-bold mb-4">Join Our Community</h2>
-                <p className="mb-6">Your $20 monthly membership supports:</p>
+              <div className="bg-belize-blue p-8 text-white">
+                <h2 className="text-2xl font-bold mb-4">Member Benefits</h2>
+                <p className="mb-6">Your $20 monthly membership includes:</p>
                 
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -60,7 +65,7 @@ const MembershipForm: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span>Educational resources for schools in Belize</span>
+                    <span>Exclusive member updates and reports</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-white/20 p-1 rounded-full mr-3 mt-1">
@@ -68,7 +73,7 @@ const MembershipForm: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span>Healthcare services for children in need</span>
+                    <span>Recognition in our member community</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-white/20 p-1 rounded-full mr-3 mt-1">
@@ -76,7 +81,7 @@ const MembershipForm: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span>Scholarships for deserving students</span>
+                    <span>Priority access to impact stories</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-white/20 p-1 rounded-full mr-3 mt-1">
@@ -84,7 +89,7 @@ const MembershipForm: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span>Community development projects</span>
+                    <span>Consistent impact through recurring support</span>
                   </li>
                 </ul>
                 
@@ -174,8 +179,9 @@ const MembershipForm: React.FC = () => {
                       )}
                     />
                     
-                    <Button type="submit" className="w-full bg-belize-green hover:bg-belize-green/90 mt-4">
-                      Become a Member - $20/month
+                    <Button type="submit" className="w-full bg-belize-blue hover:bg-belize-blue/90 mt-4 py-6 flex items-center justify-center">
+                      <Users className="mr-2 h-5 w-5" />
+                      Join Membership - $20/month
                     </Button>
                     
                     <p className="text-xs text-gray-500 text-center mt-4">
