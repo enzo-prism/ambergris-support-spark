@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail } from "lucide-react";
+import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail, Info, Menu as MenuIcon } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,6 +24,8 @@ import {
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -53,44 +55,64 @@ const Navbar: React.FC = () => {
     }
   };
 
-  // Navigation structure with proper grouping and organization
+  // Simplified main navigation with fewer items and dropdowns
   const mainNavItems = [
     {
-      label: "About",
-      type: "scroll",
-      action: () => scrollToSection("about"),
+      label: "Home",
+      type: "link",
+      to: "/",
       icon: <Home className="h-5 w-5" />
     },
     {
-      label: "Programs",
-      type: "scroll",
-      action: () => scrollToSection("programs"),
-      icon: <BookOpen className="h-5 w-5" />
+      label: "About",
+      type: "dropdown",
+      icon: <Info className="h-5 w-5" />,
+      items: [
+        {
+          label: "About Us",
+          type: "scroll",
+          action: () => scrollToSection("about"),
+          icon: <Info className="h-5 w-5" />
+        },
+        {
+          label: "Programs",
+          type: "scroll",
+          action: () => scrollToSection("programs"),
+          icon: <BookOpen className="h-5 w-5" />
+        },
+        {
+          label: "Leadership",
+          type: "link",
+          to: "/leadership",
+          icon: <Users className="h-5 w-5" />
+        }
+      ]
     },
     {
-      label: "Projects",
-      type: "link",
-      to: "/projects",
-      icon: <Folder className="h-5 w-5" />
-    },
-    {
-      label: "Leadership",
-      type: "link",
-      to: "/leadership",
-      icon: <Users className="h-5 w-5" />
-    },
-    {
-      label: "Schedule",
-      type: "link",
-      to: "/doctors",
-      highlight: true,
-      icon: <Calendar className="h-5 w-5" />
-    },
-    {
-      label: "Membership",
-      type: "link",
-      to: "/membership",
-      icon: <CreditCard className="h-5 w-5" />
+      label: "Resources",
+      type: "dropdown",
+      icon: <Folder className="h-5 w-5" />,
+      items: [
+        {
+          label: "Projects",
+          type: "link",
+          to: "/projects",
+          icon: <Folder className="h-5 w-5" />
+        },
+        {
+          label: "Schedule",
+          type: "link",
+          to: "/doctors",
+          highlight: true,
+          icon: <Calendar className="h-5 w-5" />
+        },
+        {
+          label: "Membership",
+          type: "link",
+          to: "/membership",
+          icon: <CreditCard className="h-5 w-5" />
+        }
+      ]
     },
     {
       label: "Contact",
@@ -100,19 +122,62 @@ const Navbar: React.FC = () => {
     }
   ];
 
-  // Resources dropdown content (simplified)
-  const ResourcesDropdown = () => (
+  // Dropdown menu component for desktop navigation
+  const NavDropdown = ({ item }: { item: any }) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={cn(
-          "flex items-center text-base font-medium text-gray-700 hover:text-belize-blue transition-colors px-4 py-2",
-          location.pathname === "/resources" && "text-belize-blue font-semibold"
+          "flex items-center text-base font-medium text-gray-700 hover:text-belize-blue transition-colors px-4 py-2 gap-1",
+          location.pathname === item.to && "text-belize-blue font-semibold"
         )}>
-          Resources
+          {item.label}
           <ChevronRight className="h-4 w-4 ml-1 rotate-90" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" className="w-[400px] p-0 rounded-md">
+      <DropdownMenuContent align="center" className="w-[250px] p-2 rounded-md">
+        <div className="space-y-1">
+          {item.items.map((subItem: any, index: number) => (
+            <DropdownMenuItem key={index} className="p-0">
+              {subItem.type === "link" ? (
+                <Link 
+                  to={subItem.to} 
+                  className="w-full flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50"
+                >
+                  {subItem.icon && <span className="text-belize-blue">{subItem.icon}</span>}
+                  <span className={cn(
+                    "flex-1",
+                    subItem.highlight && "text-belize-blue font-medium"
+                  )}>
+                    {subItem.label}
+                  </span>
+                </Link>
+              ) : (
+                <button
+                  onClick={subItem.action}
+                  className="w-full flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 text-left"
+                >
+                  {subItem.icon && <span className="text-belize-blue">{subItem.icon}</span>}
+                  <span className="flex-1">{subItem.label}</span>
+                </button>
+              )}
+            </DropdownMenuItem>
+          ))}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+
+  // Resources dropdown content (kept for specific resource section)
+  const ResourcesDropdown = () => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className="hidden lg:flex items-center gap-2">
+          <Folder className="h-4 w-4" />
+          <span>Resources</span>
+          <ChevronRight className="h-4 w-4 rotate-90" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent align="center" className="w-[400px] p-0 rounded-md">
         <div className="grid grid-cols-2 gap-3 p-4">
           <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
             <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
@@ -142,8 +207,8 @@ const Navbar: React.FC = () => {
             </Link>
           </Button>
         </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverContent>
+    </Popover>
   );
 
   // New mobile menu item component for better visual consistency
@@ -152,14 +217,57 @@ const Navbar: React.FC = () => {
     children, 
     to, 
     onClick, 
-    highlight = false 
+    highlight = false,
+    hasSubmenu = false,
+    submenuItems = []
   }: { 
     icon?: React.ReactNode; 
     children: React.ReactNode; 
     to?: string; 
     onClick?: () => void; 
     highlight?: boolean;
+    hasSubmenu?: boolean;
+    submenuItems?: any[];
   }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    if (hasSubmenu) {
+      return (
+        <div className="space-y-1">
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className={cn(
+              "flex items-center justify-between gap-3 py-3 px-3 rounded-md transition-colors cursor-pointer",
+              highlight ? "text-belize-blue font-medium" : "text-gray-700",
+              "hover:bg-gray-50 active:bg-gray-100"
+            )}
+          >
+            <div className="flex items-center gap-3">
+              {icon && <span className="text-belize-blue">{icon}</span>}
+              <span className="flex-1">{children}</span>
+            </div>
+            <ChevronRight className={cn("h-4 w-4 text-gray-400 transition-transform", isOpen && "rotate-90")} />
+          </div>
+          
+          {isOpen && (
+            <div className="pl-10 space-y-1">
+              {submenuItems.map((item, index) => (
+                <MobileMenuItem
+                  key={index}
+                  icon={item.icon}
+                  to={item.type === "link" ? item.to : undefined}
+                  onClick={item.type === "scroll" ? item.action : undefined}
+                  highlight={item.highlight}
+                >
+                  {item.label}
+                </MobileMenuItem>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+    
     const content = (
       <div className={cn(
         "flex items-center gap-3 py-3 px-3 rounded-md transition-colors",
@@ -223,41 +331,41 @@ const Navbar: React.FC = () => {
         {/* Desktop Navigation Menu */}
         {!isMobile && (
           <div className="hidden md:flex items-center space-x-1">
-            {mainNavItems.map((item) => (
-              <div key={item.label} className="inline-block">
+            {mainNavItems.map((item, index) => (
+              <div key={index} className="inline-block">
                 {item.type === "link" ? (
                   <Link 
-                    to={item.to!}
+                    to={item.to}
                     className={cn(
-                      "text-base font-medium px-4 py-2 transition-colors",
+                      "text-base font-medium px-4 py-2 transition-colors flex items-center gap-1",
                       location.pathname === item.to 
                         ? "text-belize-blue font-semibold" 
-                        : "text-gray-700 hover:text-belize-blue",
-                      item.highlight && "text-belize-blue"
+                        : "text-gray-700 hover:text-belize-blue"
                     )}
                   >
+                    {item.icon && <span className="inline-block">{item.icon}</span>}
                     {item.label}
-                    {item.highlight && <Calendar className="inline-block ml-1 h-4 w-4" />}
                   </Link>
+                ) : item.type === "dropdown" ? (
+                  <NavDropdown item={item} />
                 ) : (
                   <button 
                     onClick={item.action}
-                    className="text-base font-medium px-4 py-2 text-gray-700 hover:text-belize-blue transition-colors"
+                    className="text-base font-medium px-4 py-2 text-gray-700 hover:text-belize-blue transition-colors flex items-center gap-1"
                   >
+                    {item.icon && <span className="inline-block">{item.icon}</span>}
                     {item.label}
                   </button>
                 )}
               </div>
             ))}
-            
-            {/* Resources dropdown */}
-            <div className="inline-block">
-              <ResourcesDropdown />
-            </div>
           </div>
         )}
 
-        <div className="hidden md:flex items-center ml-4">
+        <div className="hidden md:flex items-center ml-4 space-x-2">
+          {/* Resources button in the right section */}
+          <ResourcesDropdown />
+          
           <Button 
             onClick={() => scrollToSection("donate")}
             className="bg-belize-blue hover:bg-belize-blue/90 text-white transition-all hover:shadow-md"
@@ -294,36 +402,32 @@ const Navbar: React.FC = () => {
               {/* Navigation Items */}
               <div className="flex-1 overflow-auto py-2 px-1">
                 <div className="space-y-1">
-                  {mainNavItems.map((item) => (
-                    <MobileMenuItem 
-                      key={item.label}
-                      icon={item.icon}
-                      to={item.type === "link" ? item.to : undefined}
-                      onClick={item.type === "scroll" ? item.action : undefined}
-                      highlight={item.highlight}
-                    >
-                      {item.label}
-                    </MobileMenuItem>
-                  ))}
-                </div>
-                
-                {/* Resources Section */}
-                <div className="mt-2">
-                  <MobileSectionHeader>Resources</MobileSectionHeader>
-                  <div className="space-y-1 mt-1">
-                    <MobileMenuItem 
-                      icon={<Calendar className="h-5 w-5" />}
-                      to="/doctors"
-                    >
-                      Schedule Eye Care
-                    </MobileMenuItem>
-                    <MobileMenuItem 
-                      icon={<Briefcase className="h-5 w-5" />}
-                      to="/projects"
-                    >
-                      Community Projects
-                    </MobileMenuItem>
-                  </div>
+                  {mainNavItems.map((item, index) => {
+                    if (item.type === "dropdown") {
+                      return (
+                        <MobileMenuItem 
+                          key={index}
+                          icon={item.icon}
+                          hasSubmenu={true}
+                          submenuItems={item.items}
+                        >
+                          {item.label}
+                        </MobileMenuItem>
+                      );
+                    } else {
+                      return (
+                        <MobileMenuItem 
+                          key={index}
+                          icon={item.icon}
+                          to={item.type === "link" ? item.to : undefined}
+                          onClick={item.type === "scroll" ? item.action : undefined}
+                          highlight={item.highlight}
+                        >
+                          {item.label}
+                        </MobileMenuItem>
+                      );
+                    }
+                  })}
                 </div>
               </div>
               
