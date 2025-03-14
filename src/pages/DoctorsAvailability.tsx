@@ -8,7 +8,9 @@ import {
   Clock, 
   Search,
   MapPin,
-  Filter
+  Filter,
+  Eye,
+  Glasses
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,106 +19,120 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 
-// Mock data for doctors availability
+// Updated mock data for doctors availability with eye health focus
 const doctorsData = [
   {
     id: 1,
     name: "Dr. Maria Rodriguez",
-    specialty: "Pediatrics",
-    location: "Belize City Clinic",
+    specialty: "Pediatric Ophthalmology",
+    location: "Belize City Eye Clinic",
+    icon: <Eye className="h-4 w-4 text-belize-green" />,
     availability: [
       { day: "Monday", slots: ["9:00 AM - 12:00 PM", "2:00 PM - 5:00 PM"] },
       { day: "Wednesday", slots: ["9:00 AM - 12:00 PM"] },
       { day: "Friday", slots: ["2:00 PM - 5:00 PM"] },
     ],
     nextAvailable: "Today at 2:00 PM",
-    status: "available"
+    status: "available",
+    services: ["Pediatric eye exams", "Strabismus treatment", "Vision therapy"]
   },
   {
     id: 2,
     name: "Dr. James Wilson",
-    specialty: "General Medicine",
-    location: "San Pedro Health Center",
+    specialty: "Optometrist",
+    location: "San Pedro Vision Center",
+    icon: <Glasses className="h-4 w-4 text-belize-green" />,
     availability: [
       { day: "Tuesday", slots: ["8:00 AM - 12:00 PM"] },
       { day: "Thursday", slots: ["8:00 AM - 12:00 PM", "1:00 PM - 4:00 PM"] },
       { day: "Saturday", slots: ["9:00 AM - 1:00 PM"] },
     ],
     nextAvailable: "Tomorrow at 8:00 AM",
-    status: "upcoming"
+    status: "upcoming",
+    services: ["Vision testing", "Eyeglass prescriptions", "Contact lens fittings"]
   },
   {
     id: 3,
     name: "Dr. Anna Chen",
-    specialty: "Obstetrics",
-    location: "Belmopan Women's Health",
+    specialty: "Cornea Specialist",
+    location: "Belmopan Eye Care Center",
+    icon: <Eye className="h-4 w-4 text-belize-green" />,
     availability: [
       { day: "Monday", slots: ["10:00 AM - 2:00 PM"] },
       { day: "Wednesday", slots: ["10:00 AM - 2:00 PM"] },
       { day: "Thursday", slots: ["1:00 PM - 5:00 PM"] },
     ],
     nextAvailable: "2 days from now",
-    status: "booked"
+    status: "booked",
+    services: ["Corneal disease treatment", "LASIK consultations", "Dry eye management"]
   },
   {
     id: 4,
     name: "Dr. Robert Johnson",
-    specialty: "Cardiology",
-    location: "Belize Heart Institute",
+    specialty: "Retina Specialist",
+    location: "Belize City Eye Institute",
+    icon: <Eye className="h-4 w-4 text-belize-green" />,
     availability: [
       { day: "Tuesday", slots: ["9:00 AM - 1:00 PM"] },
       { day: "Friday", slots: ["9:00 AM - 1:00 PM", "2:00 PM - 4:00 PM"] },
     ],
     nextAvailable: "Friday at 9:00 AM",
-    status: "upcoming"
+    status: "upcoming",
+    services: ["Retinal disorders", "Diabetic eye exams", "Macular degeneration treatment"]
   },
   {
     id: 5,
     name: "Dr. Sarah Thompson",
-    specialty: "Dermatology",
-    location: "Placencia Medical Center",
+    specialty: "Vision Therapy",
+    location: "Placencia Vision Center",
+    icon: <Glasses className="h-4 w-4 text-belize-green" />,
     availability: [
       { day: "Monday", slots: ["1:00 PM - 5:00 PM"] },
       { day: "Thursday", slots: ["9:00 AM - 1:00 PM"] },
     ],
     nextAvailable: "In 30 minutes",
-    status: "available"
+    status: "available",
+    services: ["Vision therapy", "Eye exercises", "Visual skills development"]
   }
 ];
 
-// Upcoming openings data (mock)
+// Updated upcoming openings data
 const upcomingOpenings = [
   {
     id: 101,
     doctor: "Dr. Maria Rodriguez",
-    specialty: "Pediatrics",
+    specialty: "Pediatric Ophthalmology",
     time: "Today at 2:00 PM",
-    location: "Belize City Clinic", 
-    duration: "30 min"
+    location: "Belize City Eye Clinic", 
+    duration: "30 min",
+    service: "Children's eye screening"
   },
   {
     id: 102,
     doctor: "Dr. Sarah Thompson",
-    specialty: "Dermatology",
+    specialty: "Vision Therapy",
     time: "Today at 3:15 PM",
-    location: "Placencia Medical Center",
-    duration: "45 min"
+    location: "Placencia Vision Center",
+    duration: "45 min",
+    service: "Vision therapy session" 
   },
   {
     id: 103,
     doctor: "Dr. James Wilson",
-    specialty: "General Medicine",
+    specialty: "Optometrist",
     time: "Tomorrow at 8:00 AM",
-    location: "San Pedro Health Center",
-    duration: "30 min"
+    location: "San Pedro Vision Center",
+    duration: "30 min",
+    service: "Routine eye exam"
   },
   {
     id: 104,
     doctor: "Dr. Anna Chen",
-    specialty: "Obstetrics",
+    specialty: "Cornea Specialist",
     time: "Thursday at 10:00 AM",
-    location: "Belmopan Women's Health",
-    duration: "60 min"
+    location: "Belmopan Eye Care Center",
+    duration: "60 min",
+    service: "LASIK consultation"
   }
 ];
 
@@ -124,9 +140,10 @@ const DoctorsAvailability: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
+  const [serviceFilter, setServiceFilter] = useState("all");
   const { toast } = useToast();
 
-  // Filter doctors based on search term and location
+  // Filter doctors based on search term, location and service
   const filteredDoctors = doctorsData.filter(doctor => {
     const matchesSearch = 
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -136,15 +153,25 @@ const DoctorsAvailability: React.FC = () => {
       locationFilter === "all" || 
       doctor.location.toLowerCase().includes(locationFilter.toLowerCase());
     
-    return matchesSearch && matchesLocation;
+    const matchesService = 
+      serviceFilter === "all" || 
+      doctor.services.some(service => 
+        service.toLowerCase().includes(serviceFilter.toLowerCase())
+      );
+    
+    return matchesSearch && matchesLocation && matchesService;
   });
 
   // Get a list of unique locations
   const locations = ["all", ...new Set(doctorsData.map(doctor => doctor.location))];
 
+  // Get a list of unique services
+  const allServices = doctorsData.flatMap(doctor => doctor.services);
+  const services = ["all", ...new Set(allServices)];
+
   const handleBookAppointment = (doctorName: string) => {
     toast({
-      title: "Appointment Request Sent",
+      title: "Eye Care Appointment Request Sent",
       description: `You'll receive a confirmation for ${doctorName} shortly.`,
     });
   };
@@ -152,8 +179,8 @@ const DoctorsAvailability: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
-        <title>Doctor Availability | Belize Kids</title>
-        <meta name="description" content="Find available doctors and upcoming openings for medical care in Belize." />
+        <title>Eye Care Specialists | Belize Kids</title>
+        <meta name="description" content="Find available eye care specialists for children and adults in Belize." />
       </Helmet>
       
       <Navbar />
@@ -162,10 +189,10 @@ const DoctorsAvailability: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="mb-6 md:mb-8">
             <h1 className="text-2xl md:text-3xl font-bold text-belize-green mb-2">
-              Find Available Doctors
+              Find Eye Care Specialists
             </h1>
             <p className="text-gray-600 text-sm md:text-base">
-              See who's available now or get notified about upcoming openings
+              See which eye care providers are available now or schedule an upcoming appointment
             </p>
           </div>
           
@@ -175,7 +202,7 @@ const DoctorsAvailability: React.FC = () => {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="Search doctors or specialties..."
+                  placeholder="Search specialists or services..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-9 h-10 bg-white border border-gray-200"
@@ -192,26 +219,46 @@ const DoctorsAvailability: React.FC = () => {
             </div>
             
             {showFilters && (
-              <div className="mt-2 p-3 bg-gray-50 rounded-md border border-gray-200">
-                <label className="text-sm font-medium text-gray-700 block mb-1">Location</label>
-                <select
-                  className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
-                  value={locationFilter}
-                  onChange={(e) => setLocationFilter(e.target.value)}
-                >
-                  {locations.map((location, index) => (
-                    <option key={index} value={location}>
-                      {location === "all" ? "All Locations" : location}
-                    </option>
-                  ))}
-                </select>
+              <div className="mt-2 p-3 bg-gray-50 rounded-md border border-gray-200 space-y-3">
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">Location</label>
+                  <select
+                    className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
+                    value={locationFilter}
+                    onChange={(e) => setLocationFilter(e.target.value)}
+                  >
+                    {locations.map((location, index) => (
+                      <option key={index} value={location}>
+                        {location === "all" ? "All Locations" : location}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="text-sm font-medium text-gray-700 block mb-1">Service</label>
+                  <select
+                    className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
+                    value={serviceFilter}
+                    onChange={(e) => setServiceFilter(e.target.value)}
+                  >
+                    {services.map((service, index) => (
+                      <option key={index} value={service}>
+                        {service === "all" ? "All Services" : service}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
             )}
           </div>
           
           {/* Quick View of Available Now */}
           <div className="mb-6">
-            <h2 className="text-lg font-medium text-gray-800 mb-3">Available Now</h2>
+            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
+              <Eye className="mr-2 h-5 w-5 text-belize-green" />
+              Available Now
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {filteredDoctors
                 .filter(doc => doc.status === 'available')
@@ -220,18 +267,36 @@ const DoctorsAvailability: React.FC = () => {
                   <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
                     <CardContent className="p-4">
                       <div className="flex justify-between items-start">
-                        <div>
-                          <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                          <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                          <div className="flex items-center mt-1 text-xs text-gray-500">
-                            <MapPin size={12} className="mr-1" />
-                            <span>{doctor.location}</span>
+                        <div className="flex items-start gap-2">
+                          {doctor.icon}
+                          <div>
+                            <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                            <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                            <div className="flex items-center mt-1 text-xs text-gray-500">
+                              <MapPin size={12} className="mr-1" />
+                              <span>{doctor.location}</span>
+                            </div>
                           </div>
                         </div>
                         <Badge className="bg-green-50 text-green-700 border-green-100">
                           Available Now
                         </Badge>
                       </div>
+                      
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <p className="text-xs text-gray-600 mb-2">Services:</p>
+                        <div className="flex flex-wrap gap-1">
+                          {doctor.services.slice(0, 2).map((service, idx) => (
+                            <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
+                              {service}
+                            </span>
+                          ))}
+                          {doctor.services.length > 2 && (
+                            <span className="text-xs text-gray-500">+{doctor.services.length - 2} more</span>
+                          )}
+                        </div>
+                      </div>
+                      
                       <Button 
                         className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white" 
                         size="sm"
@@ -245,9 +310,12 @@ const DoctorsAvailability: React.FC = () => {
             </div>
           </div>
           
-          {/* All Doctors Tab Interface - Simplified */}
+          {/* All Doctors Tab Interface */}
           <div className="mb-8">
-            <h2 className="text-lg font-medium text-gray-800 mb-3">All Doctors</h2>
+            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
+              <Glasses className="mr-2 h-5 w-5 text-belize-green" />
+              All Eye Specialists
+            </h2>
             <Tabs defaultValue="list" className="w-full">
               <TabsList className="w-full mb-4 bg-gray-100 p-1 rounded-md">
                 <TabsTrigger value="list" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
@@ -262,16 +330,27 @@ const DoctorsAvailability: React.FC = () => {
                 {filteredDoctors.length > 0 ? (
                   filteredDoctors.map((doctor) => (
                     <div key={doctor.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-start">
-                      <div>
-                        <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                        <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                        <div className="flex items-center mt-1 text-xs text-gray-500">
-                          <MapPin size={12} className="mr-1" />
-                          <span>{doctor.location}</span>
-                        </div>
-                        <div className="flex items-center mt-1 text-xs text-gray-500">
-                          <Clock size={12} className="mr-1" />
-                          <span>Next: {doctor.nextAvailable}</span>
+                      <div className="flex items-start gap-3">
+                        {doctor.icon}
+                        <div>
+                          <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                          <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                          <div className="flex items-center mt-1 text-xs text-gray-500">
+                            <MapPin size={12} className="mr-1" />
+                            <span>{doctor.location}</span>
+                          </div>
+                          <div className="flex items-center mt-1 text-xs text-gray-500">
+                            <Clock size={12} className="mr-1" />
+                            <span>Next: {doctor.nextAvailable}</span>
+                          </div>
+                          
+                          <div className="mt-2 flex flex-wrap gap-1">
+                            {doctor.services.slice(0, 2).map((service, idx) => (
+                              <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
+                                {service}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
                       <div className="flex flex-col items-end">
@@ -297,7 +376,7 @@ const DoctorsAvailability: React.FC = () => {
                   ))
                 ) : (
                   <div className="text-center py-8 text-gray-500">
-                    No doctors found matching your search criteria.
+                    No eye specialists found matching your search criteria.
                   </div>
                 )}
               </TabsContent>
@@ -309,12 +388,15 @@ const DoctorsAvailability: React.FC = () => {
                       <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
                         <CardContent className="p-4">
                           <div className="flex justify-between items-start mb-3">
-                            <div>
-                              <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                              <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                              <div className="flex items-center mt-1 text-xs text-gray-500">
-                                <MapPin size={12} className="mr-1" />
-                                <span>{doctor.location}</span>
+                            <div className="flex items-start gap-2">
+                              {doctor.icon}
+                              <div>
+                                <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                                <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                                <div className="flex items-center mt-1 text-xs text-gray-500">
+                                  <MapPin size={12} className="mr-1" />
+                                  <span>{doctor.location}</span>
+                                </div>
                               </div>
                             </div>
                             <Badge className={`${
@@ -326,6 +408,17 @@ const DoctorsAvailability: React.FC = () => {
                               doctor.status === 'upcoming' ? 'Coming Soon' : 
                               'Fully Booked'}
                             </Badge>
+                          </div>
+
+                          <div className="mt-2 mb-3">
+                            <p className="text-xs text-gray-600 mb-1">Services:</p>
+                            <div className="flex flex-wrap gap-1">
+                              {doctor.services.map((service, idx) => (
+                                <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
+                                  {service}
+                                </span>
+                              ))}
+                            </div>
                           </div>
 
                           <div className="border-t border-gray-100 pt-3 mt-3">
@@ -361,7 +454,7 @@ const DoctorsAvailability: React.FC = () => {
                     ))
                   ) : (
                     <div className="text-center py-8 text-gray-500 col-span-2">
-                      No doctors found matching your search criteria.
+                      No eye specialists found matching your search criteria.
                     </div>
                   )}
                 </div>
@@ -369,9 +462,12 @@ const DoctorsAvailability: React.FC = () => {
             </Tabs>
           </div>
           
-          {/* Upcoming Openings - Simplified */}
+          {/* Upcoming Openings */}
           <div>
-            <h2 className="text-lg font-medium text-gray-800 mb-3">Upcoming Openings</h2>
+            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
+              <Clock className="mr-2 h-5 w-5 text-belize-green" />
+              Upcoming Eye Care Openings
+            </h2>
             <div className="space-y-3">
               {upcomingOpenings.map((opening) => (
                 <div key={opening.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-center">
@@ -381,8 +477,10 @@ const DoctorsAvailability: React.FC = () => {
                       <span className="font-medium text-gray-900">{opening.time}</span>
                     </div>
                     <p className="text-sm text-gray-700 mt-1">{opening.doctor}</p>
-                    <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mt-1">
                       <span>{opening.specialty}</span>
+                      <span>•</span>
+                      <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">{opening.service}</span>
                       <span>•</span>
                       <span>{opening.duration}</span>
                       <span>•</span>
