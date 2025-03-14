@@ -1,36 +1,43 @@
 
 import React from "react";
-import { HeartHandshake, Users, Globe, Sparkles, ArrowRight } from "lucide-react";
+import { HeartHandshake, Users, Globe, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Card } from "@/components/ui/card";
 
 const AboutSection: React.FC = () => {
   const features = [
     {
-      icon: <HeartHandshake className="h-5 w-5 text-belize-coral" />,
+      icon: <HeartHandshake className="h-6 w-6 text-belize-coral" />,
       title: "100% Investment Model",
       description: "All administrative costs are covered by the owners of Canary Cove, ensuring 100% of investments directly support children."
     },
     {
-      icon: <Globe className="h-5 w-5 text-belize-teal" />,
+      icon: <Globe className="h-6 w-6 text-belize-teal" />,
       title: "Community Partnerships",
       description: "We build a framework to identify community goals and cement local relationships, enabling individuals and businesses to invest with confidence."
     },
     {
-      icon: <Sparkles className="h-5 w-5 text-belize-blue" />,
+      icon: <Sparkles className="h-6 w-6 text-belize-blue" />,
       title: "Complete Transparency",
       description: "We operate with complete transparency, publishing detailed reports on fundraising, investments, and program impact."
     }
+  ];
+
+  const impactPoints = [
+    "Improving education infrastructure",
+    "Building and maintaining parks and playgrounds",
+    "Supporting healthcare initiatives",
+    "Providing scholarships for future leaders"
   ];
 
   return (
     <section id="about" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-6 max-w-6xl">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -40,50 +47,46 @@ const AboutSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6 text-gray-900">About Belize Kids</h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-gray-600 text-lg">
-              BelizeKids.org is dedicated to improving the lives of children in Belize through strategic investments in education, healthcare, and community infrastructure.
+              BelizeKids.org is dedicated to improving the lives of children in Belize through strategic 
+              investments in education, healthcare, and community infrastructure.
             </p>
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+          {/* Left side with mission and impact card */}
           <motion.div 
+            className="md:col-span-5"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-2 lg:order-1"
+            transition={{ duration: 0.7 }}
           >
-            <div className="space-y-10">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Transforming Lives in Belize</h3>
-                <p className="text-gray-600">
-                  Our mission is to improve the lives of kids in Belize through strategic investments. We invest in projects to help schools, build and maintain parks and playgrounds, support and expand healthcare, and provide scholarships for the next generation of leaders.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                {features.map((feature, index) => (
-                  <motion.div 
+            <Card className="p-6 shadow-md border-l-4 border-belize-green h-full">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Transforming Lives in Belize</h3>
+              <p className="text-gray-600 mb-6">
+                Our mission is to improve the lives of kids in Belize through strategic investments. 
+                We focus on projects that create lasting positive impact for the next generation.
+              </p>
+              
+              <h4 className="font-semibold text-gray-800 mb-3">Our Impact Areas:</h4>
+              <ul className="space-y-2 mb-6">
+                {impactPoints.map((point, index) => (
+                  <motion.li 
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="flex items-start gap-2"
                   >
-                    <div className="flex items-start gap-4 group">
-                      <div className="mt-1 flex-shrink-0 rounded-full p-2 bg-gray-50 group-hover:bg-belize-light transition-colors duration-300">
-                        {feature.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900">{feature.title}</h4>
-                        <p className="mt-1 text-gray-600 text-sm leading-relaxed">{feature.description}</p>
-                      </div>
-                    </div>
-                  </motion.div>
+                    <CheckCircle2 className="h-5 w-5 text-belize-coral mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-600">{point}</span>
+                  </motion.li>
                 ))}
-              </div>
-
-              <div className="pt-4">
+              </ul>
+              
+              <div className="pt-2 mt-auto">
                 <Link to="/leadership">
                   <Button variant="outline" className="group border-belize-green text-belize-green hover:bg-belize-green hover:text-white transition-all duration-300">
                     Meet Our Team
@@ -91,54 +94,57 @@ const AboutSection: React.FC = () => {
                   </Button>
                 </Link>
               </div>
-            </div>
+            </Card>
           </motion.div>
 
+          {/* Right side with features */}
           <motion.div 
-            className="order-1 lg:order-2"
+            className="md:col-span-7"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7 }}
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-lg">
-              <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute top-4 right-4 bg-white p-4 rounded-lg shadow-lg border-l-4 border-yellow-500 z-20"
-              >
-                <p className="font-bold text-belize-green text-xl">100%</p>
-                <p className="text-sm text-gray-600">Direct Investment</p>
-              </motion.div>
-              
-              <AspectRatio ratio={16/9} className="bg-muted">
-                <img 
-                  src="/lovable-uploads/ad0fec31-0155-4069-9599-edabffc76f25.png" 
-                  alt="San Pedro Lions Club community meeting" 
-                  className="object-cover w-full h-full"
-                />
-              </AspectRatio>
-              <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/10 via-transparent to-transparent mix-blend-overlay"></div>
+            <div className="space-y-6">
+              {features.map((feature, index) => (
+                <motion.div 
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="bg-white rounded-lg p-6 shadow-md border-l-4 border-belize-coral hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="mt-1 p-3 rounded-full bg-gray-50 text-belize-green">
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xl text-gray-900 mb-2">{feature.title}</h4>
+                      <p className="text-gray-600">{feature.description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
 
-        <Separator className="my-20 bg-gray-100" />
+        <Separator className="my-16 bg-gray-100" />
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gray-50 rounded-2xl p-8 md:p-10"
+          className="bg-gradient-to-r from-belize-light to-white rounded-2xl p-8 md:p-10 shadow-md"
         >
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-8/12">
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Join Our Community of Investors</h3>
               <p className="text-gray-600">
-                Become a part of our community dedicated to investing in the futures of children in Belize. Your strategic investment makes a direct impact on education, healthcare, and community development.
+                Become a part of our community dedicated to investing in the futures of children in Belize. 
+                Your strategic investment makes a direct impact on education, healthcare, and community development.
               </p>
             </div>
             <div className="md:w-4/12 flex justify-center md:justify-end w-full">
