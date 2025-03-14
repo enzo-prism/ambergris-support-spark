@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -251,7 +252,7 @@ const Navbar: React.FC = () => {
                   icon={item.icon}
                   to={item.type === "link" ? item.to : undefined}
                   onClick={item.type === "scroll" ? item.action : undefined}
-                  highlight={item.highlight}
+                  hasHighlight={item.hasHighlight}
                 >
                   {item.label}
                 </MobileMenuItem>
@@ -410,7 +411,7 @@ const Navbar: React.FC = () => {
                           icon={item.icon}
                           to={item.type === "link" ? item.to : undefined}
                           onClick={item.type === "scroll" ? item.action : undefined}
-                          highlight={item.highlight}
+                          hasHighlight={item.hasHighlight}
                         >
                           {item.label}
                         </MobileMenuItem>
