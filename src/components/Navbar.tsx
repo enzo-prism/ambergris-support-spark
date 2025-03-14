@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Eye, ChevronRight, Calendar } from "lucide-react";
+import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,6 +16,12 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -52,38 +58,45 @@ const Navbar: React.FC = () => {
     {
       label: "About",
       type: "scroll",
-      action: () => scrollToSection("about")
+      action: () => scrollToSection("about"),
+      icon: <Home className="h-5 w-5" />
     },
     {
       label: "Programs",
       type: "scroll",
-      action: () => scrollToSection("programs")
+      action: () => scrollToSection("programs"),
+      icon: <BookOpen className="h-5 w-5" />
     },
     {
       label: "Projects",
       type: "link",
-      to: "/projects"
+      to: "/projects",
+      icon: <Folder className="h-5 w-5" />
     },
     {
       label: "Leadership",
       type: "link",
-      to: "/leadership"
+      to: "/leadership",
+      icon: <Users className="h-5 w-5" />
     },
     {
       label: "Schedule",
       type: "link",
       to: "/doctors",
-      highlight: true
+      highlight: true,
+      icon: <Calendar className="h-5 w-5" />
     },
     {
       label: "Membership",
       type: "link",
-      to: "/membership"
+      to: "/membership",
+      icon: <CreditCard className="h-5 w-5" />
     },
     {
       label: "Contact",
       type: "scroll",
-      action: () => scrollToSection("contact")
+      action: () => scrollToSection("contact"),
+      icon: <Mail className="h-5 w-5" />
     }
   ];
 
@@ -131,6 +144,62 @@ const Navbar: React.FC = () => {
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+
+  // New mobile menu item component for better visual consistency
+  const MobileMenuItem = ({ 
+    icon, 
+    children, 
+    to, 
+    onClick, 
+    highlight = false 
+  }: { 
+    icon?: React.ReactNode; 
+    children: React.ReactNode; 
+    to?: string; 
+    onClick?: () => void; 
+    highlight?: boolean;
+  }) => {
+    const content = (
+      <div className={cn(
+        "flex items-center gap-3 py-3 px-3 rounded-md transition-colors",
+        highlight ? "text-belize-blue font-medium" : "text-gray-700",
+        !to && "hover:bg-gray-50 active:bg-gray-100"
+      )}>
+        {icon && <span className="text-belize-blue">{icon}</span>}
+        <span className="flex-1">{children}</span>
+        {to && <ChevronRight className="h-4 w-4 text-gray-400" />}
+      </div>
+    );
+
+    if (to) {
+      return (
+        <SheetClose asChild>
+          <Link to={to} className="block">
+            {content}
+          </Link>
+        </SheetClose>
+      );
+    }
+
+    if (onClick) {
+      return (
+        <SheetClose asChild>
+          <button onClick={onClick} className="w-full text-left">
+            {content}
+          </button>
+        </SheetClose>
+      );
+    }
+
+    return content;
+  };
+
+  // Mobile section header component
+  const MobileSectionHeader = ({ children }: { children: React.ReactNode }) => (
+    <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 px-3 pt-5 pb-2">
+      {children}
+    </div>
   );
 
   return (
@@ -205,9 +274,10 @@ const Navbar: React.FC = () => {
               <span className="sr-only">Open main menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="p-0 w-[90%] max-w-[300px] border-l-4 border-belize-blue">
-            <div className="px-6 py-6 flex flex-col space-y-6">
-              <div className="flex justify-between items-center">
+          <SheetContent side="right" className="p-0 w-[85%] max-w-[300px] border-none">
+            <div className="flex flex-col h-full bg-white">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b p-4">
                 <Link to="/" className="flex items-center">
                   <img 
                     src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
@@ -215,64 +285,59 @@ const Navbar: React.FC = () => {
                     className="h-8 w-auto"
                   />
                 </Link>
-                <SheetClose className="rounded-full h-9 w-9 flex items-center justify-center bg-belize-blue/10 text-belize-blue">
+                <SheetClose className="rounded-full h-8 w-8 flex items-center justify-center text-gray-500 hover:bg-gray-100">
                   <X size={20} />
                   <span className="sr-only">Close menu</span>
                 </SheetClose>
               </div>
               
-              <div className="flex flex-col space-y-1">
-                {mainNavItems.map((item) => (
-                  <SheetClose
-                    key={item.label}
-                    asChild
-                  >
-                    {item.type === "link" ? (
-                      <Link 
-                        to={item.to!}
-                        className={cn(
-                          "flex w-full py-4 hover:text-belize-blue font-medium border-b border-gray-100",
-                          location.pathname === item.to 
-                            ? "text-belize-blue font-semibold" 
-                            : "text-gray-700",
-                          item.highlight && "text-belize-blue"
-                        )}
-                      >
-                        {item.label}
-                        {item.highlight && <Calendar className="ml-2 h-4 w-4" />}
-                      </Link>
-                    ) : (
-                      <button 
-                        onClick={item.action}
-                        className="flex w-full py-4 text-gray-700 hover:text-belize-blue font-medium text-left border-b border-gray-100"
-                      >
-                        {item.label}
-                      </button>
-                    )}
-                  </SheetClose>
-                ))}
-
-                {/* Resource section on mobile */}
-                <div className="pt-4 pb-2">
-                  <div className="font-semibold text-gray-500 text-sm uppercase tracking-wider mb-2">Resources</div>
-                  <Link to="/doctors" className="flex items-center py-3 text-belize-blue hover:text-belize-blue/80">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    <span>Schedule Eye Care</span>
-                  </Link>
-                  <Link to="/projects" className="flex items-center py-3 text-gray-700 hover:text-belize-blue">
-                    Community Projects
-                  </Link>
+              {/* Navigation Items */}
+              <div className="flex-1 overflow-auto py-2 px-1">
+                <div className="space-y-1">
+                  {mainNavItems.map((item) => (
+                    <MobileMenuItem 
+                      key={item.label}
+                      icon={item.icon}
+                      to={item.type === "link" ? item.to : undefined}
+                      onClick={item.type === "scroll" ? item.action : undefined}
+                      highlight={item.highlight}
+                    >
+                      {item.label}
+                    </MobileMenuItem>
+                  ))}
+                </div>
+                
+                {/* Resources Section */}
+                <div className="mt-2">
+                  <MobileSectionHeader>Resources</MobileSectionHeader>
+                  <div className="space-y-1 mt-1">
+                    <MobileMenuItem 
+                      icon={<Calendar className="h-5 w-5" />}
+                      to="/doctors"
+                    >
+                      Schedule Eye Care
+                    </MobileMenuItem>
+                    <MobileMenuItem 
+                      icon={<Briefcase className="h-5 w-5" />}
+                      to="/projects"
+                    >
+                      Community Projects
+                    </MobileMenuItem>
+                  </div>
                 </div>
               </div>
               
-              <SheetClose asChild>
-                <Button 
-                  onClick={() => scrollToSection("donate")}
-                  className="bg-belize-blue hover:bg-opacity-90 text-white w-full py-6"
-                >
-                  Donate Now
-                </Button>
-              </SheetClose>
+              {/* Donate Button */}
+              <div className="p-4 border-t mt-auto">
+                <SheetClose asChild>
+                  <Button 
+                    onClick={() => scrollToSection("donate")}
+                    className="bg-belize-blue hover:bg-belize-blue/90 text-white w-full py-5"
+                  >
+                    Donate Now
+                  </Button>
+                </SheetClose>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
