@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -19,7 +18,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 
-// Updated mock data for doctors availability with eye health focus
 const doctorsData = [
   {
     id: 1,
@@ -96,7 +94,6 @@ const doctorsData = [
   }
 ];
 
-// Updated upcoming openings data
 const upcomingOpenings = [
   {
     id: 101,
@@ -143,7 +140,6 @@ const DoctorsAvailability: React.FC = () => {
   const [serviceFilter, setServiceFilter] = useState("all");
   const { toast } = useToast();
 
-  // Filter doctors based on search term, location and service
   const filteredDoctors = doctorsData.filter(doctor => {
     const matchesSearch = 
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -162,10 +158,8 @@ const DoctorsAvailability: React.FC = () => {
     return matchesSearch && matchesLocation && matchesService;
   });
 
-  // Get a list of unique locations
   const locations = ["all", ...new Set(doctorsData.map(doctor => doctor.location))];
 
-  // Get a list of unique services
   const allServices = doctorsData.flatMap(doctor => doctor.services);
   const services = ["all", ...new Set(allServices)];
 
@@ -177,7 +171,7 @@ const DoctorsAvailability: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Helmet>
         <title>Eye Care Specialists | Belize Kids</title>
         <meta name="description" content="Find available eye care specialists for children and adults in Belize." />
@@ -185,19 +179,18 @@ const DoctorsAvailability: React.FC = () => {
       
       <Navbar />
       
-      <main className="container-custom pt-20 md:pt-28 pb-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-6 md:mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-belize-green mb-2">
+      <main className="container-custom pt-20 md:pt-24 pb-12">
+        <div className="max-w-3xl mx-auto">
+          <div className="mb-5">
+            <h1 className="text-2xl md:text-3xl font-bold text-belize-green mb-1">
               Find Eye Care Specialists
             </h1>
-            <p className="text-gray-600 text-sm md:text-base">
+            <p className="text-gray-600 text-sm">
               See which eye care providers are available now or schedule an upcoming appointment
             </p>
           </div>
           
-          {/* Search and Filters - Simplified */}
-          <div className="mb-6">
+          <div className="mb-5">
             <div className="flex gap-2">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -205,13 +198,13 @@ const DoctorsAvailability: React.FC = () => {
                   placeholder="Search specialists or services..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 h-10 bg-white border border-gray-200"
+                  className="pl-9 h-10"
                 />
               </div>
               <Button 
                 variant="outline" 
                 size="icon" 
-                className="h-10 w-10 border border-gray-200"
+                className="h-10 w-10"
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <Filter className="h-4 w-4" />
@@ -219,11 +212,11 @@ const DoctorsAvailability: React.FC = () => {
             </div>
             
             {showFilters && (
-              <div className="mt-2 p-3 bg-gray-50 rounded-md border border-gray-200 space-y-3">
+              <div className="mt-2 p-3 bg-white rounded-md border border-gray-100 space-y-3">
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Location</label>
                   <select
-                    className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
+                    className="w-full h-10 rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none"
                     value={locationFilter}
                     onChange={(e) => setLocationFilter(e.target.value)}
                   >
@@ -238,7 +231,7 @@ const DoctorsAvailability: React.FC = () => {
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Service</label>
                   <select
-                    className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
+                    className="w-full h-10 rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none"
                     value={serviceFilter}
                     onChange={(e) => setServiceFilter(e.target.value)}
                   >
@@ -253,71 +246,70 @@ const DoctorsAvailability: React.FC = () => {
             )}
           </div>
           
-          {/* Quick View of Available Now */}
           <div className="mb-6">
             <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
               <Eye className="mr-2 h-5 w-5 text-belize-green" />
               Available Now
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="space-y-3">
               {filteredDoctors
                 .filter(doc => doc.status === 'available')
                 .slice(0, 2)
                 .map(doctor => (
-                  <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
+                  <Card key={doctor.id} className="border-0 shadow-sm overflow-hidden bg-white">
                     <CardContent className="p-4">
-                      <div className="flex justify-between items-start">
-                        <div className="flex items-start gap-2">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0 mr-3 mt-1">
                           {doctor.icon}
-                          <div>
-                            <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                            <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                            <div className="flex items-center mt-1 text-xs text-gray-500">
-                              <MapPin size={12} className="mr-1" />
-                              <span>{doctor.location}</span>
+                        </div>
+                        <div className="flex-grow">
+                          <div className="flex justify-between items-start">
+                            <div>
+                              <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                              <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                              <div className="flex items-center mt-1 text-xs text-gray-500">
+                                <MapPin size={12} className="mr-1" />
+                                <span>{doctor.location}</span>
+                              </div>
+                            </div>
+                            <Badge className="bg-green-50 text-green-700 border-green-100">
+                              Available Now
+                            </Badge>
+                          </div>
+                          
+                          <div className="mt-3">
+                            <p className="text-xs text-gray-600 mb-1">Services:</p>
+                            <div className="flex flex-wrap gap-1">
+                              {doctor.services.map((service, idx) => (
+                                <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
+                                  {service}
+                                </span>
+                              ))}
                             </div>
                           </div>
-                        </div>
-                        <Badge className="bg-green-50 text-green-700 border-green-100">
-                          Available Now
-                        </Badge>
-                      </div>
-                      
-                      <div className="mt-3 pt-3 border-t border-gray-100">
-                        <p className="text-xs text-gray-600 mb-2">Services:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {doctor.services.slice(0, 2).map((service, idx) => (
-                            <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
-                              {service}
-                            </span>
-                          ))}
-                          {doctor.services.length > 2 && (
-                            <span className="text-xs text-gray-500">+{doctor.services.length - 2} more</span>
-                          )}
+                          
+                          <Button 
+                            className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white" 
+                            size="sm"
+                            onClick={() => handleBookAppointment(doctor.name)}
+                          >
+                            Book Now
+                          </Button>
                         </div>
                       </div>
-                      
-                      <Button 
-                        className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white" 
-                        size="sm"
-                        onClick={() => handleBookAppointment(doctor.name)}
-                      >
-                        Book Now
-                      </Button>
                     </CardContent>
                   </Card>
                 ))}
             </div>
           </div>
           
-          {/* All Doctors Tab Interface */}
-          <div className="mb-8">
+          <div className="mb-6">
             <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
               <Glasses className="mr-2 h-5 w-5 text-belize-green" />
               All Eye Specialists
             </h2>
             <Tabs defaultValue="list" className="w-full">
-              <TabsList className="w-full mb-4 bg-gray-100 p-1 rounded-md">
+              <TabsList className="w-full mb-3 bg-gray-100 p-1 rounded-md">
                 <TabsTrigger value="list" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
                   List
                 </TabsTrigger>
@@ -326,11 +318,11 @@ const DoctorsAvailability: React.FC = () => {
                 </TabsTrigger>
               </TabsList>
               
-              <TabsContent value="list" className="mt-0 space-y-3">
+              <TabsContent value="list" className="mt-0 space-y-2">
                 {filteredDoctors.length > 0 ? (
                   filteredDoctors.map((doctor) => (
-                    <div key={doctor.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-start">
-                      <div className="flex items-start gap-3">
+                    <div key={doctor.id} className="bg-white border-0 shadow-sm rounded-lg p-3 flex justify-between items-start">
+                      <div className="flex items-start gap-2">
                         {doctor.icon}
                         <div>
                           <h3 className="font-medium text-gray-900">{doctor.name}</h3>
@@ -350,6 +342,9 @@ const DoctorsAvailability: React.FC = () => {
                                 {service}
                               </span>
                             ))}
+                            {doctor.services.length > 2 && (
+                              <span className="text-xs text-gray-500">+{doctor.services.length - 2} more</span>
+                            )}
                           </div>
                         </div>
                       </div>
@@ -382,21 +377,17 @@ const DoctorsAvailability: React.FC = () => {
               </TabsContent>
               
               <TabsContent value="cards" className="mt-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {filteredDoctors.length > 0 ? (
                     filteredDoctors.map((doctor) => (
-                      <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
+                      <Card key={doctor.id} className="border-0 shadow-sm overflow-hidden bg-white">
                         <CardContent className="p-4">
-                          <div className="flex justify-between items-start mb-3">
+                          <div className="flex justify-between items-start mb-2">
                             <div className="flex items-start gap-2">
                               {doctor.icon}
                               <div>
                                 <h3 className="font-medium text-gray-900">{doctor.name}</h3>
                                 <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                                <div className="flex items-center mt-1 text-xs text-gray-500">
-                                  <MapPin size={12} className="mr-1" />
-                                  <span>{doctor.location}</span>
-                                </div>
                               </div>
                             </div>
                             <Badge className={`${
@@ -410,8 +401,12 @@ const DoctorsAvailability: React.FC = () => {
                             </Badge>
                           </div>
 
-                          <div className="mt-2 mb-3">
-                            <p className="text-xs text-gray-600 mb-1">Services:</p>
+                          <div className="flex items-center text-xs text-gray-500 mt-1 mb-2">
+                            <MapPin size={12} className="mr-1" />
+                            <span>{doctor.location}</span>
+                          </div>
+
+                          <div className="mt-2 mb-2">
                             <div className="flex flex-wrap gap-1">
                               {doctor.services.map((service, idx) => (
                                 <span key={idx} className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">
@@ -421,29 +416,15 @@ const DoctorsAvailability: React.FC = () => {
                             </div>
                           </div>
 
-                          <div className="border-t border-gray-100 pt-3 mt-3">
-                            <div className="flex items-center gap-1 text-xs text-gray-700 font-medium mb-2">
-                              <Calendar size={12} />
-                              <span>Schedule</span>
-                            </div>
-                            <div className="space-y-2 max-h-24 overflow-y-auto">
-                              {doctor.availability.map((schedule, idx) => (
-                                <div key={idx} className="flex items-center gap-2">
-                                  <span className="text-xs font-medium w-16">{schedule.day}:</span>
-                                  <div className="flex flex-wrap gap-1">
-                                    {schedule.slots.map((slot, slotIdx) => (
-                                      <span key={slotIdx} className="text-xs bg-gray-50 px-1.5 py-0.5 rounded">
-                                        {slot}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
+                          <div className="border-t border-gray-100 pt-2 mt-2">
+                            <div className="flex items-center gap-1 text-xs text-gray-700 mb-1">
+                              <Clock size={12} />
+                              <span>Next: {doctor.nextAvailable}</span>
                             </div>
                           </div>
 
                           <Button 
-                            className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white"
+                            className="w-full mt-2 bg-belize-green hover:bg-belize-green/90 text-white"
                             size="sm"
                             onClick={() => handleBookAppointment(doctor.name)}
                           >
@@ -462,27 +443,22 @@ const DoctorsAvailability: React.FC = () => {
             </Tabs>
           </div>
           
-          {/* Upcoming Openings */}
           <div>
             <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
               <Clock className="mr-2 h-5 w-5 text-belize-green" />
-              Upcoming Eye Care Openings
+              Upcoming Openings
             </h2>
-            <div className="space-y-3">
+            <div className="space-y-2">
               {upcomingOpenings.map((opening) => (
-                <div key={opening.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-center">
+                <div key={opening.id} className="bg-white border-0 shadow-sm rounded-lg p-3 flex justify-between items-center">
                   <div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
                       <Clock className="h-4 w-4 text-belize-green" />
                       <span className="font-medium text-gray-900">{opening.time}</span>
                     </div>
                     <p className="text-sm text-gray-700 mt-1">{opening.doctor}</p>
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-gray-500 mt-1">
-                      <span>{opening.specialty}</span>
-                      <span>•</span>
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
                       <span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">{opening.service}</span>
-                      <span>•</span>
-                      <span>{opening.duration}</span>
                       <span>•</span>
                       <span>{opening.location}</span>
                     </div>
