@@ -14,13 +14,13 @@ const MembershipPromo: React.FC = () => {
               Become a Monthly Investor for Just $20
             </h2>
             <p className="text-lg text-gray-700 mb-0">
-              Join our community of investors creating sustainable change for children in Belize through education, healthcare, and community development.
+              Join our community of investors creating sustainable change for children in Belize through strategic investments in education, healthcare, and community development.
             </p>
           </div>
           <div>
             <Link to="/membership">
               <Button className="bg-belize-green hover:bg-belize-green/90 text-white text-lg">
-                Learn More About Membership
+                Join Our Investment Community
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

@@ -8,31 +8,31 @@ const MembershipBenefits: React.FC = () => {
     {
       icon: Mail,
       title: "Exclusive Updates",
-      description: "Receive insider updates and special communications about our projects in Belize."
+      description: "Receive insider updates and special communications about your investment impact in Belize."
     },
     {
       icon: Activity,
       title: "Impact Tracking",
-      description: "See exactly how your monthly investment is making a difference on the ground."
+      description: "See exactly how your monthly investment is creating meaningful change on the ground."
     },
     {
       icon: Bell,
       title: "Priority Notifications",
-      description: "Be the first to know about new initiatives and urgent needs in our communities."
+      description: "Be the first to know about new investment opportunities and urgent needs in our communities."
     },
     {
       icon: Users,
       title: "Investor Community",
-      description: "Join a community of like-minded investors dedicated to helping Belizean children."
+      description: "Join a community of like-minded investors dedicated to transforming lives of Belizean children."
     },
     {
       icon: Globe,
       title: "Annual Impact Report",
-      description: "Receive a detailed annual report showing the collective impact of our investment program."
+      description: "Receive a detailed annual report showing the collective impact of our investment community."
     },
     {
       icon: Heart,
-      title: "100% Direct Impact",
+      title: "100% Investment Model",
       description: "Every dollar of your investment goes directly to programs, not administrative costs."
     }
   ];
@@ -43,7 +43,7 @@ const MembershipBenefits: React.FC = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Investor Benefits</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            When you become a monthly investor at $20/month, you're not just investing - you're joining a community committed to making a difference.
+            When you become a monthly investor at $20/month, you're not just giving - you're strategically investing in the future of Belizean children and communities.
           </p>
         </div>
 

@@ -42,7 +42,7 @@ const AboutSection: React.FC = () => {
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-belize-green to-belize-teal rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
             <div className="relative">
-              <img src="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" alt="Children at San Pedro Lions Club" className="rounded-lg shadow-lg w-full h-auto object-cover" />
+              <img src="/lovable-uploads/91073fee-cb3e-436d-aa59-320e89eab403.png" alt="Children at San Pedro Lions Club" className="rounded-lg shadow-lg w-full h-auto object-cover" />
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-xl border-l-4 border-belize-green animate-float">
                 <p className="font-bold text-belize-green text-xl">100% of Investment</p>
                 <p className="text-sm font-medium">Investment Model</p>
@@ -59,7 +59,7 @@ const AboutSection: React.FC = () => {
             >
               <h3 className="text-2xl font-bold mb-6 text-belize-green">Transforming Lives in Belize</h3>
               <p className="text-gray-700 mb-6">
-                Our mission is to improve the lives of kids in Belize. We invest in projects to help schools, build and maintain parks and playgrounds, support and expand healthcare, and provide scholarships.
+                Our mission is to improve the lives of kids in Belize through strategic investments. We invest in projects to help schools, build and maintain parks and playgrounds, support and expand healthcare, and provide scholarships for the next generation of leaders.
               </p>
             </motion.div>
             
@@ -154,13 +154,13 @@ const AboutSection: React.FC = () => {
             <div>
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-center md:text-left">Join Our Community of Investors</h3>
               <p className="text-gray-700 text-center md:text-left">
-                Become a part of our community dedicated to improving the lives of children in Belize. Your investment makes a direct impact on education, healthcare, and community development.
+                Become a part of our community dedicated to investing in the futures of children in Belize. Your strategic investment makes a direct impact on education, healthcare, and community development.
               </p>
             </div>
             <div className="md:ml-auto w-full md:w-auto mt-4 md:mt-0">
               <Link to="/membership" className="block w-full md:w-auto">
                 <Button className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full md:w-auto">
-                  Become a Member
+                  Become an Investor
                 </Button>
               </Link>
             </div>
