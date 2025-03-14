@@ -104,7 +104,7 @@ const AboutSection: React.FC = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-lg">
               <AspectRatio ratio={16/9} className="bg-muted">
                 <img 
-                  src="/lovable-uploads/e4781a43-9e9c-44e8-8d45-98a4595afa8a.png" 
+                  src="/lovable-uploads/ad0fec31-0155-4069-9599-edabffc76f25.png" 
                   alt="San Pedro Lions Club community meeting" 
                   className="object-cover w-full h-full"
                 />
@@ -116,7 +116,7 @@ const AboutSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="absolute -bottom-5 -right-5 bg-white p-4 rounded-lg shadow-lg border-l-4 border-yellow-500 z-20"
+                className="absolute -bottom-2 -right-5 bg-white p-4 rounded-lg shadow-lg border-l-4 border-yellow-500 z-20"
               >
                 <p className="font-bold text-belize-green text-xl">100%</p>
                 <p className="text-sm text-gray-600">Direct Investment</p>
