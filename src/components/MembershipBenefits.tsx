@@ -47,7 +47,7 @@ const MembershipBenefits: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Member Benefits</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            When you become a monthly member at $20/month, you're joining an exclusive community investing in the future of Belizean children through consistent, long-term support.
+            When you become a monthly member, you're joining an exclusive community investing in the future of Belizean children through consistent, long-term support.
           </p>
         </div>
 

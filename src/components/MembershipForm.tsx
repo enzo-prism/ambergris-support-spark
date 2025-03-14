@@ -56,7 +56,7 @@ const MembershipForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="bg-belize-blue p-8 text-white">
                 <h2 className="text-2xl font-bold mb-4">Member Benefits</h2>
-                <p className="mb-6">Your $20 monthly membership includes:</p>
+                <p className="mb-6">Your monthly membership includes:</p>
                 
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -181,7 +181,7 @@ const MembershipForm: React.FC = () => {
                     
                     <Button type="submit" className="w-full bg-belize-blue hover:bg-belize-blue/90 mt-4 py-6 flex items-center justify-center">
                       <Users className="mr-2 h-5 w-5" />
-                      Join Membership - $20/month
+                      Join Monthly Membership
                     </Button>
                     
                     <p className="text-xs text-gray-500 text-center mt-4">

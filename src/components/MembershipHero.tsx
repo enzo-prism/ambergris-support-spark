@@ -26,7 +26,7 @@ const MembershipHero: React.FC = () => {
             Monthly Membership Program
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
-            Become a <span className="text-belize-blue">Monthly Member</span> for $20
+            Become a <span className="text-belize-blue">Monthly Member</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
             Join our exclusive membership community helping to create lasting change for children in Belize through consistent monthly support and engagement.
@@ -52,8 +52,8 @@ const MembershipHero: React.FC = () => {
               />
             </div>
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
-              <p className="font-bold text-belize-green text-sm sm:text-base">$20</p>
-              <p className="text-xs sm:text-sm">Monthly impact</p>
+              <p className="font-bold text-belize-green text-sm sm:text-base">Monthly</p>
+              <p className="text-xs sm:text-sm">Sustainable impact</p>
             </div>
           </div>
         </div>

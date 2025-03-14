@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -190,7 +189,7 @@ const Navbar: React.FC = () => {
               Monthly Membership
             </div>
             <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-              Join our exclusive $20/month membership community
+              Join our exclusive monthly membership community
             </div>
             <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>

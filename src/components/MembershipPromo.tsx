@@ -15,7 +15,7 @@ const MembershipPromo: React.FC = () => {
               <span className="text-sm font-semibold uppercase tracking-wider text-belize-blue">Monthly Membership</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-belize-blue mb-4">
-              Become a Monthly Member for Just $20
+              Join Our Monthly Membership Program
             </h2>
             <p className="text-lg text-gray-700 mb-0">
               Join our exclusive membership community creating sustainable change for children in Belize through monthly commitment. Members receive special updates, exclusive reports, and community recognition.
