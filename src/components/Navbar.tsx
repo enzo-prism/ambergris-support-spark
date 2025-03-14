@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Eye, ChevronRight } from "lucide-react";
+import { Menu, X, Eye, ChevronRight, Calendar } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
       to: "/leadership"
     },
     {
-      label: "Doctors",
+      label: "Schedule",
       type: "link",
       to: "/doctors",
       highlight: true
@@ -103,8 +103,8 @@ const Navbar: React.FC = () => {
         <div className="grid grid-cols-2 gap-3 p-4">
           <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
             <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
-              <Eye className="mb-1 h-5 w-5 inline-block mr-2" />
-              Eye Health Services
+              <Calendar className="mb-1 h-5 w-5 inline-block mr-2" />
+              Schedule Eye Care
             </div>
             <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
               Find available eye doctors and specialists in your area
@@ -168,7 +168,7 @@ const Navbar: React.FC = () => {
                     )}
                   >
                     {item.label}
-                    {item.highlight && <Eye className="inline-block ml-1 h-4 w-4" />}
+                    {item.highlight && <Calendar className="inline-block ml-1 h-4 w-4" />}
                   </Link>
                 ) : (
                   <button 
@@ -239,7 +239,7 @@ const Navbar: React.FC = () => {
                         )}
                       >
                         {item.label}
-                        {item.highlight && <Eye className="ml-2 h-4 w-4" />}
+                        {item.highlight && <Calendar className="ml-2 h-4 w-4" />}
                       </Link>
                     ) : (
                       <button 
@@ -256,8 +256,8 @@ const Navbar: React.FC = () => {
                 <div className="pt-4 pb-2">
                   <div className="font-semibold text-gray-500 text-sm uppercase tracking-wider mb-2">Resources</div>
                   <Link to="/doctors" className="flex items-center py-3 text-belize-blue hover:text-belize-blue/80">
-                    <Eye className="mr-2 h-4 w-4" />
-                    <span>Eye Health Services</span>
+                    <Calendar className="mr-2 h-4 w-4" />
+                    <span>Schedule Eye Care</span>
                   </Link>
                   <Link to="/projects" className="flex items-center py-3 text-gray-700 hover:text-belize-blue">
                     Community Projects
