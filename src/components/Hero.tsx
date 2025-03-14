@@ -1,7 +1,8 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   const scrollToDonate = () => {
@@ -43,6 +44,12 @@ const Hero: React.FC = () => {
           }}>
               Our Impact
             </Button>
+            <Link to="/doctors" className="w-full sm:w-auto mt-2 sm:mt-0">
+              <Button variant="outline" className="border-belize-teal text-belize-teal hover:bg-belize-teal hover:text-white text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full">
+                <Clock className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                Find Doctors
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="flex-1 relative mt-8 lg:mt-0">
