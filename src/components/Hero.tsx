@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
       
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 md:mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-relaxed mb-4 md:mb-6">
             Empowering Belizean Children to Build a <span className="text-belize-green">Brighter Future</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 md:mb-8 max-w-2xl mx-auto lg:mx-0">
