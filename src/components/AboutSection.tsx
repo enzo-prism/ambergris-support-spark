@@ -1,9 +1,12 @@
+
 import React from "react";
 import { Heart, Users, Globe, Award, CheckCircle2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+
 const AboutSection: React.FC = () => {
-  return <section id="about" className="section-padding bg-gradient-to-b from-white to-belize-light/50">
+  return (
+    <section id="about" className="section-padding bg-gradient-to-b from-white to-belize-light/50">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">Our Mission</span>
@@ -81,18 +84,18 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-20 bg-white p-8 rounded-xl shadow-lg border-t-4 border-belize-coral">
+        <div className="mt-20 bg-white p-6 sm:p-8 rounded-xl shadow-lg border-t-4 border-belize-coral">
           <div className="flex flex-col md:flex-row items-center gap-6">
-            <Users className="h-16 w-16 text-belize-coral" />
+            <Users className="h-12 w-12 md:h-16 md:w-16 text-belize-coral" />
             <div>
-              <h3 className="text-xl md:text-2xl font-bold mb-2">Join Our Community of Supporters</h3>
-              <p className="text-gray-700">
+              <h3 className="text-xl md:text-2xl font-bold mb-2 text-center md:text-left">Join Our Community of Supporters</h3>
+              <p className="text-gray-700 text-center md:text-left">
                 Become a part of our community dedicated to improving the lives of children in Belize. Your support makes a direct impact on education, healthcare, and community development.
               </p>
             </div>
-            <div className="md:ml-auto">
-              <Link to="/membership">
-                <Button className="bg-belize-coral hover:bg-belize-coral/90 text-white">
+            <div className="md:ml-auto w-full md:w-auto mt-4 md:mt-0">
+              <Link to="/membership" className="block w-full md:w-auto">
+                <Button className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full md:w-auto">
                   Become a Member
                 </Button>
               </Link>
@@ -100,6 +103,8 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;

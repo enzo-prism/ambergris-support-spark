@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
@@ -21,9 +20,11 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const TransparencySection: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState("promise");
+  const isMobile = useIsMobile();
 
   const transparencyFeatures = [
     {
@@ -79,33 +80,33 @@ const TransparencySection: React.FC = () => {
             onValueChange={setSelectedTab}
             className="w-full"
           >
-            <div className="bg-belize-blue/5 px-6 pt-4">
-              <TabsList className="grid grid-cols-3 bg-transparent h-auto p-0 mb-0">
+            <div className="bg-belize-blue/5 px-4 sm:px-6 pt-4">
+              <TabsList className={`grid ${isMobile ? 'grid-cols-1 gap-2' : 'grid-cols-3'} bg-transparent h-auto p-0 mb-0`}>
                 <TabsTrigger 
                   value="promise" 
-                  className={`py-3 text-base ${selectedTab === "promise" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                  className={`py-3 text-sm sm:text-base ${selectedTab === "promise" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
                 >
                   Donation Model
                 </TabsTrigger>
                 <TabsTrigger 
                   value="reports" 
-                  className={`py-3 text-base ${selectedTab === "reports" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                  className={`py-3 text-sm sm:text-base ${selectedTab === "reports" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
                 >
                   Financial Reports
                 </TabsTrigger>
                 <TabsTrigger 
                   value="projects" 
-                  className={`py-3 text-base ${selectedTab === "projects" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
+                  className={`py-3 text-sm sm:text-base ${selectedTab === "projects" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
                 >
                   Project Financials
                 </TabsTrigger>
               </TabsList>
             </div>
             
-            <TabsContent value="promise" className="p-6 md:p-10 mt-0">
-              <div className="grid md:grid-cols-2 gap-10">
+            <TabsContent value="promise" className="p-4 sm:p-6 md:p-10 mt-0">
+              <div className="grid md:grid-cols-2 gap-8 md:gap-10">
                 <div>
-                  <h3 className="text-2xl font-bold mb-4">100% Donation Model</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-4">100% Donation Model</h3>
                   <p className="text-gray-700 mb-6">
                     All administrative costs are covered by the owners of Canary Cove, 
                     ensuring that <span className="font-bold text-belize-green">100% of your donation</span> goes directly 
@@ -130,7 +131,7 @@ const TransparencySection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-belize-light p-6 rounded-lg relative">
+                <div className="bg-belize-light p-4 sm:p-6 rounded-lg relative">
                   <div className="absolute top-3 right-3 bg-white text-xs font-medium text-belize-green px-2 py-1 rounded-full">
                     Fully Transparent
                   </div>
@@ -138,19 +139,19 @@ const TransparencySection: React.FC = () => {
                   <p className="text-gray-700 mb-6">
                     The only deductions from donations are:
                   </p>
-                  <div className="space-y-6">
-                    <div className="bg-white p-4 rounded-lg flex items-start gap-4">
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="bg-white p-3 sm:p-4 rounded-lg flex items-start gap-3 sm:gap-4">
                       <span className="bg-belize-green/10 text-belize-green p-2 rounded">
-                        <Receipt className="h-5 w-5" />
+                        <Receipt className="h-4 w-4 sm:h-5 sm:w-5" />
                       </span>
                       <div>
                         <h5 className="font-bold mb-1">Credit Card Processing</h5>
                         <p className="text-sm text-gray-600">2.9% fee through Stripe payment processing</p>
                       </div>
                     </div>
-                    <div className="bg-white p-4 rounded-lg flex items-start gap-4">
+                    <div className="bg-white p-3 sm:p-4 rounded-lg flex items-start gap-3 sm:gap-4">
                       <span className="bg-belize-green/10 text-belize-green p-2 rounded">
-                        <DollarSign className="h-5 w-5" />
+                        <DollarSign className="h-4 w-4 sm:h-5 sm:w-5" />
                       </span>
                       <div>
                         <h5 className="font-bold mb-1">Money Transfer</h5>
@@ -166,7 +167,7 @@ const TransparencySection: React.FC = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="reports" className="p-6 md:p-10 mt-0">
+            <TabsContent value="reports" className="p-4 sm:p-6 md:p-10 mt-0">
               <div className="grid md:grid-cols-2 gap-10">
                 <div>
                   <h3 className="text-2xl font-bold mb-6">Latest Financial Reports</h3>
@@ -243,97 +244,101 @@ const TransparencySection: React.FC = () => {
               </div>
             </TabsContent>
             
-            <TabsContent value="projects" className="p-6 md:p-10 mt-0">
+            <TabsContent value="projects" className="p-4 sm:p-6 md:p-10 mt-0">
               <div>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold">Sample Project Breakdown</h3>
-                  <Button variant="outline" className="text-belize-green border-belize-green hover:bg-belize-green hover:text-white flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold">Sample Project Breakdown</h3>
+                  <Button variant="outline" className="text-belize-green border-belize-green hover:bg-belize-green hover:text-white flex items-center justify-center gap-2 w-full sm:w-auto">
                     View All Projects <ArrowUpRight className="h-4 w-4" />
                   </Button>
                 </div>
                 
-                <div className="bg-belize-light/30 p-6 rounded-lg mb-8">
-                  <h4 className="text-xl font-bold mb-3">Week #4 Summer Camp at Basil Jones, Mile 14, Ambergris Caye</h4>
+                <div className="bg-belize-light/30 p-4 sm:p-6 rounded-lg mb-8">
+                  <h4 className="text-lg sm:text-xl font-bold mb-3">Week #4 Summer Camp at Basil Jones, Mile 14, Ambergris Caye</h4>
                   <p className="text-gray-700 mb-6">
                     Financial breakdown of our summer camp project, showing complete transparency in how funds were raised and spent.
                     All money is in Belize Dollars (BZD).
                   </p>
                   
                   <div className="grid md:grid-cols-2 gap-8">
-                    <div>
+                    <div className="overflow-x-auto">
                       <h5 className="text-lg font-semibold mb-4 flex items-center gap-2">
                         <span className="w-8 h-8 bg-belize-green text-white rounded-full flex items-center justify-center text-sm">$</span>
                         Donations Received
                       </h5>
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead className="w-[60%]">Source</TableHead>
-                            <TableHead className="text-right">Amount (BZD)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow>
-                            <TableCell>Finn & Martini Customer Donations</TableCell>
-                            <TableCell className="text-right">$400</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Canary Cove Guest Donations</TableCell>
-                            <TableCell className="text-right">$150</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>San Pedro LobsterFestival Donations</TableCell>
-                            <TableCell className="text-right">$500</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Finn & Martini ($2 per martini in June)</TableCell>
-                            <TableCell className="text-right">$700</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>Belize Kids.org Matching Funds</TableCell>
-                            <TableCell className="text-right">$2,000</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-bold">Total Monetary Donations</TableCell>
-                            <TableCell className="text-right font-bold">$3,850</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
+                      <div className="overflow-x-auto -mx-4 sm:mx-0">
+                        <Table className="min-w-full">
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead className="w-[60%]">Source</TableHead>
+                              <TableHead className="text-right">Amount (BZD)</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>Finn & Martini Customer Donations</TableCell>
+                              <TableCell className="text-right">$400</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>Canary Cove Guest Donations</TableCell>
+                              <TableCell className="text-right">$150</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>San Pedro LobsterFestival Donations</TableCell>
+                              <TableCell className="text-right">$500</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>Finn & Martini ($2 per martini in June)</TableCell>
+                              <TableCell className="text-right">$700</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>Belize Kids.org Matching Funds</TableCell>
+                              <TableCell className="text-right">$2,000</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell className="font-bold">Total Monetary Donations</TableCell>
+                              <TableCell className="text-right font-bold">$3,850</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </div>
                       <p className="text-sm text-gray-600 mt-3">
                         Additional in-kind donations: School and art supplies donated by Miss San Pedro High School 2016-2017 and Finn & Martini
                       </p>
                     </div>
                     
-                    <div>
+                    <div className="overflow-x-auto">
                       <h5 className="text-lg font-semibold mb-4 flex items-center gap-2">
                         <span className="w-8 h-8 bg-belize-yellow text-white rounded-full flex items-center justify-center text-sm">$</span>
                         Expenditures
                       </h5>
-                      <Table>
-                        <TableHeader>
-                          <TableRow>
-                            <TableHead className="w-[60%]">Item</TableHead>
-                            <TableHead className="text-right">Amount (BZD)</TableHead>
-                          </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                          <TableRow>
-                            <TableCell>20 Children Sponsored @ $150 each</TableCell>
-                            <TableCell className="text-right">$3,000</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>15 Sets of Twin Sheets</TableCell>
-                            <TableCell className="text-right" rowSpan={2}>$850</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell>8 Stand Up Fans (Simon Quan, Belize City)</TableCell>
-                          </TableRow>
-                          <TableRow>
-                            <TableCell className="font-bold">Total Expenditures</TableCell>
-                            <TableCell className="text-right font-bold">$3,850</TableCell>
-                          </TableRow>
-                        </TableBody>
-                      </Table>
+                      <div className="overflow-x-auto -mx-4 sm:mx-0">
+                        <Table className="min-w-full">
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead className="w-[60%]">Item</TableHead>
+                              <TableHead className="text-right">Amount (BZD)</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            <TableRow>
+                              <TableCell>20 Children Sponsored @ $150 each</TableCell>
+                              <TableCell className="text-right">$3,000</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>15 Sets of Twin Sheets</TableCell>
+                              <TableCell className="text-right" rowSpan={2}>$850</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell>8 Stand Up Fans (Simon Quan, Belize City)</TableCell>
+                            </TableRow>
+                            <TableRow>
+                              <TableCell className="font-bold">Total Expenditures</TableCell>
+                              <TableCell className="text-right font-bold">$3,850</TableCell>
+                            </TableRow>
+                          </TableBody>
+                        </Table>
+                      </div>
                       <p className="text-sm italic text-gray-600 mt-4 text-center">
                         All overhead costs are underwritten by our founding partners
                       </p>
@@ -341,7 +346,7 @@ const TransparencySection: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6">
                   <h5 className="font-bold text-lg mb-4 text-center">Project Results</h5>
                   <div className="flex justify-center mb-4">
                     <img 
