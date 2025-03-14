@@ -4,31 +4,18 @@ import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { 
-  Calendar, 
+  Calendar,
   Clock, 
-  UserCheck, 
-  Bell, 
   Search,
-  MapPin
+  MapPin,
+  Filter
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Card, 
-  CardContent, 
-  CardHeader, 
-  CardTitle 
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-  Table, 
-  TableBody, 
-  TableCell, 
-  TableHead, 
-  TableHeader, 
-  TableRow 
-} from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/components/ui/use-toast";
 
 // Mock data for doctors availability
 const doctorsData = [
@@ -136,6 +123,8 @@ const upcomingOpenings = [
 const DoctorsAvailability: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("all");
+  const [showFilters, setShowFilters] = useState(false);
+  const { toast } = useToast();
 
   // Filter doctors based on search term and location
   const filteredDoctors = doctorsData.filter(doctor => {
@@ -153,6 +142,13 @@ const DoctorsAvailability: React.FC = () => {
   // Get a list of unique locations
   const locations = ["all", ...new Set(doctorsData.map(doctor => doctor.location))];
 
+  const handleBookAppointment = (doctorName: string) => {
+    toast({
+      title: "Appointment Request Sent",
+      description: `You'll receive a confirmation for ${doctorName} shortly.`,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Helmet>
@@ -162,243 +158,248 @@ const DoctorsAvailability: React.FC = () => {
       
       <Navbar />
       
-      <main className="container-custom pt-28 pb-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-belize-green mb-4">
-              Doctor Availability
+      <main className="container-custom pt-20 md:pt-28 pb-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-6 md:mb-8">
+            <h1 className="text-2xl md:text-3xl font-bold text-belize-green mb-2">
+              Find Available Doctors
             </h1>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              Find available doctors near you and get notified about upcoming openings to ensure your child receives timely medical care.
+            <p className="text-gray-600 text-sm md:text-base">
+              See who's available now or get notified about upcoming openings
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <Card className="md:col-span-2 bg-belize-light shadow-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-belize-green flex items-center gap-2">
-                  <Search size={20} />
-                  <span>Find a Doctor</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-col sm:flex-row gap-4 mb-4">
-                  <div className="flex-1">
-                    <Input
-                      placeholder="Search by name or specialty..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="border-belize-green/30 focus:border-belize-green"
-                    />
-                  </div>
-                  <div className="w-full sm:w-48">
-                    <select
-                      className="w-full h-10 rounded-md border border-belize-green/30 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-belize-green"
-                      value={locationFilter}
-                      onChange={(e) => setLocationFilter(e.target.value)}
-                    >
-                      {locations.map((location, index) => (
-                        <option key={index} value={location}>
-                          {location === "all" ? "All Locations" : location}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Search and Filters - Simplified */}
+          <div className="mb-6">
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Input
+                  placeholder="Search doctors or specialties..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-9 h-10 bg-white border border-gray-200"
+                />
+              </div>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="h-10 w-10 border border-gray-200"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <Filter className="h-4 w-4" />
+              </Button>
+            </div>
             
-            <Card className="bg-belize-green/10 shadow-sm border-belize-green/20">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-belize-green flex items-center gap-2">
-                  <Bell size={20} />
-                  <span>Quick Availability</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {upcomingOpenings.slice(0, 3).map((opening) => (
-                    <div key={opening.id} className="flex items-start gap-3 border-b border-belize-green/10 pb-3 last:border-0">
-                      <div className="bg-white p-2 rounded-full border border-belize-green/20">
-                        <Clock className="h-4 w-4 text-belize-green" />
-                      </div>
-                      <div>
-                        <p className="font-medium">{opening.doctor}</p>
-                        <p className="text-sm text-gray-600">{opening.time} • {opening.duration}</p>
-                      </div>
-                    </div>
+            {showFilters && (
+              <div className="mt-2 p-3 bg-gray-50 rounded-md border border-gray-200">
+                <label className="text-sm font-medium text-gray-700 block mb-1">Location</label>
+                <select
+                  className="w-full h-10 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-belize-green"
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                >
+                  {locations.map((location, index) => (
+                    <option key={index} value={location}>
+                      {location === "all" ? "All Locations" : location}
+                    </option>
                   ))}
-                  <Button variant="link" className="text-belize-green p-0 h-auto w-full text-center">
-                    View all openings
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+                </select>
+              </div>
+            )}
           </div>
           
-          <Tabs defaultValue="list" className="mb-8">
-            <TabsList className="bg-gray-100 mb-6">
-              <TabsTrigger value="list" className="data-[state=active]:bg-belize-green data-[state=active]:text-white">
-                List View
-              </TabsTrigger>
-              <TabsTrigger value="schedule" className="data-[state=active]:bg-belize-green data-[state=active]:text-white">
-                Schedule View
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="list" className="mt-0">
-              <div className="bg-white rounded-lg border shadow-sm overflow-hidden">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-gray-50">
-                      <TableHead>Doctor</TableHead>
-                      <TableHead>Specialty</TableHead>
-                      <TableHead className="hidden md:table-cell">Location</TableHead>
-                      <TableHead>Next Available</TableHead>
-                      <TableHead className="text-right">Status</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {filteredDoctors.length > 0 ? (
-                      filteredDoctors.map((doctor) => (
-                        <TableRow key={doctor.id} className="hover:bg-gray-50">
-                          <TableCell className="font-medium">{doctor.name}</TableCell>
-                          <TableCell>{doctor.specialty}</TableCell>
-                          <TableCell className="hidden md:table-cell">
-                            <div className="flex items-center gap-1">
-                              <MapPin size={14} className="text-gray-500" />
-                              <span>{doctor.location}</span>
-                            </div>
-                          </TableCell>
-                          <TableCell>{doctor.nextAvailable}</TableCell>
-                          <TableCell className="text-right">
-                            <Badge className={`
-                              ${doctor.status === 'available' ? 'bg-green-100 text-green-800 hover:bg-green-100' : 
-                                doctor.status === 'upcoming' ? 'bg-blue-100 text-blue-800 hover:bg-blue-100' : 
-                                'bg-amber-100 text-amber-800 hover:bg-amber-100'}
-                            `}>
-                              {doctor.status === 'available' ? 'Available Now' : 
-                               doctor.status === 'upcoming' ? 'Coming Soon' : 
-                               'Fully Booked'}
-                            </Badge>
-                          </TableCell>
-                        </TableRow>
-                      ))
-                    ) : (
-                      <TableRow>
-                        <TableCell colSpan={5} className="text-center py-8 text-gray-500">
-                          No doctors found matching your search criteria.
-                        </TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="schedule" className="mt-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredDoctors.map((doctor) => (
-                  <Card key={doctor.id} className="hover:shadow-md transition-shadow">
-                    <CardHeader className="pb-3">
+          {/* Quick View of Available Now */}
+          <div className="mb-6">
+            <h2 className="text-lg font-medium text-gray-800 mb-3">Available Now</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {filteredDoctors
+                .filter(doc => doc.status === 'available')
+                .slice(0, 2)
+                .map(doctor => (
+                  <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
+                    <CardContent className="p-4">
                       <div className="flex justify-between items-start">
                         <div>
-                          <CardTitle className="text-lg">{doctor.name}</CardTitle>
+                          <h3 className="font-medium text-gray-900">{doctor.name}</h3>
                           <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                          <div className="flex items-center mt-1 text-xs text-gray-500">
+                            <MapPin size={12} className="mr-1" />
+                            <span>{doctor.location}</span>
+                          </div>
                         </div>
-                        <Badge className={`
-                          ${doctor.status === 'available' ? 'bg-green-100 text-green-800 hover:bg-green-100' : 
-                           doctor.status === 'upcoming' ? 'bg-blue-100 text-blue-800 hover:bg-blue-100' : 
-                           'bg-amber-100 text-amber-800 hover:bg-amber-100'}
-                        `}>
-                          {doctor.status === 'available' ? 'Available Now' : 
-                           doctor.status === 'upcoming' ? 'Coming Soon' : 
-                           'Fully Booked'}
+                        <Badge className="bg-green-50 text-green-700 border-green-100">
+                          Available Now
                         </Badge>
                       </div>
-                      <div className="flex items-center gap-1 text-sm mt-1 text-gray-600">
-                        <MapPin size={14} />
-                        <span>{doctor.location}</span>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-belize-green">
-                          <Calendar size={16} />
-                          <span className="font-medium">Weekly Schedule</span>
-                        </div>
-                        <div className="space-y-2">
-                          {doctor.availability.map((schedule, idx) => (
-                            <div key={idx} className="flex flex-col">
-                              <span className="font-medium text-gray-700">{schedule.day}</span>
-                              <div className="flex flex-wrap gap-1 mt-1">
-                                {schedule.slots.map((slot, slotIdx) => (
-                                  <span key={slotIdx} className="text-xs bg-gray-100 px-2 py-1 rounded">
-                                    {slot}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="pt-3 border-t border-gray-200 mt-3">
-                          <Button className="w-full bg-belize-green hover:bg-belize-green/90">
-                            Book Appointment
-                          </Button>
-                        </div>
-                      </div>
+                      <Button 
+                        className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white" 
+                        size="sm"
+                        onClick={() => handleBookAppointment(doctor.name)}
+                      >
+                        Book Now
+                      </Button>
                     </CardContent>
                   </Card>
                 ))}
-              </div>
-            </TabsContent>
-          </Tabs>
+            </div>
+          </div>
           
-          <Card className="bg-belize-teal/10 border-belize-teal/20">
-            <CardHeader>
-              <CardTitle className="text-belize-teal flex items-center gap-2">
-                <Bell size={20} />
-                <span>Upcoming Openings</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow className="bg-belize-teal/5">
-                      <TableHead>Doctor</TableHead>
-                      <TableHead>Specialty</TableHead>
-                      <TableHead>Time</TableHead>
-                      <TableHead className="hidden md:table-cell">Location</TableHead>
-                      <TableHead className="hidden md:table-cell">Duration</TableHead>
-                      <TableHead className="text-right">Action</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {upcomingOpenings.map((opening) => (
-                      <TableRow key={opening.id} className="hover:bg-belize-teal/5">
-                        <TableCell className="font-medium">{opening.doctor}</TableCell>
-                        <TableCell>{opening.specialty}</TableCell>
-                        <TableCell>
-                          <div className="flex items-center gap-1">
-                            <Clock size={14} className="text-belize-teal" />
-                            <span>{opening.time}</span>
+          {/* All Doctors Tab Interface - Simplified */}
+          <div className="mb-8">
+            <h2 className="text-lg font-medium text-gray-800 mb-3">All Doctors</h2>
+            <Tabs defaultValue="list" className="w-full">
+              <TabsList className="w-full mb-4 bg-gray-100 p-1 rounded-md">
+                <TabsTrigger value="list" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                  List
+                </TabsTrigger>
+                <TabsTrigger value="cards" className="flex-1 data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                  Cards
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="list" className="mt-0 space-y-3">
+                {filteredDoctors.length > 0 ? (
+                  filteredDoctors.map((doctor) => (
+                    <div key={doctor.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-start">
+                      <div>
+                        <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                        <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                        <div className="flex items-center mt-1 text-xs text-gray-500">
+                          <MapPin size={12} className="mr-1" />
+                          <span>{doctor.location}</span>
+                        </div>
+                        <div className="flex items-center mt-1 text-xs text-gray-500">
+                          <Clock size={12} className="mr-1" />
+                          <span>Next: {doctor.nextAvailable}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <Badge className={`mb-2 text-xs ${
+                          doctor.status === 'available' ? 'bg-green-50 text-green-700 border-green-100' : 
+                          doctor.status === 'upcoming' ? 'bg-blue-50 text-blue-700 border-blue-100' : 
+                          'bg-gray-50 text-gray-700 border-gray-100'
+                        }`}>
+                          {doctor.status === 'available' ? 'Available Now' : 
+                          doctor.status === 'upcoming' ? 'Soon' : 
+                          'Booked'}
+                        </Badge>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          className="text-xs h-8 border-gray-200 bg-white"
+                          onClick={() => handleBookAppointment(doctor.name)}
+                        >
+                          Book
+                        </Button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    No doctors found matching your search criteria.
+                  </div>
+                )}
+              </TabsContent>
+              
+              <TabsContent value="cards" className="mt-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {filteredDoctors.length > 0 ? (
+                    filteredDoctors.map((doctor) => (
+                      <Card key={doctor.id} className="border border-gray-200 shadow-sm overflow-hidden">
+                        <CardContent className="p-4">
+                          <div className="flex justify-between items-start mb-3">
+                            <div>
+                              <h3 className="font-medium text-gray-900">{doctor.name}</h3>
+                              <p className="text-sm text-gray-600">{doctor.specialty}</p>
+                              <div className="flex items-center mt-1 text-xs text-gray-500">
+                                <MapPin size={12} className="mr-1" />
+                                <span>{doctor.location}</span>
+                              </div>
+                            </div>
+                            <Badge className={`${
+                              doctor.status === 'available' ? 'bg-green-50 text-green-700 border-green-100' : 
+                              doctor.status === 'upcoming' ? 'bg-blue-50 text-blue-700 border-blue-100' : 
+                              'bg-gray-50 text-gray-700 border-gray-100'
+                            }`}>
+                              {doctor.status === 'available' ? 'Available Now' : 
+                              doctor.status === 'upcoming' ? 'Coming Soon' : 
+                              'Fully Booked'}
+                            </Badge>
                           </div>
-                        </TableCell>
-                        <TableCell className="hidden md:table-cell">{opening.location}</TableCell>
-                        <TableCell className="hidden md:table-cell">{opening.duration}</TableCell>
-                        <TableCell className="text-right">
-                          <Button size="sm" className="bg-belize-teal hover:bg-belize-teal/90">
-                            Book Now
+
+                          <div className="border-t border-gray-100 pt-3 mt-3">
+                            <div className="flex items-center gap-1 text-xs text-gray-700 font-medium mb-2">
+                              <Calendar size={12} />
+                              <span>Schedule</span>
+                            </div>
+                            <div className="space-y-2 max-h-24 overflow-y-auto">
+                              {doctor.availability.map((schedule, idx) => (
+                                <div key={idx} className="flex items-center gap-2">
+                                  <span className="text-xs font-medium w-16">{schedule.day}:</span>
+                                  <div className="flex flex-wrap gap-1">
+                                    {schedule.slots.map((slot, slotIdx) => (
+                                      <span key={slotIdx} className="text-xs bg-gray-50 px-1.5 py-0.5 rounded">
+                                        {slot}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          <Button 
+                            className="w-full mt-3 bg-belize-green hover:bg-belize-green/90 text-white"
+                            size="sm"
+                            onClick={() => handleBookAppointment(doctor.name)}
+                          >
+                            Book Appointment
                           </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </CardContent>
-          </Card>
+                        </CardContent>
+                      </Card>
+                    ))
+                  ) : (
+                    <div className="text-center py-8 text-gray-500 col-span-2">
+                      No doctors found matching your search criteria.
+                    </div>
+                  )}
+                </div>
+              </TabsContent>
+            </Tabs>
+          </div>
+          
+          {/* Upcoming Openings - Simplified */}
+          <div>
+            <h2 className="text-lg font-medium text-gray-800 mb-3">Upcoming Openings</h2>
+            <div className="space-y-3">
+              {upcomingOpenings.map((opening) => (
+                <div key={opening.id} className="bg-white border border-gray-200 rounded-lg p-4 flex justify-between items-center">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="h-4 w-4 text-belize-green" />
+                      <span className="font-medium text-gray-900">{opening.time}</span>
+                    </div>
+                    <p className="text-sm text-gray-700 mt-1">{opening.doctor}</p>
+                    <div className="flex items-center gap-2 text-xs text-gray-500 mt-1">
+                      <span>{opening.specialty}</span>
+                      <span>•</span>
+                      <span>{opening.duration}</span>
+                      <span>•</span>
+                      <span>{opening.location}</span>
+                    </div>
+                  </div>
+                  <Button 
+                    size="sm"
+                    className="bg-belize-green hover:bg-belize-green/90 text-white h-8"
+                    onClick={() => handleBookAppointment(opening.doctor)}
+                  >
+                    Book
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
       
