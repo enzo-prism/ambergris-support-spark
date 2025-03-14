@@ -10,17 +10,17 @@ import { Card } from "@/components/ui/card";
 const AboutSection: React.FC = () => {
   const features = [
     {
-      icon: <HeartHandshake className="h-6 w-6 text-belize-coral" />,
+      icon: <HeartHandshake className="h-6 w-6 text-belize-green" />,
       title: "100% Investment Model",
       description: "All administrative costs are covered by the owners of Canary Cove, ensuring 100% of investments directly support children."
     },
     {
-      icon: <Globe className="h-6 w-6 text-belize-teal" />,
+      icon: <Globe className="h-6 w-6 text-belize-green" />,
       title: "Community Partnerships",
       description: "We build a framework to identify community goals and cement local relationships, enabling individuals and businesses to invest with confidence."
     },
     {
-      icon: <Sparkles className="h-6 w-6 text-belize-blue" />,
+      icon: <Sparkles className="h-6 w-6 text-belize-green" />,
       title: "Complete Transparency",
       description: "We operate with complete transparency, publishing detailed reports on fundraising, investments, and program impact."
     }
@@ -80,7 +80,7 @@ const AboutSection: React.FC = () => {
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className="flex items-start gap-2"
                   >
-                    <CheckCircle2 className="h-5 w-5 text-belize-coral mt-0.5 flex-shrink-0" />
+                    <CheckCircle2 className="h-5 w-5 text-belize-green mt-0.5 flex-shrink-0" />
                     <span className="text-gray-600">{point}</span>
                   </motion.li>
                 ))}
@@ -113,7 +113,7 @@ const AboutSection: React.FC = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
-                  className="bg-white rounded-lg p-6 shadow-md border-l-4 border-belize-coral hover:shadow-lg transition-all duration-300"
+                  className="bg-white rounded-lg p-6 shadow-md border-l-4 border-belize-green hover:shadow-lg transition-all duration-300"
                 >
                   <div className="flex items-start gap-4">
                     <div className="mt-1 p-3 rounded-full bg-gray-50 text-belize-green">
