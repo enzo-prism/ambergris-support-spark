@@ -4,14 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Eye, ChevronRight } from "lucide-react";
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle
-} from "@/components/ui/navigation-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sheet,
   SheetContent,
@@ -89,39 +87,50 @@ const Navbar: React.FC = () => {
     }
   ];
 
-  // For desktop dropdown content
-  const resourcesContent = (
-    <div className="w-[400px] p-4">
-      <div className="grid grid-cols-2 gap-3">
-        <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
-          <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
-            <Eye className="mb-1 h-5 w-5 inline-block mr-2" />
-            Eye Health Services
-          </div>
-          <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-            Find available eye doctors and specialists in your area
-          </div>
-          <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
-        </Link>
-        <Link to="/projects" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-green-50 to-green-100 p-4 no-underline outline-none transition-colors hover:from-green-100 hover:to-green-200">
-          <div className="mb-2 mt-2 text-lg font-medium text-green-700">
-            Community Projects
-          </div>
-          <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-            Explore our ongoing community initiatives and programs
-          </div>
-          <ChevronRight className="h-4 w-4 text-green-700 mt-2 ml-auto" />
-        </Link>
-      </div>
-      <div className="mt-4 grid grid-cols-1">
-        <Button asChild variant="outline" className="w-full justify-between">
-          <Link to="/membership">
-            <span>Join our membership program</span>
-            <ChevronRight className="h-4 w-4 ml-2" />
+  // Resources dropdown content (simplified)
+  const ResourcesDropdown = () => (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className={cn(
+          "flex items-center text-base font-medium text-gray-700 hover:text-belize-blue transition-colors px-4 py-2",
+          location.pathname === "/resources" && "text-belize-blue font-semibold"
+        )}>
+          Resources
+          <ChevronRight className="h-4 w-4 ml-1 rotate-90" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="center" className="w-[400px] p-0 rounded-md">
+        <div className="grid grid-cols-2 gap-3 p-4">
+          <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
+            <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
+              <Eye className="mb-1 h-5 w-5 inline-block mr-2" />
+              Eye Health Services
+            </div>
+            <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
+              Find available eye doctors and specialists in your area
+            </div>
+            <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>
-        </Button>
-      </div>
-    </div>
+          <Link to="/projects" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-green-50 to-green-100 p-4 no-underline outline-none transition-colors hover:from-green-100 hover:to-green-200">
+            <div className="mb-2 mt-2 text-lg font-medium text-green-700">
+              Community Projects
+            </div>
+            <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
+              Explore our ongoing community initiatives and programs
+            </div>
+            <ChevronRight className="h-4 w-4 text-green-700 mt-2 ml-auto" />
+          </Link>
+        </div>
+        <div className="p-4 pt-0">
+          <Button asChild variant="outline" className="w-full justify-between">
+            <Link to="/membership">
+              <span>Join our membership program</span>
+              <ChevronRight className="h-4 w-4 ml-2" />
+            </Link>
+          </Button>
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 
   return (
@@ -144,46 +153,39 @@ const Navbar: React.FC = () => {
 
         {/* Desktop Navigation Menu */}
         {!isMobile && (
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              {mainNavItems.map((item) => (
-                <NavigationMenuItem key={item.label}>
-                  {item.type === "link" ? (
-                    <Link 
-                      to={item.to!}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-transparent hover:bg-transparent",
-                        location.pathname === item.to && "font-semibold text-belize-blue",
-                        item.highlight && "text-belize-blue"
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <button 
-                      onClick={item.action}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-transparent hover:bg-transparent"
-                      )}
-                    >
-                      {item.label}
-                    </button>
-                  )}
-                </NavigationMenuItem>
-              ))}
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
-                  Resources
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  {resourcesContent}
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <div className="hidden md:flex items-center space-x-1">
+            {mainNavItems.map((item) => (
+              <div key={item.label} className="inline-block">
+                {item.type === "link" ? (
+                  <Link 
+                    to={item.to!}
+                    className={cn(
+                      "text-base font-medium px-4 py-2 transition-colors",
+                      location.pathname === item.to 
+                        ? "text-belize-blue font-semibold" 
+                        : "text-gray-700 hover:text-belize-blue",
+                      item.highlight && "text-belize-blue"
+                    )}
+                  >
+                    {item.label}
+                    {item.highlight && <Eye className="inline-block ml-1 h-4 w-4" />}
+                  </Link>
+                ) : (
+                  <button 
+                    onClick={item.action}
+                    className="text-base font-medium px-4 py-2 text-gray-700 hover:text-belize-blue transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                )}
+              </div>
+            ))}
+            
+            {/* Resources dropdown */}
+            <div className="inline-block">
+              <ResourcesDropdown />
+            </div>
+          </div>
         )}
 
         <div className="hidden md:flex items-center ml-4">
