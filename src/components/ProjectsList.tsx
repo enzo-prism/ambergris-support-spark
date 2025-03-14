@@ -14,6 +14,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const projectPosts = [
   {
@@ -102,6 +103,7 @@ const ProjectsList: React.FC = () => {
   const location = useLocation();
   const [activeView, setActiveView] = useState<"grid" | "list">("grid");
   const [activeTab, setActiveTab] = useState<string>("all");
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -109,7 +111,12 @@ const ProjectsList: React.FC = () => {
     if (tabParam && ['healthcare', 'education', 'environment', 'fundraising', 'all'].includes(tabParam)) {
       setActiveTab(tabParam);
     }
-  }, [location.search]);
+    
+    // Default to list view on mobile for better readability
+    if (isMobile) {
+      setActiveView("list");
+    }
+  }, [location.search, isMobile]);
 
   const filteredProjects = activeTab === "all" 
     ? projectPosts 
@@ -137,29 +144,29 @@ const ProjectsList: React.FC = () => {
   };
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-10 md:py-16 bg-gray-50 px-4 md:px-6 lg:px-0">
       <div className="container-custom max-w-6xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col md:flex-row justify-between items-center mb-10"
+          className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center mb-6 md:mb-10"
         >
           <Tabs 
             value={activeTab} 
-            className="w-full max-w-md" 
+            className="w-full max-w-full overflow-x-auto md:max-w-md no-scrollbar" 
             onValueChange={(value) => setActiveTab(value)}
           >
-            <TabsList className="w-full bg-white border">
-              <TabsTrigger value="all" className="flex-1">All</TabsTrigger>
-              <TabsTrigger value="healthcare" className="flex-1">Healthcare</TabsTrigger>
-              <TabsTrigger value="education" className="flex-1">Education</TabsTrigger>
-              <TabsTrigger value="environment" className="flex-1">Environment</TabsTrigger>
+            <TabsList className="w-full bg-white border grid grid-cols-4">
+              <TabsTrigger value="all" className="text-xs md:text-sm">All</TabsTrigger>
+              <TabsTrigger value="healthcare" className="text-xs md:text-sm">Healthcare</TabsTrigger>
+              <TabsTrigger value="education" className="text-xs md:text-sm">Education</TabsTrigger>
+              <TabsTrigger value="environment" className="text-xs md:text-sm">Environment</TabsTrigger>
             </TabsList>
           </Tabs>
           
-          <div className="flex gap-2 mt-4 md:mt-0">
+          <div className="flex gap-2 justify-end">
             <Button 
               variant="outline" 
               size="sm" 
@@ -170,7 +177,7 @@ const ProjectsList: React.FC = () => {
               onClick={() => setActiveView("grid")}
             >
               <Grid size={16} className="mr-1" />
-              Grid
+              <span className="sr-only md:not-sr-only">Grid</span>
             </Button>
             <Button 
               variant="outline" 
@@ -182,14 +189,14 @@ const ProjectsList: React.FC = () => {
               onClick={() => setActiveView("list")}
             >
               <LayoutList size={16} className="mr-1" />
-              List
+              <span className="sr-only md:not-sr-only">List</span>
             </Button>
           </div>
         </motion.div>
         
         {activeView === "grid" ? (
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12"
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -208,25 +215,25 @@ const ProjectsList: React.FC = () => {
                       {post.category}
                     </div>
                   </div>
-                  <CardContent className="pt-6">
-                    <div className="flex items-center text-sm text-gray-500 mb-3 gap-4">
+                  <CardContent className="pt-5 px-4 md:px-6 md:pt-6 pb-4 md:pb-6">
+                    <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3 gap-2 md:gap-4 flex-wrap">
                       <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
+                        <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                         <span>{post.date}</span>
                       </div>
                       <div className="flex items-center gap-1">
-                        <User className="h-4 w-4" />
+                        <User className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                         <span>{post.author}</span>
                       </div>
                     </div>
-                    <h3 className="text-xl font-bold text-belize-green mb-2 line-clamp-2">
+                    <h3 className="text-lg md:text-xl font-bold text-belize-green mb-2 line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
+                    <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center font-medium">
-                      Read More <ArrowRight className="ml-1 h-4 w-4" />
+                    <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm md:text-base font-medium">
+                      Read More <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
                     </Link>
                   </CardContent>
                 </Card>
@@ -235,7 +242,7 @@ const ProjectsList: React.FC = () => {
           </motion.div>
         ) : (
           <motion.div 
-            className="flex flex-col gap-4 mb-12"
+            className="flex flex-col gap-4 mb-8 md:mb-12"
             variants={container}
             initial="hidden"
             whileInView="visible"
@@ -255,25 +262,25 @@ const ProjectsList: React.FC = () => {
                         {post.category}
                       </div>
                     </div>
-                    <div className="md:w-2/3 p-6">
-                      <div className="flex items-center text-sm text-gray-500 mb-2 gap-4">
+                    <div className="md:w-2/3 p-4 md:p-6">
+                      <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 gap-2 md:gap-4 flex-wrap">
                         <div className="flex items-center gap-1">
-                          <Calendar className="h-4 w-4" />
+                          <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                           <span>{post.date}</span>
                         </div>
                         <div className="flex items-center gap-1">
-                          <User className="h-4 w-4" />
+                          <User className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                           <span>{post.author}</span>
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold text-belize-green mb-2">
+                      <h3 className="text-lg md:text-xl font-bold text-belize-green mb-1 md:mb-2">
                         {post.title}
                       </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">
+                      <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2">
                         {post.excerpt}
                       </p>
-                      <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center font-medium">
-                        Read More <ArrowRight className="ml-1 h-4 w-4" />
+                      <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm md:text-base font-medium">
+                        Read More <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
                       </Link>
                     </div>
                   </div>
@@ -288,20 +295,21 @@ const ProjectsList: React.FC = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           viewport={{ once: true }}
+          className="flex justify-center"
         >
           <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="#" className="border border-gray-200" />
+            <PaginationContent className="flex-wrap justify-center">
+              <PaginationItem className="mx-1">
+                <PaginationPrevious href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
               </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue">1</PaginationLink>
+              <PaginationItem className="mx-1">
+                <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">1</PaginationLink>
               </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#" className="border border-gray-200">2</PaginationLink>
+              <PaginationItem className="mx-1">
+                <PaginationLink href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">2</PaginationLink>
               </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="#" className="border border-gray-200" />
+              <PaginationItem className="mx-1">
+                <PaginationNext href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
               </PaginationItem>
             </PaginationContent>
           </Pagination>
