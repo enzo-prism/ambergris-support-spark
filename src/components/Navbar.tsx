@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -34,16 +35,18 @@ type NavItemBase = {
 type NavItemLink = NavItemBase & {
   type: "link";
   to: string;
+  hasHighlight?: boolean;
 }
 
 type NavItemScroll = NavItemBase & {
   type: "scroll";
   action: () => void;
+  hasHighlight?: boolean;
 }
 
 type NavItemDropdown = NavItemBase & {
   type: "dropdown";
-  items: (NavItemLink | NavItemScroll & { hasHighlight?: boolean })[];
+  items: (NavItemLink | NavItemScroll)[];
 }
 
 type NavItem = NavItemLink | NavItemScroll | NavItemDropdown;
