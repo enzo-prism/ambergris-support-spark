@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DollarSign, CreditCard, Calendar, Award, PiggyBank, Users } from "lucide-react";
+import { DollarSign, CreditCard, Calendar, Award, PiggyBank, Users, CheckCircle2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DonationForm: React.FC = () => {
@@ -57,6 +57,29 @@ const DonationForm: React.FC = () => {
     });
   };
 
+  const impactItems = [
+    {
+      amount: "$25",
+      description: "Provides school supplies for a child for one semester",
+      color: "bg-belize-green",
+    },
+    {
+      amount: "$50",
+      description: "Funds a month of after-school tutoring for a child",
+      color: "bg-belize-teal",
+    },
+    {
+      amount: "$100",
+      description: "Covers medical checkups for five children",
+      color: "bg-belize-coral",
+    },
+    {
+      amount: "$500",
+      description: "Provides a full scholarship for a student for one year",
+      color: "bg-belize-green",
+    },
+  ];
+
   return (
     <section id="donate" className="section-padding bg-belize-light">
       <div className="container-custom">
@@ -86,61 +109,41 @@ const DonationForm: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+        <div className="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h3 className="text-2xl font-bold mb-4">Your Investment Impact</h3>
-            <div className="space-y-6">
-              <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
-                  <DollarSign className="h-6 w-6 text-belize-green" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-1">$25</h4>
-                  <p className="text-gray-700">Provides school supplies for a child for one semester</p>
+            <Card className="border-none shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-r from-belize-green/90 to-belize-teal/80 py-6 px-6">
+                <h3 className="text-2xl font-bold text-white">Your Investment Impact</h3>
+              </div>
+              <div className="p-6 bg-white space-y-8">
+                {impactItems.map((item, index) => (
+                  <div key={index} className="flex items-start gap-4 group hover:transform hover:translate-x-1 transition-transform">
+                    <div className={`flex-shrink-0 ${item.color} text-white p-4 rounded-full shadow-md group-hover:shadow-lg transition-all`}>
+                      <DollarSign className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xl mb-1 text-gray-800">{item.amount}</h4>
+                      <p className="text-gray-700">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+                
+                <div className="mt-6 pt-6 border-t border-gray-100">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 bg-gradient-to-r from-belize-green to-belize-teal p-4 rounded-full shadow-md">
+                      <CheckCircle2 className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-xl mb-2 text-gray-800">Tax Deductible</h4>
+                      <p className="text-gray-700">
+                        All investments are tax-deductible through our U.S.-based 501(c)(3) non-profit 
+                        organization. You'll receive a receipt for your tax records.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
-                  <DollarSign className="h-6 w-6 text-belize-teal" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-1">$50</h4>
-                  <p className="text-gray-700">Funds a month of after-school tutoring for a child</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
-                  <DollarSign className="h-6 w-6 text-belize-coral" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-1">$100</h4>
-                  <p className="text-gray-700">Covers medical checkups for five children</p>
-                </div>
-              </div>
-              
-              <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 bg-white p-3 rounded-full shadow-md">
-                  <DollarSign className="h-6 w-6 text-belize-green" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-lg mb-1">$500</h4>
-                  <p className="text-gray-700">Provides a full scholarship for a student for one year</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center gap-3 mb-4">
-                <Award className="h-6 w-6 text-belize-green" />
-                <h4 className="font-bold">Tax Deductible</h4>
-              </div>
-              <p className="text-gray-700">
-                All investments are tax-deductible through our U.S.-based 501(c)(3) non-profit organization. 
-                You'll receive a receipt for your tax records.
-              </p>
-            </div>
+            </Card>
           </div>
           
           <div>
