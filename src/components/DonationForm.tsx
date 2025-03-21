@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -61,12 +62,27 @@ const DonationForm: React.FC = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-belize-coral/10 px-4 py-2 rounded-full mb-4">
-            <PiggyBank className="h-5 w-5 text-belize-coral" />
-            <span className="text-belize-coral font-semibold">One-Time Investment</span>
+            {paymentType === "monthly" ? (
+              <>
+                <Users className="h-5 w-5 text-belize-blue" />
+                <span className="text-belize-blue font-semibold">Monthly Membership</span>
+              </>
+            ) : (
+              <>
+                <PiggyBank className="h-5 w-5 text-belize-coral" />
+                <span className="text-belize-coral font-semibold">One-Time Investment</span>
+              </>
+            )}
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Invest in Change Today</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            {paymentType === "monthly" 
+              ? "Join Our Membership Program" 
+              : "Invest in Change Today"}
+          </h2>
           <p className="text-lg text-gray-700">
-            Your one-time investment helps us support children in Belize. 100% of your contribution goes directly to our programs.
+            {paymentType === "monthly"
+              ? "Your monthly membership helps us provide consistent support to children in Belize. Join our community of regular contributors."
+              : "Your one-time investment helps us support children in Belize. 100% of your contribution goes directly to our programs."}
           </p>
         </div>
 
@@ -131,7 +147,11 @@ const DonationForm: React.FC = () => {
             <Card className="border-none shadow-xl">
               <CardContent className="p-6">
                 <form onSubmit={handleSubmit}>
-                  <Tabs defaultValue="oneTime" onValueChange={(val) => setPaymentType(val)}>
+                  <Tabs 
+                    defaultValue="oneTime" 
+                    value={paymentType}
+                    onValueChange={(val) => setPaymentType(val)}
+                  >
                     <TabsList className="grid grid-cols-2 mb-6">
                       <TabsTrigger value="oneTime" className="flex items-center gap-2 py-2">
                         <PiggyBank className="h-4 w-4" />
@@ -271,11 +291,14 @@ const DonationForm: React.FC = () => {
                       </div>
                     </div>
                     
-                    <Button type="submit" className={`w-full py-6 text-lg flex items-center justify-center ${
-                      paymentType === "monthly" 
-                        ? "bg-belize-blue hover:bg-belize-blue/90" 
-                        : "bg-belize-coral hover:bg-belize-coral/90"
-                    }`}>
+                    <Button 
+                      type="submit" 
+                      className={`w-full py-6 text-lg flex items-center justify-center ${
+                        paymentType === "monthly" 
+                          ? "bg-belize-blue hover:bg-belize-blue/90" 
+                          : "bg-belize-coral hover:bg-belize-coral/90"
+                      }`}
+                    >
                       {paymentType === "monthly" ? (
                         <>
                           <Users className="mr-2 h-5 w-5" />
