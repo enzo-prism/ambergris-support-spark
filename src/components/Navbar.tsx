@@ -26,6 +26,28 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+type NavItemBase = {
+  label: string;
+  icon?: React.ReactNode;
+}
+
+type NavItemLink = NavItemBase & {
+  type: "link";
+  to: string;
+}
+
+type NavItemScroll = NavItemBase & {
+  type: "scroll";
+  action: () => void;
+}
+
+type NavItemDropdown = NavItemBase & {
+  type: "dropdown";
+  items: (NavItemLink | NavItemScroll & { hasHighlight?: boolean })[];
+}
+
+type NavItem = NavItemLink | NavItemScroll | NavItemDropdown;
+
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,7 +73,7 @@ const Navbar: React.FC = () => {
     }
   };
 
-  const mainNavItems = [
+  const mainNavItems: NavItem[] = [
     {
       label: "Home",
       type: "link",
@@ -410,7 +432,6 @@ const Navbar: React.FC = () => {
                           icon={item.icon}
                           to={item.type === "link" ? item.to : undefined}
                           onClick={item.type === "scroll" ? item.action : undefined}
-                          hasHighlight={item.hasHighlight}
                         >
                           {item.label}
                         </MobileMenuItem>
