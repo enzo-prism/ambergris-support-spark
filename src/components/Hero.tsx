@@ -19,10 +19,12 @@ const Hero: React.FC = () => {
 
   return (
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-belize-blue rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-belize-teal rounded-full blur-3xl translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-belize-coral rounded-full blur-3xl -translate-y-1/2"></div>
+      <div className="absolute inset-0 z-0 opacity-10">
+        <img 
+          src="/lovable-uploads/2020/06/belize-trees.jpg" 
+          alt="Belize background" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
       
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-6 lg:gap-12">
@@ -70,8 +72,8 @@ const Hero: React.FC = () => {
           <div className="relative w-full max-w-xs mx-auto sm:max-w-sm animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <img 
-                src="/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png" 
-                alt="A Belizean child receives compassionate care" 
+                src="/lovable-uploads/2016/07/belize-kids-donates-to-lions-den.jpg" 
+                alt="BelizeKids donation to Lions Den" 
                 className="object-cover w-full h-full" 
               />
             </div>

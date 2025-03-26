@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -11,9 +11,15 @@ interface ProjectGalleryProps {
     src: string;
     alt: string;
   }[];
+  title?: string;
+  description?: string;
 }
 
-const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
+const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ 
+  images, 
+  title = "Photo Gallery",
+  description = "View more photos from this project" 
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
@@ -27,29 +33,35 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  // If no images, don't render the gallery
+  if (!images || images.length === 0) return null;
+
   return (
     <div className="space-y-4 my-12">
-      <h3 className="text-2xl font-bold text-belize-green">Photo Gallery</h3>
-      <p className="text-gray-600 mb-6">View more photos from our October Vision Clinic</p>
+      <h3 className="text-2xl font-bold text-belize-green">{title}</h3>
+      <p className="text-gray-600 mb-6">{description}</p>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
         {images.map((image, index) => (
           <Dialog key={index} open={isDialogOpen && currentImageIndex === index} onOpenChange={(open) => {
             setIsDialogOpen(open);
             if (open) setCurrentImageIndex(index);
           }}>
             <DialogTrigger asChild>
-              <div className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors">
+              <div className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors relative group">
                 <AspectRatio ratio={1/1} className="bg-gray-100">
                   <img 
                     src={image.src} 
                     alt={image.alt} 
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
                   />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <ZoomIn className="text-white h-8 w-8" />
+                  </div>
                 </AspectRatio>
               </div>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-screen-md max-h-[90vh] p-0 overflow-hidden bg-black/95 border-none">
+            <DialogContent className="sm:max-w-screen-lg max-h-[90vh] p-0 overflow-hidden bg-black/95 border-none">
               <div className="relative w-full h-full flex items-center justify-center">
                 <Button 
                   variant="ghost" 

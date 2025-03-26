@@ -15,7 +15,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "October 30, 2017",
       excerpt: "BelizeKids.org, in conjunction with BCVI and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.",
-      imageSrc: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+      imageSrc: "/lovable-uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
       slug: "october-vision-clinic",
     },
     {
@@ -24,7 +24,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "November 22, 2022",
       excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving.",
-      imageSrc: "/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png",
+      imageSrc: "/lovable-uploads/2016/11/DAD-logo.png",
       slug: "dollar-a-dive-program",
     },
     {
@@ -33,7 +33,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "August 27, 2022",
       excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week.",
-      imageSrc: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
+      imageSrc: "/lovable-uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
       slug: "second-vision-screening-machine",
     },
   ];
