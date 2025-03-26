@@ -1,170 +1,192 @@
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { 
-  Calendar,
+  Calendar as CalendarIcon,
   Clock, 
-  Search,
   MapPin,
   Eye,
   Glasses,
   CheckCircle,
-  CalendarClock,
-  ArrowRight
+  ArrowRight,
+  User
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Calendar } from "@/components/ui/calendar";
+import { format, addDays, isSameDay } from "date-fns";
 
-const doctorsData = [
-  {
-    id: 1,
-    name: "Dr. Maria Rodriguez",
-    specialty: "Pediatric Ophthalmology",
-    location: "Belize City Eye Clinic",
-    icon: <Eye className="h-5 w-5 text-belize-green" />,
-    availability: [
-      { day: "Monday", slots: ["9:00 AM - 12:00 PM", "2:00 PM - 5:00 PM"] },
-      { day: "Wednesday", slots: ["9:00 AM - 12:00 PM"] },
-      { day: "Friday", slots: ["2:00 PM - 5:00 PM"] },
-    ],
-    nextAvailable: "Today at 2:00 PM",
-    status: "available",
-    services: ["Pediatric eye exams", "Strabismus treatment", "Vision therapy"]
-  },
-  {
-    id: 2,
-    name: "Dr. James Wilson",
-    specialty: "Optometrist",
-    location: "San Pedro Vision Center",
-    icon: <Glasses className="h-5 w-5 text-belize-green" />,
-    availability: [
-      { day: "Tuesday", slots: ["8:00 AM - 12:00 PM"] },
-      { day: "Thursday", slots: ["8:00 AM - 12:00 PM", "1:00 PM - 4:00 PM"] },
-      { day: "Saturday", slots: ["9:00 AM - 1:00 PM"] },
-    ],
-    nextAvailable: "Tomorrow at 8:00 AM",
-    status: "upcoming",
-    services: ["Vision testing", "Eyeglass prescriptions", "Contact lens fittings"]
-  },
-  {
-    id: 3,
-    name: "Dr. Anna Chen",
-    specialty: "Cornea Specialist",
-    location: "Belmopan Eye Care Center",
-    icon: <Eye className="h-5 w-5 text-belize-green" />,
-    availability: [
-      { day: "Monday", slots: ["10:00 AM - 2:00 PM"] },
-      { day: "Wednesday", slots: ["10:00 AM - 2:00 PM"] },
-      { day: "Thursday", slots: ["1:00 PM - 5:00 PM"] },
-    ],
-    nextAvailable: "2 days from now",
-    status: "booked",
-    services: ["Corneal disease treatment", "LASIK consultations", "Dry eye management"]
-  },
-  {
-    id: 4,
-    name: "Dr. Robert Johnson",
-    specialty: "Retina Specialist",
-    location: "Belize City Eye Institute",
-    icon: <Eye className="h-5 w-5 text-belize-green" />,
-    availability: [
-      { day: "Tuesday", slots: ["9:00 AM - 1:00 PM"] },
-      { day: "Friday", slots: ["9:00 AM - 1:00 PM", "2:00 PM - 4:00 PM"] },
-    ],
-    nextAvailable: "Friday at 9:00 AM",
-    status: "upcoming",
-    services: ["Retinal disorders", "Diabetic eye exams", "Macular degeneration treatment"]
-  },
-  {
-    id: 5,
-    name: "Dr. Sarah Thompson",
-    specialty: "Vision Therapy",
-    location: "Placencia Vision Center",
-    icon: <Glasses className="h-5 w-5 text-belize-green" />,
-    availability: [
-      { day: "Monday", slots: ["1:00 PM - 5:00 PM"] },
-      { day: "Thursday", slots: ["9:00 AM - 1:00 PM"] },
-    ],
-    nextAvailable: "In 30 minutes",
-    status: "available",
-    services: ["Vision therapy", "Eye exercises", "Visual skills development"]
-  }
-];
+// Generate doctor data with availability for the next 30 days
+const generateDoctorData = () => {
+  const doctors = [
+    {
+      id: 1,
+      name: "Dr. Maria Rodriguez",
+      specialty: "Pediatric Ophthalmology",
+      avatar: <Eye className="h-5 w-5 text-belize-green" />,
+      serviceType: "Children's eye screening",
+      duration: "30 min",
+    },
+    {
+      id: 2,
+      name: "Dr. James Wilson",
+      specialty: "Optometrist",
+      avatar: <Glasses className="h-5 w-5 text-belize-green" />,
+      serviceType: "Routine eye exam",
+      duration: "30 min",
+    },
+    {
+      id: 3,
+      name: "Dr. Anna Chen",
+      specialty: "Cornea Specialist",
+      avatar: <Eye className="h-5 w-5 text-belize-green" />,
+      serviceType: "LASIK consultation",
+      duration: "60 min",
+    },
+    {
+      id: 4,
+      name: "Dr. Robert Johnson",
+      specialty: "Retina Specialist",
+      avatar: <Eye className="h-5 w-5 text-belize-green" />,
+      serviceType: "Retinal disorder assessment",
+      duration: "45 min",
+    },
+    {
+      id: 5,
+      name: "Dr. Sarah Thompson",
+      specialty: "Vision Therapy",
+      avatar: <Glasses className="h-5 w-5 text-belize-green" />,
+      serviceType: "Vision therapy session",
+      duration: "45 min",
+    }
+  ];
 
-const upcomingOpenings = [
-  {
-    id: 101,
-    doctor: "Dr. Maria Rodriguez",
-    specialty: "Pediatric Ophthalmology",
-    time: "Today at 2:00 PM",
-    location: "Belize City Eye Clinic", 
-    duration: "30 min",
-    service: "Children's eye screening"
-  },
-  {
-    id: 102,
-    doctor: "Dr. Sarah Thompson",
-    specialty: "Vision Therapy",
-    time: "Today at 3:15 PM",
-    location: "Placencia Vision Center",
-    duration: "45 min",
-    service: "Vision therapy session" 
-  },
-  {
-    id: 103,
-    doctor: "Dr. James Wilson",
-    specialty: "Optometrist",
-    time: "Tomorrow at 8:00 AM",
-    location: "San Pedro Vision Center",
-    duration: "30 min",
-    service: "Routine eye exam"
-  },
-  {
-    id: 104,
-    doctor: "Dr. Anna Chen",
-    specialty: "Cornea Specialist",
-    time: "Thursday at 10:00 AM",
-    location: "Belmopan Eye Care Center",
-    duration: "60 min",
-    service: "LASIK consultation"
+  // Create time slots
+  const timeSlots = [
+    "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", 
+    "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+    "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
+    "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM"
+  ];
+
+  // Generate availability for each doctor for the next 30 days
+  const availability = {};
+  const today = new Date();
+
+  for (let i = 0; i < 30; i++) {
+    const date = addDays(today, i);
+    const dateStr = format(date, 'yyyy-MM-dd');
+    
+    availability[dateStr] = [];
+    
+    // Skip weekends (6 = Saturday, 0 = Sunday)
+    if (date.getDay() === 6 || date.getDay() === 0) {
+      continue;
+    }
+    
+    // Generate random availabilities for each doctor
+    doctors.forEach(doctor => {
+      // Each doctor works on specific days
+      if (
+        (doctor.id === 1 && [1, 3, 5].includes(date.getDay())) || // Monday, Wednesday, Friday
+        (doctor.id === 2 && [2, 4, 6].includes(date.getDay())) || // Tuesday, Thursday, Saturday
+        (doctor.id === 3 && [1, 3, 4].includes(date.getDay())) || // Monday, Wednesday, Thursday
+        (doctor.id === 4 && [2, 5].includes(date.getDay())) ||    // Tuesday, Friday
+        (doctor.id === 5 && [1, 4].includes(date.getDay()))       // Monday, Thursday
+      ) {
+        // Add 1-4 slots for this doctor on this day
+        const slots = [];
+        const numSlots = Math.floor(Math.random() * 4) + 1;
+        
+        for (let j = 0; j < numSlots; j++) {
+          const randomTimeIndex = Math.floor(Math.random() * timeSlots.length);
+          const time = timeSlots[randomTimeIndex];
+          
+          if (!slots.includes(time)) {
+            slots.push(time);
+          }
+        }
+        
+        slots.sort();
+        
+        slots.forEach(time => {
+          availability[dateStr].push({
+            id: `${dateStr}-${doctor.id}-${time}`,
+            doctorId: doctor.id,
+            time: time,
+            available: true
+          });
+        });
+      }
+    });
+    
+    // Sort availabilities by time
+    availability[dateStr].sort((a, b) => {
+      return timeSlots.indexOf(a.time) - timeSlots.indexOf(b.time);
+    });
   }
-];
+
+  return { doctors, availability };
+};
+
+const { doctors, availability } = generateDoctorData();
 
 const DoctorsAvailability: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
-  const [serviceFilter, setServiceFilter] = useState("all");
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
-  const filteredDoctors = doctorsData.filter(doctor => {
-    const matchesSearch = 
-      doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesService = 
-      serviceFilter === "all" || 
-      doctor.services.some(service => 
-        service.toLowerCase().includes(serviceFilter.toLowerCase())
-      );
-    
-    return matchesSearch && matchesService;
-  });
+  // Find dates that have availability
+  const datesWithAvailability = useMemo(() => {
+    return Object.keys(availability).filter(dateStr => availability[dateStr].length > 0);
+  }, []);
 
-  const allServices = doctorsData.flatMap(doctor => doctor.services);
-  const services = ["all", ...new Set(allServices)];
+  // Get availability for the selected date
+  const slotsForSelectedDate = useMemo(() => {
+    const dateStr = format(selectedDate, 'yyyy-MM-dd');
+    return availability[dateStr] || [];
+  }, [selectedDate]);
 
-  const handleBookAppointment = (doctorName: string) => {
-    toast({
-      title: "Eye Care Appointment Request Sent",
-      description: `You'll receive a confirmation for ${doctorName} shortly.`,
+  // Group slots by time
+  const slotsByTime = useMemo(() => {
+    const grouped = {};
+    slotsForSelectedDate.forEach(slot => {
+      if (!grouped[slot.time]) {
+        grouped[slot.time] = [];
+      }
+      grouped[slot.time].push({
+        ...slot,
+        doctor: doctors.find(d => d.id === slot.doctorId)
+      });
     });
+    return grouped;
+  }, [slotsForSelectedDate]);
+
+  const handleBookAppointment = (doctorName: string, time: string) => {
+    toast({
+      title: "Eye Care Appointment Confirmation",
+      description: `Your appointment with ${doctorName} at ${time} on ${format(selectedDate, 'EEEE, MMMM d, yyyy')} has been booked.`,
+    });
+    setSelectedSlot(null);
+  };
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (date) {
+      setSelectedDate(date);
+      setSelectedSlot(null);
+    }
+  };
+
+  // Highlight dates with availability
+  const isDayWithAvailability = (date: Date) => {
+    const dateStr = format(date, 'yyyy-MM-dd');
+    return datesWithAvailability.includes(dateStr);
   };
 
   return (
@@ -176,239 +198,159 @@ const DoctorsAvailability: React.FC = () => {
       
       <Navbar />
       
-      <main className="container-custom pt-16 md:pt-24 pb-10">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-6 text-center">
+      <main className="container-custom pt-12 md:pt-20 pb-10">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-8 text-center">
             <h1 className="text-2xl md:text-3xl font-bold text-belize-green mb-2">
-              Find Available Eye Care Specialists
+              Book an Eye Care Appointment
             </h1>
             <p className="text-gray-600 max-w-xl mx-auto">
-              All our eye care specialists are located at the <span className="font-medium">Belize City Eye Clinic</span>. See available times and book your appointment.
+              All appointments take place at the <span className="font-medium">Belize City Eye Clinic</span>. Select a date to see available times.
             </p>
           </div>
           
-          <div className="mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-              <Input
-                placeholder="Search specialists or services..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 h-12 bg-white border-gray-200 shadow-sm"
-              />
-            </div>
-            
-            {showFilters && (
-              <div className="mt-2 p-4 bg-white rounded-md shadow-sm">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1">Service</label>
-                  <select
-                    className="w-full h-10 rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none"
-                    value={serviceFilter}
-                    onChange={(e) => setServiceFilter(e.target.value)}
-                  >
-                    {services.map((service, index) => (
-                      <option key={index} value={service}>
-                        {service === "all" ? "All Services" : service}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            )}
-          </div>
-          
-          <div className="mb-8">
-            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
-              <Clock className="mr-2 h-5 w-5 text-belize-green" />
-              Available Now
-            </h2>
-            
-            {filteredDoctors.filter(doc => doc.status === 'available').length > 0 ? (
-              <div className="grid grid-cols-1 gap-3">
-                {filteredDoctors
-                  .filter(doc => doc.status === 'available')
-                  .map(doctor => (
-                    <Card key={doctor.id} className="border-0 shadow-sm overflow-hidden bg-white hover:shadow-md transition-shadow">
-                      <CardContent className="p-0">
-                        <div className="bg-gradient-to-r from-green-50 to-green-100 px-4 py-3 border-b border-green-100">
-                          <div className="flex justify-between items-center">
-                            <div className="flex items-center gap-2">
-                              <div className="bg-white p-2 rounded-full">
-                                {doctor.icon}
-                              </div>
-                              <div>
-                                <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                                <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                              </div>
-                            </div>
-                            <Badge className="bg-green-100 text-green-700 border-green-200 font-medium">
-                              Available Now
-                            </Badge>
-                          </div>
-                        </div>
-                        
-                        <div className="p-4">
-                          <div className="flex items-center text-sm text-gray-600 mb-3">
-                            <Clock size={16} className="mr-1 text-green-600" />
-                            <span className="font-medium">Available time slots today:</span>
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {doctor.availability
-                              .find(a => a.day === "Monday")?.slots
-                              .map((slot, idx) => (
-                                <div key={idx} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm flex items-center">
-                                  <Clock size={14} className="mr-1" />
-                                  {slot}
-                                </div>
-                              ))}
-                          </div>
-                          
-                          <div className="flex flex-wrap gap-1 mb-3">
-                            {doctor.services.map((service, idx) => (
-                              <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full">
-                                {service}
-                              </span>
-                            ))}
-                          </div>
-                          
-                          <Button 
-                            className="w-full mt-2 bg-belize-green hover:bg-belize-green/90 text-white flex items-center justify-center gap-2" 
-                            onClick={() => handleBookAppointment(doctor.name)}
-                          >
-                            Book Appointment
-                            <ArrowRight size={16} />
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-              </div>
-            ) : (
-              <Card className="border-0 shadow-sm overflow-hidden bg-white p-8 text-center">
-                <div className="flex flex-col items-center">
-                  <Clock className="h-10 w-10 text-gray-300 mb-3" />
-                  <h3 className="text-lg font-medium text-gray-700 mb-1">No Doctors Available Right Now</h3>
-                  <p className="text-gray-500 mb-3">Check our upcoming openings below for the next available appointments.</p>
-                </div>
-              </Card>
-            )}
-          </div>
-          
-          <div className="mb-8">
-            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
-              <CalendarClock className="mr-2 h-5 w-5 text-belize-green" />
-              Upcoming Openings
-            </h2>
-            <div className="grid grid-cols-1 gap-3">
-              {upcomingOpenings.map((opening) => (
-                <Card key={opening.id} className="border-0 shadow-sm overflow-hidden bg-white hover:shadow-md transition-shadow">
-                  <CardContent className="p-0">
-                    <div className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-3 border-b border-blue-100">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-2">
-                          <Clock className="h-5 w-5 text-belize-blue" />
-                          <span className="font-medium text-gray-900">{opening.time}</span>
-                        </div>
-                        <Badge className="bg-blue-100 text-blue-700 border-blue-200">
-                          {opening.duration}
-                        </Badge>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+            {/* Calendar Column */}
+            <div className="md:col-span-5">
+              <Card className="border-0 shadow-sm bg-white overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gradient-to-r from-green-50 to-green-100 px-4 py-3 border-b border-green-100">
+                    <div className="flex items-center">
+                      <CalendarIcon className="h-5 w-5 text-belize-green mr-2" />
+                      <h2 className="font-medium text-gray-900">Select a Date</h2>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={handleDateSelect}
+                      className="mx-auto pointer-events-auto"
+                      modifiers={{
+                        hasAvailability: (date) => isDayWithAvailability(date)
+                      }}
+                      modifiersClassNames={{
+                        hasAvailability: "bg-green-100 font-medium text-green-900 hover:bg-green-200"
+                      }}
+                      disabled={(date) => {
+                        // Disable dates in the past and those without availability
+                        const yesterday = new Date();
+                        yesterday.setDate(yesterday.getDate() - 1);
+                        return date < yesterday || !isDayWithAvailability(date);
+                      }}
+                    />
+                    
+                    <div className="mt-4 flex items-center justify-center text-sm text-gray-500">
+                      <div className="flex items-center mr-4">
+                        <div className="w-3 h-3 bg-green-100 rounded-full mr-1"></div>
+                        <span>Available</span>
+                      </div>
+                      <div className="flex items-center">
+                        <div className="w-3 h-3 bg-gray-200 rounded-full mr-1"></div>
+                        <span>Not Available</span>
                       </div>
                     </div>
-                    
-                    <div className="p-4">
-                      <h3 className="font-medium text-gray-900">{opening.doctor}</h3>
-                      <p className="text-sm text-gray-600 mb-2">{opening.specialty}</p>
-                      
-                      <div className="flex items-center text-sm text-blue-700 py-1 px-2 bg-blue-50 rounded-full inline-block mb-3">
-                        <CheckCircle size={14} className="mr-1" />
-                        <span>{opening.service}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+            
+            {/* Available Times Column */}
+            <div className="md:col-span-7">
+              <Card className="border-0 shadow-sm bg-white overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-3 border-b border-blue-100">
+                    <div className="flex items-center">
+                      <Clock className="h-5 w-5 text-belize-blue mr-2" />
+                      <h2 className="font-medium text-gray-900">
+                        Available Times for {format(selectedDate, "EEEE, MMMM d, yyyy")}
+                      </h2>
+                    </div>
+                  </div>
+                  
+                  <div className="p-4">
+                    {Object.keys(slotsByTime).length > 0 ? (
+                      <div className="space-y-4">
+                        {Object.entries(slotsByTime).map(([time, slots]) => (
+                          <div key={time} className="border-b border-gray-100 pb-4 last:pb-0 last:border-b-0">
+                            <h3 className="text-sm font-medium text-gray-700 mb-2 flex items-center">
+                              <Clock className="h-4 w-4 text-belize-green mr-1" />
+                              {time}
+                            </h3>
+                            
+                            <div className="grid grid-cols-1 gap-2">
+                              {slots.map(slot => (
+                                <div 
+                                  key={slot.id} 
+                                  className={`flex justify-between items-center p-3 rounded-md border ${
+                                    selectedSlot === slot.id ? 'border-green-500 bg-green-50' : 'border-gray-200 hover:border-green-300'
+                                  } cursor-pointer transition-colors`}
+                                  onClick={() => setSelectedSlot(slot.id)}
+                                >
+                                  <div className="flex items-center">
+                                    <div className="bg-gray-100 p-2 rounded-full mr-3">
+                                      {slot.doctor?.avatar}
+                                    </div>
+                                    <div>
+                                      <p className="font-medium text-gray-900 text-sm">{slot.doctor?.name}</p>
+                                      <p className="text-xs text-gray-600">{slot.doctor?.specialty}</p>
+                                    </div>
+                                  </div>
+                                  {selectedSlot === slot.id && (
+                                    <Button
+                                      className="bg-belize-green hover:bg-belize-green/90 text-white text-xs h-8 px-3"
+                                      onClick={() => handleBookAppointment(slot.doctor?.name || '', slot.time)}
+                                    >
+                                      Book
+                                    </Button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                      
-                      <Button 
-                        className="w-full bg-belize-green hover:bg-belize-green/90 text-white flex items-center justify-center gap-2" 
-                        onClick={() => handleBookAppointment(opening.doctor)}
+                    ) : (
+                      <div className="py-8 text-center">
+                        <Clock className="h-10 w-10 text-gray-300 mx-auto mb-2" />
+                        <p className="text-gray-500 font-medium">No available appointments</p>
+                        <p className="text-gray-400 text-sm">Please select another date</p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {selectedSlot && (
+                <Card className="border-0 shadow-sm bg-white overflow-hidden mt-4">
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="font-medium text-gray-900">Appointment Details</h3>
+                        <p className="text-sm text-gray-600">
+                          {format(selectedDate, "EEEE, MMMM d, yyyy")} at {slotsByTime[Object.keys(slotsByTime).find(time => 
+                            slotsByTime[time].some(s => s.id === selectedSlot)
+                          ) || '']?.[0]?.time}
+                        </p>
+                      </div>
+                      <Button
+                        className="bg-belize-green hover:bg-belize-green/90 text-white"
+                        onClick={() => {
+                          const slot = Object.values(slotsByTime)
+                            .flat()
+                            .find(s => s.id === selectedSlot);
+                          
+                          if (slot) {
+                            handleBookAppointment(slot.doctor?.name || '', slot.time);
+                          }
+                        }}
                       >
-                        Book Appointment
-                        <ArrowRight size={16} />
+                        Confirm Booking
                       </Button>
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-          
-          <div>
-            <h2 className="text-lg font-medium text-gray-800 mb-3 flex items-center">
-              <Calendar className="mr-2 h-5 w-5 text-belize-green" />
-              All Eye Specialists
-            </h2>
-            <div className="grid grid-cols-1 gap-3">
-              {filteredDoctors.length > 0 ? (
-                filteredDoctors.map((doctor) => (
-                  <Card key={doctor.id} className="border-0 shadow-sm overflow-hidden bg-white hover:shadow-md transition-shadow">
-                    <CardContent className="p-0">
-                      <div className="px-4 py-3 border-b border-gray-100">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-2">
-                            <div className="bg-gray-100 p-2 rounded-full">
-                              {doctor.icon}
-                            </div>
-                            <div>
-                              <h3 className="font-medium text-gray-900">{doctor.name}</h3>
-                              <p className="text-sm text-gray-600">{doctor.specialty}</p>
-                            </div>
-                          </div>
-                          <Badge className={`${
-                            doctor.status === 'available' ? 'bg-green-100 text-green-700 border-green-200' : 
-                            doctor.status === 'upcoming' ? 'bg-blue-100 text-blue-700 border-blue-200' : 
-                            'bg-gray-100 text-gray-700 border-gray-200'
-                          }`}>
-                            {doctor.status === 'available' ? 'Available Now' : 
-                            doctor.status === 'upcoming' ? 'Soon' : 
-                            'Fully Booked'}
-                          </Badge>
-                        </div>
-                      </div>
-                      
-                      <div className="p-4">
-                        <div className="flex items-center text-sm text-gray-600 mb-3">
-                          <Clock size={16} className="mr-1" />
-                          <span className="font-medium">Next available: {doctor.nextAvailable}</span>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-1 mb-3">
-                          {doctor.services.map((service, idx) => (
-                            <span key={idx} className="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full">
-                              {service}
-                            </span>
-                          ))}
-                        </div>
-                        
-                        <Button 
-                          className={`w-full ${
-                            doctor.status === 'available' 
-                              ? 'bg-belize-green hover:bg-belize-green/90 text-white' 
-                              : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                          } flex items-center justify-center gap-2`}
-                          onClick={() => handleBookAppointment(doctor.name)}
-                          disabled={doctor.status === 'booked'}
-                        >
-                          {doctor.status === 'available' ? 'Book Now' : 
-                           doctor.status === 'upcoming' ? 'Book Upcoming' : 
-                           'Fully Booked'}
-                          {doctor.status !== 'booked' && <ArrowRight size={16} />}
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
-              ) : (
-                <div className="text-center py-6 text-gray-500">
-                  No eye specialists found matching your search criteria.
-                </div>
               )}
             </div>
           </div>
