@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -138,7 +137,6 @@ const upcomingOpenings = [
 
 const DoctorsAvailability: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [locationFilter, setLocationFilter] = useState("all");
   const [showFilters, setShowFilters] = useState(false);
   const [serviceFilter, setServiceFilter] = useState("all");
   const { toast } = useToast();
@@ -149,20 +147,14 @@ const DoctorsAvailability: React.FC = () => {
       doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesLocation = 
-      locationFilter === "all" || 
-      doctor.location.toLowerCase().includes(locationFilter.toLowerCase());
-    
     const matchesService = 
       serviceFilter === "all" || 
       doctor.services.some(service => 
         service.toLowerCase().includes(serviceFilter.toLowerCase())
       );
     
-    return matchesSearch && matchesLocation && matchesService;
+    return matchesSearch && matchesService;
   });
-
-  const locations = ["all", ...new Set(doctorsData.map(doctor => doctor.location))];
 
   const allServices = doctorsData.flatMap(doctor => doctor.services);
   const services = ["all", ...new Set(allServices)];
@@ -216,22 +208,7 @@ const DoctorsAvailability: React.FC = () => {
             </div>
             
             {showFilters && (
-              <div className="mt-2 p-3 bg-white rounded-md shadow-sm space-y-3">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 block mb-1">Location</label>
-                  <select
-                    className="w-full h-10 rounded-md border border-gray-200 px-3 py-2 text-sm focus:outline-none"
-                    value={locationFilter}
-                    onChange={(e) => setLocationFilter(e.target.value)}
-                  >
-                    {locations.map((location, index) => (
-                      <option key={index} value={location}>
-                        {location === "all" ? "All Locations" : location}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                
+              <div className="mt-2 p-3 bg-white rounded-md shadow-sm">
                 <div>
                   <label className="text-sm font-medium text-gray-700 block mb-1">Service</label>
                   <select
