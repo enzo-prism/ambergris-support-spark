@@ -28,10 +28,11 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
   };
 
   return (
-    <div className="space-y-4 my-8">
-      <h3 className="text-xl font-bold text-belize-green">Photo Gallery</h3>
+    <div className="space-y-4 my-12">
+      <h3 className="text-2xl font-bold text-belize-green">Photo Gallery</h3>
+      <p className="text-gray-600 mb-6">View more photos from our October Vision Clinic</p>
       
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4">
         {images.map((image, index) => (
           <Dialog key={index} open={isDialogOpen && currentImageIndex === index} onOpenChange={(open) => {
             setIsDialogOpen(open);
@@ -39,7 +40,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
           }}>
             <DialogTrigger asChild>
               <div className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors">
-                <AspectRatio ratio={4/3} className="bg-gray-100">
+                <AspectRatio ratio={1/1} className="bg-gray-100">
                   <img 
                     src={image.src} 
                     alt={image.alt} 
@@ -84,6 +85,12 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({ images }) => {
                 >
                   <ArrowRight className="h-5 w-5" />
                 </Button>
+                
+                <div className="absolute bottom-2 left-0 right-0 text-center text-white text-sm">
+                  <p className="px-4 py-1 bg-black/50 mx-auto inline-block rounded-full">
+                    {currentImageIndex + 1} / {images.length}
+                  </p>
+                </div>
               </div>
             </DialogContent>
           </Dialog>

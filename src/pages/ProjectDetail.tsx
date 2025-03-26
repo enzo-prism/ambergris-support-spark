@@ -14,13 +14,33 @@ const projects = [
     title: "October Vision Clinic is a Huge Success",
     author: "Rebecca Coutant",
     date: "October 30, 2017",
-    imageSrc: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+    imageSrc: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
     content: `
       <p>BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.</p>
-      <p>Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.</p>
-      <p>For information on upcoming clinics, please see our Facebook page and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
+      
+      <div class="my-6">
+        <img src="/lovable-uploads/2024-10-vision-clinic-1.jpg" alt="Eye examination with kids at the vision clinic" class="w-full rounded-lg" />
+      </div>
+      
+      <p>Kids and adults came for examinations with doctors from <a href="https://med.stanford.edu/ophthalmology.html" target="_blank" rel="noopener" class="text-belize-blue hover:underline">Stanford Medicine</a> in the brand new office installed and operated by BelizeKids.</p>
+      
+      <div class="my-6">
+        <img src="/lovable-uploads/2024-10-vision-clinic-9.jpg" alt="Stanford doctors providing eye care services" class="w-full rounded-lg" />
+      </div>
+      
+      <p>For information on upcoming clinics, please see our <a href="https://www.facebook.com/belizekids/" target="_blank" rel="noopener" class="text-belize-blue hover:underline">Facebook page</a> and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
+      
+      <div class="my-6">
+        <img src="/lovable-uploads/2024-10-vision-clinic-team.jpg" alt="Vision clinic team at the Lions Den" class="w-full rounded-lg" />
+      </div>
+      
       <p>BCVI continues to hold monthly clinics at the Lions Den.</p>
-      <p>And a HUGE thank you to El Fogon Restaurant — just around the corner from the airstrip for donating lunch for our team.</p>
+      
+      <p>And a HUGE thank you to <a href="https://www.elfogonbelize.com/" target="_blank" rel="noopener" class="text-belize-blue hover:underline">El Fogon Restaurant</a> — just around the corner from the airstrip for donating lunch for our team.</p>
+      
+      <div class="my-6">
+        <img src="/lovable-uploads/2024-10-vision-clinic-6.jpg" alt="Eye screening equipment being used" class="w-full rounded-lg" />
+      </div>
     `,
     gallery: [
       {
@@ -189,7 +209,7 @@ const ProjectDetail: React.FC = () => {
             {project?.title}
           </h1>
           
-          <div className="flex items-center text-gray-600 mb-8 gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-center text-gray-600 mb-8 gap-3 sm:gap-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
               <span>{project?.date}</span>
@@ -198,14 +218,6 @@ const ProjectDetail: React.FC = () => {
               <User className="h-5 w-5" />
               <span>By {project?.author}</span>
             </div>
-          </div>
-          
-          <div className="aspect-video mb-10 rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src={project?.imageSrc} 
-              alt={project?.title} 
-              className="w-full h-full object-cover"
-            />
           </div>
           
           <div className="prose prose-lg max-w-none">
