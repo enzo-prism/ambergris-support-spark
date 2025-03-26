@@ -77,6 +77,17 @@ const AboutSection: React.FC = () => {
                 ))}
               </ul>
               
+              <div className="mt-4 mb-6 flex justify-center">
+                <img 
+                  src="https://belizekids.org/wp-content/uploads/2016/02/do-what-you-love.png" 
+                  alt="Do what you love, love what you do" 
+                  className="max-w-full h-auto max-h-32"
+                  onError={(e) => {
+                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='100' viewBox='0 0 300 100'%3E%3Crect width='300' height='100' fill='%23f0f0f0'/%3E%3Ctext x='150' y='50' font-family='Arial' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EDo what you love%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
+              
               <div className="pt-2 mt-auto">
                 <Link to="/leadership" className="w-full sm:w-auto inline-block">
                   <Button variant="outline" className="group border-belize-green text-belize-green hover:bg-belize-green hover:text-white transition-all duration-300 w-full sm:w-auto">

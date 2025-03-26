@@ -23,18 +23,45 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  // Default set of images if none provided
+  const defaultImages = [
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/02/10653550_10154101754174453_4331630713562897652_n.jpg",
+      alt: "Belize Kids project photo 1"
+    },
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/02/12417827_10154101754209453_1560822653524414788_n.jpg",
+      alt: "Belize Kids project photo 2"
+    },
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/02/1513171_10154101754214453_7397762892699540195_n.jpg",
+      alt: "Belize Kids project photo 3"
+    },
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/02/12647232_10154165614824453_5670706674362027840_n.jpg",
+      alt: "Belize Kids project photo 4"
+    },
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/02/12642796_10154165614939453_5986692544243415208_n.jpg",
+      alt: "Belize Kids project photo 5"
+    },
+    {
+      src: "https://belizekids.org/wp-content/uploads/2016/06/IMG_5339.jpg",
+      alt: "Belize Kids project photo 6"
+    }
+  ];
+
+  const galleryImages = images && images.length > 0 ? images : defaultImages;
+
   const handlePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setCurrentImageIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
   };
 
   const handleNext = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
   };
-
-  // If no images, don't render the gallery
-  if (!images || images.length === 0) return null;
 
   return (
     <div className="space-y-4 my-12">
@@ -42,7 +69,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
       <p className="text-gray-600 mb-6">{description}</p>
       
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
-        {images.map((image, index) => (
+        {galleryImages.map((image, index) => (
           <Dialog key={index} open={isDialogOpen && currentImageIndex === index} onOpenChange={(open) => {
             setIsDialogOpen(open);
             if (open) setCurrentImageIndex(index);
@@ -87,11 +114,11 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                 
                 <div className="w-full h-full flex items-center justify-center p-4">
                   <img 
-                    src={images[currentImageIndex].src} 
-                    alt={images[currentImageIndex].alt} 
+                    src={galleryImages[currentImageIndex].src} 
+                    alt={galleryImages[currentImageIndex].alt} 
                     className="max-w-full max-h-full object-contain"
                     onError={(e) => {
-                      console.error(`Error loading lightbox image: ${images[currentImageIndex].src}`);
+                      console.error(`Error loading lightbox image: ${galleryImages[currentImageIndex].src}`);
                       e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23333333'/%3E%3Ctext x='150' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff'%3EImage could not be loaded%3C/text%3E%3C/svg%3E";
                     }}
                   />
@@ -108,7 +135,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                 
                 <div className="absolute bottom-2 left-0 right-0 text-center text-white text-sm">
                   <p className="px-4 py-1 bg-black/50 mx-auto inline-block rounded-full">
-                    {currentImageIndex + 1} / {images.length}
+                    {currentImageIndex + 1} / {galleryImages.length}
                   </p>
                 </div>
               </div>

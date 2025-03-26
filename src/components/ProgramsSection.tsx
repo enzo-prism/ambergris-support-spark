@@ -97,9 +97,13 @@ const ProgramsSection: React.FC = () => {
           </div>
           <div className="md:w-1/2">
             <img 
-              src="/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png" 
-              alt="Children participating in programs" 
+              src="https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-2.jpg" 
+              alt="San Pedro RC School students" 
               className="rounded-lg shadow-md w-full h-auto object-cover"
+              onError={(e) => {
+                console.error("Error loading image");
+                e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+              }}
             />
           </div>
         </div>

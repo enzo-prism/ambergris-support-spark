@@ -32,19 +32,19 @@ const ImpactSection: React.FC = () => {
       name: "Vision Clinic",
       age: "",
       story: "Our vision clinics provide hundreds of children with eye exams and glasses, significantly improving their ability to learn and participate in school activities.",
-      image: "/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png",
+      image: "https://belizekids.org/wp-content/uploads/2016/02/12592316_10154165614829453_909396111248501705_n.jpg",
     },
     {
       name: "Eye Testing",
       age: "",
       story: "By identifying vision problems early, we help ensure children have the foundation they need for academic success and future opportunities.",
-      image: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
+      image: "https://belizekids.org/wp-content/uploads/2016/02/12645260_10154165614814453_7582052312479518910_n.jpg",
     },
     {
-      name: "Healthcare Access",
+      name: "School Support",
       age: "",
-      story: "Our healthcare initiatives expand medical services to children who might otherwise go without proper care, improving their overall wellbeing and future prospects.",
-      image: "/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png",
+      story: "Our educational initiatives provide resources and infrastructure to schools, creating better learning environments for children across Belize.",
+      image: "https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-5.jpg",
     },
   ];
 
@@ -182,6 +182,10 @@ const ImpactSection: React.FC = () => {
                       src={story.image} 
                       alt={`${story.name}`} 
                       className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => {
+                        console.error(`Error loading image: ${story.image}`);
+                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                      }}
                     />
                   </div>
                   <div className="p-6 flex-grow">

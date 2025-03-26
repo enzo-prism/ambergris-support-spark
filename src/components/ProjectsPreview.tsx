@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "October 30, 2017",
       excerpt: "BelizeKids.org, in conjunction with BCVI and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_3602.jpg",
       slug: "october-vision-clinic",
     },
     {
@@ -23,7 +24,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "November 22, 2022",
       excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2016/11/DollaADive-Boxes-1.jpg",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2016/02/pole.jpg",
       slug: "dollar-a-dive-program",
     },
     {
@@ -32,7 +33,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "August 27, 2022",
       excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_5338.jpg",
       slug: "second-vision-screening-machine",
     },
   ];

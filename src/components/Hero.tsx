@@ -21,7 +21,7 @@ const Hero: React.FC = () => {
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
         <img 
-          src="https://belizekids.org/wp-content/uploads/2020/06/belize-trees.jpg" 
+          src="https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-3.jpg" 
           alt="Belize background" 
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => {
@@ -76,8 +76,8 @@ const Hero: React.FC = () => {
           <div className="relative w-full max-w-xs mx-auto sm:max-w-sm animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <img 
-                src="https://belizekids.org/wp-content/uploads/2016/07/belize-kids-donates-to-lions-den.jpg" 
-                alt="BelizeKids donation to Lions Den" 
+                src="https://belizekids.org/wp-content/uploads/2016/06/kids-at-Rc-school.jpg" 
+                alt="Belizean children at school" 
                 className="object-cover w-full h-full" 
                 onError={(e) => {
                   console.error("Error loading hero image");
