@@ -24,19 +24,22 @@ const Index: React.FC = () => {
         <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
         <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+        <meta name="theme-color" content="#3CB371" />
       </Helmet>
       <Navbar />
-      <Hero />
-      <AboutSection />
-      <ProgramsSection />
-      <ProjectsPreview />
-      <ImpactSection />
-      <MembershipPromo />
-      <DonationForm />
-      <MembershipBenefits />
-      <TransparencySection />
-      <ContactSection />
+      <main className="relative">
+        <Hero />
+        <AboutSection />
+        <ProgramsSection />
+        <ProjectsPreview />
+        <ImpactSection />
+        <MembershipPromo />
+        <DonationForm />
+        <MembershipBenefits />
+        <TransparencySection />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );
