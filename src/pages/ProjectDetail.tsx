@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -13,14 +12,14 @@ const projects = [
     slug: "october-vision-clinic",
     title: "October Vision Clinic is a Huge Success",
     author: "Rebecca Coutant",
-    date: "October 30, 2023",
+    date: "October 30, 2017",
     imageSrc: "/lovable-uploads/20afad96-a69a-4127-822c-f95dc36b74e3.png",
     content: `
-      <p>Belize Kids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by Belize Kids.</p>
-      <p>The clinic was held over three days at the San Pedro Community Center, with volunteer optometrists from the United States and Belize working tirelessly to serve as many children as possible.</p>
-      <p>One of the most rewarding moments was seeing the expressions on children's faces when they put on their new glasses for the first time and could see clearly. For many, it was a life-changing experience that will significantly improve their ability to learn and participate in school.</p>
-      <p>We'd like to extend a special thank you to Dr. James Wilson and his team for donating their time and expertise, as well as to our donors who made this event possible by funding the equipment and glasses.</p>
-      <p>Based on the success of this clinic, we're planning to expand this healthcare initiative to other communities in Belize in the coming year, aligning with our mission to improve the lives of kids throughout Belize.</p>
+      <p>BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.</p>
+      <p>Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.</p>
+      <p>For information on upcoming clinics, please see our Facebook page and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
+      <p>BCVI continues to hold monthly clinics at the Lions Den.</p>
+      <p>And a HUGE thank you to El Fogon Restaurant — just around the corner from the airstrip for donating lunch for our team.</p>
     `
   },
   {
