@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MembershipHero from "@/components/MembershipHero";
 import MembershipBenefits from "@/components/MembershipBenefits";
-import MembershipTestimonials from "@/components/MembershipTestimonials";
 import MembershipForm from "@/components/MembershipForm";
 
 const Membership: React.FC = () => {
@@ -23,7 +22,6 @@ const Membership: React.FC = () => {
       <Navbar />
       <MembershipHero />
       <MembershipBenefits />
-      <MembershipTestimonials />
       <MembershipForm />
       <Footer />
     </div>
