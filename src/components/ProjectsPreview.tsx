@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +14,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "October 30, 2017",
       excerpt: "BelizeKids.org, in conjunction with BCVI and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.",
-      imageSrc: "/lovable-uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
       slug: "october-vision-clinic",
     },
     {
@@ -24,7 +23,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "November 22, 2022",
       excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving.",
-      imageSrc: "/lovable-uploads/2016/11/DAD-logo.png",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2016/11/DollaADive-Boxes-1.jpg",
       slug: "dollar-a-dive-program",
     },
     {
@@ -33,7 +32,7 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "August 27, 2022",
       excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week.",
-      imageSrc: "/lovable-uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
+      imageSrc: "https://belizekids.org/wp-content/uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
       slug: "second-vision-screening-machine",
     },
   ];
@@ -97,6 +96,10 @@ const ProjectsPreview: React.FC = () => {
                     src={post.imageSrc} 
                     alt={post.title} 
                     className="object-cover w-full h-full transition-transform hover:scale-105 duration-300"
+                    onError={(e) => {
+                      console.error(`Error loading image: ${post.imageSrc}`);
+                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                    }}
                   />
                 </div>
                 <CardContent className="pt-5">

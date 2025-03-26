@@ -36,6 +36,9 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   // If no images, don't render the gallery
   if (!images || images.length === 0) return null;
 
+  // Log the images to debug
+  console.log("Gallery images:", images);
+
   return (
     <div className="space-y-4 my-12">
       <h3 className="text-2xl font-bold text-belize-green">{title}</h3>
@@ -54,6 +57,10 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                     src={image.src} 
                     alt={image.alt} 
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      console.error(`Error loading image: ${image.src}`);
+                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23f0f0f0'/%3E%3Ctext x='75' y='75' font-family='Arial' font-size='12' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not found%3C/text%3E%3C/svg%3E";
+                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <ZoomIn className="text-white h-8 w-8" />
@@ -86,6 +93,10 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                     src={images[currentImageIndex].src} 
                     alt={images[currentImageIndex].alt} 
                     className="max-w-full max-h-full object-contain"
+                    onError={(e) => {
+                      console.error(`Error loading lightbox image: ${images[currentImageIndex].src}`);
+                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23333333'/%3E%3Ctext x='150' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff'%3EImage could not be loaded%3C/text%3E%3C/svg%3E";
+                    }}
                   />
                 </div>
                 
