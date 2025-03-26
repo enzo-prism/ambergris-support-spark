@@ -36,9 +36,6 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   // If no images, don't render the gallery
   if (!images || images.length === 0) return null;
 
-  // Log the images to debug
-  console.log("Gallery images:", images);
-
   return (
     <div className="space-y-4 my-12">
       <h3 className="text-2xl font-bold text-belize-green">{title}</h3>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,7 +22,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 30, 2017",
     excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
-    imageSrc: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
     slug: "october-vision-clinic",
     category: "healthcare",
   },
@@ -33,7 +32,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "November 22, 2022",
     excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's.",
-    imageSrc: "/lovable-uploads/ca21c85a-e8be-48b2-8f9d-89e3983435ca.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/11/DollaADive-Boxes-1.jpg",
     slug: "dollar-a-dive-program",
     category: "fundraising",
   },
@@ -43,7 +42,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 27, 2022",
     excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year.",
-    imageSrc: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
     slug: "second-vision-screening-machine",
     category: "healthcare",
   },
@@ -53,7 +52,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 7, 2022",
     excerpt: "Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between Belize Kids.Org and Finn & Martini Lounge and Restaurant.",
-    imageSrc: "/lovable-uploads/d0cf5c69-dc26-4c5e-9ebe-18ea1a2d19d5.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/cbj2.jpg",
     slug: "camp-basil-jones",
     category: "education",
   },
@@ -63,7 +62,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 20, 2022",
     excerpt: "Just last week Belize Kids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.",
-    imageSrc: "/lovable-uploads/ef657229-fafe-4b76-83f7-88bce76133af.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/belize-kids-donates-to-lions-den.jpg",
     slug: "eye-screening-equipment",
     category: "healthcare",
   },
@@ -73,7 +72,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 9, 2022",
     excerpt: "Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.",
-    imageSrc: "/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/BJ1-5.jpg",
     slug: "fundraising-camp-basil-jones",
     category: "education",
   },
@@ -83,7 +82,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "June 14, 2022",
     excerpt: "San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.",
-    imageSrc: "/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_3598.jpg",
     slug: "sprc-primary-school",
     category: "education",
   },
@@ -93,7 +92,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 1, 2021",
     excerpt: "In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.",
-    imageSrc: "/lovable-uploads/378a9d5e-a28f-46e3-b7b3-548b5d1bc855.png",
+    imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/Mooring-Bouys-Donated.jpg",
     slug: "equipment-donation-hol-chan",
     category: "environment",
   },
@@ -210,6 +209,10 @@ const ProjectsList: React.FC = () => {
                       src={post.imageSrc} 
                       alt={post.title} 
                       className="object-cover w-full h-full transition-transform hover:scale-105 duration-500"
+                      onError={(e) => {
+                        console.error(`Error loading image: ${post.imageSrc}`);
+                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                      }}
                     />
                     <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
                       {post.category}
@@ -257,6 +260,10 @@ const ProjectsList: React.FC = () => {
                         src={post.imageSrc} 
                         alt={post.title} 
                         className="object-cover w-full h-full"
+                        onError={(e) => {
+                          console.error(`Error loading image: ${post.imageSrc}`);
+                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                        }}
                       />
                       <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
                         {post.category}

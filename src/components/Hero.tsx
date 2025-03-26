@@ -24,6 +24,10 @@ const Hero: React.FC = () => {
           src="https://belizekids.org/wp-content/uploads/2020/06/belize-trees.jpg" 
           alt="Belize background" 
           className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => {
+            console.error("Error loading background image");
+            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' viewBox='0 0 1000 1000'%3E%3Crect width='1000' height='1000' fill='%23f8f9fa'/%3E%3C/svg%3E";
+          }}
         />
       </div>
       
@@ -75,6 +79,10 @@ const Hero: React.FC = () => {
                 src="https://belizekids.org/wp-content/uploads/2016/07/belize-kids-donates-to-lions-den.jpg" 
                 alt="BelizeKids donation to Lions Den" 
                 className="object-cover w-full h-full" 
+                onError={(e) => {
+                  console.error("Error loading hero image");
+                  e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                }}
               />
             </div>
             <div className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 bg-white p-2 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">

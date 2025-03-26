@@ -31,7 +31,7 @@ const projects = [
       <p>For information on upcoming clinics, please see our <a href="https://www.facebook.com/belizekids/" target="_blank" rel="noopener" class="text-belize-blue hover:underline">Facebook page</a> and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
       
       <div class="my-6">
-        <img src="https://belizekids.org/wp-content/uploads/2017/10/IMG_1457.jpg" alt="Vision clinic team at the Lions Den" class="w-full rounded-lg" />
+        <img src="https://belizekids.org/wp-content/uploads/2017/10/IMG_1457-1024x285.jpg" alt="Vision clinic team at the Lions Den" class="w-full rounded-lg" />
       </div>
       
       <p>BCVI continues to hold monthly clinics at the Lions Den.</p>
@@ -52,7 +52,7 @@ const projects = [
         alt: "Stanford doctors providing eye care services"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/IMG_1457.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/IMG_1457-1024x285.jpg",
         alt: "Vision clinic team at the Lions Den"
       },
       {
@@ -64,39 +64,39 @@ const projects = [
         alt: "Vision clinic activities"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-1.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-1-150x150.jpg",
         alt: "BelizeKids.org vision clinic activities"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-2.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-2-150x150.jpg",
         alt: "Eye examinations at vision clinic"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-3.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-3-150x150.jpg",
         alt: "Patient receiving vision care"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-4.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-4-150x150.jpg",
         alt: "Medical staff at vision clinic"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-5.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-5-150x150.jpg",
         alt: "BCVI and Stanford doctors collaboration"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-6.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/BKO-OCT-1-6-150x150.jpg",
         alt: "Vision clinic operations"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-2.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-2-150x150.jpg",
         alt: "Vision screening process"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/IMG_1455.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/IMG_1455-150x150.jpg",
         alt: "Vision clinic setup at Lions Den"
       },
       {
-        src: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-5.jpg",
+        src: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-5-150x150.jpg",
         alt: "Vision care equipment and testing"
       },
       {
