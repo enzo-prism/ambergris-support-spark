@@ -26,48 +26,36 @@ function Calendar({
         nav: "space-x-1 flex items-center",
         nav_button: cn(
           buttonVariants({ variant: "ghost", size: "icon" }),
-          "h-7 w-7 bg-transparent p-0 text-muted-foreground hover:text-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-primary"
+          "h-7 w-7 bg-transparent p-0 text-muted-foreground hover:text-primary focus:outline-none"
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
-        head_cell:
-          "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem] py-1",
+        head_cell: "text-muted-foreground w-9 font-normal text-xs py-1",
         row: "flex w-full mt-1",
-        cell: cn(
-          "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent/5 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md",
-          "touch-none" // Improve touch interaction
-        ),
+        cell: "relative p-0 text-center text-sm touch-none",
         day: cn(
           buttonVariants({ variant: "ghost", size: "icon" }),
-          "h-9 w-9 p-0 font-normal transition-all duration-200 aria-selected:opacity-100 hover:bg-accent hover:text-accent-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-primary"
+          "h-9 w-9 p-0 font-normal aria-selected:opacity-100 focus:outline-none"
         ),
-        day_range_end: "day-range-end",
-        day_selected: cn(
-          "bg-primary text-primary-foreground",
-          "hover:bg-primary hover:text-primary-foreground",
-          "focus:bg-primary focus:text-primary-foreground",
-          "shadow-sm transition-transform scale-105" // Subtle elevation for selected date
-        ),
-        day_today: cn(
-          "border border-primary text-primary",
-          "before:absolute before:inset-0 before:rounded-full before:border"
-        ),
-        day_outside: cn(
-          "day-outside text-muted-foreground opacity-50",
-          "aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30"
-        ),
-        day_disabled: "text-muted-foreground opacity-50 cursor-not-allowed",
-        day_range_middle: cn(
-          "aria-selected:bg-accent aria-selected:text-accent-foreground"
-        ),
+        day_selected: "bg-primary text-primary-foreground rounded-md",
+        day_today: "border border-primary text-primary rounded-md",
+        day_outside: "text-muted-foreground opacity-50",
+        day_disabled: "text-muted-foreground opacity-30 cursor-not-allowed",
         day_hidden: "invisible",
         ...classNames,
       }}
       components={{
-        IconLeft: () => <ChevronLeft className="h-4 w-4 transition-colors" />,
-        IconRight: () => <ChevronRight className="h-4 w-4 transition-colors" />,
+        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
+        IconRight: () => <ChevronRight className="h-4 w-4" />,
+      }}
+      modifiersClassNames={{
+        selected: "bg-primary text-primary-foreground rounded-md",
+        today: "border border-primary text-primary rounded-md",
+        disabled: "text-muted-foreground opacity-30",
+        outside: "text-muted-foreground opacity-50",
+        ...(props.modifiersClassNames || {}),
       }}
       {...props}
     />
