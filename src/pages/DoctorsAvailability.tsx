@@ -16,14 +16,35 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Calendar } from "@/components/ui/calendar";
 import { format, addDays, isSameDay } from "date-fns";
 
+// Define TypeScript interfaces for clarity
+interface Doctor {
+  id: number;
+  name: string;
+  specialty: string;
+  avatar: React.ReactNode;
+  serviceType: string;
+  duration: string;
+}
+
+interface TimeSlot {
+  id: string;
+  doctorId: number;
+  time: string;
+  available: boolean;
+}
+
+interface DoctorSlot extends TimeSlot {
+  doctor: Doctor;
+}
+
 // Generate doctor data with availability for the next 30 days
 const generateDoctorData = () => {
-  const doctors = [
+  const doctors: Doctor[] = [
     {
       id: 1,
       name: "Dr. Maria Rodriguez",
@@ -75,7 +96,7 @@ const generateDoctorData = () => {
   ];
 
   // Generate availability for each doctor for the next 30 days
-  const availability = {};
+  const availability: Record<string, TimeSlot[]> = {};
   const today = new Date();
 
   for (let i = 0; i < 30; i++) {
@@ -100,7 +121,7 @@ const generateDoctorData = () => {
         (doctor.id === 5 && [1, 4].includes(date.getDay()))       // Monday, Thursday
       ) {
         // Add 1-4 slots for this doctor on this day
-        const slots = [];
+        const slots: string[] = [];
         const numSlots = Math.floor(Math.random() * 4) + 1;
         
         for (let j = 0; j < numSlots; j++) {
@@ -155,15 +176,18 @@ const DoctorsAvailability: React.FC = () => {
 
   // Group slots by time
   const slotsByTime = useMemo(() => {
-    const grouped = {};
+    const grouped: Record<string, DoctorSlot[]> = {};
     slotsForSelectedDate.forEach(slot => {
       if (!grouped[slot.time]) {
         grouped[slot.time] = [];
       }
-      grouped[slot.time].push({
-        ...slot,
-        doctor: doctors.find(d => d.id === slot.doctorId)
-      });
+      const doctor = doctors.find(d => d.id === slot.doctorId);
+      if (doctor) {
+        grouped[slot.time].push({
+          ...slot,
+          doctor
+        });
+      }
     });
     return grouped;
   }, [slotsForSelectedDate]);
@@ -280,7 +304,7 @@ const DoctorsAvailability: React.FC = () => {
                             </h3>
                             
                             <div className="grid grid-cols-1 gap-2">
-                              {slots.map(slot => (
+                              {slots.map((slot) => (
                                 <div 
                                   key={slot.id} 
                                   className={`flex justify-between items-center p-3 rounded-md border ${
@@ -329,20 +353,22 @@ const DoctorsAvailability: React.FC = () => {
                       <div>
                         <h3 className="font-medium text-gray-900">Appointment Details</h3>
                         <p className="text-sm text-gray-600">
-                          {format(selectedDate, "EEEE, MMMM d, yyyy")} at {slotsByTime[Object.keys(slotsByTime).find(time => 
-                            slotsByTime[time].some(s => s.id === selectedSlot)
-                          ) || '']?.[0]?.time}
+                          {format(selectedDate, "EEEE, MMMM d, yyyy")} at {
+                            Object.entries(slotsByTime).find(([time, slots]) => 
+                              slots.some(s => s.id === selectedSlot)
+                            )?.[0] || ''
+                          }
                         </p>
                       </div>
                       <Button
                         className="bg-belize-green hover:bg-belize-green/90 text-white"
                         onClick={() => {
-                          const slot = Object.values(slotsByTime)
+                          const slotInfo = Object.values(slotsByTime)
                             .flat()
                             .find(s => s.id === selectedSlot);
                           
-                          if (slot) {
-                            handleBookAppointment(slot.doctor?.name || '', slot.time);
+                          if (slotInfo) {
+                            handleBookAppointment(slotInfo.doctor?.name || '', slotInfo.time);
                           }
                         }}
                       >
