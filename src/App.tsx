@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,12 +13,11 @@ import Leadership from "./pages/Leadership";
 import Membership from "./pages/Membership";
 import DoctorsAvailability from "./pages/DoctorsAvailability";
 import NotFound from "./pages/NotFound";
-import { useState } from "react";
 
-const App = () => {
-  // Create a client inside the component to ensure React context works properly
-  const [queryClient] = useState(() => new QueryClient());
+// Create a client
+const queryClient = new QueryClient();
 
+const App: React.FC = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
