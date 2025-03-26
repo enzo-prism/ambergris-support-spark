@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowLeft } from "lucide-react";
+import ProjectDetailGallery from "@/components/ProjectDetailGallery";
 
 // This would come from a database or API in a real application
 const projects = [
@@ -13,14 +14,36 @@ const projects = [
     title: "October Vision Clinic is a Huge Success",
     author: "Rebecca Coutant",
     date: "October 30, 2017",
-    imageSrc: "/lovable-uploads/20afad96-a69a-4127-822c-f95dc36b74e3.png",
+    imageSrc: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
     content: `
       <p>BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.</p>
       <p>Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.</p>
       <p>For information on upcoming clinics, please see our Facebook page and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
       <p>BCVI continues to hold monthly clinics at the Lions Den.</p>
       <p>And a HUGE thank you to El Fogon Restaurant — just around the corner from the airstrip for donating lunch for our team.</p>
-    `
+    `,
+    gallery: [
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
+        alt: "Eye examination with kids at the vision clinic"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-9.jpg",
+        alt: "Stanford doctors providing eye care services"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-team.jpg",
+        alt: "Vision clinic team at the Lions Den"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-6.jpg",
+        alt: "Eye screening equipment being used"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+        alt: "Primary vision clinic activity"
+      }
+    ]
   },
   {
     slug: "dollar-a-dive-program",
@@ -147,11 +170,11 @@ const ProjectDetail: React.FC = () => {
   return (
     <div className="min-h-screen">
       <Helmet>
-        <title>Project Detail</title>
-        <meta name="description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
-        <meta property="og:title" content={`Project Detail`} />
-        <meta property="og:description" content={`${project.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
-        <meta property="og:image" content={project.imageSrc} />
+        <title>{project?.title || "Project Detail"}</title>
+        <meta name="description" content={`${project?.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
+        <meta property="og:title" content={project?.title || "Project Detail"} />
+        <meta property="og:description" content={`${project?.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
+        <meta property="og:image" content={project?.imageSrc} />
         <meta property="og:type" content="article" />
       </Helmet>
       <Navbar />
@@ -163,31 +186,35 @@ const ProjectDetail: React.FC = () => {
           </Link>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-belize-green mb-4">
-            {project.title}
+            {project?.title}
           </h1>
           
           <div className="flex items-center text-gray-600 mb-8 gap-6">
             <div className="flex items-center gap-2">
               <Calendar className="h-5 w-5" />
-              <span>{project.date}</span>
+              <span>{project?.date}</span>
             </div>
             <div className="flex items-center gap-2">
               <User className="h-5 w-5" />
-              <span>By {project.author}</span>
+              <span>By {project?.author}</span>
             </div>
           </div>
           
           <div className="aspect-video mb-10 rounded-lg overflow-hidden shadow-lg">
             <img 
-              src={project.imageSrc} 
-              alt={project.title} 
+              src={project?.imageSrc} 
+              alt={project?.title} 
               className="w-full h-full object-cover"
             />
           </div>
           
           <div className="prose prose-lg max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: project.content }} />
+            <div dangerouslySetInnerHTML={{ __html: project?.content || '' }} />
           </div>
+          
+          {project?.gallery && project.gallery.length > 0 && (
+            <ProjectDetailGallery images={project.gallery} />
+          )}
           
           <div className="mt-12 border-t pt-8">
             <h3 className="text-xl font-bold mb-4">Help Support Our Work</h3>

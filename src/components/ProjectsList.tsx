@@ -23,7 +23,7 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 30, 2017",
     excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
-    imageSrc: "/lovable-uploads/20afad96-a69a-4127-822c-f95dc36b74e3.png",
+    imageSrc: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
     slug: "october-vision-clinic",
     category: "healthcare",
   },
