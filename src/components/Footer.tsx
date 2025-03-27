@@ -1,114 +1,142 @@
-
 import React from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { Facebook } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  const isMobile = useIsMobile();
-  
   return (
-    <footer className="bg-white text-gray-700 pt-10 sm:pt-16 pb-6 sm:pb-8 shadow-sm border-t border-gray-100">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 pb-6 sm:pb-10 border-b border-gray-200">
-          <div>
-            <div className="mb-4 text-center sm:text-left">
+    <footer className="bg-white border-t py-12">
+      <div className="container-custom">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Column 1: Logo + About */}
+          <div className="space-y-4">
+            <Link to="/" className="inline-block">
               <img 
                 src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
-                alt="BelizeKIDS.ORG Logo" 
-                className="h-10 sm:h-12 w-auto mx-auto sm:mx-0"
+                alt="BelizeKids.org Logo" 
+                className="h-12 w-auto" 
               />
-            </div>
-            <p className="text-gray-600 mb-4 text-sm sm:text-base text-center sm:text-left">
-              Improving the lives of children in Belize through investments in education, healthcare, parks, and scholarships.
+            </Link>
+            <p className="text-sm text-gray-600 max-w-xs">
+              BelizeKids.org enhances educational opportunities for children in Belize through sustainable infrastructure projects.
             </p>
-            <div className="text-center sm:text-left">
-              <p className="text-gray-600 mb-1 text-sm">501(c)(3) Non-Profit Organization</p>
-              <p className="text-gray-600 mb-1 text-sm">TAX ID: 81-2841433</p>
-              <address className="text-gray-600 not-italic text-sm">
-                PO BOX 620134<br/>
-                Woodside, CA 94062
-              </address>
-            </div>
-            <div className="mt-4 flex items-center justify-center sm:justify-start">
+          </div>
+          
+          {/* Column 2: Quick Links */}
+          <div>
+            <h3 className="font-heading font-medium mb-4 text-gray-900">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/leadership" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Leadership
+                </Link>
+              </li>
+              <li>
+                <Link to="/projects" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <a href="/#contact" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Column 3: Resources */}
+          <div>
+            <h3 className="font-heading font-medium mb-4 text-gray-900">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/projects" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Current Projects
+                </Link>
+              </li>
+              <li>
+                <Link to="/doctors" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Eye Care Appointments
+                </Link>
+              </li>
+              <li>
+                <Link to="/monthly-investment" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
+                  Monthly Investment
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Column 4: Connect */}
+          <div>
+            <h3 className="font-heading font-medium mb-4 text-gray-900">Connect With Us</h3>
+            <div className="flex space-x-3">
               <a 
-                href="https://www.facebook.com/belizekids/" 
+                href="https://facebook.com" 
                 target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-200"
-                aria-label="Visit our Facebook page"
+                rel="noreferrer" 
+                className="text-gray-500 hover:text-belize-green transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="text-gray-500 hover:text-belize-green transition-colors"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="text-gray-500 hover:text-belize-green transition-colors"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a 
+                href="mailto:info@belizekids.org" 
+                className="text-gray-500 hover:text-belize-green transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </div>
-          </div>
-          
-          <div className="mt-6 sm:mt-0 text-center sm:text-left">
-            <h3 className="font-bold text-lg mb-3 sm:mb-6 text-belize-green relative inline-block">
-              Quick Links
-              <span className="absolute -bottom-2 left-0 right-0 sm:right-auto sm:w-12 h-1 bg-belize-green"></span>
-            </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              <li>
-                <a href="#about" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#programs" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Our Programs
-                </a>
-              </li>
-              <li>
-                <a href="#impact" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Our Impact
-                </a>
-              </li>
-              <li>
-                <a href="#donate" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Donate
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="mt-6 sm:mt-0 text-center sm:text-left">
-            <h3 className="font-bold text-lg mb-3 sm:mb-6 text-belize-green relative inline-block">
-              Legal
-              <span className="absolute -bottom-2 left-0 right-0 sm:right-auto sm:w-12 h-1 bg-belize-green"></span>
-            </h3>
-            <ul className="space-y-2 sm:space-y-3">
-              <li>
-                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Financial Reports
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-600 hover:text-belize-green transition-colors text-sm sm:text-base">
-                  Annual Reports
-                </a>
-              </li>
-            </ul>
+            
+            <div className="mt-6">
+              <h4 className="font-medium text-gray-900 mb-3">Subscribe to our Newsletter</h4>
+              <div className="flex flex-col sm:flex-row">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="input-donate mb-2 sm:mb-0 sm:mr-2" 
+                />
+                <Button className="bg-belize-blue hover:bg-belize-blue/90 text-white">Subscribe</Button>
+              </div>
+            </div>
           </div>
         </div>
         
-        <div className="mt-6 text-center text-gray-500 text-xs sm:text-sm">
-          <p>© {currentYear} BelizeKids.org. All rights reserved.</p>
+        <div className="mt-12 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-sm text-gray-500">
+            © {new Date().getFullYear()} BelizeKIDS.org. All rights reserved.
+          </p>
+          <div className="mt-4 md:mt-0 flex items-center">
+            <Link to="/privacy" className="text-xs text-gray-500 hover:underline mr-4">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="text-xs text-gray-500 hover:underline">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
