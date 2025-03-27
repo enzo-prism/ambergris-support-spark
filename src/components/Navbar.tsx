@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -15,16 +16,9 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 
 type NavItemBase = {
   label: string;
@@ -119,7 +113,7 @@ const Navbar: React.FC = () => {
           icon: <Folder className="h-5 w-5" />
         },
         {
-          label: "Schedule",
+          label: "Eye Care Appointments",
           type: "link",
           to: "/doctors",
           hasHighlight: true,
@@ -184,50 +178,6 @@ const Navbar: React.FC = () => {
         </div>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-
-  const ResourcesDropdown = () => (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="outline" className="hidden lg:flex items-center gap-2">
-          <Folder className="h-4 w-4" />
-          <span>Resources</span>
-          <ChevronRight className="h-4 w-4 rotate-90" />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent align="center" className="w-[400px] p-0 rounded-md">
-        <div className="grid grid-cols-2 gap-3 p-4">
-          <Link to="/doctors" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-50 to-blue-100 p-4 no-underline outline-none transition-colors hover:from-blue-100 hover:to-blue-200">
-            <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
-              <Calendar className="mb-1 h-5 w-5 inline-block mr-2" />
-              Schedule Eye Care
-            </div>
-            <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-              Find available eye doctors and specialists in your area
-            </div>
-            <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
-          </Link>
-          <Link to="/monthly-investment" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-100 to-blue-200 p-4 no-underline outline-none transition-colors hover:from-blue-200 hover:to-blue-300">
-            <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
-              <CreditCard className="mb-1 h-5 w-5 inline-block mr-2" />
-              Monthly Investment
-            </div>
-            <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-              Create lasting impact with monthly recurring support
-            </div>
-            <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
-          </Link>
-        </div>
-        <div className="p-4 pt-0">
-          <Button asChild variant="outline" className="w-full justify-between">
-            <Link to="/projects">
-              <span>View Our Projects</span>
-              <ChevronRight className="h-4 w-4 ml-2" />
-            </Link>
-          </Button>
-        </div>
-      </PopoverContent>
-    </Popover>
   );
 
   const MobileMenuItem = ({ 
@@ -321,12 +271,6 @@ const Navbar: React.FC = () => {
     return content;
   };
 
-  const MobileSectionHeader = ({ children }: { children: React.ReactNode }) => (
-    <div className="text-xs uppercase tracking-wider font-semibold text-gray-500 px-3 pt-5 pb-2">
-      {children}
-    </div>
-  );
-
   return (
     <nav 
       className={cn(
@@ -379,8 +323,6 @@ const Navbar: React.FC = () => {
         )}
 
         <div className="hidden md:flex items-center ml-4 space-x-2">
-          <ResourcesDropdown />
-          
           <Button 
             onClick={() => scrollToSection("donate")}
             className="bg-belize-coral hover:bg-belize-coral/90 text-white transition-all hover:shadow-md flex items-center gap-2"
