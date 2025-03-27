@@ -214,7 +214,7 @@ const projects = [
       "20 mooring buoys donated",
       "Protected Mexico Rocks dive site",
       "Prevented coral damage from anchoring",
-      "Enhanced "no-take zone" enforcement"
+      "Enhanced 'no-take zone' enforcement"
     ],
     keyNumbers: [
       { label: "Buoys Donated", value: "20" },
