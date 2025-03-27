@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,11 @@ import {
   User, 
   ArrowRight,
   Grid,
-  LayoutList
+  LayoutList,
+  FileText,
+  BookOpen,
+  Heart,
+  Leaf
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
@@ -22,9 +27,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 30, 2017",
     excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
     slug: "october-vision-clinic",
     category: "healthcare",
+    icon: Heart,
+    color: "bg-rose-500"
   },
   {
     id: 2,
@@ -32,9 +38,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "November 22, 2022",
     excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/11/DollaADive-Boxes-1.jpg",
     slug: "dollar-a-dive-program",
     category: "fundraising",
+    icon: FileText,
+    color: "bg-amber-500"
   },
   {
     id: 3,
@@ -42,9 +49,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 27, 2022",
     excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/08/Lions-Eye-Screener-Canary-Coves-1-657x493.jpg",
     slug: "second-vision-screening-machine",
     category: "healthcare",
+    icon: Heart,
+    color: "bg-rose-500"
   },
   {
     id: 4,
@@ -52,9 +60,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "August 7, 2022",
     excerpt: "Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between Belize Kids.Org and Finn & Martini Lounge and Restaurant.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/cbj2.jpg",
     slug: "camp-basil-jones",
     category: "education",
+    icon: BookOpen,
+    color: "bg-blue-500"
   },
   {
     id: 5,
@@ -62,9 +71,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 20, 2022",
     excerpt: "Just last week Belize Kids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/belize-kids-donates-to-lions-den.jpg",
     slug: "eye-screening-equipment",
     category: "healthcare",
+    icon: Heart,
+    color: "bg-rose-500"
   },
   {
     id: 6,
@@ -72,9 +82,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "July 9, 2022",
     excerpt: "Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/07/BJ1-5.jpg",
     slug: "fundraising-camp-basil-jones",
     category: "education",
+    icon: BookOpen,
+    color: "bg-blue-500"
   },
   {
     id: 7,
@@ -82,9 +93,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "June 14, 2022",
     excerpt: "San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_3598.jpg",
     slug: "sprc-primary-school",
     category: "education",
+    icon: BookOpen,
+    color: "bg-blue-500"
   },
   {
     id: 8,
@@ -92,9 +104,10 @@ const projectPosts = [
     author: "Rebecca Coutant",
     date: "October 1, 2021",
     excerpt: "In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.",
-    imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/Mooring-Bouys-Donated.jpg",
     slug: "equipment-donation-hol-chan",
     category: "environment",
+    icon: Leaf,
+    color: "bg-green-500"
   },
 ];
 
@@ -139,6 +152,36 @@ const ProjectsList: React.FC = () => {
       transition: {
         duration: 0.5
       }
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch(category) {
+      case "healthcare":
+        return <Heart className="h-5 w-5 text-white" />;
+      case "education":
+        return <BookOpen className="h-5 w-5 text-white" />;
+      case "environment":
+        return <Leaf className="h-5 w-5 text-white" />;
+      case "fundraising":
+        return <FileText className="h-5 w-5 text-white" />;
+      default:
+        return <FileText className="h-5 w-5 text-white" />;
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch(category) {
+      case "healthcare":
+        return "bg-rose-500";
+      case "education":
+        return "bg-blue-500";
+      case "environment":
+        return "bg-green-500";
+      case "fundraising":
+        return "bg-amber-500";
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -204,19 +247,11 @@ const ProjectsList: React.FC = () => {
             {filteredProjects.map((post) => (
               <motion.div key={post.id} variants={item}>
                 <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
-                  <div className="aspect-video relative overflow-hidden">
-                    <img 
-                      src={post.imageSrc} 
-                      alt={post.title} 
-                      className="object-cover w-full h-full transition-transform hover:scale-105 duration-500"
-                      onError={(e) => {
-                        console.error(`Error loading image: ${post.imageSrc}`);
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                      }}
-                    />
-                    <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
-                      {post.category}
+                  <div className="h-12 flex items-center px-4 border-b border-gray-100">
+                    <div className={`${getCategoryColor(post.category)} p-1.5 rounded-md mr-3`}>
+                      {getCategoryIcon(post.category)}
                     </div>
+                    <span className="text-sm font-medium capitalize">{post.category}</span>
                   </div>
                   <CardContent className="pt-5 px-4 md:px-6 md:pt-6 pb-4 md:pb-6">
                     <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3 gap-2 md:gap-4 flex-wrap">
@@ -255,22 +290,16 @@ const ProjectsList: React.FC = () => {
               <motion.div key={post.id} variants={item}>
                 <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
                   <div className="flex flex-col md:flex-row">
-                    <div className="md:w-1/3 aspect-video md:aspect-square relative overflow-hidden">
-                      <img 
-                        src={post.imageSrc} 
-                        alt={post.title} 
-                        className="object-cover w-full h-full"
-                        onError={(e) => {
-                          console.error(`Error loading image: ${post.imageSrc}`);
-                          e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                        }}
-                      />
-                      <div className="absolute top-3 right-3 bg-belize-blue/90 text-white text-xs font-medium px-2 py-1 rounded capitalize">
-                        {post.category}
+                    <div className="md:w-20 h-16 md:h-auto bg-gray-50 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
+                      <div className={`${getCategoryColor(post.category)} p-2 rounded-md`}>
+                        {getCategoryIcon(post.category)}
                       </div>
                     </div>
-                    <div className="md:w-2/3 p-4 md:p-6">
+                    <div className="p-4 md:p-6">
                       <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 gap-2 md:gap-4 flex-wrap">
+                        <span className="text-xs font-medium px-2 py-0.5 rounded-full capitalize bg-gray-100">
+                          {post.category}
+                        </span>
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                           <span>{post.date}</span>

@@ -2,7 +2,15 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { 
+  Calendar, 
+  User, 
+  ArrowRight,
+  Heart,
+  BookOpen,
+  FileText,
+  Leaf
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -15,8 +23,10 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "October 30, 2017",
       excerpt: "BelizeKids.org, in conjunction with BCVI and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_3602.jpg",
       slug: "october-vision-clinic",
+      category: "healthcare",
+      icon: Heart,
+      color: "bg-rose-500"
     },
     {
       id: 2,
@@ -24,8 +34,10 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "November 22, 2022",
       excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2016/02/pole.jpg",
       slug: "dollar-a-dive-program",
+      category: "fundraising",
+      icon: FileText,
+      color: "bg-amber-500"
     },
     {
       id: 3,
@@ -33,8 +45,10 @@ const ProjectsPreview: React.FC = () => {
       author: "Rebecca Coutant",
       date: "August 27, 2022",
       excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week.",
-      imageSrc: "https://belizekids.org/wp-content/uploads/2016/06/IMG_5338.jpg",
       slug: "second-vision-screening-machine",
+      category: "healthcare",
+      icon: Heart,
+      color: "bg-rose-500"
     },
   ];
 
@@ -56,6 +70,21 @@ const ProjectsPreview: React.FC = () => {
       transition: {
         duration: 0.5
       }
+    }
+  };
+
+  const getCategoryIcon = (category: string) => {
+    switch(category) {
+      case "healthcare":
+        return <Heart className="h-5 w-5 text-white" />;
+      case "education":
+        return <BookOpen className="h-5 w-5 text-white" />;
+      case "environment":
+        return <Leaf className="h-5 w-5 text-white" />;
+      case "fundraising":
+        return <FileText className="h-5 w-5 text-white" />;
+      default:
+        return <FileText className="h-5 w-5 text-white" />;
     }
   };
 
@@ -92,18 +121,15 @@ const ProjectsPreview: React.FC = () => {
           {recentPosts.map((post) => (
             <motion.div key={post.id} variants={item}>
               <Card className="overflow-hidden transition-all hover:shadow-lg">
-                <div className="aspect-video relative overflow-hidden">
-                  <img 
-                    src={post.imageSrc} 
-                    alt={post.title} 
-                    className="object-cover w-full h-full transition-transform hover:scale-105 duration-300"
-                    onError={(e) => {
-                      console.error(`Error loading image: ${post.imageSrc}`);
-                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                    }}
-                  />
-                </div>
+                <div className="h-2 w-full" style={{ backgroundColor: post.color === "bg-rose-500" ? "#f43f5e" : post.color === "bg-amber-500" ? "#f59e0b" : post.color === "bg-blue-500" ? "#3b82f6" : post.color === "bg-green-500" ? "#22c55e" : "#6b7280" }}></div>
                 <CardContent className="pt-5">
+                  <div className="flex items-center mb-4">
+                    <div className={`${post.color} p-1.5 rounded-md mr-3`}>
+                      {getCategoryIcon(post.category)}
+                    </div>
+                    <span className="text-sm font-medium capitalize">{post.category}</span>
+                  </div>
+                  
                   <div className="flex items-center text-sm text-gray-500 mb-2 gap-3">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
