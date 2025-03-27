@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -10,7 +11,10 @@ import {
   Glasses,
   CheckCircle,
   ArrowRight,
-  User
+  User,
+  Building2,
+  Mail,
+  ExternalLink
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -202,8 +206,8 @@ const DoctorsAvailability: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Eye Care Specialists | Belize Kids</title>
-        <meta name="description" content="Find available eye care specialists for children in Belize." />
+        <title>Eye Care Specialists | Stanford Belize Vision Clinic</title>
+        <meta name="description" content="Find available eye care specialists for children at the Stanford Belize Vision Clinic (SBVC) in San Pedro, Ambergris Caye, Belize." />
       </Helmet>
       
       <Navbar />
@@ -215,9 +219,98 @@ const DoctorsAvailability: React.FC = () => {
               Book an Eye Care Appointment
             </h1>
             <p className="text-gray-600 max-w-xl mx-auto">
-              All appointments take place at the <span className="font-medium">Stanford Belize Vision Clinic (SBVC)</span>. Select a date to see available times.
+              All appointments take place at the <span className="font-medium">Stanford Belize Vision Clinic (SBVC)</span> located on the second floor of the San Pedro Lions Den, Barrier Reef Drive, San Pedro, Ambergris Caye.
             </p>
           </div>
+
+          {/* Clinic Information Card */}
+          <Card className="border-0 shadow-md bg-white mb-8 overflow-hidden">
+            <div className="grid md:grid-cols-12 gap-0">
+              <div className="md:col-span-8 p-6">
+                <h2 className="text-xl font-bold text-belize-green mb-4 flex items-center">
+                  <Building2 className="h-5 w-5 mr-2" />
+                  About Stanford Belize Vision Clinic
+                </h2>
+                <p className="text-gray-700 mb-4">
+                  The Stanford Belize Vision Clinic (SBVC) operates through a partnership with Stanford University's Department of Ophthalmology, providing essential eye care services to the community of San Pedro and surrounding areas. The clinic was established with the support of BelizeKids.org following hurricane damage to San Pedro.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <div className="flex items-start">
+                    <MapPin className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-medium">Location</p>
+                      <p className="text-sm text-gray-600">Second Floor, San Pedro Lions Den</p>
+                      <p className="text-sm text-gray-600">Barrier Reef Drive, San Pedro</p>
+                      <p className="text-sm text-gray-600">Ambergris Caye, Belize</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <Mail className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0 mt-1" />
+                    <div>
+                      <p className="font-medium">Contact</p>
+                      <p className="text-sm text-gray-600">San Pedro Lions Club</p>
+                      <p className="text-sm text-gray-600">Stanford Department of Ophthalmology</p>
+                      <a href="mailto:info@belizekids.org" className="text-sm text-belize-blue hover:underline">info@belizekids.org</a>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge className="bg-belize-green/10 text-belize-green hover:bg-belize-green/20 px-3 py-1">
+                    Stanford University Partnership
+                  </Badge>
+                  <Badge className="bg-belize-teal/10 text-belize-teal hover:bg-belize-teal/20 px-3 py-1">
+                    BelizeKids.org Support
+                  </Badge>
+                  <Badge className="bg-belize-blue/10 text-belize-blue hover:bg-belize-blue/20 px-3 py-1">
+                    Belize Council for the Visually Impaired
+                  </Badge>
+                  <Badge className="bg-belize-coral/10 text-belize-coral hover:bg-belize-coral/20 px-3 py-1">
+                    San Pedro Lions Club
+                  </Badge>
+                </div>
+                <div className="mt-4">
+                  <a href="https://med.stanford.edu/ophthalmology/news-and-media/global-impact.html" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" className="text-belize-blue">
+                      Stanford Ophthalmology Global Impact
+                      <ExternalLink className="ml-1 h-3 w-3" />
+                    </Button>
+                  </a>
+                </div>
+              </div>
+              <div className="md:col-span-4 bg-belize-blue/10 p-6 flex flex-col justify-center">
+                <h3 className="text-lg font-medium text-belize-green mb-3">Services Provided</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Primary eye examinations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Pediatric eye screenings</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Vision testing and prescriptions</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Subsidized eyewear for families in need</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Specialized consultations with visiting doctors</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="h-4 w-4 text-belize-green mr-2 mt-0.5" />
+                    <span className="text-sm">Referrals to Belize Council for the Visually Impaired</span>
+                  </li>
+                </ul>
+                <p className="text-xs text-gray-500 mt-4 italic">
+                  Note: Services vary based on visiting medical professionals' schedule
+                </p>
+              </div>
+            </div>
+          </Card>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="md:col-span-5">
@@ -258,6 +351,9 @@ const DoctorsAvailability: React.FC = () => {
                         <div className="w-3 h-3 bg-gray-200 rounded-full mr-1"></div>
                         <span>Not Available</span>
                       </div>
+                    </div>
+                    <div className="mt-4 text-xs text-gray-500 text-center">
+                      <p>The clinic operates on an intermittent schedule based on visiting specialists. The calendar shows dates when doctors are available.</p>
                     </div>
                   </div>
                 </CardContent>

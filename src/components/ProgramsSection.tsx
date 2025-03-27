@@ -1,9 +1,10 @@
 
 import React from "react";
-import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop, User } from "lucide-react";
+import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop, User, Building2, ExternalLink, Mail } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
 
 const ProgramsSection: React.FC = () => {
   const programs = [
@@ -97,14 +98,36 @@ const ProgramsSection: React.FC = () => {
                   Dr. Caroline Fisher from Stanford to establish the first eye clinic in the area, providing free eye screenings 
                   and subsidized eyewear for families in need.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4 mb-6">
                   <div className="flex items-center">
-                    <MapPin className="h-5 w-5 text-belize-coral mr-2" />
-                    <span className="text-sm">Ambergris Caye, Belize</span>
+                    <MapPin className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0" />
+                    <div>
+                      <span className="text-sm font-medium">Location</span>
+                      <span className="text-xs block text-gray-600">San Pedro Lions Den, 2nd Floor</span>
+                      <span className="text-xs block text-gray-600">Barrier Reef Drive, Ambergris Caye</span>
+                    </div>
                   </div>
                   <div className="flex items-center">
-                    <Calendar className="h-5 w-5 text-belize-coral mr-2" />
-                    <span className="text-sm">Regular clinics since 2017</span>
+                    <Calendar className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0" />
+                    <div>
+                      <span className="text-sm font-medium">Operating Since</span>
+                      <span className="text-xs block text-gray-600">Regular clinics since 2017</span>
+                      <span className="text-xs block text-gray-600">Intermittent schedule</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <Building2 className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0" />
+                    <div>
+                      <span className="text-sm font-medium">Partners</span>
+                      <span className="text-xs block text-gray-600">Stanford University</span>
+                      <span className="text-xs block text-gray-600">San Pedro Lions Club</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center">
+                    <Mail className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0" />
+                    <a href="mailto:info@belizekids.org" className="text-sm text-belize-blue hover:underline">
+                      info@belizekids.org
+                    </a>
                   </div>
                 </div>
                 <ul className="space-y-2 mb-6">
@@ -130,7 +153,7 @@ const ProgramsSection: React.FC = () => {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm">Collaboration with BCVI for continuity of care</span>
+                    <span className="text-sm">Collaboration with Belize Council for the Visually Impaired (BCVI)</span>
                   </li>
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-3">
