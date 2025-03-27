@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -8,7 +9,7 @@ import {
 } from "lucide-react";
 import { format, addDays } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
-import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsMobile, useViewportHeight } from "@/hooks/use-mobile";
 import ClinicLocation from "@/components/doctors/ClinicLocation";
 import AppointmentCalendar from "@/components/doctors/AppointmentCalendar";
 import ClinicInfo from "@/components/doctors/ClinicInfo";
@@ -212,7 +213,7 @@ const DoctorsAvailability: React.FC = () => {
       
       <Navbar />
       
-      <main className={`container-custom ${isMobile ? 'pt-6 pb-10' : 'pt-12 md:pt-16 pb-10'}`}>
+      <main className={`container-custom ${isMobile ? 'pt-20 pb-10' : 'pt-24 md:pt-28 pb-10'}`}>
         <div className="max-w-2xl mx-auto">
           <div className="mb-4 text-center">
             <h1 className={`${isMobile ? 'text-xl' : 'text-2xl md:text-3xl'} font-bold text-belize-green mb-1`}>
