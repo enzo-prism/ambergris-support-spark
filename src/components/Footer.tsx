@@ -2,7 +2,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const Footer: React.FC = () => {
   return (
@@ -85,18 +84,6 @@ const Footer: React.FC = () => {
               >
                 <Facebook className="h-5 w-5" />
               </a>
-            </div>
-            
-            <div className="mt-6">
-              <h4 className="font-medium text-gray-900 mb-3">Subscribe to our Newsletter</h4>
-              <div className="flex flex-col sm:flex-row">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="input-donate mb-2 sm:mb-0 sm:mr-2" 
-                />
-                <Button className="bg-belize-blue hover:bg-belize-blue/90 text-white">Subscribe</Button>
-              </div>
             </div>
           </div>
         </div>
