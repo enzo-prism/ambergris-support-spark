@@ -11,9 +11,6 @@ import ImpactSection from "@/components/ImpactSection";
 import TransparencySection from "@/components/TransparencySection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import MembershipPromo from "@/components/MembershipPromo";
-import MembershipBenefits from "@/components/MembershipBenefits";
-import MembershipTestimonials from "@/components/MembershipTestimonials";
 import ClassroomDrive from "@/components/ClassroomDrive";
 
 const Index: React.FC = () => {
@@ -37,10 +34,7 @@ const Index: React.FC = () => {
         <ClassroomDrive />
         <ProjectsPreview />
         <ImpactSection />
-        <MembershipPromo />
         <DonationForm />
-        <MembershipBenefits />
-        <MembershipTestimonials />
         <TransparencySection />
         <ContactSection />
       </main>
