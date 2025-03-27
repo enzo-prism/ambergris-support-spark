@@ -126,9 +126,9 @@ const Navbar: React.FC = () => {
           icon: <Calendar className="h-5 w-5" />
         },
         {
-          label: "Membership",
+          label: "Monthly Investment",
           type: "link",
-          to: "/membership",
+          to: "/monthly-investment",
           hasHighlight: false,
           icon: <CreditCard className="h-5 w-5" />
         }
@@ -207,13 +207,13 @@ const Navbar: React.FC = () => {
             </div>
             <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>
-          <Link to="/membership" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-100 to-blue-200 p-4 no-underline outline-none transition-colors hover:from-blue-200 hover:to-blue-300">
+          <Link to="/monthly-investment" className="group flex h-full w-full select-none flex-col justify-between rounded-md bg-gradient-to-b from-blue-100 to-blue-200 p-4 no-underline outline-none transition-colors hover:from-blue-200 hover:to-blue-300">
             <div className="mb-2 mt-2 text-lg font-medium text-belize-blue">
               <CreditCard className="mb-1 h-5 w-5 inline-block mr-2" />
-              Monthly Membership
+              Monthly Investment
             </div>
             <div className="text-sm leading-tight text-gray-600 group-hover:text-gray-700">
-              Join our exclusive monthly membership community
+              Create lasting impact with monthly recurring support
             </div>
             <ChevronRight className="h-4 w-4 text-belize-blue mt-2 ml-auto" />
           </Link>

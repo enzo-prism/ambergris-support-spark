@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowRight, Users, CreditCard } from "lucide-react";
+import { ArrowRight, CreditCard } from "lucide-react";
 
 const MembershipPromo: React.FC = () => {
   return (
@@ -12,20 +12,20 @@ const MembershipPromo: React.FC = () => {
           <div className="md:w-2/3">
             <div className="flex items-center gap-2 mb-2">
               <CreditCard className="h-5 w-5 text-belize-blue" />
-              <span className="text-sm font-semibold uppercase tracking-wider text-belize-blue">Monthly Membership</span>
+              <span className="text-sm font-semibold uppercase tracking-wider text-belize-blue">Monthly Investment</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-belize-blue mb-4">
-              Join Our Monthly Membership Program
+              Create Lasting Impact with Monthly Investing
             </h2>
             <p className="text-lg text-gray-700 mb-0">
-              Join our exclusive membership community creating sustainable change for children in Belize through monthly commitment. Members receive special updates, exclusive reports, and community recognition.
+              Join our community of monthly investors creating sustainable change for children in Belize. Your consistent support helps provide ongoing healthcare and education programs.
             </p>
           </div>
           <div>
-            <Link to="/membership">
+            <Link to="/monthly-investment">
               <Button className="bg-belize-blue hover:bg-belize-blue/90 text-white text-lg px-6 py-6 mt-2">
-                <Users className="mr-2 h-5 w-5" />
-                Join Our Membership
+                <CreditCard className="mr-2 h-5 w-5" />
+                Start Monthly Investment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

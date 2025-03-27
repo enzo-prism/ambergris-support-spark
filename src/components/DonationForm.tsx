@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DollarSign, CreditCard, Calendar, Award, PiggyBank, Users, CheckCircle2 } from "lucide-react";
+import { DollarSign, CreditCard, Calendar, CheckCircle2, PiggyBank } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const DonationForm: React.FC = () => {
@@ -87,8 +87,8 @@ const DonationForm: React.FC = () => {
           <div className="inline-flex items-center gap-2 bg-belize-coral/10 px-4 py-2 rounded-full mb-4">
             {paymentType === "monthly" ? (
               <>
-                <Users className="h-5 w-5 text-belize-blue" />
-                <span className="text-belize-blue font-semibold">Monthly Membership</span>
+                <CreditCard className="h-5 w-5 text-belize-blue" />
+                <span className="text-belize-blue font-semibold">Monthly Investment</span>
               </>
             ) : (
               <>
@@ -99,12 +99,12 @@ const DonationForm: React.FC = () => {
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             {paymentType === "monthly" 
-              ? "Join Our Membership Program" 
+              ? "Invest Monthly in Belize's Future" 
               : "Invest in Change Today"}
           </h2>
           <p className="text-lg text-gray-700">
             {paymentType === "monthly"
-              ? "Your monthly membership helps us provide consistent support to children in Belize. Join our community of regular contributors."
+              ? "Your monthly investment helps us provide consistent support to children in Belize. Join our community of regular contributors."
               : "Your one-time investment helps us support children in Belize. 100% of your contribution goes directly to our programs."}
           </p>
         </div>
@@ -161,7 +161,7 @@ const DonationForm: React.FC = () => {
                         <span>One-time</span>
                       </TabsTrigger>
                       <TabsTrigger value="monthly" className="flex items-center gap-2 py-2">
-                        <Users className="h-4 w-4" />
+                        <CreditCard className="h-4 w-4" />
                         <span>Monthly</span>
                       </TabsTrigger>
                     </TabsList>
@@ -304,8 +304,8 @@ const DonationForm: React.FC = () => {
                     >
                       {paymentType === "monthly" ? (
                         <>
-                          <Users className="mr-2 h-5 w-5" />
-                          Join as Member - {getFinalAmount()} Monthly
+                          <CreditCard className="mr-2 h-5 w-5" />
+                          Invest {getFinalAmount()} Monthly
                         </>
                       ) : (
                         <>
@@ -318,7 +318,7 @@ const DonationForm: React.FC = () => {
                     <div className="text-center mt-4">
                       {paymentType === "monthly" ? (
                         <p className="text-sm text-gray-600 bg-blue-50 p-2 rounded">
-                          <strong>Membership:</strong> Join our community with monthly recurring support
+                          <strong>Monthly:</strong> Support with recurring monthly investments
                         </p>
                       ) : (
                         <p className="text-sm text-gray-600 bg-orange-50 p-2 rounded">
