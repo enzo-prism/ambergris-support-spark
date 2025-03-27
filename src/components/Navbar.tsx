@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -450,7 +449,7 @@ const Navbar: React.FC = () => {
                     onClick={() => scrollToSection("donate")}
                     className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full py-5"
                   >
-                    Donate Now
+                    Invest Today
                   </Button>
                 </SheetClose>
               </div>
