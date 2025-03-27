@@ -3,7 +3,6 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const ClassroomDrive: React.FC = () => {
@@ -70,8 +69,8 @@ const ClassroomDrive: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   <div className="h-60 md:h-auto">
                     <img 
-                      src="https://belizekids.org/wp-content/uploads/2016/06/kids-at-Rc-school.jpg" 
-                      alt="Kids at RC School" 
+                      src="https://belizekids.org/wp-content/uploads/2023/10/school-1-1024x461.jpeg" 
+                      alt="New Horizon School in Belize" 
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         console.error("Error loading image");
@@ -81,8 +80,8 @@ const ClassroomDrive: React.FC = () => {
                   </div>
                   <div className="h-60 md:h-auto">
                     <img 
-                      src="https://belizekids.org/wp-content/uploads/2016/06/school-construction-2.jpg" 
-                      alt="School Construction" 
+                      src="https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg" 
+                      alt="School Construction in Belize" 
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         console.error("Error loading image");
