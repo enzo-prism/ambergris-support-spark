@@ -21,17 +21,17 @@ const Projects: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden overflow-fix">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       <Helmet>
-        <title>Our Projects</title>
+        <title>Our Projects | BelizeKids.org</title>
         <meta name="description" content="Explore our ongoing projects improving schools, parks, healthcare, and scholarships for children in Belize with complete transparency." />
-        <meta property="og:title" content="Our Projects" />
+        <meta property="og:title" content="Our Projects | BelizeKids.org" />
         <meta property="og:description" content="Explore our ongoing projects improving schools, parks, healthcare, and scholarships for children in Belize with complete transparency." />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>
       <Navbar />
-      <main className="pt-4">
+      <main>
         <ProjectsHeader />
         <ProjectsList initialTab={initialTab} onTabChange={handleTabChange} />
         <TransparencySection />

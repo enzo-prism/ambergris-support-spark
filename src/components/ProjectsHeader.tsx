@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 
 const ProjectsHeader: React.FC = () => {
   return (
-    <div className="pt-20 md:pt-28 pb-10 md:pb-14 px-4 md:px-6 lg:px-0 bg-white">
-      <div className="container-custom max-w-6xl">
+    <div className="pt-16 md:pt-28 pb-8 md:pb-14 bg-white">
+      <div className="container px-4 md:px-6 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
