@@ -1,6 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer: React.FC = () => {
@@ -74,7 +75,7 @@ const Footer: React.FC = () => {
           {/* Column 4: Connect */}
           <div>
             <h3 className="font-heading font-medium mb-4 text-gray-900">Connect With Us</h3>
-            <div className="flex space-x-3">
+            <div className="flex">
               <a 
                 href="https://facebook.com" 
                 target="_blank" 
@@ -83,31 +84,6 @@ const Footer: React.FC = () => {
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-gray-500 hover:text-belize-green transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="text-gray-500 hover:text-belize-green transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a 
-                href="mailto:info@belizekids.org" 
-                className="text-gray-500 hover:text-belize-green transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-5 w-5" />
               </a>
             </div>
             
