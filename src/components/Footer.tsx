@@ -1,6 +1,7 @@
 
 import React from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Facebook } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -28,6 +29,17 @@ const Footer: React.FC = () => {
                 PO BOX 620134<br/>
                 Woodside, CA 94062
               </address>
+            </div>
+            <div className="mt-4 flex items-center justify-center sm:justify-start">
+              <a 
+                href="https://www.facebook.com/belizekids/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors duration-200"
+                aria-label="Visit our Facebook page"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
             </div>
           </div>
           
