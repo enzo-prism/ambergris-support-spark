@@ -1,44 +1,106 @@
-
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowLeft, ChevronRight, FileText, Heart, BookOpen, Leaf } from "lucide-react";
+import { Calendar, User, ArrowLeft, ChevronRight, FileText, Heart, BookOpen, Leaf, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import ProjectDetailGallery from "@/components/ProjectDetailGallery";
 
 const projects = [
   {
     slug: "october-vision-clinic",
-    title: "October Vision Clinic is a Huge Success",
+    title: "Stanford Belize Vision Clinic: Transforming Eye Care in San Pedro",
     author: "Rebecca Coutant",
     date: "October 30, 2017",
     category: "healthcare",
     color: "bg-rose-500",
     icon: Heart,
     content: `
-      <p>BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.</p>
+      <p>BelizeKids.org, in conjunction with the Belize Council for the Visually Impaired (BCVI), the San Pedro Lions Club, and Stanford University, established the Stanford Belize Vision Clinic (SBVC) in 2017 to address the critical need for accessible vision care on Ambergris Caye.</p>
       
-      <p>Kids and adults came for examinations with doctors from <a href="https://med.stanford.edu/ophthalmology.html" target="_blank" rel="noopener" class="text-belize-blue hover:underline">Stanford Medicine</a> in the brand new office installed and operated by BelizeKids.</p>
+      <h3 class="text-xl font-bold text-belize-green mt-6 mb-2">Foundational Partnerships</h3>
+      <p>The clinic's inception was made possible through <strong>Don Listwin</strong>, founder of BelizeKids.org and the Canary Foundation, whose philanthropic vision aimed to fill systemic gaps in pediatric healthcare on the island. His collaboration with <strong>Dr. Ann Caroline Fisher</strong>, a Stanford ophthalmologist, ensured the clinic's integration into both global health education and community-specific needs.</p>
       
-      <p>For information on upcoming clinics, please see our <a href="https://www.facebook.com/belizekids/" target="_blank" rel="noopener" class="text-belize-blue hover:underline">Facebook page</a> and signs at the San Pedro Lions Den. The opthamalogists from Stanford plan to see our Belize patients every 2-3 months.</p>
+      <p>The SBVC operates through a unique tripartite partnership:</p>
+      <ul class="list-disc pl-6 my-3 space-y-1">
+        <li><strong>BelizeKids.org</strong> provides funding and logistical support</li>
+        <li><strong>Stanford University</strong> contributes medical expertise through rotating teams of ophthalmologists, residents, and equipment</li>
+        <li><strong>BCVI and the San Pedro Lions Club</strong> offer localized continuity of care, including subsidized eyewear and referrals for advanced treatments</li>
+      </ul>
       
-      <p>BCVI continues to hold monthly clinics at the Lions Den.</p>
+      <h3 class="text-xl font-bold text-belize-green mt-6 mb-2">Services and Impact</h3>
+      <p>While prioritizing children, the SBVC adopts an inclusive approach:</p>
+      <ul class="list-disc pl-6 my-3 space-y-1">
+        <li><strong>Free comprehensive screenings</strong> for minors, including assessments for refractive errors, strabismus, amblyopia, and congenital conditions</li>
+        <li><strong>Subsidized adult services</strong> initially free, later transitioning to nominal fees to offset operational costs</li>
+        <li><strong>Advanced diagnostic tools</strong> such as phoropters for precise prescription determination and slit lamps for detecting anterior segment pathologies</li>
+      </ul>
       
-      <p>And a HUGE thank you to <a href="https://www.elfogonbelize.com/" target="_blank" rel="noopener" class="text-belize-blue hover:underline">El Fogon Restaurant</a> — just around the corner from the airstrip for donating lunch for our team.</p>
+      <p>During its inaugural year (2017), the clinic conducted five sessions, serving approximately 30 patients daily. By 2020, services expanded to week-long clinics held multiple times annually.</p>
+      
+      <h3 class="text-xl font-bold text-belize-green mt-6 mb-2">Educational Integration</h3>
+      <p>The SBVC serves as a training site for Stanford ophthalmology residents, offering hands-on experience in low-resource settings. This aligns with the <strong>Stanford Center for Innovation in Global Health</strong>'s mission to develop replicable models for international eye care.</p>
+      
+      <p>In 2021, Dr. Steven Binder and Dr. Natacha Villegas from Stanford resumed travel to SBVC after a COVID-related pause. They examined over 60 patients, ranging from pediatric ages to older adults, providing glasses for students and diagnosing various eye conditions.</p>
+      
+      <blockquote class="border-l-4 border-belize-green pl-4 italic my-4">
+        "Seeing how corrective lenses could impact a student's entire learning experience was impactful. This trip grew my desire to continue providing care to patients of varying cultures and backgrounds, and to seek out other global health opportunities in the future."
+        <footer class="text-sm mt-2">— Dr. Natacha Villegas, Chief Ophthalmology Resident, Stanford University</footer>
+      </blockquote>
+      
+      <h3 class="text-xl font-bold text-belize-green mt-6 mb-2">Ongoing Challenges and Future Plans</h3>
+      <p>As the sole eye clinic on Ambergris Caye, when Stanford teams are not present, patients either go without eye care or must travel to the mainland or neighboring countries. To address this gap, SBVC has trained a local ophthalmic technician to perform basic vision screening, first via Zoom and then in person.</p>
+      
+      <p>Future plans include:</p>
+      <ul class="list-disc pl-6 my-3 space-y-1">
+        <li>Expanding teleophthalmology care to link patients with Stanford and local providers</li>
+        <li>Increasing the frequency of Stanford medical team visits</li>
+        <li>Training more local practitioners to provide continuity of care</li>
+      </ul>
+      
+      <p>The success of this initiative demonstrates how transnational partnerships can address pediatric health disparities and create sustainable healthcare solutions for underserved communities.</p>
     `,
     highlights: [
-      "Free eye examinations for local residents",
-      "Partnership with Stanford Medicine doctors",
-      "New dedicated vision care office",
-      "Regular ongoing clinics established"
+      "Partnership between BelizeKids.org, Stanford University, BCVI, and San Pedro Lions Club",
+      "Free comprehensive eye examinations for children",
+      "Training site for Stanford ophthalmology residents",
+      "Only dedicated eye clinic on Ambergris Caye"
     ],
     keyNumbers: [
-      { label: "Patients Served", value: "150+" },
-      { label: "Doctors", value: "4" },
-      { label: "Volunteers", value: "12" }
+      { label: "Patients Served (2017)", value: "150+" },
+      { label: "Daily Capacity", value: "30 patients" },
+      { label: "Stanford Medical Teams", value: "Multiple annually" },
+      { label: "Free Services", value: "All children" }
+    ],
+    references: [
+      { text: "Stanford Belize Vision Clinic (SBVC)", url: "https://med.stanford.edu/ophthalmology/news-and-media/news-archive/2017_Stories/SBVC.html" },
+      { text: "Training the next generation of eye care providers", url: "https://med.stanford.edu/ophthalmology/news-and-media/annual-reports/annualreport_2021/Belize-update.html" },
+      { text: "Free Eye Exams by BelizeKids.Org", url: "https://ambergristoday.com/community-bulletin/2020/02/03/free-eye-exams-by-belizekids-org-at-the-lions-den/" }
+    ],
+    images: [
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+        alt: "Stanford Belize Vision Clinic examination"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-team.jpg",
+        alt: "Stanford medical team at the Belize Vision Clinic"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
+        alt: "Eye examination at the Stanford Belize Vision Clinic"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-6.jpg",
+        alt: "Patient receiving eye care at the clinic"
+      },
+      {
+        src: "/lovable-uploads/2024-10-vision-clinic-9.jpg",
+        alt: "Vision screening equipment at the clinic"
+      }
     ]
   },
   {
@@ -329,6 +391,14 @@ const ProjectDetail: React.FC = () => {
                 </CardContent>
               </Card>
 
+              {project.images && project.images.length > 0 && (
+                <ProjectDetailGallery 
+                  images={project.images}
+                  title="Vision Clinic Gallery" 
+                  description="View photos from the Stanford Belize Vision Clinic" 
+                />
+              )}
+
               <div className="mt-8">
                 <h3 className="text-xl font-bold mb-4 text-belize-green">Project Highlights</h3>
                 <div className="grid grid-cols-1 gap-3">
@@ -342,6 +412,26 @@ const ProjectDetail: React.FC = () => {
                   ))}
                 </div>
               </div>
+
+              {project.references && (
+                <div className="mt-8">
+                  <h3 className="text-xl font-bold mb-4 text-belize-green">References & Further Reading</h3>
+                  <div className="grid grid-cols-1 gap-3">
+                    {project.references.map((reference, index) => (
+                      <a 
+                        key={index} 
+                        href={reference.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 bg-white p-4 rounded-lg border border-gray-100 hover:border-belize-blue transition-colors"
+                      >
+                        <ExternalLink className="h-5 w-5 text-belize-blue shrink-0" />
+                        <p className="text-belize-blue">{reference.text}</p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="md:col-span-1">
@@ -441,10 +531,10 @@ const ProjectDetail: React.FC = () => {
                 variant="outline"
                 className="border-belize-blue text-belize-blue hover:bg-belize-blue hover:text-white"
                 onClick={() => {
-                  window.location.href = "/membership";
+                  window.location.href = "/monthly-investment";
                 }}
               >
-                Become a Member
+                Start Monthly Investment
               </Button>
             </div>
           </div>
