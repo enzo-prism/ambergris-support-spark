@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -21,7 +20,6 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { Calendar } from "@/components/ui/calendar";
 import { format, addDays, isSameDay } from "date-fns";
 
-// Define TypeScript interfaces for clarity
 interface Doctor {
   id: number;
   name: string;
@@ -42,7 +40,6 @@ interface DoctorSlot extends TimeSlot {
   doctor: Doctor;
 }
 
-// Generate doctor data with availability for the next 30 days
 const generateDoctorData = () => {
   const doctors: Doctor[] = [
     {
@@ -87,7 +84,6 @@ const generateDoctorData = () => {
     }
   ];
 
-  // Create time slots
   const timeSlots = [
     "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM", 
     "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
@@ -95,7 +91,6 @@ const generateDoctorData = () => {
     "3:00 PM", "3:30 PM", "4:00 PM", "4:30 PM"
   ];
 
-  // Generate availability for each doctor for the next 30 days
   const availability: Record<string, TimeSlot[]> = {};
   const today = new Date();
 
@@ -105,22 +100,18 @@ const generateDoctorData = () => {
     
     availability[dateStr] = [];
     
-    // Skip weekends (6 = Saturday, 0 = Sunday)
     if (date.getDay() === 6 || date.getDay() === 0) {
       continue;
     }
     
-    // Generate random availabilities for each doctor
     doctors.forEach(doctor => {
-      // Each doctor works on specific days
       if (
-        (doctor.id === 1 && [1, 3, 5].includes(date.getDay())) || // Monday, Wednesday, Friday
-        (doctor.id === 2 && [2, 4, 6].includes(date.getDay())) || // Tuesday, Thursday, Saturday
-        (doctor.id === 3 && [1, 3, 4].includes(date.getDay())) || // Monday, Wednesday, Thursday
-        (doctor.id === 4 && [2, 5].includes(date.getDay())) ||    // Tuesday, Friday
-        (doctor.id === 5 && [1, 4].includes(date.getDay()))       // Monday, Thursday
+        (doctor.id === 1 && [1, 3, 5].includes(date.getDay())) || 
+        (doctor.id === 2 && [2, 4, 6].includes(date.getDay())) || 
+        (doctor.id === 3 && [1, 3, 4].includes(date.getDay())) || 
+        (doctor.id === 4 && [2, 5].includes(date.getDay())) || 
+        (doctor.id === 5 && [1, 4].includes(date.getDay()))
       ) {
-        // Add 1-4 slots for this doctor on this day
         const slots: string[] = [];
         const numSlots = Math.floor(Math.random() * 4) + 1;
         
@@ -146,7 +137,6 @@ const generateDoctorData = () => {
       }
     });
     
-    // Sort availabilities by time
     availability[dateStr].sort((a, b) => {
       return timeSlots.indexOf(a.time) - timeSlots.indexOf(b.time);
     });
@@ -163,18 +153,15 @@ const DoctorsAvailability: React.FC = () => {
   const { toast } = useToast();
   const isMobile = useIsMobile();
 
-  // Find dates that have availability
   const datesWithAvailability = useMemo(() => {
     return Object.keys(availability).filter(dateStr => availability[dateStr].length > 0);
   }, []);
 
-  // Get availability for the selected date
   const slotsForSelectedDate = useMemo(() => {
     const dateStr = format(selectedDate, 'yyyy-MM-dd');
     return availability[dateStr] || [];
   }, [selectedDate]);
 
-  // Group slots by time
   const slotsByTime = useMemo(() => {
     const grouped: Record<string, DoctorSlot[]> = {};
     slotsForSelectedDate.forEach(slot => {
@@ -207,7 +194,6 @@ const DoctorsAvailability: React.FC = () => {
     }
   };
 
-  // Highlight dates with availability
   const isDayWithAvailability = (date: Date) => {
     const dateStr = format(date, 'yyyy-MM-dd');
     return datesWithAvailability.includes(dateStr);
@@ -229,12 +215,11 @@ const DoctorsAvailability: React.FC = () => {
               Book an Eye Care Appointment
             </h1>
             <p className="text-gray-600 max-w-xl mx-auto">
-              All appointments take place at the <span className="font-medium">Belize City Eye Clinic</span>. Select a date to see available times.
+              All appointments take place at the <span className="font-medium">Stanford Belize Vision Clinic (SBVC)</span>. Select a date to see available times.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {/* Calendar Column */}
             <div className="md:col-span-5">
               <Card className="border-0 shadow-sm bg-white overflow-hidden">
                 <CardContent className="p-0">
@@ -258,7 +243,6 @@ const DoctorsAvailability: React.FC = () => {
                         hasAvailability: "bg-green-100 font-medium text-green-900 hover:bg-green-200"
                       }}
                       disabled={(date) => {
-                        // Disable dates in the past and those without availability
                         const yesterday = new Date();
                         yesterday.setDate(yesterday.getDate() - 1);
                         return date < yesterday || !isDayWithAvailability(date);
@@ -280,7 +264,6 @@ const DoctorsAvailability: React.FC = () => {
               </Card>
             </div>
             
-            {/* Available Times Column */}
             <div className="md:col-span-7">
               <Card className="border-0 shadow-sm bg-white overflow-hidden">
                 <CardContent className="p-0">
