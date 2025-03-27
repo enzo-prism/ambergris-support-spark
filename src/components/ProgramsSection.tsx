@@ -140,8 +140,8 @@ const ProgramsSection: React.FC = () => {
               </div>
               <div className="h-full">
                 <img 
-                  src="/lovable-uploads/2024-10-vision-clinic-main.jpg" 
-                  alt="Stanford doctors performing eye examinations at the Belize Vision Clinic" 
+                  src="https://med.stanford.edu/ophthalmology/news-and-media/annual-reports/annualreport_2021/Belize-update/_jcr_content/main/panel_builder/panel_1/image_771439370.img.476.high.jpeg/Natacha_Villegas_SBVC.jpeg" 
+                  alt="Dr. Natacha Villegas performing an eye examination at the Stanford Belize Vision Clinic" 
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
