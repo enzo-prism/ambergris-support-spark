@@ -4,10 +4,10 @@ import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, ChevronRight } from "lucide-react";
 import ProjectDetailGallery from "@/components/ProjectDetailGallery";
+import { Card, CardContent } from "@/components/ui/card";
 
-// This would come from a database or API in a real application
 const projects = [
   {
     slug: "october-vision-clinic",
@@ -207,7 +207,7 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
         <Helmet>
           <title>Not Found</title>
           <meta name="description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
@@ -231,8 +231,15 @@ const ProjectDetail: React.FC = () => {
     );
   }
 
+  const featuredImages = project?.gallery?.slice(0, 3) || [];
+  const remainingGallery = project?.gallery?.slice(3) || [];
+
+  const createEnhancedContent = (content: string) => {
+    return content;
+  };
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Helmet>
         <title>{project?.title || "Project Detail"}</title>
         <meta name="description" content={`${project?.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
@@ -243,51 +250,163 @@ const ProjectDetail: React.FC = () => {
       </Helmet>
       <Navbar />
       
-      <div className="pt-24 pb-16">
+      <div className="bg-belize-light pt-24 pb-8 md:pb-12">
         <div className="container-custom">
-          <Link to="/projects" className="inline-flex items-center text-belize-green hover:underline mb-6">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to all projects
-          </Link>
-          
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-belize-green mb-4">
-            {project?.title}
-          </h1>
-          
-          <div className="flex flex-col sm:flex-row sm:items-center text-gray-600 mb-8 gap-3 sm:gap-6">
-            <div className="flex items-center gap-2">
-              <Calendar className="h-5 w-5" />
-              <span>{project?.date}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <User className="h-5 w-5" />
-              <span>By {project?.author}</span>
+          <div className="flex flex-col space-y-4">
+            <Link to="/projects" className="inline-flex items-center text-belize-green hover:text-belize-coral transition-colors">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to all projects
+            </Link>
+            
+            <div className="flex flex-col md:flex-row gap-6 md:items-center">
+              <div className="md:w-2/3">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-belize-green mb-4 leading-tight">
+                  {project?.title}
+                </h1>
+                
+                <div className="flex flex-col sm:flex-row sm:items-center text-gray-600 mb-6 gap-3 sm:gap-6">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-belize-coral" />
+                    <span>{project?.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <User className="h-5 w-5 text-belize-coral" />
+                    <span>By {project?.author}</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="md:w-1/3 aspect-video md:aspect-square rounded-xl overflow-hidden shadow-lg">
+                <img 
+                  src={project?.imageSrc} 
+                  alt={project?.title} 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
             </div>
           </div>
-          
-          <div className="prose prose-lg max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: project?.content || '' }} />
+        </div>
+      </div>
+      
+      {featuredImages.length > 0 && (
+        <div className="bg-white py-8">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {featuredImages.map((image, index) => (
+                <div key={index} className="aspect-video rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
+                  <img 
+                    src={image.src} 
+                    alt={image.alt || `Featured image ${index + 1}`} 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='16' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          
-          {project?.gallery && project.gallery.length > 0 && (
-            <ProjectDetailGallery images={project.gallery} />
-          )}
-          
-          <div className="mt-12 border-t pt-8">
-            <h3 className="text-xl font-bold mb-4">Help Support Our Work</h3>
-            <p className="mb-6">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
-            <Button 
-              className="bg-belize-yellow hover:bg-opacity-90 text-white"
-              onClick={() => {
-                const donateElement = document.getElementById("donate");
-                if (donateElement) {
-                  donateElement.scrollIntoView({ behavior: "smooth" });
-                } else {
-                  window.location.href = "/#donate";
-                }
-              }}
-            >
-              Donate Now
-            </Button>
+        </div>
+      )}
+      
+      <div className="py-8 md:py-12">
+        <div className="container-custom">
+          <Card className="shadow-md border-t-4 border-t-belize-green overflow-hidden">
+            <CardContent className="p-6 md:p-8">
+              <div className="prose prose-lg max-w-none">
+                {project?.content && (
+                  <div className="content-sections space-y-6">
+                    {project.content.split('<div class="my-6">').map((section, index) => {
+                      if (index === 0) {
+                        return <div key={index} dangerouslySetInnerHTML={{ __html: section }} />;
+                      }
+                      
+                      const parts = section.split('</div>');
+                      if (parts.length >= 2) {
+                        const imageHtml = '<div class="my-6">' + parts[0] + '</div>';
+                        const textContent = parts.slice(1).join('</div>');
+                        
+                        return (
+                          <div key={index} className="flex flex-col md:flex-row gap-6 items-center">
+                            <div className="md:w-1/2" dangerouslySetInnerHTML={{ __html: imageHtml }} />
+                            <div className="md:w-1/2" dangerouslySetInnerHTML={{ __html: textContent }} />
+                          </div>
+                        );
+                      }
+                      
+                      return <div key={index} dangerouslySetInnerHTML={{ __html: section }} />;
+                    })}
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+      
+      {project?.gallery && project.gallery.length > 3 && (
+        <div className="py-8 md:py-12 bg-gray-50">
+          <div className="container-custom">
+            <h2 className="text-2xl md:text-3xl font-bold text-belize-green mb-6">Photo Gallery</h2>
+            <ProjectDetailGallery images={remainingGallery} />
+          </div>
+        </div>
+      )}
+      
+      <div className="py-8 md:py-12 bg-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-belize-green">Help Support Our Work</h3>
+              <p className="mb-6 text-gray-700">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
+              <Button 
+                className="bg-belize-coral hover:bg-opacity-90 text-white"
+                onClick={() => {
+                  const donateElement = document.getElementById("donate");
+                  if (donateElement) {
+                    donateElement.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    window.location.href = "/#donate";
+                  }
+                }}
+              >
+                Donate Now
+              </Button>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4 text-belize-green">More Projects</h3>
+              <div className="space-y-3">
+                {projects
+                  .filter(p => p.slug !== slug)
+                  .slice(0, 3)
+                  .map((relatedProject, index) => (
+                    <Link 
+                      key={index} 
+                      to={`/projects/${relatedProject.slug}`}
+                      className="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      <div className="w-16 h-16 shrink-0 rounded-md overflow-hidden mr-4">
+                        <img 
+                          src={relatedProject.imageSrc} 
+                          alt={relatedProject.title} 
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f0f0f0'/%3E%3Ctext x='100' y='100' font-family='Arial' font-size='12' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3ENo image%3C/text%3E%3C/svg%3E";
+                          }}
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-sm font-medium line-clamp-2 text-belize-green">{relatedProject.title}</h4>
+                        <span className="text-xs text-gray-500">{relatedProject.date}</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                    </Link>
+                  ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
