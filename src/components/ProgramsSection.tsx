@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop } from "lucide-react";
+import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop, User } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -133,11 +133,19 @@ const ProgramsSection: React.FC = () => {
                     <span className="text-sm">Collaboration with BCVI for continuity of care</span>
                   </li>
                 </ul>
-                <Link to="/projects/october-vision-clinic">
-                  <Button className="bg-belize-blue hover:bg-belize-blue/90">
-                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link to="/projects/october-vision-clinic">
+                    <Button className="bg-belize-blue hover:bg-belize-blue/90">
+                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Link to="/doctors">
+                    <Button className="bg-belize-teal hover:bg-belize-teal/90">
+                      <User className="mr-2 h-4 w-4" />
+                      Available Doctors
+                    </Button>
+                  </Link>
+                </div>
               </div>
               <div className="h-full">
                 <img 
