@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-white text-gray-700 pt-10 sm:pt-16 pb-6 sm:pb-8 shadow-sm border-t border-gray-100">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-10 pb-6 sm:pb-10 border-b border-gray-200">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-10 pb-6 sm:pb-10 border-b border-gray-200">
           <div>
             <div className="mb-4 text-center sm:text-left">
               <img 
@@ -104,26 +104,6 @@ const Footer: React.FC = () => {
                 </a>
               </li>
             </ul>
-          </div>
-          
-          <div className="mt-6 sm:mt-0 text-center sm:text-left">
-            <h3 className="font-bold text-lg mb-3 sm:mb-6 text-belize-green relative inline-block">
-              Newsletter
-              <span className="absolute -bottom-2 left-0 right-0 sm:right-auto sm:w-12 h-1 bg-belize-green"></span>
-            </h3>
-            <p className="text-gray-600 mb-3 text-sm sm:text-base">
-              Subscribe to receive updates about our projects and impact.
-            </p>
-            <div className="flex items-center max-w-xs mx-auto sm:mx-0">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="bg-gray-100 text-gray-700 px-3 py-2 rounded-l-md flex-grow focus:outline-none focus:ring-1 focus:ring-belize-green border border-gray-200 text-sm"
-              />
-              <button className="bg-belize-green text-white px-3 py-2 rounded-r-md hover:bg-opacity-90 transition-colors text-sm whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
           </div>
         </div>
         
