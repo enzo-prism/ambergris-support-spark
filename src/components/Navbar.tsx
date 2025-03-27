@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -118,13 +117,6 @@ const Navbar: React.FC = () => {
           to: "/doctors",
           hasHighlight: true,
           icon: <Calendar className="h-5 w-5" />
-        },
-        {
-          label: "Monthly Investment",
-          type: "link",
-          to: "/monthly-investment",
-          hasHighlight: false,
-          icon: <CreditCard className="h-5 w-5" />
         }
       ]
     },
