@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import MembershipPromo from "@/components/MembershipPromo";
 import MembershipBenefits from "@/components/MembershipBenefits";
 import MembershipTestimonials from "@/components/MembershipTestimonials";
+import ClassroomDrive from "@/components/ClassroomDrive";
 
 const Index: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const Index: React.FC = () => {
         <Hero />
         <AboutSection />
         <ProgramsSection />
+        <ClassroomDrive />
         <ProjectsPreview />
         <ImpactSection />
         <MembershipPromo />
