@@ -223,22 +223,50 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between md:items-center mb-6 md:mb-10"
+          className="flex flex-col space-y-4 md:space-y-6 md:flex-row md:justify-between md:items-center mb-6 md:mb-10"
         >
-          <Tabs 
-            value={activeTab} 
-            className="w-full max-w-full overflow-x-auto md:max-w-md no-scrollbar" 
-            onValueChange={handleTabChange}
-            defaultValue={initialTab}
-          >
-            <TabsList className="w-full bg-white border grid grid-cols-5">
-              <TabsTrigger value="all" className="text-xs md:text-sm">All</TabsTrigger>
-              <TabsTrigger value="healthcare" className="text-xs md:text-sm">Healthcare</TabsTrigger>
-              <TabsTrigger value="education" className="text-xs md:text-sm">Education</TabsTrigger>
-              <TabsTrigger value="environment" className="text-xs md:text-sm">Environment</TabsTrigger>
-              <TabsTrigger value="fundraising" className="text-xs md:text-sm">Fundraising</TabsTrigger>
-            </TabsList>
-          </Tabs>
+          {/* Mobile Tabs - Scrollable horizontal layout */}
+          <div className="w-full md:max-w-md overflow-x-auto scrollbar-hide pb-2">
+            <Tabs 
+              value={activeTab} 
+              className="w-full" 
+              onValueChange={handleTabChange}
+              defaultValue={initialTab}
+            >
+              <TabsList className="w-full h-10 p-1 bg-white border rounded-md flex">
+                <TabsTrigger 
+                  value="all" 
+                  className="flex-1 text-xs md:text-sm px-2 md:px-3 py-1 data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                >
+                  All
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="healthcare" 
+                  className="flex-1 text-xs md:text-sm px-2 md:px-3 py-1 data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                >
+                  Healthcare
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="education" 
+                  className="flex-1 text-xs md:text-sm px-2 md:px-3 py-1 data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                >
+                  Education
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="environment" 
+                  className="flex-1 text-xs md:text-sm px-2 md:px-3 py-1 data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                >
+                  Environment
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="fundraising" 
+                  className="flex-1 text-xs md:text-sm px-2 md:px-3 py-1 data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                >
+                  Fundraising
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
           
           <div className="flex gap-2 justify-end">
             <Button 
