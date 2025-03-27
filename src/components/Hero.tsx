@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock } from "lucide-react";
+import { ArrowRight, Clock, CalendarClock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -66,8 +66,8 @@ const Hero: React.FC = () => {
                 variant="outline" 
                 className="border-belize-teal text-belize-teal hover:bg-belize-teal hover:text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
               >
-                <Clock className="mr-2 h-4 w-4" />
-                Find Doctors
+                <CalendarClock className="mr-2 h-4 w-4" />
+                Schedule Eye Doctor
               </Button>
             </Link>
           </div>
