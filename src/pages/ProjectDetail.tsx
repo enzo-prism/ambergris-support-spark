@@ -9,7 +9,27 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import ProjectDetailGallery from "@/components/ProjectDetailGallery";
 
-const projects = [
+interface ProjectImage {
+  src: string;
+  alt: string;
+}
+
+interface Project {
+  slug: string;
+  title: string;
+  author: string;
+  date: string;
+  category: string;
+  color: string;
+  icon: React.ForwardRefExoticComponent<any>;
+  content: string;
+  highlights: string[];
+  keyNumbers: { label: string; value: string }[];
+  references?: { text: string; url: string }[];
+  images?: ProjectImage[];
+}
+
+const projects: Project[] = [
   {
     slug: "october-vision-clinic",
     title: "Stanford Belize Vision Clinic: Transforming Eye Care in San Pedro",
@@ -345,8 +365,8 @@ const ProjectDetail: React.FC = () => {
               </div>
               
               <div className="md:w-1/4 flex justify-center">
-                <div className={`${project.color} p-6 rounded-full`}>
-                  {getCategoryIcon(project.category)}
+                <div className={`${project!.color} p-6 rounded-full`}>
+                  {getCategoryIcon(project!.category)}
                 </div>
               </div>
             </div>
@@ -363,13 +383,13 @@ const ProjectDetail: React.FC = () => {
                   <div className="prose prose-lg max-w-none">
                     <div 
                       className="content-sections space-y-6"
-                      dangerouslySetInnerHTML={{ __html: project.content }}
+                      dangerouslySetInnerHTML={{ __html: project!.content }}
                     />
                   </div>
                 </CardContent>
               </Card>
 
-              {project.images && project.images.length > 0 && slug !== "october-vision-clinic" && (
+              {project?.images && project.images.length > 0 && project.slug !== "october-vision-clinic" && (
                 <ProjectDetailGallery 
                   images={project.images}
                   title={`${project.title} Gallery`} 
@@ -380,10 +400,10 @@ const ProjectDetail: React.FC = () => {
               <div className="mt-8">
                 <h3 className="text-xl font-bold mb-4 text-belize-green">Project Highlights</h3>
                 <div className="grid grid-cols-1 gap-3">
-                  {project.highlights.map((highlight, index) => (
+                  {project!.highlights.map((highlight, index) => (
                     <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-gray-100">
-                      <div className={`${project.color} p-1 rounded-md`}>
-                        {getCategoryIcon(project.category)}
+                      <div className={`${project!.color} p-1 rounded-md`}>
+                        {getCategoryIcon(project!.category)}
                       </div>
                       <p className="text-gray-700">{highlight}</p>
                     </div>
@@ -391,11 +411,11 @@ const ProjectDetail: React.FC = () => {
                 </div>
               </div>
 
-              {project.references && (
+              {project!.references && (
                 <div className="mt-8">
                   <h3 className="text-xl font-bold mb-4 text-belize-green">References & Further Reading</h3>
                   <div className="grid grid-cols-1 gap-3">
-                    {project.references.map((reference, index) => (
+                    {project!.references.map((reference, index) => (
                       <a 
                         key={index} 
                         href={reference.url} 
@@ -420,10 +440,10 @@ const ProjectDetail: React.FC = () => {
                     <div className="flex justify-between items-center pb-3 border-b border-gray-100">
                       <span className="text-gray-600">Category:</span>
                       <span className="font-medium capitalize flex items-center">
-                        <span className={`${project.color} p-1 rounded-md inline-flex mr-2`}>
-                          {getCategoryIcon(project.category)}
+                        <span className={`${project!.color} p-1 rounded-md inline-flex mr-2`}>
+                          {getCategoryIcon(project!.category)}
                         </span>
-                        {project.category}
+                        {project!.category}
                       </span>
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b border-gray-100">
@@ -442,7 +462,7 @@ const ProjectDetail: React.FC = () => {
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-4 text-belize-green">Key Numbers</h3>
                   <div className="grid grid-cols-1 gap-4">
-                    {project.keyNumbers.map((number, index) => (
+                    {project!.keyNumbers.map((number, index) => (
                       <div key={index} className="text-center p-4 bg-gray-50 rounded-lg">
                         <p className="text-2xl font-bold text-belize-coral">{number.value}</p>
                         <p className="text-sm text-gray-600">{number.label}</p>
