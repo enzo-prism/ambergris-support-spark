@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, MapPin, Send, Facebook, Instagram, Twitter } from "lucide-react";
+import { Mail, MessageSquare, MapPin, Send, Facebook } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -110,15 +110,16 @@ const ContactSection: React.FC = () => {
                 
                 <div>
                   <p className="text-white/90 font-medium mb-4">Connect With Us</p>
-                  <div className="flex gap-3">
+                  <div className="flex">
                     <Button variant="outline" size="icon" className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white">
-                      <Facebook size={18} />
-                    </Button>
-                    <Button variant="outline" size="icon" className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white">
-                      <Instagram size={18} />
-                    </Button>
-                    <Button variant="outline" size="icon" className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white">
-                      <Twitter size={18} />
+                      <a 
+                        href="https://facebook.com" 
+                        target="_blank" 
+                        rel="noreferrer" 
+                        aria-label="Facebook"
+                      >
+                        <Facebook size={18} />
+                      </a>
                     </Button>
                   </div>
                 </div>
