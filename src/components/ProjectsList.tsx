@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -121,6 +122,8 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
 }) => {
   const [activeView, setActiveView] = useState<"grid" | "list">("grid");
   const [activeTab, setActiveTab] = useState<string>(initialTab);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const postsPerPage = 6;
   const isMobile = useIsMobile();
   
   useEffect(() => {
@@ -137,6 +140,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
+    setCurrentPage(1); // Reset to first page when changing tabs
     if (onTabChange) {
       onTabChange(value);
     }
@@ -145,6 +149,20 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   const filteredProjects = activeTab === "all" 
     ? projectPosts 
     : projectPosts.filter(project => project.category === activeTab);
+
+  // Calculate pagination
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredProjects.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(filteredProjects.length / postsPerPage);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      // Scroll to top of the list when page changes
+      window.scrollTo({ top: document.getElementById('projects-list')?.offsetTop || 0, behavior: 'smooth' });
+    }
+  };
 
   const container = {
     hidden: { opacity: 0 },
@@ -198,7 +216,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   };
 
   return (
-    <div className="py-10 md:py-16 bg-gray-50 px-4 md:px-6 lg:px-0">
+    <div id="projects-list" className="py-10 md:py-16 bg-gray-50 px-4 md:px-6 lg:px-0">
       <div className="container-custom max-w-6xl">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -257,10 +275,10 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            key={`grid-${activeTab}`}
+            key={`grid-${activeTab}-${currentPage}`}
           >
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((post) => (
+            {currentPosts.length > 0 ? (
+              currentPosts.map((post) => (
                 <motion.div key={post.id} variants={item}>
                   <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
                     <div className="h-12 flex items-center px-4 border-b border-gray-100">
@@ -306,10 +324,10 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            key={`list-${activeTab}`}
+            key={`list-${activeTab}-${currentPage}`}
           >
-            {filteredProjects.length > 0 ? (
-              filteredProjects.map((post) => (
+            {currentPosts.length > 0 ? (
+              currentPosts.map((post) => (
                 <motion.div key={post.id} variants={item}>
                   <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
                     <div className="flex flex-col md:flex-row">
@@ -365,16 +383,40 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             <Pagination>
               <PaginationContent className="flex-wrap justify-center">
                 <PaginationItem className="mx-1">
-                  <PaginationPrevious href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
+                  <PaginationPrevious 
+                    className={cn(
+                      "border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm",
+                      currentPage === 1 && "opacity-50 pointer-events-none"
+                    )}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                  />
                 </PaginationItem>
+                
+                {[...Array(totalPages)].map((_, i) => (
+                  <PaginationItem key={i} className="mx-1">
+                    <PaginationLink 
+                      isActive={currentPage === i + 1}
+                      className={cn(
+                        "h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm",
+                        currentPage === i + 1 
+                          ? "bg-belize-blue text-white border-belize-blue" 
+                          : "border border-gray-200"
+                      )}
+                      onClick={() => handlePageChange(i + 1)}
+                    >
+                      {i + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                
                 <PaginationItem className="mx-1">
-                  <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="mx-1">
-                  <PaginationLink href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">2</PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="mx-1">
-                  <PaginationNext href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
+                  <PaginationNext 
+                    className={cn(
+                      "border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm",
+                      currentPage === totalPages && "opacity-50 pointer-events-none"
+                    )}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                  />
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
