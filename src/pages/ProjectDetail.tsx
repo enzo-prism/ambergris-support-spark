@@ -79,28 +79,6 @@ const projects = [
       { text: "Stanford Belize Vision Clinic (SBVC)", url: "https://med.stanford.edu/ophthalmology/news-and-media/news-archive/2017_Stories/SBVC.html" },
       { text: "Training the next generation of eye care providers", url: "https://med.stanford.edu/ophthalmology/news-and-media/annual-reports/annualreport_2021/Belize-update.html" },
       { text: "Free Eye Exams by BelizeKids.Org", url: "https://ambergristoday.com/community-bulletin/2020/02/03/free-eye-exams-by-belizekids-org-at-the-lions-den/" }
-    ],
-    images: [
-      {
-        src: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
-        alt: "Stanford Belize Vision Clinic examination"
-      },
-      {
-        src: "/lovable-uploads/2024-10-vision-clinic-team.jpg",
-        alt: "Stanford medical team at the Belize Vision Clinic"
-      },
-      {
-        src: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
-        alt: "Eye examination at the Stanford Belize Vision Clinic"
-      },
-      {
-        src: "/lovable-uploads/2024-10-vision-clinic-6.jpg",
-        alt: "Patient receiving eye care at the clinic"
-      },
-      {
-        src: "/lovable-uploads/2024-10-vision-clinic-9.jpg",
-        alt: "Vision screening equipment at the clinic"
-      }
     ]
   },
   {
@@ -391,11 +369,11 @@ const ProjectDetail: React.FC = () => {
                 </CardContent>
               </Card>
 
-              {project.images && project.images.length > 0 && (
+              {project.images && project.images.length > 0 && slug !== "october-vision-clinic" && (
                 <ProjectDetailGallery 
                   images={project.images}
-                  title="Vision Clinic Gallery" 
-                  description="View photos from the Stanford Belize Vision Clinic" 
+                  title={`${project.title} Gallery`} 
+                  description={`View photos from the ${project.title}`} 
                 />
               )}
 
