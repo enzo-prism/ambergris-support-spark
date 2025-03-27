@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight } from "lucide-react";
+import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -81,7 +81,84 @@ const ProgramsSection: React.FC = () => {
           ))}
         </div>
         
-        <div className="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-8">
+        <div className="mt-16 mb-8 max-w-4xl mx-auto">
+          <h3 className="text-2xl font-bold mb-6 text-belize-green text-center">Featured Initiative: Stanford Belize Vision Clinic</h3>
+          <Card className="border-none shadow-xl overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-0">
+              <div className="bg-belize-blue/10 p-8 flex flex-col justify-center">
+                <div className="flex items-center mb-4">
+                  <div className="p-3 rounded-full bg-belize-blue/20 mr-4">
+                    <Eye className="h-6 w-6 text-belize-blue" />
+                  </div>
+                  <h4 className="text-xl font-bold text-belize-green">Established in 2017</h4>
+                </div>
+                <p className="text-gray-700 mb-4">
+                  Following a hurricane that damaged San Pedro, Don Listwin (founder of BelizeKids.org) worked with 
+                  Dr. Caroline Fisher from Stanford to establish the first eye clinic in the area.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                  <div className="flex items-center">
+                    <MapPin className="h-5 w-5 text-belize-coral mr-2" />
+                    <span className="text-sm">Ambergris Caye, Belize</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar className="h-5 w-5 text-belize-coral mr-2" />
+                    <span className="text-sm">Regular clinics since 2017</span>
+                  </div>
+                </div>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start">
+                    <div className="rounded-full bg-belize-green/20 p-0.5 mr-3 mt-1">
+                      <svg className="h-3 w-3 text-belize-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Only dedicated eye clinic on the island</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="rounded-full bg-belize-green/20 p-0.5 mr-3 mt-1">
+                      <svg className="h-3 w-3 text-belize-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Partnership with Stanford Medicine ophthalmologists</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="rounded-full bg-belize-green/20 p-0.5 mr-3 mt-1">
+                      <svg className="h-3 w-3 text-belize-green" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-sm">Trained local ophthalmic technicians</span>
+                  </li>
+                </ul>
+                <Link to="/projects/october-vision-clinic">
+                  <Button className="bg-belize-blue hover:bg-belize-blue/90">
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="h-full">
+                <img 
+                  src="/lovable-uploads/2024-10-vision-clinic-main.jpg" 
+                  alt="Stanford doctors performing eye examinations at the Belize Vision Clinic" 
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
+            </div>
+          </Card>
+          <div className="text-center mt-6 text-sm text-gray-600">
+            <p>
+              "Seeing how corrective lenses could impact a student's entire learning experience was impactful." 
+              <span className="italic block mt-1">— Dr. Natacha Villegas, Chief Ophthalmology Resident at Stanford</span>
+            </p>
+          </div>
+        </div>
+        
+        <div className="mt-16 flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-8">
           <div className="md:w-1/2">
             <h3 className="text-2xl font-bold mb-4 text-belize-green">Evolving to Meet Changing Needs</h3>
             <p className="text-lg text-gray-700 mb-6">
