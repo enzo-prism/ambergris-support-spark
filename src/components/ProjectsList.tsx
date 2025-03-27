@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +14,7 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -111,24 +110,37 @@ const projectPosts = [
   },
 ];
 
-const ProjectsList: React.FC = () => {
-  const location = useLocation();
+interface ProjectsListProps {
+  initialTab?: string;
+  onTabChange?: (tab: string) => void;
+}
+
+const ProjectsList: React.FC<ProjectsListProps> = ({ 
+  initialTab = "all", 
+  onTabChange 
+}) => {
   const [activeView, setActiveView] = useState<"grid" | "list">("grid");
-  const [activeTab, setActiveTab] = useState<string>("all");
+  const [activeTab, setActiveTab] = useState<string>(initialTab);
   const isMobile = useIsMobile();
   
   useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const tabParam = searchParams.get('tab');
-    if (tabParam && ['healthcare', 'education', 'environment', 'fundraising', 'all'].includes(tabParam)) {
-      setActiveTab(tabParam);
-    }
-    
-    // Default to list view on mobile for better readability
     if (isMobile) {
       setActiveView("list");
     }
-  }, [location.search, isMobile]);
+  }, [isMobile]);
+
+  useEffect(() => {
+    if (initialTab && ['healthcare', 'education', 'environment', 'fundraising', 'all'].includes(initialTab)) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    if (onTabChange) {
+      onTabChange(value);
+    }
+  };
 
   const filteredProjects = activeTab === "all" 
     ? projectPosts 
@@ -198,13 +210,15 @@ const ProjectsList: React.FC = () => {
           <Tabs 
             value={activeTab} 
             className="w-full max-w-full overflow-x-auto md:max-w-md no-scrollbar" 
-            onValueChange={(value) => setActiveTab(value)}
+            onValueChange={handleTabChange}
+            defaultValue={initialTab}
           >
-            <TabsList className="w-full bg-white border grid grid-cols-4">
+            <TabsList className="w-full bg-white border grid grid-cols-5">
               <TabsTrigger value="all" className="text-xs md:text-sm">All</TabsTrigger>
               <TabsTrigger value="healthcare" className="text-xs md:text-sm">Healthcare</TabsTrigger>
               <TabsTrigger value="education" className="text-xs md:text-sm">Education</TabsTrigger>
               <TabsTrigger value="environment" className="text-xs md:text-sm">Environment</TabsTrigger>
+              <TabsTrigger value="fundraising" className="text-xs md:text-sm">Fundraising</TabsTrigger>
             </TabsList>
           </Tabs>
           
@@ -243,63 +257,20 @@ const ProjectsList: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
+            key={`grid-${activeTab}`}
           >
-            {filteredProjects.map((post) => (
-              <motion.div key={post.id} variants={item}>
-                <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
-                  <div className="h-12 flex items-center px-4 border-b border-gray-100">
-                    <div className={`${getCategoryColor(post.category)} p-1.5 rounded-md mr-3`}>
-                      {getCategoryIcon(post.category)}
-                    </div>
-                    <span className="text-sm font-medium capitalize">{post.category}</span>
-                  </div>
-                  <CardContent className="pt-5 px-4 md:px-6 md:pt-6 pb-4 md:pb-6">
-                    <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3 gap-2 md:gap-4 flex-wrap">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
-                        <span>{post.date}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
-                        <span>{post.author}</span>
-                      </div>
-                    </div>
-                    <h3 className="text-lg md:text-xl font-bold text-belize-green mb-2 line-clamp-2">
-                      {post.title}
-                    </h3>
-                    <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm md:text-base font-medium">
-                      Read More <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        ) : (
-          <motion.div 
-            className="flex flex-col gap-4 mb-8 md:mb-12"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {filteredProjects.map((post) => (
-              <motion.div key={post.id} variants={item}>
-                <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
-                  <div className="flex flex-col md:flex-row">
-                    <div className="md:w-20 h-16 md:h-auto bg-gray-50 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
-                      <div className={`${getCategoryColor(post.category)} p-2 rounded-md`}>
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((post) => (
+                <motion.div key={post.id} variants={item}>
+                  <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white">
+                    <div className="h-12 flex items-center px-4 border-b border-gray-100">
+                      <div className={`${getCategoryColor(post.category)} p-1.5 rounded-md mr-3`}>
                         {getCategoryIcon(post.category)}
                       </div>
+                      <span className="text-sm font-medium capitalize">{post.category}</span>
                     </div>
-                    <div className="p-4 md:p-6">
-                      <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 gap-2 md:gap-4 flex-wrap">
-                        <span className="text-xs font-medium px-2 py-0.5 rounded-full capitalize bg-gray-100">
-                          {post.category}
-                        </span>
+                    <CardContent className="pt-5 px-4 md:px-6 md:pt-6 pb-4 md:pb-6">
+                      <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 md:mb-3 gap-2 md:gap-4 flex-wrap">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
                           <span>{post.date}</span>
@@ -309,47 +280,106 @@ const ProjectsList: React.FC = () => {
                           <span>{post.author}</span>
                         </div>
                       </div>
-                      <h3 className="text-lg md:text-xl font-bold text-belize-green mb-1 md:mb-2">
+                      <h3 className="text-lg md:text-xl font-bold text-belize-green mb-2 line-clamp-2">
                         {post.title}
                       </h3>
-                      <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2">
+                      <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
                       <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm md:text-base font-medium">
                         Read More <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
                       </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))
+            ) : (
+              <div className="col-span-2 py-8 text-center">
+                <p className="text-gray-500">No projects found for this category.</p>
+              </div>
+            )}
+          </motion.div>
+        ) : (
+          <motion.div 
+            className="flex flex-col gap-4 mb-8 md:mb-12"
+            variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            key={`list-${activeTab}`}
+          >
+            {filteredProjects.length > 0 ? (
+              filteredProjects.map((post) => (
+                <motion.div key={post.id} variants={item}>
+                  <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
+                    <div className="flex flex-col md:flex-row">
+                      <div className="md:w-20 h-16 md:h-auto bg-gray-50 flex items-center justify-center border-b md:border-b-0 md:border-r border-gray-100">
+                        <div className={`${getCategoryColor(post.category)} p-2 rounded-md`}>
+                          {getCategoryIcon(post.category)}
+                        </div>
+                      </div>
+                      <div className="p-4 md:p-6">
+                        <div className="flex items-center text-xs md:text-sm text-gray-500 mb-2 gap-2 md:gap-4 flex-wrap">
+                          <span className="text-xs font-medium px-2 py-0.5 rounded-full capitalize bg-gray-100">
+                            {post.category}
+                          </span>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
+                            <span>{post.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <User className="h-3 w-3 md:h-4 md:w-4 flex-shrink-0" />
+                            <span>{post.author}</span>
+                          </div>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-bold text-belize-green mb-1 md:mb-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4 line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                        <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm md:text-base font-medium">
+                          Read More <ArrowRight className="ml-1 h-3 w-3 md:h-4 md:w-4" />
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                  </Card>
+                </motion.div>
+              ))
+            ) : (
+              <div className="py-8 text-center">
+                <p className="text-gray-500">No projects found for this category.</p>
+              </div>
+            )}
           </motion.div>
         )}
         
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <Pagination>
-            <PaginationContent className="flex-wrap justify-center">
-              <PaginationItem className="mx-1">
-                <PaginationPrevious href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
-              </PaginationItem>
-              <PaginationItem className="mx-1">
-                <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">1</PaginationLink>
-              </PaginationItem>
-              <PaginationItem className="mx-1">
-                <PaginationLink href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">2</PaginationLink>
-              </PaginationItem>
-              <PaginationItem className="mx-1">
-                <PaginationNext href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
-        </motion.div>
+        {filteredProjects.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="flex justify-center"
+          >
+            <Pagination>
+              <PaginationContent className="flex-wrap justify-center">
+                <PaginationItem className="mx-1">
+                  <PaginationPrevious href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
+                </PaginationItem>
+                <PaginationItem className="mx-1">
+                  <PaginationLink href="#" isActive className="bg-belize-blue text-white border-belize-blue h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">1</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="mx-1">
+                  <PaginationLink href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-9 text-xs md:text-sm">2</PaginationLink>
+                </PaginationItem>
+                <PaginationItem className="mx-1">
+                  <PaginationNext href="#" className="border border-gray-200 h-8 md:h-9 w-8 md:w-auto px-1 md:px-3 text-xs md:text-sm" />
+                </PaginationItem>
+              </PaginationContent>
+            </Pagination>
+          </motion.div>
+        )}
       </div>
     </div>
   );

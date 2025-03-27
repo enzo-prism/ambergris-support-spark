@@ -7,8 +7,19 @@ import ProjectsHeader from "@/components/ProjectsHeader";
 import ProjectsList from "@/components/ProjectsList";
 import MembershipPromo from "@/components/MembershipPromo";
 import TransparencySection from "@/components/TransparencySection";
+import { useSearchParams } from "react-router-dom";
 
 const Projects: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialTab = searchParams.get('tab') || 'all';
+
+  const handleTabChange = (tab: string) => {
+    setSearchParams(params => {
+      params.set('tab', tab);
+      return params;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white overflow-x-hidden overflow-fix">
       <Helmet>
@@ -22,7 +33,7 @@ const Projects: React.FC = () => {
       <Navbar />
       <main className="pt-4">
         <ProjectsHeader />
-        <ProjectsList />
+        <ProjectsList initialTab={initialTab} onTabChange={handleTabChange} />
         <TransparencySection />
         <MembershipPromo />
       </main>
