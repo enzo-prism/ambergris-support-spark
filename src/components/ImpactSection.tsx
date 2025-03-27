@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -32,7 +31,7 @@ const ImpactSection: React.FC = () => {
       name: "Vision Clinic",
       age: "",
       story: "Our Stanford Belize Vision Clinic provides free eye screenings and subsidized eyewear for families in need, significantly improving children's ability to learn.",
-      image: "https://belizekids.org/wp-content/uploads/2016/02/12592316_10154165614829453_909396111248501705_n.jpg",
+      image: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
     },
     {
       name: "ACB School Classroom",
@@ -44,7 +43,7 @@ const ImpactSection: React.FC = () => {
       name: "Boca Del Rio Playground",
       age: "",
       story: "By the end of 2013, the park at Boca Del Rio – one of the most beautiful locations on the island – was in sorry shape. The heavily used basketball court was in need of maintenance, the swing sets and playground were falling apart and Canary Cove stepped in to help. The entrance was blocked to golf carts so that kids could now play freely, under the renovation supervised by Gil Nunez.",
-      image: "https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg",
+      image: "https://belizekids.org/wp-content/uploads/2016/06/sptc6.jpg",
     },
   ];
 
