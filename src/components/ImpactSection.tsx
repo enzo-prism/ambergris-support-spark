@@ -41,10 +41,10 @@ const ImpactSection: React.FC = () => {
       image: "https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg",
     },
     {
-      name: "School Support",
+      name: "Boca Del Rio Playground",
       age: "",
-      story: "Our $887,000 investment in textbooks, uniforms, shoes, and school supplies has transformed educational opportunities for thousands of Belizean children.",
-      image: "https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-5.jpg",
+      story: "By the end of 2013, the park at Boca Del Rio – one of the most beautiful locations on the island – was in sorry shape. The heavily used basketball court was in need of maintenance, the swing sets and playground were falling apart and Canary Cove stepped in to help. The entrance was blocked to golf carts so that kids could now play freely, under the renovation supervised by Gil Nunez.",
+      image: "https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg",
     },
   ];
 
