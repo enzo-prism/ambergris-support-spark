@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, CreditCard } from "lucide-react";
+import { ArrowRight, Users, CreditCard, Award, CheckCircle2 } from "lucide-react";
 
 const MembershipHero: React.FC = () => {
   const scrollToForm = () => {
@@ -10,6 +10,13 @@ const MembershipHero: React.FC = () => {
       formElement.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const memberBenefits = [
+    "Be part of a community creating lasting change",
+    "Track your impact with regular updates",
+    "100% of your contribution goes to programs",
+    "Join strategic partnerships with Stanford and local organizations"
+  ];
 
   return (
     <div className="relative min-h-[80vh] flex items-center pt-24 sm:pt-28 pb-16 sm:pb-10 px-6 md:px-0 bg-gradient-to-b from-belize-blue/20 via-white to-white overflow-hidden">
@@ -31,6 +38,19 @@ const MembershipHero: React.FC = () => {
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
             Join our exclusive membership community helping to create lasting change for children in Belize through consistent monthly support and engagement.
           </p>
+          
+          <div className="mb-8 hidden lg:block">
+            <h3 className="text-xl font-bold text-belize-green mb-4">Founded by Don Listwin to Create Sustainable Change</h3>
+            <div className="grid grid-cols-2 gap-3">
+              {memberBenefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-belize-green mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700">{benefit}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Button 
               onClick={scrollToForm}
@@ -52,8 +72,25 @@ const MembershipHero: React.FC = () => {
               />
             </div>
             <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
-              <p className="font-bold text-belize-green text-sm sm:text-base">Monthly</p>
-              <p className="text-xs sm:text-sm">Sustainable impact</p>
+              <div className="flex items-center gap-2">
+                <Award className="h-5 w-5 text-belize-green" />
+                <div>
+                  <p className="font-bold text-belize-green text-sm sm:text-base">3,266+ Scholarships</p>
+                  <p className="text-xs sm:text-sm">Awarded since founding</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="mt-8 bg-belize-light/50 p-4 rounded-lg border border-belize-blue/10 lg:hidden">
+            <h3 className="font-bold text-belize-green mb-3">Founded by Don Listwin to Create Sustainable Change</h3>
+            <div className="grid grid-cols-1 gap-2">
+              {memberBenefits.map((benefit, index) => (
+                <div key={index} className="flex items-start gap-2">
+                  <CheckCircle2 className="h-5 w-5 text-belize-green mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm">{benefit}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

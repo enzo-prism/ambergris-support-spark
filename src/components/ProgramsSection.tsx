@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin } from "lucide-react";
+import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ const ProgramsSection: React.FC = () => {
     {
       icon: <GraduationCap className="h-12 w-12 text-white" />,
       title: "School Support",
-      description: "Investing in educational infrastructure, supplies, and resources to help schools provide better learning environments for children.",
+      description: "Investing in educational infrastructure, textbooks, uniforms, and supplies to help schools provide better learning environments for children.",
       color: "bg-belize-green",
       hoverColor: "hover:bg-belize-green/90",
       category: "education"
@@ -18,7 +18,7 @@ const ProgramsSection: React.FC = () => {
     {
       icon: <HeartPulse className="h-12 w-12 text-white" />,
       title: "Healthcare Expansion",
-      description: "Supporting and expanding healthcare services to ensure children receive the medical attention they need to thrive.",
+      description: "Supporting healthcare services like the Stanford Belize Vision Clinic to ensure children receive the medical attention they need to thrive.",
       color: "bg-belize-teal",
       hoverColor: "hover:bg-belize-teal/90",
       category: "healthcare"
@@ -32,12 +32,12 @@ const ProgramsSection: React.FC = () => {
       category: "environment"
     },
     {
-      icon: <BookOpen className="h-12 w-12 text-white" />,
-      title: "Scholarship Programs",
-      description: "Providing educational scholarships to help talented students overcome financial barriers and achieve their potential.",
+      icon: <Laptop className="h-12 w-12 text-white" />,
+      title: "Community Development",
+      description: "Constructing facilities such as internet centers in remote villages to bridge the digital divide and provide access to technology.",
       color: "bg-belize-blue",
       hoverColor: "hover:bg-belize-blue/90",
-      category: "education"
+      category: "development"
     }
   ];
 
@@ -48,8 +48,8 @@ const ProgramsSection: React.FC = () => {
           <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">Our Focus Areas</span>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Making a Difference Through Our Programs</h2>
           <p className="text-lg text-gray-700">
-            Through our targeted programs, we address the diverse needs of children in Belize, 
-            focusing on education, healthcare, and community development.
+            Founded by Don Listwin, BelizeKids.org addresses the diverse needs of children in Belize, 
+            focusing on healthcare, education, and community development through strategic partnerships.
           </p>
         </div>
 
@@ -94,7 +94,8 @@ const ProgramsSection: React.FC = () => {
                 </div>
                 <p className="text-gray-700 mb-4">
                   Following a hurricane that damaged San Pedro, Don Listwin (founder of BelizeKids.org) worked with 
-                  Dr. Caroline Fisher from Stanford to establish the first eye clinic in the area.
+                  Dr. Caroline Fisher from Stanford to establish the first eye clinic in the area, providing free eye screenings 
+                  and subsidized eyewear for families in need.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                   <div className="flex items-center">
@@ -129,7 +130,7 @@ const ProgramsSection: React.FC = () => {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm">Trained local ophthalmic technicians</span>
+                    <span className="text-sm">Collaboration with BCVI for continuity of care</span>
                   </li>
                 </ul>
                 <Link to="/projects/october-vision-clinic">
@@ -160,11 +161,41 @@ const ProgramsSection: React.FC = () => {
         
         <div className="mt-16 flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl shadow-lg p-8">
           <div className="md:w-1/2">
-            <h3 className="text-2xl font-bold mb-4 text-belize-green">Evolving to Meet Changing Needs</h3>
-            <p className="text-lg text-gray-700 mb-6">
-              Our programs continually evolve to meet the changing needs of children across Belize, 
-              with a focus on sustainable, community-driven solutions.
-            </p>
+            <h3 className="text-2xl font-bold mb-4 text-belize-green">Notable Achievements</h3>
+            <ul className="space-y-3 mb-6">
+              <li className="flex items-start">
+                <div className="rounded-full bg-belize-green p-1 mr-3 mt-1 flex-shrink-0">
+                  <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>Awarded over 3,266 scholarships for high school and university students</span>
+              </li>
+              <li className="flex items-start">
+                <div className="rounded-full bg-belize-green p-1 mr-3 mt-1 flex-shrink-0">
+                  <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>Invested nearly $887,000 in textbooks, uniforms, and school supplies</span>
+              </li>
+              <li className="flex items-start">
+                <div className="rounded-full bg-belize-green p-1 mr-3 mt-1 flex-shrink-0">
+                  <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>Built Student Center at Julian Cho Technical High School (2018)</span>
+              </li>
+              <li className="flex items-start">
+                <div className="rounded-full bg-belize-green p-1 mr-3 mt-1 flex-shrink-0">
+                  <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>Constructed Internet Center in San Lucas Village (2022)</span>
+              </li>
+            </ul>
             <Link to="/projects">
               <Button className="bg-belize-green hover:bg-belize-green/90">
                 View Our Projects

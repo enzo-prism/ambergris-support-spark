@@ -2,27 +2,27 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Book, User, School, TrendingUp } from "lucide-react";
+import { Book, User, School, TrendingUp, Award, BookOpen, GraduationCap, Building } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ImpactSection: React.FC = () => {
   const impactStats = [
     {
-      icon: <User className="h-8 w-8 text-white" />,
-      count: "500+",
-      label: "Children Supported",
+      icon: <GraduationCap className="h-8 w-8 text-white" />,
+      count: "3,266+",
+      label: "Scholarships Awarded",
       color: "bg-gradient-to-br from-belize-green to-belize-green/80",
     },
     {
-      icon: <Book className="h-8 w-8 text-white" />,
-      count: "25",
-      label: "Active Programs",
+      icon: <BookOpen className="h-8 w-8 text-white" />,
+      count: "$887K",
+      label: "School Supplies Investment",
       color: "bg-gradient-to-br from-belize-teal to-belize-teal/80",
     },
     {
-      icon: <School className="h-8 w-8 text-white" />,
-      count: "12",
-      label: "Schools Partnered With",
+      icon: <Building className="h-8 w-8 text-white" />,
+      count: "2",
+      label: "Major Facilities Built",
       color: "bg-gradient-to-br from-belize-coral to-belize-coral/80",
     },
   ];
@@ -31,19 +31,19 @@ const ImpactSection: React.FC = () => {
     {
       name: "Vision Clinic",
       age: "",
-      story: "Our vision clinics provide hundreds of children with eye exams and glasses, significantly improving their ability to learn and participate in school activities.",
+      story: "Our Stanford Belize Vision Clinic provides free eye screenings and subsidized eyewear for families in need, significantly improving children's ability to learn.",
       image: "https://belizekids.org/wp-content/uploads/2016/02/12592316_10154165614829453_909396111248501705_n.jpg",
     },
     {
-      name: "Eye Testing",
+      name: "Educational Facilities",
       age: "",
-      story: "By identifying vision problems early, we help ensure children have the foundation they need for academic success and future opportunities.",
+      story: "We've constructed the Student Center at Julian Cho Technical High School (2018) and an Internet Center in San Lucas Village (2022) to improve educational access.",
       image: "https://belizekids.org/wp-content/uploads/2016/02/12645260_10154165614814453_7582052312479518910_n.jpg",
     },
     {
       name: "School Support",
       age: "",
-      story: "Our educational initiatives provide resources and infrastructure to schools, creating better learning environments for children across Belize.",
+      story: "Our $887,000 investment in textbooks, uniforms, shoes, and school supplies has transformed educational opportunities for thousands of Belizean children.",
       image: "https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-5.jpg",
     },
   ];
@@ -112,10 +112,10 @@ const ImpactSection: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-2xl font-bold text-belize-green">2023 Program Funding</h3>
+            <h3 className="text-2xl font-bold text-belize-green">Key Partnerships</h3>
             <div className="flex items-center gap-2 px-3 py-1 bg-belize-light rounded-full">
               <TrendingUp className="h-4 w-4 text-belize-green" />
-              <span className="text-sm font-medium text-belize-green">Transparent Allocation</span>
+              <span className="text-sm font-medium text-belize-green">Strategic Collaboration</span>
             </div>
           </div>
           
@@ -123,37 +123,37 @@ const ImpactSection: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-medium">School Support</span>
-                  <span className="font-medium text-belize-green">45%</span>
+                  <span className="font-medium">Stanford University</span>
+                  <span className="font-medium text-belize-green">Medical Expertise</span>
                 </div>
-                <Progress value={45} className="h-3 bg-gray-100" />
-                <p className="text-sm text-gray-500 mt-1">Investing in educational facilities and resources</p>
+                <Progress value={100} className="h-3 bg-gray-100" />
+                <p className="text-sm text-gray-500 mt-1">Provides medical expertise for the Vision Clinic</p>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-medium">Healthcare Expansion</span>
-                  <span className="font-medium text-belize-green">30%</span>
+                  <span className="font-medium">Belize Council for the Visually Impaired</span>
+                  <span className="font-medium text-belize-green">Care Continuity</span>
                 </div>
-                <Progress value={30} className="h-3 bg-gray-100" />
-                <p className="text-sm text-gray-500 mt-1">Improving access to medical services</p>
+                <Progress value={100} className="h-3 bg-gray-100" />
+                <p className="text-sm text-gray-500 mt-1">Ensures ongoing eye care through subsidized eyewear</p>
               </div>
             </div>
             <div className="space-y-6">
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-medium">Parks & Playgrounds</span>
-                  <span className="font-medium text-belize-green">15%</span>
+                  <span className="font-medium">San Pedro Lions Club</span>
+                  <span className="font-medium text-belize-green">Logistical Support</span>
                 </div>
-                <Progress value={15} className="h-3 bg-gray-100" />
-                <p className="text-sm text-gray-500 mt-1">Creating safe spaces for children to play</p>
+                <Progress value={100} className="h-3 bg-gray-100" />
+                <p className="text-sm text-gray-500 mt-1">Assists with community-based projects and clinic operations</p>
               </div>
               <div>
                 <div className="flex justify-between mb-2">
-                  <span className="font-medium">Scholarship Programs</span>
-                  <span className="font-medium text-belize-green">10%</span>
+                  <span className="font-medium">Local Schools</span>
+                  <span className="font-medium text-belize-green">Educational Integration</span>
                 </div>
-                <Progress value={10} className="h-3 bg-gray-100" />
-                <p className="text-sm text-gray-500 mt-1">Supporting talented students with financial needs</p>
+                <Progress value={100} className="h-3 bg-gray-100" />
+                <p className="text-sm text-gray-500 mt-1">Facilitates scholarship programs and educational initiatives</p>
               </div>
             </div>
           </div>

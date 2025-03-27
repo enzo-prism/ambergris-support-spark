@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Activity, Bell, Users, Globe, Heart, CreditCard } from "lucide-react";
+import { Mail, Activity, Bell, Users, Globe, Heart, CreditCard, Handshake, Megaphone, UserPlus } from "lucide-react";
 
 const MembershipBenefits: React.FC = () => {
   const benefits = [
@@ -37,6 +37,33 @@ const MembershipBenefits: React.FC = () => {
     }
   ];
 
+  const waysToHelp = [
+    {
+      icon: <CreditCard className="h-6 w-6 text-white" />,
+      title: "Monthly Donations",
+      description: "Financial contributions fund scholarships, medical equipment, and construction projects.",
+      color: "bg-belize-green"
+    },
+    {
+      icon: <Handshake className="h-6 w-6 text-white" />,
+      title: "Volunteer",
+      description: "Share your expertise in medical services, teaching, or other professional skills.",
+      color: "bg-belize-teal"
+    },
+    {
+      icon: <Megaphone className="h-6 w-6 text-white" />,
+      title: "Advocacy",
+      description: "Raise awareness about our work to encourage broader support from donors and partners.",
+      color: "bg-belize-coral"
+    },
+    {
+      icon: <UserPlus className="h-6 w-6 text-white" />,
+      title: "Sponsorships",
+      description: "Sponsor specific projects like classroom construction or healthcare initiatives.",
+      color: "bg-belize-blue"
+    }
+  ];
+
   return (
     <section className="py-16 bg-white">
       <div className="container-custom">
@@ -51,7 +78,7 @@ const MembershipBenefits: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {benefits.map((benefit, index) => (
             <Card key={index} className="border border-gray-100 hover:shadow-md transition-shadow">
               <CardContent className="p-6">
@@ -63,6 +90,31 @@ const MembershipBenefits: React.FC = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-belize-green mb-4">Four Ways You Can Help</h2>
+            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+              There are multiple ways to contribute to BelizeKids.org's mission of improving education and healthcare for children in Belize.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {waysToHelp.map((way, index) => (
+              <Card key={index} className="border-none shadow-lg overflow-hidden">
+                <div className={`${way.color} p-6 flex justify-center`}>
+                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                    {way.icon}
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-belize-green mb-2">{way.title}</h3>
+                  <p className="text-gray-700">{way.description}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>
