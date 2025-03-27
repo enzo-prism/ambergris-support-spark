@@ -407,10 +407,6 @@ const Navbar: React.FC = () => {
                     className="h-8 w-auto"
                   />
                 </Link>
-                <SheetClose className="rounded-full h-8 w-8 flex items-center justify-center text-gray-500 hover:bg-gray-100">
-                  <X size={20} />
-                  <span className="sr-only">Close menu</span>
-                </SheetClose>
               </div>
               
               <div className="flex-1 overflow-auto py-2 px-1">
