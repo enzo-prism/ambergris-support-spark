@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -179,7 +178,7 @@ const ImpactSection: React.FC = () => {
                 <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group h-full flex flex-col">
                   <div className="overflow-hidden">
                     <img 
-                      src={story.image} 
+                      src={index === 0 ? "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg" : story.image} 
                       alt={`${story.name}`} 
                       className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
                       onError={(e) => {
