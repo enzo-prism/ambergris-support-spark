@@ -1,8 +1,8 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   CheckCircle, 
-  Download, 
   BarChart2, 
   PieChart, 
   ArrowUpRight,
@@ -92,7 +92,7 @@ const TransparencySection: React.FC = () => {
                   value="reports" 
                   className={`py-3 text-sm sm:text-base ${selectedTab === "reports" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
                 >
-                  Financial Reports
+                  Financial Commitment
                 </TabsTrigger>
                 <TabsTrigger 
                   value="projects" 
@@ -169,47 +169,7 @@ const TransparencySection: React.FC = () => {
             
             <TabsContent value="reports" className="p-4 sm:p-6 md:p-10 mt-0">
               <div className="grid md:grid-cols-2 gap-10">
-                <div>
-                  <h3 className="text-2xl font-bold mb-6">Latest Financial Reports</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700">January 2023 Financial Report</span>
-                      <Button variant="outline" size="sm" className="flex items-center gap-2">
-                        <Download className="h-4 w-4" />
-                        PDF
-                      </Button>
-                    </div>
-                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700">February 2023 Financial Report</span>
-                      <Button variant="outline" size="sm" className="flex items-center gap-2">
-                        <Download className="h-4 w-4" />
-                        PDF
-                      </Button>
-                    </div>
-                    <div className="flex justify-between items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-                      <span className="text-gray-700">March 2023 Financial Report</span>
-                      <Button variant="outline" size="sm" className="flex items-center gap-2">
-                        <Download className="h-4 w-4" />
-                        PDF
-                      </Button>
-                    </div>
-                  </div>
-                  <div className="mt-8">
-                    <h4 className="font-bold text-lg mb-4">Annual Impact Report</h4>
-                    <p className="text-gray-700 mb-4">
-                      Our detailed annual report covers all programs, financial data, and impact metrics 
-                      for the year.
-                    </p>
-                    <Button className="w-full flex items-center justify-center gap-2 bg-belize-green hover:bg-opacity-90">
-                      <Download className="h-4 w-4" />
-                      Download 2023 Annual Report
-                    </Button>
-                  </div>
-                </div>
-                <div className="bg-white p-6 border border-gray-200 rounded-lg relative">
-                  <div className="absolute -top-4 -right-4 bg-belize-yellow text-white text-xs font-bold px-3 py-1 rounded-full">
-                    New
-                  </div>
+                <div className="bg-white p-6 border border-gray-200 rounded-lg relative col-span-2">
                   <h4 className="font-bold text-xl mb-6">Our Financial Commitment</h4>
                   <ul className="space-y-4 mb-8">
                     <li className="flex gap-3">
@@ -218,7 +178,7 @@ const TransparencySection: React.FC = () => {
                     </li>
                     <li className="flex gap-3">
                       <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-                      <p className="text-gray-700">Financial reports are available for download and review by the public</p>
+                      <p className="text-gray-700">Financial reports are available for review by the public</p>
                     </li>
                     <li className="flex gap-3">
                       <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
