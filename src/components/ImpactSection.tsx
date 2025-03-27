@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -34,10 +35,10 @@ const ImpactSection: React.FC = () => {
       image: "https://belizekids.org/wp-content/uploads/2016/02/12592316_10154165614829453_909396111248501705_n.jpg",
     },
     {
-      name: "Educational Facilities",
+      name: "ACB School Classroom",
       age: "",
-      story: "We've constructed the Student Center at Julian Cho Technical High School (2018) and an Internet Center in San Lucas Village (2022) to improve educational access.",
-      image: "https://belizekids.org/wp-content/uploads/2016/02/12645260_10154165614814453_7582052312479518910_n.jpg",
+      story: "We've built a new classroom at ACB School, allowing more students to receive quality education. When classrooms are available, the federal government funds the teachers, creating sustainable educational opportunities.",
+      image: "https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg",
     },
     {
       name: "School Support",
