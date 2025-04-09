@@ -172,7 +172,7 @@ const ClassroomDrive: React.FC = () => {
                       <p className="text-gray-700">
                         And, as always, your donation is tax-deductible as BKO is a US 501(c)(3) organization.
                         <br />
-                        <span className="font-semibold">BelizeKids.Org TAX ID 81-2841433</span>
+                        <span className="font-semibold">Belize Kids TAX ID 81-2841433</span>
                         <br />
                         PO BOX 620134
                         <br />

@@ -37,7 +37,7 @@ const ClinicInfo: React.FC = () => {
               surrounding areas.
             </p>
             <p className="text-sm text-gray-600">
-              The clinic was established with the support of BelizeKids.org following hurricane damage to San Pedro, 
+              The clinic was established with the support of Belize Kids following hurricane damage to San Pedro, 
               and operates on an intermittent schedule based on visiting specialists.
             </p>
           </div>
@@ -49,7 +49,7 @@ const ClinicInfo: React.FC = () => {
                 Stanford University Partnership
               </Badge>
               <Badge className="bg-belize-teal/10 text-belize-teal hover:bg-belize-teal/20 px-3 py-1">
-                BelizeKids.org Support
+                Belize Kids Support
               </Badge>
               <Badge className="bg-belize-blue/10 text-belize-blue hover:bg-belize-blue/20 px-3 py-1">
                 Belize Council for the Visually Impaired

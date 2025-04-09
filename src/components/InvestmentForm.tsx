@@ -70,7 +70,7 @@ const InvestmentForm: React.FC = () => {
                   <div className="bg-gray-50 p-5 rounded-lg">
                     <h4 className="font-bold text-belize-blue mb-2">Mail a Check</h4>
                     <p className="text-gray-700">
-                      Make checks payable to "BelizeKids.org" and mail to:<br />
+                      Make checks payable to "Belize Kids" and mail to:<br />
                       <span className="font-medium">PO BOX 620134, Woodside, CA 94062</span>
                     </p>
                   </div>
@@ -100,7 +100,7 @@ const InvestmentForm: React.FC = () => {
                 </div>
                 
                 <p className="text-xs text-gray-500 text-center mt-4">
-                  BelizeKids.org | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
+                  Belize Kids | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
                 </p>
               </div>
             </div>
@@ -108,7 +108,7 @@ const InvestmentForm: React.FC = () => {
           
           <div className="text-center mt-12">
             <p className="text-sm text-gray-600">
-              BelizeKids.org | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
+              Belize Kids | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
             </p>
           </div>
         </div>

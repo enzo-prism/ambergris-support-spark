@@ -49,7 +49,7 @@ const ContactSection: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-belize-green">Get In Touch</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Have questions or want to learn more about BelizeKids.org? 
+            Have questions or want to learn more about Belize Kids? 
             We'd love to hear from you.
           </p>
           <div className="w-24 h-1 bg-belize-green mx-auto mt-6 rounded-full"></div>
@@ -96,7 +96,7 @@ const ContactSection: React.FC = () => {
                     <div>
                       <p className="text-white/70 text-sm">US Mailing</p>
                       <p className="text-white font-medium">
-                        BelizeKids.org<br />
+                        Belize Kids<br />
                         501(c)(3) Non-Profit<br />
                         TAX ID: 81-2841433<br />
                         PO BOX 620134<br />

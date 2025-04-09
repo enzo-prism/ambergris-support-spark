@@ -101,7 +101,7 @@ const InvestmentOptions: React.FC = () => {
                   <div className="bg-gray-50 p-5 rounded-lg">
                     <h4 className="font-bold text-belize-blue mb-2">Mail a Check</h4>
                     <p className="text-gray-700">
-                      Make checks payable to "BelizeKids.org" and mail to:<br />
+                      Make checks payable to "Belize Kids" and mail to:<br />
                       <span className="font-medium">PO BOX 620134, Woodside, CA 94062</span>
                     </p>
                   </div>
@@ -114,10 +114,10 @@ const InvestmentOptions: React.FC = () => {
                     <Button 
                       variant="outline" 
                       className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white"
-                      onClick={() => window.location.href = "mailto:info@belizekids.org"}
+                      onClick={() => window.location.href = "/#contact"}
                     >
                       <Mail className="mr-2 h-4 w-4" />
-                      Email Us
+                      Contact Us
                     </Button>
                   </div>
                   
@@ -131,7 +131,7 @@ const InvestmentOptions: React.FC = () => {
                   </Link>
                   
                   <p className="text-xs text-gray-500 text-center mt-4">
-                    BelizeKids.org | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
+                    Belize Kids | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062
                   </p>
                 </div>
               </CardContent>

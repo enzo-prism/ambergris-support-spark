@@ -13,12 +13,12 @@ const Footer: React.FC = () => {
             <Link to="/" className="inline-block">
               <img 
                 src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
-                alt="BelizeKids.org Logo" 
+                alt="Belize Kids Logo" 
                 className="h-12 w-auto" 
               />
             </Link>
             <p className="text-sm text-gray-600 max-w-xs">
-              BelizeKids.org enhances educational opportunities for children in Belize through sustainable infrastructure projects.
+              Belize Kids enhances educational opportunities for children in Belize through sustainable infrastructure projects.
             </p>
           </div>
           
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
         
         <div className="mt-12 pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} BelizeKIDS.org. All rights reserved.
+            © {new Date().getFullYear()} Belize Kids. All rights reserved.
           </p>
           <div className="mt-4 md:mt-0 flex items-center">
             <Link to="/privacy" className="text-xs text-gray-500 hover:underline mr-4">

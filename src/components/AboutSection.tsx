@@ -1,3 +1,4 @@
+
 import React from "react";
 import { HeartHandshake, Users, Globe, Sparkles, ArrowRight, CheckCircle2, Award, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -65,7 +66,7 @@ const AboutSection: React.FC = () => {
             <Card className="p-4 sm:p-6 shadow-md border-l-4 border-belize-green h-full">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Transforming Lives in Belize</h3>
               <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-                BelizeKids.org emerged from Don Listwin's desire to create sustainable solutions for underserved communities in Belize. 
+                Belize Kids emerged from Don Listwin's desire to create sustainable solutions for underserved communities in Belize. 
                 We focus on projects that create lasting positive impact for the next generation.
               </p>
               
