@@ -20,7 +20,7 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden overflow-fix">
       <Helmet>
-        <title>Belize Kids</title>
+        <title>Belize Kids - Empowering Children's Future</title>
         <meta name="description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
         <meta property="og:title" content="Belize Kids" />
         <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />

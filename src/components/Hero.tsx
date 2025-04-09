@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
             Empowering Belizean Children to Build a <span className="text-belize-green">Brighter Future</span>
           </h1>
           <p className="text-base md:text-xl text-gray-700 mb-4 md:mb-8 max-w-2xl mx-auto lg:mx-0">
-            Investing in Belizean children's education, health, and well-being with complete transparency.
+            Investing in Belizean children's education, health, and well-being with complete transparency and care.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Link to="/monthly-investment" className="w-full sm:w-auto">

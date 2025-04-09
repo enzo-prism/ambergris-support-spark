@@ -28,9 +28,14 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       if (!url) return fallbackSrc || defaultFallback;
       
       // Handle Imgur URLs - convert to direct image links if needed
-      if (url.includes('imgur.com') && !url.includes('.jpg') && !url.includes('.png')) {
-        // Convert standard Imgur URLs to direct image URLs
-        return `${url}.jpg`;
+      if (url.includes('imgur.com')) {
+        // Extract the ID from the URL
+        const imgurIdMatch = url.match(/imgur\.com\/([a-zA-Z0-9]+)/);
+        if (imgurIdMatch && imgurIdMatch[1]) {
+          const imgurId = imgurIdMatch[1];
+          // Return the direct image URL using the i.imgur.com domain
+          return `https://i.imgur.com/${imgurId}.jpg`;
+        }
       }
       
       // Handle relative paths with or without leading slash
@@ -90,7 +95,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           if (imageSrc?.startsWith('/')) {
             console.warn(`This may be a path issue with ${imageSrc}. Check if the file exists at this path.`);
           } else if (imageSrc?.includes('imgur')) {
-            console.warn(`This may be an issue with the Imgur URL: ${imageSrc}. Try using a direct .jpg URL.`);
+            console.warn(`This may be an issue with the Imgur URL: ${imageSrc}. Using direct i.imgur.com URL format.`);
           } else if (imageSrc?.startsWith('http')) {
             console.warn(`This may be a CORS or external URL issue with ${imageSrc}.`);
           }
