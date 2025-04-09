@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Link to="/monthly-investment" className="w-full sm:w-auto">
               <Button 
-                className="bg-belize-green hover:bg-belize-green/90 text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+                className="bg-belize-coral hover:bg-belize-coral/90 text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
               >
                 Invest Today
                 <ArrowRight className="ml-2 h-4 w-4" />
