@@ -1,7 +1,8 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Mail, ExternalLink } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
 
 const InvestmentForm: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const InvestmentForm: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
-              <CreditCard className="h-5 w-5 text-belize-blue" />
+              <PiggyBank className="h-5 w-5 text-belize-blue" />
               <span className="text-belize-blue font-semibold">Investment Options</span>
             </div>
             <h2 className="text-3xl font-bold text-belize-blue">Ways to Invest in Belize's Future</h2>
@@ -20,7 +21,7 @@ const InvestmentForm: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="bg-belize-blue p-8 text-white">
                 <h2 className="text-2xl font-bold mb-4">Investment Benefits</h2>
-                <p className="mb-6">Your investment includes:</p>
+                <p className="mb-6">Your monthly investment includes:</p>
                 
                 <ul className="space-y-4">
                   <li className="flex items-start">
@@ -37,7 +38,7 @@ const InvestmentForm: React.FC = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span>Recognition as an investor</span>
+                    <span>Recognition as a monthly investor</span>
                   </li>
                   <li className="flex items-start">
                     <div className="bg-white/20 p-1 rounded-full mr-3 mt-1">
@@ -62,7 +63,7 @@ const InvestmentForm: React.FC = () => {
                 <h3 className="text-xl font-bold text-belize-blue mb-6">Coming Soon: Online Investments</h3>
                 
                 <p className="text-gray-700 mb-6">
-                  We're currently setting up our online payment system. Soon, you'll be able to make investments directly through our website.
+                  We're currently setting up our online payment system. Soon, you'll be able to make monthly investments directly through our website.
                 </p>
                 
                 <div className="space-y-6">
@@ -77,7 +78,7 @@ const InvestmentForm: React.FC = () => {
                   <div className="bg-gray-50 p-5 rounded-lg">
                     <h4 className="font-bold text-belize-green mb-2">Contact Us</h4>
                     <p className="text-gray-700 mb-3">
-                      For questions about other ways to invest, please reach out to us.
+                      For questions about monthly investment options, please reach out to us.
                     </p>
                     <Button 
                       variant="outline" 

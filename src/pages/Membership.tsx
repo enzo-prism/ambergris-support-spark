@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RecurringInvestmentHero from "@/components/RecurringInvestmentHero";
 import InvestmentForm from "@/components/InvestmentForm";
+import RecurringInvestmentBenefits from "@/components/RecurringInvestmentBenefits";
 
 const Membership: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const Membership: React.FC = () => {
         <Navbar />
         <main className="flex-grow">
           <RecurringInvestmentHero />
+          <RecurringInvestmentBenefits />
           <InvestmentForm />
         </main>
         <Footer />
