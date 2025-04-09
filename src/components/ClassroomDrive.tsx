@@ -77,7 +77,7 @@ const ClassroomDrive: React.FC = () => {
                   </div>
                   <div className="h-60 md:h-auto">
                     <Image 
-                      src="https://imgur.com/IJKaTAA" 
+                      src="https://imgur.com/lQ7xSfS" 
                       alt="School Construction in Belize" 
                       className="w-full h-full object-cover"
                     />
