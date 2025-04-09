@@ -164,6 +164,7 @@ const Leadership: React.FC = () => {
                     name="Mark Evans" 
                     role="Secretary (US Board)" 
                     icon={UserCog} 
+                    imageSrc="https://imgur.com/LPg9IK3"
                     bio={<>
                         <p>
                           Mark Evans brings 40 years of experience in advertising, marketing, sales, and business analytics to the 
