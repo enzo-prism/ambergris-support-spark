@@ -144,6 +144,7 @@ const Leadership: React.FC = () => {
                     name="Jeff Spiegel" 
                     role="Co-Executive Director in Belize" 
                     icon={GraduationCap} 
+                    imageSrc="https://imgur.com/6bz7SEf"
                     bio={<>
                         <p>
                           Jeff Spiegel's path to Belize was as unique as his contributions to the island. After a decade running a 
