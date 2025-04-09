@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -8,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Image } from "@/components/ui/image";
+import ClinicLocation from "@/components/doctors/ClinicLocation";
 import {
   Card,
   CardContent,
@@ -223,15 +224,16 @@ const DoctorsAvailability: React.FC = () => {
             <h2 className="text-lg md:text-xl font-semibold text-belize-green mb-2">
               Clinic Location
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 mb-4">
               San Pedro, Ambergris Caye, Belize<br />
               Next to the San Pedro Roman Catholic School
             </p>
+            <ClinicLocation />
           </div>
 
           <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/2024-10-vision-clinic-main.jpg" 
+            <Image 
+              src="https://imgur.com/0Qjoc64" 
               alt="Stanford Belize Vision Clinic" 
               className="rounded-lg shadow-md max-h-64 object-cover w-full"
             />
