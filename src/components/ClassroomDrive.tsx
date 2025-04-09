@@ -70,7 +70,7 @@ const ClassroomDrive: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   <div className="h-60 md:h-auto">
                     <Image 
-                      src="https://imgur.com/44skZfu" 
+                      src="https://imgur.com/r8J764N" 
                       alt="New Horizon School in Belize" 
                       className="w-full h-full object-cover"
                     />
