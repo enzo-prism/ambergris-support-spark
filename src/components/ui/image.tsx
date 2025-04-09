@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -27,16 +26,23 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const handleImageSource = (url: string | undefined) => {
       if (!url) return fallbackSrc || defaultFallback;
       
-      // If it's already a data URL or a relative path, return as is
-      if (url.startsWith('data:') || url.startsWith('/')) {
+      // Handle relative paths with or without leading slash
+      if (url.startsWith('/')) {
+        // If it's a lovable upload, ensure the path is correct
+        if (url.includes('lovable-uploads')) {
+          // Already has correct format
+          return url;
+        }
+        // Other local assets
         return url;
       }
       
-      // If the URL has already been processed as an error
-      if (hasError) {
-        return fallbackSrc || defaultFallback;
+      // If it's already a data URL, return as is
+      if (url.startsWith('data:')) {
+        return url;
       }
       
+      // For external URLs, return as is
       return url;
     };
     
@@ -55,6 +61,13 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const finalSrc = hasError ? (fallbackSrc || defaultFallback) : handleImageSource(imageSrc);
     const needsCrossOrigin = shouldUseCrossOrigin(finalSrc);
     
+    // For debugging
+    useEffect(() => {
+      if (finalSrc && finalSrc.includes('lovable-uploads')) {
+        console.log(`Loading image: ${finalSrc}`);
+      }
+    }, [finalSrc]);
+    
     return (
       <img
         className={cn(hasError ? fallbackClassName : className)}
@@ -63,8 +76,15 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         alt={alt || ""}
         {...(needsCrossOrigin ? { crossOrigin: "anonymous" } : {})}
         onError={(e) => {
-          console.warn(`Image failed to load: ${imageSrc}`, e);
+          console.error(`Image failed to load: ${imageSrc}`, e);
           setHasError(true);
+          
+          // Try to diagnose the specific issue
+          if (imageSrc?.startsWith('/')) {
+            console.warn(`This may be a path issue with ${imageSrc}. Check if the file exists at this path.`);
+          } else if (imageSrc?.startsWith('http')) {
+            console.warn(`This may be a CORS or external URL issue with ${imageSrc}.`);
+          }
         }}
         loading="lazy"
         {...props}
