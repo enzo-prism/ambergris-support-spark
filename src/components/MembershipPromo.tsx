@@ -25,7 +25,7 @@ const MembershipPromo: React.FC = () => {
             <Link to="/monthly-investment">
               <Button className="bg-belize-blue hover:bg-belize-blue/90 text-white text-lg px-6 py-6 mt-2">
                 <CreditCard className="mr-2 h-5 w-5" />
-                Start Monthly Investment
+                Learn About Investing
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>

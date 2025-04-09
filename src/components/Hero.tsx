@@ -40,13 +40,14 @@ const Hero: React.FC = () => {
             Investing in Belizean children's education, health, and well-being with complete transparency.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
-            <Button 
-              onClick={scrollToDonate} 
-              className="bg-belize-green hover:bg-belize-green/90 text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full sm:w-auto"
-            >
-              Invest Today
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link to="/monthly-investment" className="w-full sm:w-auto">
+              <Button 
+                className="bg-belize-green hover:bg-belize-green/90 text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+              >
+                Invest Today
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
             <Button 
               variant="outline" 
               className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full sm:w-auto mt-2 sm:mt-0" 

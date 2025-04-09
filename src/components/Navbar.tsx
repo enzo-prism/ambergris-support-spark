@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -315,13 +316,14 @@ const Navbar: React.FC = () => {
         )}
 
         <div className="hidden md:flex items-center ml-4 space-x-2">
-          <Button 
-            onClick={() => scrollToSection("donate")}
-            className="bg-belize-coral hover:bg-belize-coral/90 text-white transition-all hover:shadow-md flex items-center gap-2"
-          >
-            <PiggyBank className="h-4 w-4" />
-            Invest Today
-          </Button>
+          <Link to="/monthly-investment">
+            <Button 
+              className="bg-belize-coral hover:bg-belize-coral/90 text-white transition-all hover:shadow-md flex items-center gap-2"
+            >
+              <PiggyBank className="h-4 w-4" />
+              Invest Today
+            </Button>
+          </Link>
         </div>
 
         <Sheet>
@@ -375,12 +377,13 @@ const Navbar: React.FC = () => {
               
               <div className="p-4 border-t mt-auto">
                 <SheetClose asChild>
-                  <Button 
-                    onClick={() => scrollToSection("donate")}
-                    className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full py-5"
-                  >
-                    Invest Today
-                  </Button>
+                  <Link to="/monthly-investment" className="block w-full">
+                    <Button 
+                      className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full py-5"
+                    >
+                      Invest Today
+                    </Button>
+                  </Link>
                 </SheetClose>
               </div>
             </div>
