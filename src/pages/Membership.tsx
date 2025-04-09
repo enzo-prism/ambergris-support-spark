@@ -15,7 +15,7 @@ const Membership: React.FC = () => {
         <meta name="description" content="Create lasting change for children in Belize through consistent monthly support. Your recurring investment helps provide sustainable healthcare and education." />
         <meta property="og:title" content="Monthly Investment | BelizeKIDS.ORG" />
         <meta property="og:description" content="Create lasting change for children in Belize through consistent monthly support. Your recurring investment helps provide sustainable healthcare and education." />
-        <meta property="og:image" content="/lovable-uploads/51bfd02f-aeef-4c84-8b6c-2d1110b8ab28.png" />
+        <meta property="og:image" content="https://imgur.com/NVF6d3J" />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
       </Helmet>

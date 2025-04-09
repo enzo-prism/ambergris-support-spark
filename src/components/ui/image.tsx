@@ -23,51 +23,34 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       }
     }, [src]);
     
-    // Handle different image sources depending on URL format
+    // Standardize image sources, prioritizing Imgur format
     const handleImageSource = (url: string | undefined) => {
       if (!url) return fallbackSrc || defaultFallback;
       
-      // Handle Imgur URLs - convert to direct image links if needed
+      // Handle Imgur URLs - convert ALL to direct i.imgur.com image links
       if (url.includes('imgur.com')) {
-        // Extract the ID from the URL
+        // Extract the ID from the URL (handles imgur.com/ID or i.imgur.com/ID format)
         const imgurIdMatch = url.match(/imgur\.com\/([a-zA-Z0-9]+)/);
         if (imgurIdMatch && imgurIdMatch[1]) {
           const imgurId = imgurIdMatch[1];
-          // Return the direct image URL using the i.imgur.com domain
+          // Always return the direct image URL using the i.imgur.com domain
           return `https://i.imgur.com/${imgurId}.jpg`;
         }
       }
       
-      // Handle relative paths with or without leading slash
-      if (url.startsWith('/')) {
-        // If it's a lovable upload, ensure the path is correct
-        if (url.includes('lovable-uploads')) {
-          return url;
-        }
-        // Other local assets
-        return url;
-      }
-      
-      // If it's already a data URL, return as is
+      // If it's a data URL, return as is
       if (url.startsWith('data:')) {
         return url;
       }
       
-      // For external URLs, return as is
-      return url;
+      // Convert all other URLs to fallback - we're standardizing on Imgur only
+      return fallbackSrc || defaultFallback;
     };
     
-    // Determine if we should use crossOrigin attribute based on URL
+    // Always use crossOrigin for Imgur URLs
     const shouldUseCrossOrigin = (url: string | undefined) => {
       if (!url) return false;
-      
-      // Always use crossOrigin for external URLs including Imgur
-      if ((url.startsWith('http') && !url.includes(window.location.hostname)) || 
-          url.includes('imgur.com')) {
-        return true;
-      }
-      
-      return false;
+      return url.includes('imgur.com') || url.includes('i.imgur.com');
     };
     
     const finalSrc = hasError ? (fallbackSrc || defaultFallback) : handleImageSource(imageSrc);
@@ -75,7 +58,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     
     // For debugging
     useEffect(() => {
-      if (finalSrc && (finalSrc.includes('lovable-uploads') || finalSrc.includes('imgur'))) {
+      if (finalSrc && finalSrc.includes('imgur')) {
         console.log(`Loading image: ${finalSrc}`);
       }
     }, [finalSrc]);
@@ -92,12 +75,10 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           setHasError(true);
           
           // Try to diagnose the specific issue
-          if (imageSrc?.startsWith('/')) {
-            console.warn(`This may be a path issue with ${imageSrc}. Check if the file exists at this path.`);
-          } else if (imageSrc?.includes('imgur')) {
+          if (imageSrc?.includes('imgur')) {
             console.warn(`This may be an issue with the Imgur URL: ${imageSrc}. Using direct i.imgur.com URL format.`);
-          } else if (imageSrc?.startsWith('http')) {
-            console.warn(`This may be a CORS or external URL issue with ${imageSrc}.`);
+          } else {
+            console.warn(`Non-Imgur URL detected: ${imageSrc}. Consider using an Imgur URL instead for better compatibility.`);
           }
         }}
         loading="lazy"

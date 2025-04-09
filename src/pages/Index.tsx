@@ -13,8 +13,8 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ClassroomDrive from "@/components/ClassroomDrive";
 
-// Import the Image component so it's available throughout the app
-import "@/components/ui/image";
+// Import the Image component
+import { Image } from "@/components/ui/image";
 
 const Index: React.FC = () => {
   return (
@@ -24,7 +24,7 @@ const Index: React.FC = () => {
         <meta name="description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
         <meta property="og:title" content="Belize Kids" />
         <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
-        <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
+        <meta property="og:image" content="https://imgur.com/4TiKNoW" />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="theme-color" content="#3CB371" />

@@ -24,7 +24,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  // Default set of images if none provided
+  // Default set of images if none provided - using only Imgur URLs
   const defaultImages = [
     {
       src: "https://imgur.com/4TiKNoW",
@@ -35,19 +35,19 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
       alt: "Belize Kids project photo 2"
     },
     {
-      src: "/lovable-uploads/2024-10-vision-clinic-6.jpg",
+      src: "https://imgur.com/5x8jOR6",
       alt: "Belize Kids project photo 3"
     },
     {
-      src: "/lovable-uploads/2024-10-vision-clinic-9.jpg",
+      src: "https://imgur.com/aFMdr3v",
       alt: "Belize Kids project photo 4"
     },
     {
-      src: "/lovable-uploads/2024-10-vision-clinic-team.jpg",
+      src: "https://imgur.com/NVF6d3J",
       alt: "Belize Kids project photo 5"
     },
     {
-      src: "/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png",
+      src: "https://imgur.com/4TiKNoW",
       alt: "Belize Kids project photo 6"
     }
   ];
