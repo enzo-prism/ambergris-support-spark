@@ -70,14 +70,14 @@ const ClassroomDrive: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   <div className="h-60 md:h-auto">
                     <Image 
-                      src="/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png" 
+                      src="https://imgur.com/44skZfu" 
                       alt="New Horizon School in Belize" 
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="h-60 md:h-auto">
                     <Image 
-                      src="/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png" 
+                      src="https://imgur.com/IJKaTAA" 
                       alt="School Construction in Belize" 
                       className="w-full h-full object-cover"
                     />
