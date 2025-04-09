@@ -22,9 +22,10 @@ const Hero: React.FC = () => {
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
         <Image 
-          src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
+          src="https://belizekids.org/wp-content/uploads/2016/07/IMGP0024-1024x768.jpg" 
           alt="Belize background" 
           className="absolute inset-0 w-full h-full object-cover"
+          fallbackSrc="/placeholder.svg"
         />
       </div>
       
@@ -74,9 +75,10 @@ const Hero: React.FC = () => {
           <div className="relative w-full max-w-xs mx-auto sm:max-w-sm animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <Image 
-                src="/lovable-uploads/2024-10-vision-clinic-1.jpg" 
+                src="https://belizekids.org/wp-content/uploads/2016/07/BJ1-20-1024x768.jpg" 
                 alt="Belizean children at school" 
-                className="object-cover w-full h-full" 
+                className="object-cover w-full h-full"
+                fallbackSrc="/placeholder.svg"
               />
             </div>
             <div className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 bg-white p-2 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
