@@ -16,31 +16,39 @@ interface LeaderCardProps {
 
 const LeaderCard: React.FC<LeaderCardProps> = ({ name, role, bio, icon: Icon, imageSrc }) => {
   return (
-    <Card className="h-full transition-all duration-300 hover:shadow-lg">
-      <CardHeader className="pb-3">
-        <div className="flex items-center gap-3 mb-2">
+    <Card className="h-full transition-all duration-300 hover:shadow-lg overflow-hidden">
+      <div className="md:flex">
+        <div className={`${imageSrc ? 'md:w-1/3' : ''}`}>
           {imageSrc ? (
-            <Avatar className="h-14 w-14 border-2 border-belize-green/20">
-              <AvatarImage src={imageSrc} alt={name} />
-              <AvatarFallback className="bg-belize-light">
-                <Icon className="h-6 w-6 text-belize-green" />
-              </AvatarFallback>
-            </Avatar>
-          ) : (
-            <div className="p-2 rounded-full bg-belize-light">
-              <Icon className="h-6 w-6 text-belize-green" />
+            <div className="h-64 md:h-full relative">
+              <Image 
+                src={imageSrc} 
+                alt={name} 
+                className="w-full h-full object-cover"
+              />
             </div>
-          )}
-          <h3 className="text-2xl font-bold text-belize-green">{name}</h3>
+          ) : null}
         </div>
-        <p className="text-lg font-medium text-belize-teal">{role}</p>
-      </CardHeader>
-      <Separator className="mx-6 bg-belize-sand/50" />
-      <CardContent className="pt-6">
-        <div className="prose prose-lg max-w-none text-gray-700">
-          {bio}
+        <div className={`${imageSrc ? 'md:w-2/3' : 'w-full'}`}>
+          <CardHeader className="pb-3">
+            <div className="flex items-center gap-3 mb-2">
+              {!imageSrc && (
+                <div className="p-2 rounded-full bg-belize-light">
+                  <Icon className="h-6 w-6 text-belize-green" />
+                </div>
+              )}
+              <h3 className="text-2xl font-bold text-belize-green">{name}</h3>
+            </div>
+            <p className="text-lg font-medium text-belize-teal">{role}</p>
+          </CardHeader>
+          <Separator className="mx-6 bg-belize-sand/50" />
+          <CardContent className="pt-6">
+            <div className="prose prose-lg max-w-none text-gray-700">
+              {bio}
+            </div>
+          </CardContent>
         </div>
-      </CardContent>
+      </div>
     </Card>
   );
 };
