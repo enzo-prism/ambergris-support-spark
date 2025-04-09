@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Image } from "@/components/ui/image";
 
 const ClassroomDrive: React.FC = () => {
   // Animation variants
@@ -68,25 +69,17 @@ const ClassroomDrive: React.FC = () => {
               <CardContent className="p-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
                   <div className="h-60 md:h-auto">
-                    <img 
-                      src="https://belizekids.org/wp-content/uploads/2023/10/school-1-1024x461.jpeg" 
+                    <Image 
+                      src="/lovable-uploads/57ae58c7-c275-4a3f-b33d-6f120282c94f.png" 
                       alt="New Horizon School in Belize" 
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        console.error("Error loading image");
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                      }}
                     />
                   </div>
                   <div className="h-60 md:h-auto">
-                    <img 
-                      src="https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg" 
+                    <Image 
+                      src="/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png" 
                       alt="School Construction in Belize" 
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        console.error("Error loading image");
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                      }}
                     />
                   </div>
                 </div>

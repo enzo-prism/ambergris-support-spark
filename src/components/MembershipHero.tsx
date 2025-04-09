@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Users, CreditCard, Award, CheckCircle2 } from "lucide-react";
+import { Image } from "@/components/ui/image";
 
 const MembershipHero: React.FC = () => {
   const scrollToForm = () => {
@@ -65,7 +66,7 @@ const MembershipHero: React.FC = () => {
         <div className="flex-1 relative mt-8 lg:mt-0">
           <div className="relative w-full max-w-sm mx-auto animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
-              <img 
+              <Image 
                 src="/lovable-uploads/51bfd02f-aeef-4c84-8b6c-2d1110b8ab28.png" 
                 alt="Group of smiling Belizean children in school uniforms representing the beneficiaries of the monthly investment program" 
                 className="object-cover w-full h-full"

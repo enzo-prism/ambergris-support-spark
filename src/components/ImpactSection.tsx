@@ -1,8 +1,10 @@
+
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Book, User, School, TrendingUp, Award, BookOpen, GraduationCap, Building } from "lucide-react";
 import { motion } from "framer-motion";
+import { Image } from "@/components/ui/image";
 
 const ImpactSection: React.FC = () => {
   const impactStats = [
@@ -31,19 +33,19 @@ const ImpactSection: React.FC = () => {
       name: "Vision Clinic",
       age: "",
       story: "Our Stanford Belize Vision Clinic provides free eye screenings and subsidized eyewear for families in need, significantly improving children's ability to learn.",
-      image: "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg",
+      image: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
     },
     {
       name: "ACB School Classroom",
       age: "",
       story: "We've built a new classroom at ACB School, allowing more students to receive quality education. When classrooms are available, the federal government funds the teachers, creating sustainable educational opportunities.",
-      image: "https://belizekids.org/wp-content/uploads/2023/10/school-construction-2.jpg",
+      image: "/lovable-uploads/66bc1aad-e548-47ce-b19f-13f78397aa0c.png",
     },
     {
       name: "Boca Del Rio Playground",
       age: "",
       story: "By the end of 2013, the park at Boca Del Rio – one of the most beautiful locations on the island – was in sorry shape. The heavily used basketball court was in need of maintenance, the swing sets and playground were falling apart and Canary Cove stepped in to help. The entrance was blocked to golf carts so that kids could now play freely, under the renovation supervised by Gil Nunez.",
-      image: "https://belizekids.org/wp-content/uploads/2016/06/sptc6.jpg",
+      image: "/lovable-uploads/f755368c-b8ff-40b1-aca5-54aa6838d570.png",
     },
   ];
 
@@ -177,14 +179,10 @@ const ImpactSection: React.FC = () => {
               <motion.div key={index} variants={item}>
                 <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group h-full flex flex-col">
                   <div className="overflow-hidden">
-                    <img 
-                      src={index === 0 ? "https://belizekids.org/wp-content/uploads/2017/10/Belize-Kids-Pics-October-4.jpg" : story.image} 
+                    <Image 
+                      src={story.image} 
                       alt={`${story.name}`} 
                       className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
-                      onError={(e) => {
-                        console.error(`Error loading image: ${story.image}`);
-                        e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0f0f0'/%3E%3Ctext x='150' y='100' font-family='Arial' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                      }}
                     />
                   </div>
                   <div className="p-6 flex-grow">

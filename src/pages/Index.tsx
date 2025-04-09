@@ -13,6 +13,9 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import ClassroomDrive from "@/components/ClassroomDrive";
 
+// Import the Image component so it's available throughout the app
+import "@/components/ui/image";
+
 const Index: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden overflow-fix">

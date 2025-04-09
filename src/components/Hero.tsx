@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Clock, CalendarClock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Image } from "@/components/ui/image";
 
 const Hero: React.FC = () => {
   const isMobile = useIsMobile();
@@ -20,14 +21,10 @@ const Hero: React.FC = () => {
   return (
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
-        <img 
-          src="https://belizekids.org/wp-content/uploads/2016/06/San-Pedro-RC-School-3.jpg" 
+        <Image 
+          src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
           alt="Belize background" 
           className="absolute inset-0 w-full h-full object-cover"
-          onError={(e) => {
-            console.error("Error loading background image");
-            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1000' viewBox='0 0 1000 1000'%3E%3Crect width='1000' height='1000' fill='%23f8f9fa'/%3E%3C/svg%3E";
-          }}
         />
       </div>
       
@@ -76,14 +73,10 @@ const Hero: React.FC = () => {
         <div className="flex-1 relative mt-8 lg:mt-0">
           <div className="relative w-full max-w-xs mx-auto sm:max-w-sm animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
-              <img 
-                src="https://belizekids.org/wp-content/uploads/2016/06/kids-at-Rc-school.jpg" 
+              <Image 
+                src="/lovable-uploads/2024-10-vision-clinic-1.jpg" 
                 alt="Belizean children at school" 
                 className="object-cover w-full h-full" 
-                onError={(e) => {
-                  console.error("Error loading hero image");
-                  e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                }}
               />
             </div>
             <div className="absolute -bottom-3 -right-3 sm:-bottom-6 sm:-right-6 bg-white p-2 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">

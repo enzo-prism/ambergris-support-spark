@@ -4,6 +4,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { ArrowLeft, ArrowRight, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Image } from "@/components/ui/image";
 import { cn } from "@/lib/utils";
 
 interface ProjectGalleryProps {
@@ -26,27 +27,27 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   // Default set of images if none provided
   const defaultImages = [
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/02/10653550_10154101754174453_4331630713562897652_n.jpg",
+      src: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
       alt: "Belize Kids project photo 1"
     },
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/02/12417827_10154101754209453_1560822653524414788_n.jpg",
+      src: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
       alt: "Belize Kids project photo 2"
     },
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/02/1513171_10154101754214453_7397762892699540195_n.jpg",
+      src: "/lovable-uploads/2024-10-vision-clinic-6.jpg",
       alt: "Belize Kids project photo 3"
     },
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/02/12647232_10154165614824453_5670706674362027840_n.jpg",
+      src: "/lovable-uploads/2024-10-vision-clinic-9.jpg",
       alt: "Belize Kids project photo 4"
     },
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/02/12642796_10154165614939453_5986692544243415208_n.jpg",
+      src: "/lovable-uploads/2024-10-vision-clinic-team.jpg",
       alt: "Belize Kids project photo 5"
     },
     {
-      src: "https://belizekids.org/wp-content/uploads/2016/06/IMG_5339.jpg",
+      src: "/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png",
       alt: "Belize Kids project photo 6"
     }
   ];
@@ -77,14 +78,10 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
             <DialogTrigger asChild>
               <div className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors relative group">
                 <AspectRatio ratio={1/1} className="bg-gray-100">
-                  <img 
+                  <Image 
                     src={image.src} 
                     alt={image.alt} 
                     className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
-                    onError={(e) => {
-                      console.error(`Error loading image: ${image.src}`);
-                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23f0f0f0'/%3E%3Ctext x='75' y='75' font-family='Arial' font-size='12' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not found%3C/text%3E%3C/svg%3E";
-                    }}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <ZoomIn className="text-white h-8 w-8" />
@@ -113,14 +110,11 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                 </Button>
                 
                 <div className="w-full h-full flex items-center justify-center p-4">
-                  <img 
+                  <Image 
                     src={galleryImages[currentImageIndex].src} 
                     alt={galleryImages[currentImageIndex].alt} 
                     className="max-w-full max-h-full object-contain"
-                    onError={(e) => {
-                      console.error(`Error loading lightbox image: ${galleryImages[currentImageIndex].src}`);
-                      e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='300' height='300' fill='%23333333'/%3E%3Ctext x='150' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23ffffff'%3EImage could not be loaded%3C/text%3E%3C/svg%3E";
-                    }}
+                    fallbackClassName="max-w-full max-h-full object-contain"
                   />
                 </div>
                 

@@ -9,6 +9,9 @@ import MembershipPromo from "@/components/MembershipPromo";
 import TransparencySection from "@/components/TransparencySection";
 import { useSearchParams } from "react-router-dom";
 
+// Import the Image component so it's available throughout the app
+import "@/components/ui/image";
+
 const Projects: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') || 'all';

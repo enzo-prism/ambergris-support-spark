@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook } from "lucide-react";
+import { Image } from "@/components/ui/image";
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Footer: React.FC = () => {
           {/* Column 1: Logo + About */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <img 
+              <Image 
                 src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
                 alt="Belize Kids Logo" 
                 className="h-12 w-auto" 
