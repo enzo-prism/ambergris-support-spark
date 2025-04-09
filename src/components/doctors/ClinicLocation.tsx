@@ -8,7 +8,8 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger
+  DialogTrigger,
+  DialogDescription
 } from "@/components/ui/dialog";
 
 interface ClinicLocationProps {
@@ -17,7 +18,8 @@ interface ClinicLocationProps {
 
 const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
   const address = "Second Floor, San Pedro Lions Den, Barrier Reef Drive, San Pedro, Ambergris Caye, Belize";
-  const mapUrl = "https://maps.app.goo.gl/xyvFRQVQFdWDNc1V6"; // Google Maps link to San Pedro Lions Den
+  // Using a more reliable Google Maps link format with properly encoded address
+  const mapUrl = "https://www.google.com/maps/search/?api=1&query=San+Pedro+Lions+Den+Barrier+Reef+Drive+San+Pedro+Belize";
 
   if (minimal) {
     return (
@@ -52,6 +54,7 @@ const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Stanford Belize Vision Clinic</DialogTitle>
+          <DialogDescription>Located in the heart of San Pedro</DialogDescription>
         </DialogHeader>
         
         <div className="space-y-4">
