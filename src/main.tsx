@@ -20,7 +20,7 @@ history.listen(({ location }) => {
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <HistoryRouter history={history}>
+    <HistoryRouter history={history as any}>
       <App />
     </HistoryRouter>
   </React.StrictMode>
