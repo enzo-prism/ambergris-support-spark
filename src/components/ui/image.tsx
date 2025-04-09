@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -26,11 +27,16 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const handleImageSource = (url: string | undefined) => {
       if (!url) return fallbackSrc || defaultFallback;
       
+      // Handle Imgur URLs - convert to direct image links if needed
+      if (url.includes('imgur.com') && !url.includes('.jpg') && !url.includes('.png')) {
+        // Convert standard Imgur URLs to direct image URLs
+        return `${url}.jpg`;
+      }
+      
       // Handle relative paths with or without leading slash
       if (url.startsWith('/')) {
         // If it's a lovable upload, ensure the path is correct
         if (url.includes('lovable-uploads')) {
-          // Already has correct format
           return url;
         }
         // Other local assets
@@ -50,8 +56,9 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const shouldUseCrossOrigin = (url: string | undefined) => {
       if (!url) return false;
       
-      // Only add crossOrigin for external URLs from other domains
-      if (url.startsWith('http') && !url.includes(window.location.hostname)) {
+      // Always use crossOrigin for external URLs including Imgur
+      if ((url.startsWith('http') && !url.includes(window.location.hostname)) || 
+          url.includes('imgur.com')) {
         return true;
       }
       
@@ -63,7 +70,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     
     // For debugging
     useEffect(() => {
-      if (finalSrc && finalSrc.includes('lovable-uploads')) {
+      if (finalSrc && (finalSrc.includes('lovable-uploads') || finalSrc.includes('imgur'))) {
         console.log(`Loading image: ${finalSrc}`);
       }
     }, [finalSrc]);
@@ -74,7 +81,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         ref={ref}
         src={finalSrc}
         alt={alt || ""}
-        {...(needsCrossOrigin ? { crossOrigin: "anonymous" } : {})}
+        crossOrigin={needsCrossOrigin ? "anonymous" : undefined}
         onError={(e) => {
           console.error(`Image failed to load: ${imageSrc}`, e);
           setHasError(true);
@@ -82,6 +89,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           // Try to diagnose the specific issue
           if (imageSrc?.startsWith('/')) {
             console.warn(`This may be a path issue with ${imageSrc}. Check if the file exists at this path.`);
+          } else if (imageSrc?.includes('imgur')) {
+            console.warn(`This may be an issue with the Imgur URL: ${imageSrc}. Try using a direct .jpg URL.`);
           } else if (imageSrc?.startsWith('http')) {
             console.warn(`This may be a CORS or external URL issue with ${imageSrc}.`);
           }

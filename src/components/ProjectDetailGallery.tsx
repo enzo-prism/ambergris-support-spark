@@ -27,11 +27,11 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
   // Default set of images if none provided
   const defaultImages = [
     {
-      src: "/lovable-uploads/2024-10-vision-clinic-1.jpg",
+      src: "https://imgur.com/4TiKNoW",
       alt: "Belize Kids project photo 1"
     },
     {
-      src: "/lovable-uploads/2024-10-vision-clinic-main.jpg",
+      src: "https://imgur.com/jbbWRFj",
       alt: "Belize Kids project photo 2"
     },
     {

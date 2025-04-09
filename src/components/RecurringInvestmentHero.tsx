@@ -47,7 +47,7 @@ const RecurringInvestmentHero: React.FC = () => {
           <div className="relative w-full max-w-sm mx-auto animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <Image 
-                src="https://belizekids.org/wp-content/uploads/2016/07/IMGP0013-1024x768.jpg" 
+                src="https://imgur.com/jbbWRFj" 
                 alt="Group of smiling Belizean children representing the beneficiaries of the monthly investment program" 
                 className="object-cover w-full h-full"
                 fallbackSrc="/placeholder.svg"

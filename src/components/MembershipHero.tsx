@@ -67,7 +67,7 @@ const MembershipHero: React.FC = () => {
           <div className="relative w-full max-w-sm mx-auto animate-float">
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <Image 
-                src="https://belizekids.org/wp-content/uploads/2016/07/BJ1-4-768x1024.jpg" 
+                src="https://imgur.com/NVF6d3J" 
                 alt="Belizean children representing the beneficiaries of the membership program" 
                 className="object-cover w-full h-full"
                 fallbackSrc="/placeholder.svg"
