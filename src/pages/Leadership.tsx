@@ -103,6 +103,7 @@ const Leadership: React.FC = () => {
                     name="Rebecca Coutant" 
                     role="Co-Executive Director in Belize" 
                     icon={Globe} 
+                    imageSrc="https://imgur.com/NWFJtLJ"
                     bio={<>
                         <p>
                           Rebecca Coutant's journey to Belize began after a successful career as a bond trader at Lehman Brothers 
