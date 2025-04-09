@@ -118,6 +118,12 @@ const Navbar: React.FC = () => {
           to: "/doctors",
           hasHighlight: true,
           icon: <Calendar className="h-5 w-5" />
+        },
+        {
+          label: "Invest",
+          type: "link",
+          to: "/monthly-investment",
+          icon: <PiggyBank className="h-5 w-5" />
         }
       ]
     },
