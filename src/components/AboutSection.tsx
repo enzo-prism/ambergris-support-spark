@@ -1,4 +1,3 @@
-
 import React from "react";
 import { HeartHandshake, Users, Globe, Sparkles, ArrowRight, CheckCircle2, Award, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -56,7 +55,6 @@ const AboutSection: React.FC = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
-          {/* Left side with mission and impact card */}
           <motion.div 
             className="md:col-span-5" 
             initial={{ opacity: 0, x: -30 }}
@@ -109,7 +107,6 @@ const AboutSection: React.FC = () => {
             </Card>
           </motion.div>
 
-          {/* Right side with features */}
           <motion.div 
             className="md:col-span-7" 
             initial={{ opacity: 0, x: 30 }}
@@ -161,7 +158,7 @@ const AboutSection: React.FC = () => {
               </p>
             </div>
             <div className="md:w-4/12 flex justify-center md:justify-end w-full">
-              <Link to="/membership" className="w-full md:w-auto">
+              <Link to="/monthly-investment" className="w-full md:w-auto">
                 <Button className="bg-belize-green hover:bg-belize-green/90 text-white w-full md:w-auto group transition-all duration-300">
                   Become an Investor
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
