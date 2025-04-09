@@ -8,6 +8,7 @@ import BoardSection from "@/components/leadership/BoardSection";
 import SharedCommitment from "@/components/leadership/SharedCommitment";
 import { Separator } from "@/components/ui/separator";
 import { Briefcase, HeartHandshake, GraduationCap, Globe, Lightbulb, UserCog } from "lucide-react";
+
 const Leadership: React.FC = () => {
   const boardMembers = [{
     name: "Don Listwin",
@@ -19,6 +20,7 @@ const Leadership: React.FC = () => {
     name: "Mark Evans",
     role: "Secretary"
   }];
+  
   return <>
       <Helmet>
         <title>Our Team</title>
@@ -101,7 +103,12 @@ const Leadership: React.FC = () => {
                       </>} />
 
                   {/* Gil Nunez */}
-                  <LeaderCard name="Gil Nunez" role="Treasurer in Belize" icon={Lightbulb} bio={<>
+                  <LeaderCard 
+                    name="Gil Nunez" 
+                    role="Treasurer in Belize" 
+                    icon={Lightbulb} 
+                    imageSrc="https://imgur.com/TmGauI4"
+                    bio={<>
                         <p>
                           With over 20 years of experience in Belize's diving industry, Gil Nunez is a true steward of the island's 
                           natural beauty and its people. Starting as a boat-hand at age 13, Gil quickly rose through the ranks, 
@@ -165,4 +172,5 @@ const Leadership: React.FC = () => {
       <Footer />
     </>;
 };
+
 export default Leadership;
