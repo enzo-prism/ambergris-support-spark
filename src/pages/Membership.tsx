@@ -1,16 +1,34 @@
 
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Helmet } from "react-helmet";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import RecurringInvestmentHero from "@/components/RecurringInvestmentHero";
+import InvestmentForm from "@/components/InvestmentForm";
 
-const RecurringInvestment: React.FC = () => {
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    // Redirect to home page
-    navigate("/");
-  }, [navigate]);
-  
-  return null;
+const Membership: React.FC = () => {
+  return (
+    <>
+      <Helmet>
+        <title>Monthly Investment | BelizeKIDS.ORG</title>
+        <meta name="description" content="Create lasting change for children in Belize through consistent monthly support. Your recurring investment helps provide sustainable healthcare and education." />
+        <meta property="og:title" content="Monthly Investment | BelizeKIDS.ORG" />
+        <meta property="og:description" content="Create lasting change for children in Belize through consistent monthly support. Your recurring investment helps provide sustainable healthcare and education." />
+        <meta property="og:image" content="/lovable-uploads/51bfd02f-aeef-4c84-8b6c-2d1110b8ab28.png" />
+        <meta property="og:type" content="website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+      </Helmet>
+      
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <RecurringInvestmentHero />
+          <InvestmentForm />
+        </main>
+        <Footer />
+      </div>
+    </>
+  );
 };
 
-export default RecurringInvestment;
+export default Membership;
