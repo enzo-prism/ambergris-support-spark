@@ -82,6 +82,7 @@ const Leadership: React.FC = () => {
                     name="Hilary Valentine" 
                     role="Co-Founder" 
                     icon={HeartHandshake} 
+                    imageSrc="https://imgur.com/gKuoCZQ"
                     bio={<>
                         <p>
                           Hilary Valentine brings a unique blend of design expertise and philanthropic leadership to Belize Kids. 
