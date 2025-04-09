@@ -22,8 +22,8 @@ const Hero: React.FC = () => {
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
         <Image 
-          src="https://imgur.com/5x8jOR6" 
-          alt="Belize background" 
+          src="https://imgur.com/r8J764N" 
+          alt="Boca Del Rio Playground" 
           className="absolute inset-0 w-full h-full object-cover"
           fallbackSrc="/placeholder.svg"
         />
