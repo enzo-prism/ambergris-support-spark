@@ -72,7 +72,7 @@ const ContactSection: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-white/70 text-sm">Email</p>
-                      <p className="text-white font-medium">info@belizekids.org</p>
+                      <p className="text-white font-medium">Contact us through the form</p>
                     </div>
                   </div>
                   

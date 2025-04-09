@@ -78,15 +78,15 @@ const InvestmentForm: React.FC = () => {
                   <div className="bg-gray-50 p-5 rounded-lg">
                     <h4 className="font-bold text-belize-green mb-2">Contact Us</h4>
                     <p className="text-gray-700 mb-3">
-                      For questions about monthly investment options, please reach out to us.
+                      For questions about monthly investment options, please reach out to us using the contact form.
                     </p>
                     <Button 
                       variant="outline" 
                       className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white"
-                      onClick={() => window.location.href = "mailto:info@belizekids.org"}
+                      onClick={() => window.location.href = "/#contact"}
                     >
                       <Mail className="mr-2 h-4 w-4" />
-                      Email Us
+                      Contact Us
                     </Button>
                   </div>
                   

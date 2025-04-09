@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Building2, CheckCircle, Mail } from "lucide-react";
+import { Building2, CheckCircle, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -89,13 +89,10 @@ const ClinicInfo: React.FC = () => {
           <div>
             <h3 className="text-sm font-medium mb-2">Contact</h3>
             <div className="flex items-start">
-              <Mail className="h-4 w-4 text-belize-blue mr-2 mt-0.5" />
+              <MapPin className="h-4 w-4 text-belize-blue mr-2 mt-0.5" />
               <div>
-                <a href="mailto:info@belizekids.org" className="text-sm text-belize-blue hover:underline">
-                  info@belizekids.org
-                </a>
-                <p className="text-xs text-gray-500 mt-1">
-                  For inquiries about the clinic, please contact via email or visit the San Pedro Lions Club.
+                <p className="text-sm text-gray-700">
+                  For inquiries about the clinic, please visit the San Pedro Lions Club.
                 </p>
               </div>
             </div>
