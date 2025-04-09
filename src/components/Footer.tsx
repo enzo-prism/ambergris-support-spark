@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <Image 
-                src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
+                src="https://imgur.com/BWTq83b" 
                 alt="Belize Kids Logo" 
                 className="h-12 w-auto" 
               />
