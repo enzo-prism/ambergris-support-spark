@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop, User, Building2, ExternalLink, Mail } from "lucide-react";
+import { BookOpen, HeartPulse, Home, GraduationCap, ArrowRight, Eye, Calendar, MapPin, Laptop, User, Building2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -122,12 +122,6 @@ const ProgramsSection: React.FC = () => {
                       <span className="text-xs block text-gray-600">Stanford University</span>
                       <span className="text-xs block text-gray-600">San Pedro Lions Club</span>
                     </div>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="h-5 w-5 text-belize-coral mr-2 flex-shrink-0" />
-                    <a href="mailto:info@belizekids.org" className="text-sm text-belize-blue hover:underline">
-                      info@belizekids.org
-                    </a>
                   </div>
                 </div>
                 <ul className="space-y-2 mb-6">
