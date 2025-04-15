@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,17 +30,6 @@ const projectPosts = [
     category: "healthcare",
     icon: Heart,
     color: "bg-rose-500"
-  },
-  {
-    id: 2,
-    title: "Belize Kids is Excited to Announce Our #DollaADive Program",
-    author: "Rebecca Coutant",
-    date: "November 22, 2022",
-    excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving. This has been true since the very beginning of tourism, the days of the Paradise and Holiday Hotels in the early 70's.",
-    slug: "dollar-a-dive-program",
-    category: "fundraising",
-    icon: FileText,
-    color: "bg-amber-500"
   },
   {
     id: 3,
@@ -127,7 +115,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   const isMobile = useIsMobile();
   
   useEffect(() => {
-    // Default to list view on mobile for better experience
     if (isMobile) {
       setActiveView("list");
     }
@@ -141,7 +128,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    setCurrentPage(1); // Reset to first page when changing tabs
+    setCurrentPage(1);
     if (onTabChange) {
       onTabChange(value);
     }
@@ -151,7 +138,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
     ? projectPosts 
     : projectPosts.filter(project => project.category === activeTab);
 
-  // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = filteredProjects.slice(indexOfFirstPost, indexOfLastPost);
@@ -160,7 +146,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   const handlePageChange = (newPage: number) => {
     if (newPage > 0 && newPage <= totalPages) {
       setCurrentPage(newPage);
-      // Scroll to top of the list when page changes
       window.scrollTo({ top: document.getElementById('projects-list')?.offsetTop || 0, behavior: 'smooth' });
     }
   };
@@ -226,7 +211,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
           viewport={{ once: true, amount: 0.3 }}
           className="mb-8"
         >
-          {/* Category Filter Tabs - Mobile Optimized */}
           <div className="mb-6">
             <h2 className="text-lg font-medium mb-3 text-gray-800">Filter Projects</h2>
             <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide pb-2">
@@ -271,7 +255,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             </div>
           </div>
           
-          {/* View Toggle Buttons */}
           <div className="flex justify-between items-center mb-4">
             <p className="text-sm text-gray-600">
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} found
