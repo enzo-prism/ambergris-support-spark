@@ -1,48 +1,11 @@
 
-import React, { useState } from "react";
+import React from "react";
+import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, MapPin, Send, Facebook } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 const ContactSection: React.FC = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, this would send the form data to a backend
-    toast({
-      title: "Message Sent",
-      description: "Thank you for your message. We'll get back to you soon!",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
-  };
-
   return (
     <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
@@ -131,66 +94,10 @@ const ContactSection: React.FC = () => {
             <Card className="border-none shadow-lg p-1 overflow-hidden">
               <CardContent className="p-7">
                 <h3 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h3>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <Label htmlFor="name" className="text-gray-700">Your Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="mt-1 bg-gray-50 border-gray-200 focus:border-belize-green"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <Label htmlFor="email" className="text-gray-700">Email Address</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="mt-1 bg-gray-50 border-gray-200 focus:border-belize-green"
-                        required
-                      />
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="subject" className="text-gray-700">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleInputChange}
-                      className="mt-1 bg-gray-50 border-gray-200 focus:border-belize-green"
-                      required
-                    />
-                  </div>
-                  
-                  <div>
-                    <Label htmlFor="message" className="text-gray-700">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      className="mt-1 resize-none bg-gray-50 border-gray-200 focus:border-belize-green"
-                      required
-                    />
-                  </div>
-                  
-                  <Button
-                    type="submit"
-                    className="w-full bg-belize-green hover:bg-opacity-90 text-white"
-                  >
-                    <Send className="h-4 w-4 mr-2" /> Send Message
-                  </Button>
-                </form>
+                <div className="min-h-[500px]">
+                  <div data-tf-live="01JXV3ZMFT7JMW7M0ZSASG5NST"></div>
+                  <script src="//embed.typeform.com/next/embed.js"></script>
+                </div>
               </CardContent>
             </Card>
           </div>
