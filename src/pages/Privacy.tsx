@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -135,26 +134,6 @@ const Privacy: React.FC = () => {
                     <p className="text-gray-700 leading-relaxed">
                       We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this policy. We encourage you to review this Privacy Policy periodically for any changes.
                     </p>
-                  </section>
-
-                  <section>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Contact Us</h2>
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      If you have any questions or concerns about this Privacy Policy or our data practices, please contact us:
-                    </p>
-                    <div className="bg-gray-50 p-6 rounded-lg">
-                      <p className="text-gray-700 leading-relaxed mb-2">
-                        <strong>By mail:</strong><br />
-                        Belize Kids<br />
-                        501(c)(3) Non-Profit<br />
-                        TAX ID: 81-2841433<br />
-                        PO BOX 620134<br />
-                        Woodside, CA 94062
-                      </p>
-                      <p className="text-gray-700 leading-relaxed">
-                        <strong>By email:</strong> Use our contact form on the website
-                      </p>
-                    </div>
                   </section>
                 </div>
               </div>
