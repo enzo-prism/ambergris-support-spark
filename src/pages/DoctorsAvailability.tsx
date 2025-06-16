@@ -65,12 +65,6 @@ const DoctorsAvailability: React.FC = () => {
 
   const doctorSchedules = [
     {
-      id: 1,
-      dates: "May 5-9, 2025",
-      doctors: "Dr. Zach Elkin & Dr. Shani Golan",
-      specialties: "Pediatric Ophthalmology, Optometry",
-    },
-    {
       id: 2,
       dates: "November 2025 (dates TBA)",
       doctors: "Dr. Nancy Hamming",
