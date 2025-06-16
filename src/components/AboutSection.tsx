@@ -1,4 +1,3 @@
-
 import React from "react";
 import { HeartHandshake, Users, Globe, Sparkles, ArrowRight, CheckCircle2, Award, BookOpen, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -63,12 +62,14 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-            <img 
-              src="/lovable-uploads/bc7854c3-5f34-4095-955a-566d30b2ad86.png" 
-              alt="Belize Kids Vision Clinic event with children and volunteers from San Pedro Lions Club" 
-              className="w-full h-64 md:h-96 object-cover"
-            />
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+            <div className="w-full h-64 md:h-96 flex items-center justify-center">
+              <img 
+                src="/lovable-uploads/bc7854c3-5f34-4095-955a-566d30b2ad86.png" 
+                alt="Belize Kids Vision Clinic event with children and volunteers from San Pedro Lions Club" 
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
               <p className="text-sm md:text-base font-medium">
