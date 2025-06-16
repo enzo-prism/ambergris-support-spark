@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
+// Extend the Window interface to include the tf property
+declare global {
+  interface Window {
+    tf?: any;
+  }
+}
+
 const ContactSection: React.FC = () => {
   useEffect(() => {
     // Load Typeform embed script if not already loaded
