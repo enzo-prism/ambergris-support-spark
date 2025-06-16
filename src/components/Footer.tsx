@@ -1,4 +1,5 @@
 
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook } from "lucide-react";
@@ -77,7 +78,7 @@ const Footer: React.FC = () => {
             <h3 className="font-heading font-medium mb-4 text-gray-900">Connect With Us</h3>
             <div className="flex">
               <a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/profile.php?id=100064824399858" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="text-gray-500 hover:text-belize-green transition-colors"
@@ -108,3 +109,4 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+

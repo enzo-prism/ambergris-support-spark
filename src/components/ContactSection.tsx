@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -93,7 +92,7 @@ const ContactSection: React.FC = () => {
                   <div className="flex">
                     <Button variant="outline" size="icon" className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white">
                       <a 
-                        href="https://facebook.com" 
+                        href="https://www.facebook.com/profile.php?id=100064824399858" 
                         target="_blank" 
                         rel="noreferrer" 
                         aria-label="Facebook"
