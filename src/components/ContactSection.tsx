@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -111,14 +112,8 @@ const ContactSection: React.FC = () => {
               <CardContent className="p-7">
                 <h3 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h3>
                 <div className="w-full h-[600px] bg-gray-50 rounded-lg">
-                  <div 
-                    data-tf-widget="01JXV3ZMFT7JMW7M0ZSASG5NST" 
-                    data-tf-opacity="0" 
-                    data-tf-iframe-props="title=Contact Form" 
-                    data-tf-transitive-search-params 
-                    data-tf-medium="snippet" 
-                    style={{ width: '100%', height: '100%' }}
-                  ></div>
+                  <div data-tf-live="01JXV3ZMFT7JMW7M0ZSASG5NST"></div>
+                  <script src="//embed.typeform.com/next/embed.js"></script>
                 </div>
               </CardContent>
             </Card>
