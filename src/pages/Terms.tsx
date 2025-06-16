@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -107,17 +106,6 @@ const Terms: React.FC = () => {
                   <h2 className="text-2xl font-semibold text-gray-900 mb-4">10. Changes to Terms</h2>
                   <p>
                     Belize Kids reserves the right, in its sole discretion, to change the Terms under which the Site is offered. The most current version of the Terms will supersede all previous versions. We encourage you to periodically review the Terms to stay informed of our updates. Your continued use of the Site following the posting of revised Terms means that you accept and agree to the changes.
-                  </p>
-                </section>
-
-                <section>
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Contact Us</h2>
-                  <p>
-                    If you have any questions about these Terms, please contact us:
-                  </p>
-                  <p>
-                    By email: [Insert Email Address for Belize Kids]<br />
-                    By mail: [Insert Mailing Address for Belize Kids]
                   </p>
                 </section>
               </div>
