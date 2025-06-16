@@ -55,6 +55,29 @@ const AboutSection: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Hero Image Section */}
+        <motion.div 
+          className="mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src="/lovable-uploads/bc7854c3-5f34-4095-955a-566d30b2ad86.png" 
+              alt="Belize Kids Vision Clinic event with children and volunteers from San Pedro Lions Club" 
+              className="w-full h-64 md:h-96 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <p className="text-sm md:text-base font-medium">
+                Community partners working together at a Belize Kids Vision Clinic event, supporting children's healthcare needs in San Pedro.
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
           <motion.div 
             className="md:col-span-5" 
