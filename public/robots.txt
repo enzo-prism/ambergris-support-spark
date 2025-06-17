@@ -44,8 +44,8 @@ Allow: /monthly-investment
 Allow: /privacy
 Allow: /terms
 
-# Sitemap location (you may want to add this in the future)
-# Sitemap: https://belizekids.org/sitemap.xml
+# Sitemap location
+Sitemap: https://belizekids.org/sitemap.xml
 
 # Crawl delay (optional - helps prevent overwhelming the server)
 Crawl-delay: 1
@@ -54,4 +54,4 @@ Crawl-delay: 1
 # - This robots.txt allows all search engines to crawl your entire website
 # - It specifically allows access to all your main pages
 # - It blocks potential admin areas for security
-# - Consider adding a sitemap.xml file in the future for even better SEO
+# - Sitemap helps search engines discover and index all pages efficiently
