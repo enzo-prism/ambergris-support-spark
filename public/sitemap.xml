@@ -4,7 +4,7 @@
   <!-- Homepage - Highest priority -->
   <url>
     <loc>https://belizekids.org/</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,21 +12,21 @@
   <!-- Main sections - High priority -->
   <url>
     <loc>https://belizekids.org/projects</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://belizekids.org/leadership</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://belizekids.org/doctors</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -34,14 +34,14 @@
   <!-- Membership/Investment pages - Important for conversions -->
   <url>
     <loc>https://belizekids.org/membership</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://belizekids.org/monthly-investment</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -49,14 +49,14 @@
   <!-- Legal pages - Lower priority but important -->
   <url>
     <loc>https://belizekids.org/privacy</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
     <loc>https://belizekids.org/terms</loc>
-    <lastmod>2024-12-17</lastmod>
+    <lastmod>2025-06-17</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
