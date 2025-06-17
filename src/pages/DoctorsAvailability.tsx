@@ -28,8 +28,13 @@ const DoctorsAvailability: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Schedule Eye Care Appointments | Stanford Belize Vision Clinic</title>
-        <meta name="description" content="Schedule eye care appointments at the Stanford Belize Vision Clinic (SBVC) in San Pedro, Ambergris Caye, Belize." />
+        <title>Free Eye Care Appointments - Stanford Belize Vision Clinic | San Pedro, Belize</title>
+        <meta name="description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
+        <meta property="og:title" content="Free Eye Care Appointments - Stanford Belize Vision Clinic | San Pedro, Belize" />
+        <meta property="og:description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
+        <meta property="og:image" content="https://imgur.com/0Qjoc64" />
+        <meta property="og:type" content="website" />
+        <meta name="keywords" content="eye care Belize, free eye exams, Stanford vision clinic, San Pedro ophthalmologist, children eye care, Ambergris Caye medical services" />
       </Helmet>
       
       <Navbar />

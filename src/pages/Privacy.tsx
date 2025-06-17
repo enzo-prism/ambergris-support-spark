@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -7,12 +8,14 @@ const Privacy: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | BelizeKIDS.ORG</title>
-        <meta name="description" content="Privacy Policy for Belize Kids - Learn how we collect, use, and protect your personal information." />
-        <meta property="og:title" content="Privacy Policy | BelizeKIDS.ORG" />
-        <meta property="og:description" content="Privacy Policy for Belize Kids - Learn how we collect, use, and protect your personal information." />
+        <title>Privacy Policy - Data Protection & Security | BelizeKIDS.ORG</title>
+        <meta name="description" content="Read our comprehensive privacy policy outlining how Belize Kids protects donor information, website data collection practices, and your rights regarding personal information." />
+        <meta property="og:title" content="Privacy Policy - Data Protection & Security | BelizeKIDS.ORG" />
+        <meta property="og:description" content="Read our comprehensive privacy policy outlining how Belize Kids protects donor information, website data collection practices, and your rights regarding personal information." />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="keywords" content="privacy policy, data protection, donor privacy, information security, GDPR compliance" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       
       <div className="flex flex-col min-h-screen">

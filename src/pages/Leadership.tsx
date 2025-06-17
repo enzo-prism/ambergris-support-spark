@@ -23,12 +23,13 @@ const Leadership: React.FC = () => {
   
   return <>
       <Helmet>
-        <title>Our Leadership Team | Belize Kids</title>
-        <meta name="description" content="Meet the dedicated leadership team making a difference in the lives of children in Belize" />
-        <meta property="og:title" content="Our Leadership Team | Belize Kids" />
-        <meta property="og:description" content="Meet the dedicated leadership team making a difference in the lives of children in Belize" />
+        <title>Leadership Team - Experienced Founders & Board Members | Belize Kids</title>
+        <meta name="description" content="Meet our leadership team: Don Listwin (tech entrepreneur), Hilary Valentine (philanthropist), Rebecca Coutant (local expert), and dedicated board members working to improve children's lives in Belize." />
+        <meta property="og:title" content="Leadership Team - Experienced Founders & Board Members | Belize Kids" />
+        <meta property="og:description" content="Meet our leadership team: Don Listwin (tech entrepreneur), Hilary Valentine (philanthropist), Rebecca Coutant (local expert), and dedicated board members working to improve children's lives in Belize." />
         <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
         <meta property="og:type" content="website" />
+        <meta name="keywords" content="Belize Kids leadership, Don Listwin, Hilary Valentine, charity founders, nonprofit board, philanthropy leaders" />
       </Helmet>
       
       <Navbar />

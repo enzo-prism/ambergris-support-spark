@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet";
 import Navbar from "@/components/Navbar";
@@ -7,11 +8,12 @@ const Terms: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Terms of Service - Belize Kids</title>
-        <meta 
-          name="description" 
-          content="Terms of Service for Belize Kids - Read our terms and conditions for using our website and services." 
-        />
+        <title>Terms of Service - Website Usage & Donation Terms | Belize Kids</title>
+        <meta name="description" content="Read our terms of service covering website usage, donation policies, intellectual property rights, and legal agreements for supporters of Belize Kids nonprofit organization." />
+        <meta property="og:title" content="Terms of Service - Website Usage & Donation Terms | Belize Kids" />
+        <meta property="og:description" content="Read our terms of service covering website usage, donation policies, intellectual property rights, and legal agreements for supporters of Belize Kids nonprofit organization." />
+        <meta property="og:type" content="website" />
+        <meta name="keywords" content="terms of service, donation terms, website terms, legal agreement, nonprofit terms, user agreement" />
         <meta name="robots" content="index, follow" />
       </Helmet>
       

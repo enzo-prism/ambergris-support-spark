@@ -20,14 +20,15 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden overflow-fix">
       <Helmet>
-        <title>Belize Kids - Empowering Children's Future</title>
-        <meta name="description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
-        <meta property="og:title" content="Belize Kids" />
-        <meta property="og:description" content="We invest in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency." />
+        <title>Belize Kids - Transparent Charity Supporting Children's Education & Healthcare in Belize</title>
+        <meta name="description" content="BelizeKids.org invests in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency. Join our mission to create lasting change through education and community development." />
+        <meta property="og:title" content="Belize Kids - Transparent Charity Supporting Children's Education & Healthcare in Belize" />
+        <meta property="og:description" content="BelizeKids.org invests in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency. Join our mission to create lasting change through education and community development." />
         <meta property="og:image" content="https://imgur.com/4TiKNoW" />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
         <meta name="theme-color" content="#3CB371" />
+        <meta name="keywords" content="Belize children charity, education support Belize, healthcare programs, transparent nonprofit, child welfare, community development, scholarships, school improvement" />
       </Helmet>
       <Navbar />
       <main className="relative">
