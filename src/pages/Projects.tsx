@@ -34,6 +34,42 @@ const Projects: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta name="keywords" content="Belize charity projects, school improvement Belize, children healthcare Belize, education programs, transparent charity, community development" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://belizekids.org/projects" />
+        
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Our Impact Projects - Belize Kids",
+            "description": "Discover our transparent community projects in Belize: school improvements, Stanford Vision Clinic, scholarships, and park development.",
+            "url": "https://belizekids.org/projects",
+            "mainEntity": {
+              "@type": "ItemList",
+              "name": "Belize Kids Projects",
+              "description": "Complete list of our community projects in Belize focusing on children's health and education",
+              "numberOfItems": "8+"
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://belizekids.org"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Projects",
+                  "item": "https://belizekids.org/projects"
+                }
+              ]
+            }
+          })}
+        </script>
       </Helmet>
       <Navbar />
       <main>

@@ -8,6 +8,8 @@ import { Calendar, User, ArrowLeft, ChevronRight, FileText, Heart, BookOpen, Lea
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import ProjectDetailGallery from "@/components/ProjectDetailGallery";
+import ProjectInternalLinks from "@/components/ProjectInternalLinks";
+import ProjectSEOContent from "@/components/ProjectSEOContent";
 
 interface ProjectImage {
   src: string;
@@ -331,17 +333,112 @@ const ProjectDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Helmet>
-        <title>{project?.title || "Project Detail"}</title>
-        <meta name="description" content={`${project?.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
-        <meta property="og:title" content={project?.title || "Project Detail"} />
-        <meta property="og:description" content={`${project?.title}: Learn how BelizeKids.org is helping children in Belize through this impactful initiative.`} />
+        <title>{project.title} | {project.category} | Belize Kids</title>
+        <meta name="description" content={`${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`} />
+        <meta property="og:title" content={`${project.title} | Belize Kids`} />
+        <meta property="og:description" content={`${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`} />
         <meta property="og:type" content="article" />
+        <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
+        <meta name="article:published_time" content={project.date} />
+        <meta name="article:author" content={project.author} />
+        <meta name="article:section" content={project.category} />
+        <meta name="keywords" content={`${project.category} Belize, children charity ${project.category}, Belize Kids ${project.category}, ${project.title}, ${project.highlights.join(', ')}`} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://belizekids.org/projects/${project.slug}`} />
+        
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": project.title,
+            "description": `${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`,
+            "author": {
+              "@type": "Organization",
+              "name": "Belize Kids",
+              "url": "https://belizekids.org"
+            },
+            "publisher": {
+              "@type": "Organization", 
+              "name": "Belize Kids",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://belizekids.org/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png"
+              }
+            },
+            "datePublished": project.date,
+            "dateModified": "2025-08-20",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": `https://belizekids.org/projects/${project.slug}`
+            },
+            "articleSection": project.category,
+            "keywords": `${project.category} Belize, children charity ${project.category}, Belize Kids ${project.category}`,
+            "about": {
+              "@type": "Organization",
+              "name": "Belize Kids",
+              "description": "Non-profit organization improving children's health and education in Belize through transparent community initiatives"
+            }
+          })}
+        </script>
+        
+        {/* Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://belizekids.org"
+              },
+              {
+                "@type": "ListItem", 
+                "position": 2,
+                "name": "Projects",
+                "item": "https://belizekids.org/projects"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": project.title,
+                "item": `https://belizekids.org/projects/${project.slug}`
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       <Navbar />
       
       <div className="bg-belize-light pt-24 pb-8 md:pb-12">
         <div className="container-custom">
           <div className="flex flex-col space-y-4">
+            {/* SEO Breadcrumbs */}
+            <nav aria-label="Breadcrumb" className="py-2">
+              <ol className="flex items-center space-x-2 text-sm text-gray-600">
+                <li>
+                  <Link to="/" className="flex items-center hover:text-belize-blue transition-colors" aria-label="Go to homepage">
+                    <span>Home</span>
+                  </Link>
+                </li>
+                <li className="flex items-center">
+                  <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
+                  <Link to="/projects" className="hover:text-belize-blue transition-colors">
+                    Projects
+                  </Link>
+                </li>
+                <li className="flex items-center">
+                  <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
+                  <span className="text-gray-900 font-medium" aria-current="page">
+                    {project.title}
+                  </span>
+                </li>
+              </ol>
+            </nav>
+            
             <Link to="/projects" className="inline-flex items-center text-belize-green hover:text-belize-coral transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to all projects
             </Link>
@@ -380,12 +477,11 @@ const ProjectDetail: React.FC = () => {
             <div className="md:col-span-2">
               <Card className="shadow-md border-t-4 border-t-belize-green overflow-hidden">
                 <CardContent className="p-6 md:p-8">
-                  <div className="prose prose-lg max-w-none">
-                    <div 
-                      className="content-sections space-y-6"
-                      dangerouslySetInnerHTML={{ __html: project!.content }}
-                    />
-                  </div>
+                  <ProjectSEOContent 
+                    content={project!.content}
+                    title={project.title}
+                    category={project.category}
+                  />
                 </CardContent>
               </Card>
 
@@ -502,8 +598,13 @@ const ProjectDetail: React.FC = () => {
           </div>
 
           <Separator className="my-10" />
+          
+          <ProjectInternalLinks 
+            currentProject={project}
+            allProjects={projects}
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
             <div>
               <h3 className="text-xl font-bold mb-4 text-belize-green">Help Support Our Work</h3>
               <p className="mb-6 text-gray-700">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
