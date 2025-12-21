@@ -21,10 +21,8 @@ const ProjectSEOContent: React.FC<ProjectSEOContentProps> = ({ content, title, c
       itemType="https://schema.org/Article"
       className="prose prose-lg max-w-none"
     >
-      <header className="sr-only">
-        <h1 itemProp="headline">{title}</h1>
-        <meta itemProp="about" content={`${category} initiatives in Belize`} />
-      </header>
+      <meta itemProp="headline" content={title} />
+      <meta itemProp="about" content={`${category} initiatives in Belize`} />
       
       <div 
         className="content-sections space-y-6"
