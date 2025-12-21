@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Mail, Activity, Bell, Globe, Heart, CreditCard } from "lucide-react";
 
 const RecurringInvestmentBenefits: React.FC = () => {
@@ -41,10 +42,10 @@ const RecurringInvestmentBenefits: React.FC = () => {
     <section className="py-16 bg-white">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
-            <CreditCard className="h-5 w-5 text-belize-blue" />
-            <span className="text-belize-blue font-semibold">Monthly Investment</span>
-          </div>
+          <Badge variant="blue" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+            <CreditCard className="h-5 w-5" />
+            Monthly Investment
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Why Invest Monthly</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             When you commit to a monthly investment, you're providing consistent, long-term support that enables sustainable programs for Belizean children.

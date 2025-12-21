@@ -4,6 +4,7 @@ import { CheckCircle, Calendar, Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface Doctor {
   id: number;
@@ -44,16 +45,12 @@ const AppointmentConfirmation: React.FC<AppointmentConfirmationProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 mb-4 border-l-4 border-belize-green animate-in slide-in-from-bottom-5">
-      <div className="flex items-start space-x-3">
-        <div className="bg-green-100 p-2 rounded-full">
-          <CheckCircle className="h-5 w-5 text-belize-green" />
-        </div>
-        
-        <div className="flex-1">
-          <h3 className="font-medium text-gray-900 text-sm mb-1">Confirm Your Appointment</h3>
-          
-          <div className="space-y-2 mb-3">
+    <Alert className="mb-4 border-belize-green/40 bg-white shadow-sm animate-in slide-in-from-bottom-5">
+      <CheckCircle className="h-5 w-5 text-belize-green" />
+      <div className="flex-1">
+        <AlertTitle className="text-sm">Confirm Your Appointment</AlertTitle>
+        <AlertDescription className="space-y-3">
+          <div className="space-y-2">
             <div className="flex items-center text-sm text-gray-600">
               <Calendar className="h-4 w-4 mr-2 text-belize-coral" />
               <span>{format(selectedDate, 'EEEE, MMMM d, yyyy')}</span>
@@ -75,9 +72,10 @@ const AppointmentConfirmation: React.FC<AppointmentConfirmationProps> = ({
             </div>
           </div>
           
-          <div className="flex space-x-2 mt-3">
+          <div className="flex space-x-2">
             <Button 
-              className="flex-1 bg-belize-green hover:bg-belize-green/90"
+              variant="belizeGreen"
+              className="flex-1"
               onClick={handleConfirm}
             >
               Confirm
@@ -90,9 +88,9 @@ const AppointmentConfirmation: React.FC<AppointmentConfirmationProps> = ({
               Cancel
             </Button>
           </div>
-        </div>
+        </AlertDescription>
       </div>
-    </div>
+    </Alert>
   );
 };
 

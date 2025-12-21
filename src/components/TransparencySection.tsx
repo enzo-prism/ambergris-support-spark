@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { 
   CheckCircle, 
   BarChart2, 
@@ -48,9 +49,9 @@ const TransparencySection: React.FC = () => {
     <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="inline-block px-3 py-1 bg-belize-green/10 text-belize-green rounded-full text-sm font-medium mb-4">
+          <Badge variant="outline" className="mb-4 rounded-full border-belize-green/20 bg-belize-green/10 text-belize-green">
             100% Transparent
-          </div>
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Transparency Promise</h2>
           <p className="text-lg text-gray-700">
             We believe in complete transparency. Every dollar is accounted for, and we're proud to share 
@@ -208,7 +209,7 @@ const TransparencySection: React.FC = () => {
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                   <h3 className="text-xl sm:text-2xl font-bold">Sample Project Breakdown</h3>
-                  <Button variant="outline" className="text-belize-green border-belize-green hover:bg-belize-green hover:text-white flex items-center justify-center gap-2 w-full sm:w-auto">
+                  <Button variant="outlineBelize" className="flex items-center justify-center gap-2 w-full sm:w-auto">
                     View All Projects <ArrowUpRight className="h-4 w-4" />
                   </Button>
                 </div>

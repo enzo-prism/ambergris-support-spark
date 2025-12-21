@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Badge } from "@/components/ui/badge";
 
 const AboutSection: React.FC = () => {
   const isMobile = useIsMobile();
@@ -47,7 +48,9 @@ const AboutSection: React.FC = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-sm font-medium text-belize-green tracking-wider uppercase">Our Mission</span>
+          <Badge variant="default" className="text-sm font-medium uppercase tracking-wider">
+            Our Mission
+          </Badge>
           <h2 className="text-2xl md:text-4xl font-bold mt-2 mb-4 md:mb-6 text-gray-900">About Belize Kids</h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-gray-600 text-base md:text-lg">Founded by Don Listwin, Belize Kids is dedicated to improving the lives of children in Belize through strategic investments in healthcare, education, and community infrastructure.</p>
@@ -123,7 +126,7 @@ const AboutSection: React.FC = () => {
               
               <div className="pt-2 mt-auto">
                 <Link to="/leadership" className="w-full sm:w-auto inline-block">
-                  <Button variant="outline" className="group border-belize-green text-belize-green hover:bg-belize-green hover:text-white transition-all duration-300 w-full sm:w-auto">
+                  <Button variant="outlineBelize" className="group transition-all duration-300 w-full sm:w-auto">
                     Meet Our Team
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
@@ -184,7 +187,7 @@ const AboutSection: React.FC = () => {
             </div>
             <div className="md:w-4/12 flex justify-center md:justify-end w-full">
               <Link to="/monthly-investment" className="w-full md:w-auto">
-                <Button className="bg-belize-green hover:bg-belize-green/90 text-white w-full md:w-auto group transition-all duration-300">
+                <Button variant="belizeGreen" className="w-full md:w-auto group transition-all duration-300">
                   Become an Investor
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>

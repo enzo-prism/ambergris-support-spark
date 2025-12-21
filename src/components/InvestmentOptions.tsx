@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { CreditCard, Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -10,10 +11,10 @@ const InvestmentOptions: React.FC = () => {
     <section id="donate" className="section-padding bg-belize-light">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-belize-coral/10 px-4 py-2 rounded-full mb-4">
-            <PiggyBank className="h-5 w-5 text-belize-coral" />
-            <span className="text-belize-coral font-semibold">Investment Options</span>
-          </div>
+          <Badge variant="coral" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+            <PiggyBank className="h-5 w-5" />
+            Investment Options
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Invest in Belize's Future
           </h2>
@@ -112,8 +113,7 @@ const InvestmentOptions: React.FC = () => {
                       For questions about other ways to invest, please reach out to us.
                     </p>
                     <Button 
-                      variant="outline" 
-                      className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white"
+                      variant="outlineBelize"
                       onClick={() => window.location.href = "/#contact"}
                     >
                       <Mail className="mr-2 h-4 w-4" />
@@ -123,7 +123,8 @@ const InvestmentOptions: React.FC = () => {
                   
                   <Link to="/monthly-investment">
                     <Button 
-                      className="w-full bg-belize-blue hover:bg-belize-blue/90 mt-4 py-6 flex items-center justify-center"
+                      variant="belizeBlue"
+                      className="w-full mt-4 py-6 flex items-center justify-center"
                     >
                       <PiggyBank className="mr-2 h-5 w-5" />
                       Learn About Monthly Investing

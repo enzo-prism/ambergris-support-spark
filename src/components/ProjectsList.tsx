@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { 
   Calendar, 
   User, 
@@ -14,6 +13,8 @@ import {
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
@@ -259,32 +260,33 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             <p className="text-sm text-gray-600">
               {filteredProjects.length} {filteredProjects.length === 1 ? 'project' : 'projects'} found
             </p>
-            <div className="flex gap-2">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className={cn(
-                  "px-3 py-1 h-9", 
-                  activeView === "grid" && "bg-belize-blue text-white border-belize-blue hover:bg-belize-blue/90"
-                )}
-                onClick={() => setActiveView("grid")}
+            <ToggleGroup
+              type="single"
+              size="sm"
+              variant="outline"
+              value={activeView}
+              onValueChange={(value) => {
+                if (value) setActiveView(value as "grid" | "list");
+              }}
+              className="gap-2"
+            >
+              <ToggleGroupItem
+                value="grid"
+                aria-label="Grid view"
+                className="data-[state=on]:bg-belize-blue data-[state=on]:text-white data-[state=on]:border-belize-blue"
               >
                 <Grid size={16} className="mr-1" />
                 <span className="sr-only md:not-sr-only">Grid</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className={cn(
-                  "px-3 py-1 h-9", 
-                  activeView === "list" && "bg-belize-blue text-white border-belize-blue hover:bg-belize-blue/90"
-                )}
-                onClick={() => setActiveView("list")}
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="list"
+                aria-label="List view"
+                className="data-[state=on]:bg-belize-blue data-[state=on]:text-white data-[state=on]:border-belize-blue"
               >
                 <LayoutList size={16} className="mr-1" />
                 <span className="sr-only md:not-sr-only">List</span>
-              </Button>
-            </div>
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
         </motion.div>
         
@@ -305,7 +307,9 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                       <div className={`${getCategoryColor(post.category)} p-1.5 rounded-md mr-3`}>
                         {getCategoryIcon(post.category)}
                       </div>
-                      <span className="text-sm font-medium capitalize">{post.category}</span>
+                      <Badge variant="outline" className="border-gray-200 text-gray-700 capitalize">
+                        {post.category}
+                      </Badge>
                     </div>
                     <CardContent className="pt-5 px-4 md:px-6 md:pt-6 pb-4 md:pb-6">
                       <div className="flex items-center text-xs md:text-sm text-gray-500 mb-3 gap-3 flex-wrap">
@@ -358,9 +362,9 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                       </div>
                       <div className="p-4 flex-1">
                         <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className="text-xs font-medium px-2 py-0.5 rounded-full capitalize bg-gray-100">
+                          <Badge variant="outline" className="border-gray-200 text-gray-700 capitalize text-xs">
                             {post.category}
-                          </span>
+                          </Badge>
                           <span className="text-xs text-gray-500 flex items-center">
                             <Calendar className="h-3 w-3 mr-1 flex-shrink-0" />
                             {post.date}

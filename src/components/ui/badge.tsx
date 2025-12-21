@@ -11,6 +11,12 @@ const badgeVariants = cva(
       variant: {
         default:
           "border-transparent bg-belize-green text-white hover:bg-belize-green/80",
+        blue:
+          "border-transparent bg-belize-blue text-white hover:bg-belize-blue/80",
+        teal:
+          "border-transparent bg-belize-teal text-white hover:bg-belize-teal/80",
+        coral:
+          "border-transparent bg-belize-coral text-white hover:bg-belize-coral/80",
         secondary:
           "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive:

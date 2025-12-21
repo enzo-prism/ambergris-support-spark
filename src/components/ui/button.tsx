@@ -10,10 +10,20 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        belizeBlue: "bg-belize-blue text-white hover:bg-belize-blue/90",
+        belizeGreen: "bg-belize-green text-white hover:bg-belize-green/90",
+        belizeTeal: "bg-belize-teal text-white hover:bg-belize-teal/90",
+        belizeCoral: "bg-belize-coral text-white hover:bg-belize-coral/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        outlineBelize:
+          "border border-belize-green text-belize-green hover:bg-belize-green hover:text-white",
+        outlineBlue:
+          "border border-belize-blue text-belize-blue hover:bg-belize-blue hover:text-white",
+        outlineTeal:
+          "border border-belize-teal text-belize-teal hover:bg-belize-teal hover:text-white",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",

@@ -19,6 +19,7 @@ const Membership: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta name="keywords" content="Belize children charity, monthly donation, recurring giving, child welfare Belize, education support, healthcare programs, community development" />
+        <link rel="canonical" href="https://belizekids.org/monthly-investment" />
       </Helmet>
       
       <div className="flex flex-col min-h-screen">

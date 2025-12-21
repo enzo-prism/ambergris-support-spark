@@ -46,7 +46,12 @@ const ProgramsSection: React.FC = () => {
     <section id="programs" className="section-padding bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">Our Focus Areas</span>
+          <Badge
+            variant="outline"
+            className="mb-4 rounded-full border-belize-green/20 bg-belize-light px-4 py-1 text-sm font-medium text-belize-green"
+          >
+            Our Focus Areas
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Making a Difference Through Our Programs</h2>
           <p className="text-lg text-gray-700">
             Founded by Don Listwin, BelizeKids.org addresses the diverse needs of children in Belize, 
@@ -152,12 +157,12 @@ const ProgramsSection: React.FC = () => {
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Link to="/projects/october-vision-clinic">
-                    <Button className="bg-belize-blue hover:bg-belize-blue/90">
+                    <Button variant="belizeBlue">
                       Learn More <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                   <Link to="/doctors">
-                    <Button className="bg-belize-teal hover:bg-belize-teal/90">
+                    <Button variant="belizeTeal">
                       <User className="mr-2 h-4 w-4" />
                       Available Doctors
                     </Button>
@@ -222,7 +227,7 @@ const ProgramsSection: React.FC = () => {
               </li>
             </ul>
             <Link to="/projects">
-              <Button className="bg-belize-green hover:bg-belize-green/90">
+              <Button variant="belizeGreen">
                 View Our Projects
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

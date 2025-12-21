@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { 
   Calendar, 
   User, 
@@ -105,7 +106,7 @@ const ProjectsPreview: React.FC = () => {
             </p>
           </div>
           <Link to="/projects">
-            <Button className="mt-4 md:mt-0 bg-belize-blue hover:bg-belize-blue/90">
+            <Button variant="belizeBlue" className="mt-4 md:mt-0">
               View All Projects <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
@@ -123,12 +124,14 @@ const ProjectsPreview: React.FC = () => {
               <Card className="overflow-hidden transition-all hover:shadow-lg">
                 <div className="h-2 w-full" style={{ backgroundColor: post.color === "bg-rose-500" ? "#f43f5e" : post.color === "bg-amber-500" ? "#f59e0b" : post.color === "bg-blue-500" ? "#3b82f6" : post.color === "bg-green-500" ? "#22c55e" : "#6b7280" }}></div>
                 <CardContent className="pt-5">
-                  <div className="flex items-center mb-4">
-                    <div className={`${post.color} p-1.5 rounded-md mr-3`}>
-                      {getCategoryIcon(post.category)}
-                    </div>
-                    <span className="text-sm font-medium capitalize">{post.category}</span>
+                <div className="flex items-center mb-4">
+                  <div className={`${post.color} p-1.5 rounded-md mr-3`}>
+                    {getCategoryIcon(post.category)}
                   </div>
+                  <Badge variant="outline" className="border-gray-200 text-gray-700 capitalize">
+                    {post.category}
+                  </Badge>
+                </div>
                   
                   <div className="flex items-center text-sm text-gray-500 mb-2 gap-3">
                     <div className="flex items-center gap-1">

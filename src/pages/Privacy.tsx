@@ -16,6 +16,7 @@ const Privacy: React.FC = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta name="keywords" content="privacy policy, data protection, donor privacy, information security, GDPR compliance" />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://belizekids.org/privacy" />
       </Helmet>
       
       <div className="flex flex-col min-h-screen">

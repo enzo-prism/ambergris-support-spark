@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Lock, CreditCard, Mail, User, Phone, Users } from "lucide-react";
 
@@ -45,10 +46,10 @@ const MembershipForm: React.FC = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
-              <Users className="h-5 w-5 text-belize-blue" />
-              <span className="text-belize-blue font-semibold">Monthly Membership</span>
-            </div>
+            <Badge variant="blue" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+              <Users className="h-5 w-5" />
+              Monthly Membership
+            </Badge>
             <h2 className="text-3xl font-bold text-belize-blue">Join Our Community</h2>
           </div>
           
@@ -179,7 +180,7 @@ const MembershipForm: React.FC = () => {
                       )}
                     />
                     
-                    <Button type="submit" className="w-full bg-belize-blue hover:bg-belize-blue/90 mt-4 py-6 flex items-center justify-center">
+                    <Button type="submit" variant="belizeBlue" className="w-full mt-4 py-6 flex items-center justify-center">
                       <Users className="mr-2 h-5 w-5" />
                       Join Monthly Membership
                     </Button>

@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Mail, Activity, Bell, Users, Globe, Heart, CreditCard, Handshake, Megaphone, UserPlus } from "lucide-react";
 
 const MembershipBenefits: React.FC = () => {
@@ -68,10 +69,10 @@ const MembershipBenefits: React.FC = () => {
     <section className="py-16 bg-white">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
-            <CreditCard className="h-5 w-5 text-belize-blue" />
-            <span className="text-belize-blue font-semibold">Membership Program</span>
-          </div>
+          <Badge variant="blue" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+            <CreditCard className="h-5 w-5" />
+            Membership Program
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">Member Benefits</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
             When you become a monthly member, you're joining an exclusive community investing in the future of Belizean children through consistent, long-term support.

@@ -7,9 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowLeft, ChevronRight, FileText, Heart, BookOpen, Leaf, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import ProjectDetailGallery from "@/components/ProjectDetailGallery";
 import ProjectInternalLinks from "@/components/ProjectInternalLinks";
 import ProjectSEOContent from "@/components/ProjectSEOContent";
+import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 
 interface ProjectImage {
   src: string;
@@ -19,6 +21,7 @@ interface ProjectImage {
 interface Project {
   slug: string;
   title: string;
+  metaDescription: string;
   author: string;
   date: string;
   category: string;
@@ -35,6 +38,7 @@ const projects: Project[] = [
   {
     slug: "october-vision-clinic",
     title: "Stanford Belize Vision Clinic: Transforming Eye Care in San Pedro",
+    metaDescription: "Discover how the Stanford Belize Vision Clinic provides free eye screenings and subsidized eyewear through Belize Kids, Stanford, BCVI, and the Lions Club.",
     author: "Rebecca Coutant",
     date: "October 30, 2017",
     category: "healthcare",
@@ -106,6 +110,7 @@ const projects: Project[] = [
   {
     slug: "dollar-a-dive-program",
     title: "Belize Kids is Excited to Announce Our #DollaADive Program",
+    metaDescription: "Dive shops donate $1 per dive to Belize Kids, funding vision care and education programs while supporting local businesses on Ambergris Caye.",
     author: "Rebecca Coutant",
     date: "November 22, 2022",
     category: "fundraising",
@@ -132,6 +137,7 @@ const projects: Project[] = [
   {
     slug: "second-vision-screening-machine",
     title: "Belize Kids.Org Donates a Second Vision Screening Machine To San Pedro's Lions Club",
+    metaDescription: "Belize Kids donated a second Plus Optix screener to the San Pedro Lions Club, expanding fast, accurate vision checks for children.",
     author: "Rebecca Coutant",
     date: "August 27, 2022",
     category: "healthcare",
@@ -158,6 +164,7 @@ const projects: Project[] = [
   {
     slug: "camp-basil-jones",
     title: "Belize Kids.Org and Finn & Martini Sponsor Week Four of Camp Basil Jones on North Ambergris Caye",
+    metaDescription: "A week of Camp Basil Jones delivered reef education, conservation lessons, and teamwork for Belizean kids through Belize Kids and Finn & Martini.",
     author: "Rebecca Coutant",
     date: "August 7, 2022",
     category: "education",
@@ -185,6 +192,7 @@ const projects: Project[] = [
   {
     slug: "eye-screening-equipment",
     title: "Belize Kids.Org Donates Eye Screening Equipment to the Lions' Den in San Pedro",
+    metaDescription: "A new Plus Optix device helps the Lions' Den screen hundreds of children in San Pedro for vision issues and early treatment.",
     author: "Rebecca Coutant",
     date: "July 20, 2022",
     category: "healthcare",
@@ -211,6 +219,7 @@ const projects: Project[] = [
   {
     slug: "fundraising-camp-basil-jones",
     title: "Belize Kids.Org and Finn & Martini Raise Money for Ambergris Caye's Camp Basil Jones",
+    metaDescription: "Community fundraising sponsored Camp Basil Jones, bringing environmental education, snorkeling trips, and creative activities to Belizean youth.",
     author: "Rebecca Coutant",
     date: "July 9, 2022",
     category: "education",
@@ -236,6 +245,7 @@ const projects: Project[] = [
   {
     slug: "sprc-primary-school",
     title: "Working with SPRC Primary, San Pedro, Belize's Largest Public School",
+    metaDescription: "Belize Kids supports SPRC Primary with classroom improvements and resources for more than 700 students in San Pedro.",
     author: "Rebecca Coutant",
     date: "June 14, 2022",
     category: "education",
@@ -262,6 +272,7 @@ const projects: Project[] = [
   {
     slug: "equipment-donation-hol-chan",
     title: "Canary Cove Donates Equipment to San Pedro Tour Guide Association & Hol Chan Marine Reserve",
+    metaDescription: "Canary Cove donated 20 mooring buoys to protect Hol Chan Marine Reserve and support San Pedro tour guides.",
     author: "Rebecca Coutant",
     date: "October 1, 2021",
     category: "environment",
@@ -334,9 +345,21 @@ const ProjectDetail: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Helmet>
         <title>{project.title} | {project.category} | Belize Kids</title>
-        <meta name="description" content={`${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`} />
+        <meta
+          name="description"
+          content={
+            project.metaDescription ||
+            `${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`
+          }
+        />
         <meta property="og:title" content={`${project.title} | Belize Kids`} />
-        <meta property="og:description" content={`${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`} />
+        <meta
+          property="og:description"
+          content={
+            project.metaDescription ||
+            `${project.title} - ${project.highlights.join(', ')}. Transparent ${project.category} initiatives improving children's lives in Belize.`
+          }
+        />
         <meta property="og:type" content="article" />
         <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
         <meta name="article:published_time" content={project.date} />
@@ -416,28 +439,12 @@ const ProjectDetail: React.FC = () => {
       <div className="bg-belize-light pt-24 pb-8 md:pb-12">
         <div className="container-custom">
           <div className="flex flex-col space-y-4">
-            {/* SEO Breadcrumbs */}
-            <nav aria-label="Breadcrumb" className="py-2">
-              <ol className="flex items-center space-x-2 text-sm text-gray-600">
-                <li>
-                  <Link to="/" className="flex items-center hover:text-belize-blue transition-colors" aria-label="Go to homepage">
-                    <span>Home</span>
-                  </Link>
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
-                  <Link to="/projects" className="hover:text-belize-blue transition-colors">
-                    Projects
-                  </Link>
-                </li>
-                <li className="flex items-center">
-                  <ChevronRight className="h-4 w-4 mx-2 text-gray-400" />
-                  <span className="text-gray-900 font-medium" aria-current="page">
-                    {project.title}
-                  </span>
-                </li>
-              </ol>
-            </nav>
+            <SEOBreadcrumbs
+              items={[
+                { name: "Projects", href: "/projects" },
+                { name: project.title },
+              ]}
+            />
             
             <Link to="/projects" className="inline-flex items-center text-belize-green hover:text-belize-coral transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to all projects
@@ -497,12 +504,14 @@ const ProjectDetail: React.FC = () => {
                 <h3 className="text-xl font-bold mb-4 text-belize-green">Project Highlights</h3>
                 <div className="grid grid-cols-1 gap-3">
                   {project!.highlights.map((highlight, index) => (
-                    <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg border border-gray-100">
+                    <Alert key={index} className="flex items-start gap-3 border-gray-100 bg-white">
                       <div className={`${project!.color} p-1 rounded-md`}>
                         {getCategoryIcon(project!.category)}
                       </div>
-                      <p className="text-gray-700">{highlight}</p>
-                    </div>
+                      <AlertDescription className="text-gray-700">
+                        {highlight}
+                      </AlertDescription>
+                    </Alert>
                   ))}
                 </div>
               </div>
@@ -609,7 +618,7 @@ const ProjectDetail: React.FC = () => {
               <h3 className="text-xl font-bold mb-4 text-belize-green">Help Support Our Work</h3>
               <p className="mb-6 text-gray-700">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
               <Button 
-                className="bg-belize-coral hover:bg-opacity-90 text-white"
+                variant="belizeCoral"
                 onClick={() => {
                   const donateElement = document.getElementById("donate");
                   if (donateElement) {
@@ -627,8 +636,7 @@ const ProjectDetail: React.FC = () => {
               <h3 className="text-xl font-bold mb-4 text-belize-green">Get Involved</h3>
               <p className="mb-6 text-gray-700">Join our mission to create a better future for the children of Belize. Volunteer, donate, or spread the word about our initiatives.</p>
               <Button 
-                variant="outline"
-                className="border-belize-blue text-belize-blue hover:bg-belize-blue hover:text-white"
+                variant="outlineBlue"
                 onClick={() => {
                   window.location.href = "/monthly-investment";
                 }}

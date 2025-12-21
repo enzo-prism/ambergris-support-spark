@@ -1,7 +1,8 @@
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { Button } from "@/components/ui/button";
 
 const NotFound = () => {
   const location = useLocation();
@@ -28,9 +29,9 @@ const NotFound = () => {
       <div className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-md max-w-md w-full">
         <h1 className="text-5xl font-bold mb-4 text-belize-green">404</h1>
         <p className="text-lg sm:text-xl text-gray-600 mb-6">Oops! Page not found</p>
-        <a href="/" className="inline-block bg-belize-green text-white px-6 py-3 rounded-md hover:bg-belize-green/90 transition-colors">
-          Return to Home
-        </a>
+        <Button variant="belizeGreen" asChild className="px-6 py-3">
+          <Link to="/">Return to Home</Link>
+        </Button>
       </div>
     </div>
   );

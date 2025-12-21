@@ -15,6 +15,7 @@ const Terms: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta name="keywords" content="terms of service, donation terms, website terms, legal agreement, nonprofit terms, user agreement" />
         <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://belizekids.org/terms" />
       </Helmet>
       
       <div className="min-h-screen bg-white">

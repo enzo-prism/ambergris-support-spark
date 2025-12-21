@@ -15,6 +15,14 @@ import "@/components/ui/image";
 const Projects: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialTab = searchParams.get('tab') || 'all';
+  const metaDescriptionByTab: Record<string, string> = {
+    all: "Discover our transparent community projects in Belize: school improvements, Stanford Vision Clinic, scholarships, and park development. See exactly how donations create lasting change for children.",
+    healthcare: "Explore Belize Kids healthcare projects, including the Stanford Vision Clinic and eye screening programs that protect children's sight.",
+    education: "See education projects that expand classrooms, fund supplies, and award scholarships to Belizean students.",
+    environment: "Discover environmental and conservation projects supporting parks, playgrounds, and marine reserve protection on Ambergris Caye.",
+    fundraising: "Learn about community fundraising initiatives that power Belize Kids programs and partnerships across the island.",
+  };
+  const metaDescription = metaDescriptionByTab[initialTab] || metaDescriptionByTab.all;
 
   const handleTabChange = (tab: string) => {
     setSearchParams(params => {
@@ -27,9 +35,9 @@ const Projects: React.FC = () => {
     <div className="min-h-screen bg-white overflow-x-hidden">
       <Helmet>
         <title>Our Impact Projects - Schools, Healthcare & Education in Belize | Belize Kids</title>
-        <meta name="description" content="Discover our transparent community projects in Belize: school improvements, Stanford Vision Clinic, scholarships, and park development. See exactly how donations create lasting change for children." />
+        <meta name="description" content={metaDescription} />
         <meta property="og:title" content="Our Impact Projects - Schools, Healthcare & Education in Belize | Belize Kids" />
-        <meta property="og:description" content="Discover our transparent community projects in Belize: school improvements, Stanford Vision Clinic, scholarships, and park development. See exactly how donations create lasting change for children." />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:image" content="/lovable-uploads/6ef870a1-f17b-4286-b5a3-24f461ec46de.png" />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="Belize charity projects, school improvement Belize, children healthcare Belize, education programs, transparent charity, community development" />

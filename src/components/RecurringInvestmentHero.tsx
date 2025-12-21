@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Calendar, CreditCard } from "lucide-react";
 import { Image } from "@/components/ui/image";
 
@@ -22,10 +23,10 @@ const RecurringInvestmentHero: React.FC = () => {
       
       <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
         <div className="flex-1 text-center lg:text-left">
-          <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-belize-blue text-sm sm:text-base font-medium mb-3 sm:mb-4">
+          <Badge variant="blue" className="mb-3 gap-2 px-3 py-1.5 text-sm font-medium sm:mb-4 sm:px-4 sm:py-2 sm:text-base">
             <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
             Monthly Recurring Investment
-          </div>
+          </Badge>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
             Invest <span className="text-belize-blue">Monthly</span> in Belize's Future
           </h1>
@@ -35,7 +36,8 @@ const RecurringInvestmentHero: React.FC = () => {
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Button 
               onClick={scrollToForm}
-              className="bg-belize-blue hover:bg-belize-blue/90 text-white text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto"
+              variant="belizeBlue"
+              className="text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto"
             >
               <CreditCard className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               Start Monthly Investment

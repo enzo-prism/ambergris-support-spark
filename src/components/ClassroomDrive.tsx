@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Image } from "@/components/ui/image";
@@ -46,10 +47,10 @@ const ClassroomDrive: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <div className="inline-flex items-center gap-2 bg-belize-coral/10 px-4 py-2 rounded-full mb-4">
-            <School className="h-5 w-5 text-belize-coral" />
-            <span className="text-belize-coral font-semibold">Current Initiative</span>
-          </div>
+          <Badge variant="coral" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+            <School className="h-5 w-5" />
+            Current Initiative
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">New Horizon School Classroom Addition</h2>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
             Help us build an additional classroom at ACB school to support the growing educational needs in San Pedro.
@@ -176,7 +177,8 @@ const ClassroomDrive: React.FC = () => {
                 </div>
 
                 <Button 
-                  className="w-full bg-belize-coral hover:bg-belize-coral/90 py-6 text-lg"
+                  variant="belizeCoral"
+                  className="w-full py-6 text-lg"
                   onClick={scrollToDonate}
                 >
                   <DollarSign className="mr-2 h-5 w-5" />

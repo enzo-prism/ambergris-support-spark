@@ -83,7 +83,8 @@ const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
 
           <div className="mt-4">
             <Button 
-              className="w-full bg-belize-blue hover:bg-belize-blue/90"
+              variant="belizeBlue"
+              className="w-full"
               onClick={() => window.open(mapUrl, '_blank')}
             >
               <MapPin className="h-4 w-4 mr-2" />

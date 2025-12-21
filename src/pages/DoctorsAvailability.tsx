@@ -14,16 +14,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const DoctorsAvailability: React.FC = () => {
-  const doctorSchedules = [
-    {
-      id: 2,
-      dates: "November 2025 (dates TBA)",
-      doctors: "Dr. Nancy Hamming",
-      specialties: "Cornea Specialist",
-    },
-  ];
+  const doctorSchedules: {
+    id: number;
+    dates: string;
+    doctors: string;
+    specialties: string;
+  }[] = [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,6 +34,7 @@ const DoctorsAvailability: React.FC = () => {
         <meta property="og:image" content="https://imgur.com/0Qjoc64" />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="eye care Belize, free eye exams, Stanford vision clinic, San Pedro ophthalmologist, children eye care, Ambergris Caye medical services" />
+        <link rel="canonical" href="https://belizekids.org/doctors" />
       </Helmet>
       
       <Navbar />
@@ -63,13 +63,24 @@ const DoctorsAvailability: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  {doctorSchedules.map((schedule) => (
-                    <div key={schedule.id} className="border-l-4 border-belize-green pl-4 py-2">
-                      <h3 className="text-lg font-semibold text-belize-green">{schedule.dates}</h3>
-                      <p className="text-gray-800 font-medium">{schedule.doctors}</p>
-                      <p className="text-gray-600 text-sm">{schedule.specialties}</p>
-                    </div>
-                  ))}
+                  {doctorSchedules.length > 0 ? (
+                    doctorSchedules.map((schedule) => (
+                      <Alert key={schedule.id} className="border-belize-green/40 bg-white">
+                        <AlertTitle className="text-belize-green">{schedule.dates}</AlertTitle>
+                        <AlertDescription className="text-sm text-gray-600">
+                          <p className="font-medium text-gray-800">{schedule.doctors}</p>
+                          <p>{schedule.specialties}</p>
+                        </AlertDescription>
+                      </Alert>
+                    ))
+                  ) : (
+                    <Alert className="border-belize-green/40 bg-white">
+                      <AlertTitle className="text-belize-green">Upcoming visits</AlertTitle>
+                      <AlertDescription className="text-sm text-gray-600">
+                        Upcoming visits will display here when available.
+                      </AlertDescription>
+                    </Alert>
+                  )}
                 </div>
               </CardContent>
               <CardFooter className="flex justify-center pt-2 pb-4">

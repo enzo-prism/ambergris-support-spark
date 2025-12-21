@@ -324,7 +324,8 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center ml-4 space-x-2">
           <Link to="/monthly-investment">
             <Button 
-              className="bg-belize-coral hover:bg-belize-coral/90 text-white transition-all hover:shadow-md flex items-center gap-2"
+              variant="belizeCoral"
+              className="transition-all hover:shadow-md flex items-center gap-2"
             >
               <PiggyBank className="h-4 w-4" />
               Invest Today
@@ -385,7 +386,8 @@ const Navbar: React.FC = () => {
                 <SheetClose asChild>
                   <Link to="/monthly-investment" className="block w-full">
                     <Button 
-                      className="bg-belize-coral hover:bg-belize-coral/90 text-white w-full py-5"
+                      variant="belizeCoral"
+                      className="w-full py-5"
                     >
                       Invest Today
                     </Button>

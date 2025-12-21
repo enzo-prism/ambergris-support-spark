@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
 
 const InvestmentForm: React.FC = () => {
@@ -10,10 +11,10 @@ const InvestmentForm: React.FC = () => {
       <div className="container-custom">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-belize-blue/10 px-4 py-2 rounded-full mb-4">
-              <PiggyBank className="h-5 w-5 text-belize-blue" />
-              <span className="text-belize-blue font-semibold">Investment Options</span>
-            </div>
+            <Badge variant="blue" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
+              <PiggyBank className="h-5 w-5" />
+              Investment Options
+            </Badge>
             <h2 className="text-3xl font-bold text-belize-blue">Ways to Invest in Belize's Future</h2>
           </div>
           
@@ -81,8 +82,7 @@ const InvestmentForm: React.FC = () => {
                       For questions about monthly investment options, please reach out to us using the contact form.
                     </p>
                     <Button 
-                      variant="outline" 
-                      className="border-belize-green text-belize-green hover:bg-belize-green hover:text-white"
+                      variant="outlineBelize"
                       onClick={() => window.location.href = "/#contact"}
                     >
                       <Mail className="mr-2 h-4 w-4" />
@@ -91,7 +91,8 @@ const InvestmentForm: React.FC = () => {
                   </div>
                   
                   <Button 
-                    className="w-full bg-belize-blue hover:bg-belize-blue/90 mt-4 py-6 flex items-center justify-center"
+                    variant="belizeBlue"
+                    className="w-full mt-4 py-6 flex items-center justify-center"
                     onClick={() => window.location.href = "https://belizekids.org"}
                   >
                     <ExternalLink className="mr-2 h-5 w-5" />

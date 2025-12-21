@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, PiggyBank } from "lucide-react";
 
@@ -10,10 +11,10 @@ const MembershipPromo: React.FC = () => {
       <div className="container-custom">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="md:w-2/3">
-            <div className="flex items-center gap-2 mb-2">
-              <PiggyBank className="h-5 w-5 text-belize-blue" />
-              <span className="text-sm font-semibold uppercase tracking-wider text-belize-blue">Monthly Investment</span>
-            </div>
+            <Badge variant="blue" className="mb-2 gap-2 text-xs font-semibold uppercase tracking-wider">
+              <PiggyBank className="h-4 w-4" />
+              Monthly Investment
+            </Badge>
             <h2 className="text-2xl md:text-3xl font-bold text-belize-blue mb-4">
               Create Lasting Impact with Monthly Investing
             </h2>
@@ -23,7 +24,7 @@ const MembershipPromo: React.FC = () => {
           </div>
           <div>
             <Link to="/monthly-investment">
-              <Button className="bg-belize-blue hover:bg-belize-blue/90 text-white text-lg px-6 py-6 mt-2">
+              <Button variant="belizeBlue" className="text-lg px-6 py-6 mt-2">
                 <PiggyBank className="mr-2 h-5 w-5" />
                 Learn About Investing
                 <ArrowRight className="ml-2 h-5 w-5" />

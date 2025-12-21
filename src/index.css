@@ -121,30 +121,6 @@
   .container-custom {
     @apply container px-4 sm:px-6 md:px-8;
   }
-  
-  .button-donate {
-    @apply bg-belize-coral hover:bg-opacity-90 text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-md transition-all;
-  }
-  
-  .input-donate {
-    @apply w-full p-2 md:p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-belize-green;
-  }
-
-  .card-highlight {
-    @apply border-l-4 border-belize-green shadow-md hover:shadow-lg transition-all;
-  }
-
-  .gradient-blue-light {
-    @apply bg-gradient-to-r from-belize-green to-belize-light;
-  }
-  
-  .section-title {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-center;
-  }
-  
-  .section-title-left {
-    @apply text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6;
-  }
 }
 
 @layer utilities {

@@ -30,6 +30,7 @@ const Leadership: React.FC = () => {
         <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="Belize Kids leadership, Don Listwin, Hilary Valentine, charity founders, nonprofit board, philanthropy leaders" />
+        <link rel="canonical" href="https://belizekids.org/leadership" />
       </Helmet>
       
       <Navbar />

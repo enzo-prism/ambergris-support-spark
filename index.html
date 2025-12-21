@@ -11,6 +11,21 @@
     <meta name="theme-color" content="#3CB371" />
     <link rel="icon" href="/lovable-uploads/52ef4a8f-eb2c-47b2-958c-85f1f0a0a8a7.png" type="image/png" />
     <link rel="apple-touch-icon" href="/lovable-uploads/22bc804f-1ccc-4ff5-821d-dd2313823c7c.png" />
+    <script>
+      (function () {
+        var preferredHost = "belizekids.org";
+        if (window.location.hostname === "www." + preferredHost) {
+          var newUrl =
+            window.location.protocol +
+            "//" +
+            preferredHost +
+            window.location.pathname +
+            window.location.search +
+            window.location.hash;
+          window.location.replace(newUrl);
+        }
+      })();
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ESGDVFXLGZ"></script>
     <script>

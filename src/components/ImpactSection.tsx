@@ -4,6 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Book, User, School, TrendingUp, Award, BookOpen, GraduationCap, Building } from "lucide-react";
 import { motion } from "framer-motion";
 import { Image } from "@/components/ui/image";
+import { Badge } from "@/components/ui/badge";
 
 const ImpactSection: React.FC = () => {
   const impactStats = [
@@ -67,9 +68,12 @@ const ImpactSection: React.FC = () => {
     <section id="impact" className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
       <div className="container-custom">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-belize-light text-belize-green rounded-full text-sm font-medium mb-4">
+          <Badge
+            variant="outline"
+            className="mb-4 rounded-full border-belize-green/20 bg-belize-light px-4 py-1 text-sm font-medium text-belize-green"
+          >
             Making A Difference
-          </span>
+          </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Impact</h2>
           <p className="text-lg text-gray-700">
             With complete transparency, we show how your investments directly improve the lives of children across Belize.
@@ -113,10 +117,10 @@ const ImpactSection: React.FC = () => {
         >
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-bold text-belize-green">Key Partnerships</h3>
-            <div className="flex items-center gap-2 px-3 py-1 bg-belize-light rounded-full">
+            <Badge variant="outline" className="gap-2 rounded-full border-belize-green/20 bg-belize-light px-3 py-1 text-belize-green">
               <TrendingUp className="h-4 w-4 text-belize-green" />
-              <span className="text-sm font-medium text-belize-green">Strategic Collaboration</span>
-            </div>
+              <span className="text-sm font-medium">Strategic Collaboration</span>
+            </Badge>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
