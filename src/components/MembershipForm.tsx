@@ -31,8 +31,6 @@ const MembershipForm: React.FC = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    console.log("Form submitted:", data);
-    
     toast({
       title: "Membership registration started",
       description: "Thank you for your interest! We'll contact you shortly to complete your membership setup.",

@@ -8,7 +8,7 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
-  ({ className, src, alt, fallbackSrc, fallbackClassName, crossOrigin, ...props }, ref) => {
+  ({ className, src, alt, fallbackSrc, fallbackClassName, ...props }, ref) => {
     const [hasError, setHasError] = useState(false);
     const [imageSrc, setImageSrc] = useState<string | undefined>(src);
     
@@ -23,45 +23,35 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
       }
     }, [src]);
     
-    // Standardize image sources, prioritizing Imgur format
     const handleImageSource = (url: string | undefined) => {
       if (!url) return fallbackSrc || defaultFallback;
-      
-      // Handle Imgur URLs - convert ALL to direct i.imgur.com image links
-      if (url.includes('imgur.com')) {
-        // Extract the ID from the URL (handles imgur.com/ID or i.imgur.com/ID format)
-        const imgurIdMatch = url.match(/imgur\.com\/([a-zA-Z0-9]+)/);
-        if (imgurIdMatch && imgurIdMatch[1]) {
-          const imgurId = imgurIdMatch[1];
-          // Always return the direct image URL using the i.imgur.com domain
-          return `https://i.imgur.com/${imgurId}.jpg`;
-        }
-      }
-      
-      // If it's a data URL, return as is
-      if (url.startsWith('data:')) {
+
+      if (url.startsWith("data:") || url.startsWith("blob:") || url.startsWith("/")) {
         return url;
       }
-      
-      // Convert all other URLs to fallback - we're standardizing on Imgur only
+
+      if (url.includes("imgur.com")) {
+        const imgurIdMatch = url.match(/imgur\.com\/(?:gallery\/)?([a-zA-Z0-9]+)(\.\w+)?/);
+        if (imgurIdMatch?.[1]) {
+          const extension = imgurIdMatch[2] ?? ".jpg";
+          return `https://i.imgur.com/${imgurIdMatch[1]}${extension}`;
+        }
+      }
+
+      try {
+        const parsedUrl = new URL(url);
+        if (parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:") {
+          return parsedUrl.toString();
+        }
+      } catch {
+        return url;
+      }
+
       return fallbackSrc || defaultFallback;
     };
-    
-    // Always use crossOrigin for Imgur URLs
-    const shouldUseCrossOrigin = (url: string | undefined) => {
-      if (!url) return false;
-      return url.includes('imgur.com') || url.includes('i.imgur.com');
-    };
-    
+
     const finalSrc = hasError ? (fallbackSrc || defaultFallback) : handleImageSource(imageSrc);
-    const needsCrossOrigin = shouldUseCrossOrigin(finalSrc);
-    
-    // For debugging
-    useEffect(() => {
-      if (finalSrc && finalSrc.includes('imgur')) {
-        console.log(`Loading image: ${finalSrc}`);
-      }
-    }, [finalSrc]);
+    const isRemoteSrc = typeof finalSrc === "string" && /^https?:\/\//.test(finalSrc);
     
     return (
       <img
@@ -69,17 +59,11 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
         ref={ref}
         src={finalSrc}
         alt={alt || ""}
-        crossOrigin={needsCrossOrigin ? "anonymous" : undefined}
+        crossOrigin={isRemoteSrc ? "anonymous" : props.crossOrigin}
+        referrerPolicy={isRemoteSrc ? "no-referrer" : props.referrerPolicy}
         onError={(e) => {
-          console.error(`Image failed to load: ${imageSrc}`, e);
           setHasError(true);
-          
-          // Try to diagnose the specific issue
-          if (imageSrc?.includes('imgur')) {
-            console.warn(`This may be an issue with the Imgur URL: ${imageSrc}. Using direct i.imgur.com URL format.`);
-          } else {
-            console.warn(`Non-Imgur URL detected: ${imageSrc}. Consider using an Imgur URL instead for better compatibility.`);
-          }
+          props.onError?.(e);
         }}
         loading="lazy"
         {...props}

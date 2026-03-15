@@ -1,57 +1,7 @@
-
-# Robots.txt for BelizeKIDS.ORG
-# This file helps search engines understand how to crawl our website
-
 User-agent: *
 Allow: /
-
-# Allow all major search engine bots
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-# Disallow any admin or internal directories (if they exist in the future)
-Disallow: /admin/
+Disallow: /404
 Disallow: /api/
-Disallow: /.well-known/
-Disallow: /temp/
-Disallow: /tmp/
+Disallow: /_vercel/
 
-# Allow important pages for SEO
-Allow: /
-Allow: /projects
-Allow: /leadership
-Allow: /doctors
-Allow: /membership
-Allow: /monthly-investment
-Allow: /privacy
-Allow: /terms
-
-# Sitemap location
-Sitemap: https://belizekids.org/sitemap.xml
-
-# Crawl delay (optional - helps prevent overwhelming the server)
-Crawl-delay: 1
-
-# Additional notes:
-# - This robots.txt allows all search engines to crawl your entire website
-# - It specifically allows access to all your main pages
-# - It blocks potential admin areas for security
-# - Sitemap helps search engines discover and index all pages efficiently
+Sitemap: https://www.belizekids.org/sitemap.xml

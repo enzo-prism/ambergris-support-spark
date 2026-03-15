@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Calendar } from "lucide-react";
@@ -15,6 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { buildSiteUrl, SITE_OG_IMAGE_URL } from "@/lib/site";
 
 const DoctorsAvailability: React.FC = () => {
   const doctorSchedules: {
@@ -31,10 +32,10 @@ const DoctorsAvailability: React.FC = () => {
         <meta name="description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
         <meta property="og:title" content="Free Eye Care Appointments - Stanford Belize Vision Clinic | San Pedro, Belize" />
         <meta property="og:description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
-        <meta property="og:image" content="https://imgur.com/0Qjoc64" />
+        <meta property="og:image" content={SITE_OG_IMAGE_URL} />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="eye care Belize, free eye exams, Stanford vision clinic, San Pedro ophthalmologist, children eye care, Ambergris Caye medical services" />
-        <link rel="canonical" href="https://belizekids.org/doctors" />
+        <link rel="canonical" href={buildSiteUrl("/doctors")} />
       </Helmet>
       
       <Navbar />

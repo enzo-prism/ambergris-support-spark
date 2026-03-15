@@ -1,12 +1,11 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Calendar, ChevronRight, Home, Users, BookOpen, Briefcase, Folder, CreditCard, Mail, Info, Menu as MenuIcon, PiggyBank } from "lucide-react";
+import { Calendar, ChevronRight, Home, Users, BookOpen, Folder, Mail, Info, Menu, PiggyBank } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -17,12 +16,17 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import {
+  trackContactClick,
+  trackDoctorAppointmentClick,
+  trackInvestmentClick,
+} from "@/lib/analytics";
 
 type NavItemBase = {
   label: string;
   icon?: React.ReactNode;
+  onSelect?: () => void;
 }
 
 type NavItemLink = NavItemBase & {
@@ -34,6 +38,7 @@ type NavItemLink = NavItemBase & {
 type NavItemScroll = NavItemBase & {
   type: "scroll";
   action: () => void;
+  href: string;
   hasHighlight?: boolean;
 }
 
@@ -43,6 +48,10 @@ type NavItemDropdown = NavItemBase & {
 }
 
 type NavItem = NavItemLink | NavItemScroll | NavItemDropdown;
+
+const isNavDropdown = (item: NavItem): item is NavItemDropdown => item.type === "dropdown";
+const isNavLink = (item: NavItemLink | NavItemScroll): item is NavItemLink =>
+  item.type === "link";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -85,12 +94,14 @@ const Navbar: React.FC = () => {
           label: "About Us",
           type: "scroll",
           action: () => scrollToSection("about"),
+          href: "/#about",
           icon: <Info className="h-5 w-5" />
         },
         {
           label: "Programs",
           type: "scroll",
           action: () => scrollToSection("programs"),
+          href: "/#programs",
           icon: <BookOpen className="h-5 w-5" />
         },
         {
@@ -117,13 +128,16 @@ const Navbar: React.FC = () => {
           type: "link",
           to: "/doctors",
           hasHighlight: true,
-          icon: <Calendar className="h-5 w-5" />
+          icon: <Calendar className="h-5 w-5" />,
+          onSelect: () =>
+            trackDoctorAppointmentClick("navbar_resources", "doctors"),
         },
         {
           label: "Invest",
           type: "link",
           to: "/monthly-investment",
-          icon: <PiggyBank className="h-5 w-5" />
+          icon: <PiggyBank className="h-5 w-5" />,
+          onSelect: () => trackInvestmentClick("navbar_resources", "monthly_investment"),
         }
       ]
     },
@@ -131,16 +145,19 @@ const Navbar: React.FC = () => {
       label: "Contact",
       type: "scroll",
       action: () => scrollToSection("contact"),
-      icon: <Mail className="h-5 w-5" />
+      href: "/#contact",
+      icon: <Mail className="h-5 w-5" />,
+      onSelect: () => trackContactClick("navbar", "contact_section"),
     }
   ];
 
-  const NavDropdown = ({ item }: { item: any }) => (
+  const NavDropdown = ({ item }: { item: NavItemDropdown }) => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={cn(
           "flex items-center text-base font-medium text-gray-700 hover:text-belize-blue transition-colors px-4 py-2 gap-1",
-          location.pathname === item.to && "text-belize-blue font-semibold"
+          item.items.some((subItem) => subItem.type === "link" && subItem.to === location.pathname) &&
+            "text-belize-blue font-semibold"
         )}>
           {item.label}
           <ChevronRight className="h-4 w-4 ml-1 rotate-90" />
@@ -148,29 +165,37 @@ const Navbar: React.FC = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className="w-[250px] p-2 rounded-md">
         <div className="space-y-1">
-          {item.items.map((subItem: any, index: number) => (
+          {item.items.map((subItem, index) => (
             <DropdownMenuItem key={index} className="p-0">
               {subItem.type === "link" ? (
                 <Link 
-                  to={subItem.to} 
+                  to={subItem.to}
+                  onClick={subItem.onSelect}
                   className="w-full flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50"
                 >
                   {subItem.icon && <span className="text-belize-blue">{subItem.icon}</span>}
                   <span className={cn(
                     "flex-1",
-                    subItem.highlight && "text-belize-blue font-medium"
+                    subItem.hasHighlight && "text-belize-blue font-medium"
                   )}>
                     {subItem.label}
                   </span>
                 </Link>
               ) : (
-                <button
-                  onClick={subItem.action}
+                <a
+                  href={subItem.href}
+                  onClick={(event) => {
+                    subItem.onSelect?.();
+                    if (location.pathname === "/") {
+                      event.preventDefault();
+                      subItem.action();
+                    }
+                  }}
                   className="w-full flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 text-left"
                 >
                   {subItem.icon && <span className="text-belize-blue">{subItem.icon}</span>}
                   <span className="flex-1">{subItem.label}</span>
-                </button>
+                </a>
               )}
             </DropdownMenuItem>
           ))}
@@ -183,6 +208,7 @@ const Navbar: React.FC = () => {
     icon, 
     children, 
     to, 
+    href,
     onClick, 
     hasHighlight = false,
     hasSubmenu = false,
@@ -191,10 +217,11 @@ const Navbar: React.FC = () => {
     icon?: React.ReactNode; 
     children: React.ReactNode; 
     to?: string; 
+    href?: string;
     onClick?: () => void; 
     hasHighlight?: boolean;
     hasSubmenu?: boolean;
-    submenuItems?: any[];
+    submenuItems?: (NavItemLink | NavItemScroll)[];
   }) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -239,20 +266,30 @@ const Navbar: React.FC = () => {
       <div className={cn(
         "flex items-center gap-3 py-3 px-3 rounded-md transition-colors",
         hasHighlight ? "text-belize-blue font-medium" : "text-gray-700",
-        !to && "hover:bg-gray-50 active:bg-gray-100"
+        !(to || href) && "hover:bg-gray-50 active:bg-gray-100"
       )}>
         {icon && <span className="text-belize-blue">{icon}</span>}
         <span className="flex-1">{children}</span>
-        {to && <ChevronRight className="h-4 w-4 text-gray-400" />}
+        {(to || href) && <ChevronRight className="h-4 w-4 text-gray-400" />}
       </div>
     );
 
     if (to) {
       return (
         <SheetClose asChild>
-          <Link to={to} className="block">
+          <Link to={to} className="block" onClick={onClick}>
             {content}
           </Link>
+        </SheetClose>
+      );
+    }
+
+    if (href) {
+      return (
+        <SheetClose asChild>
+          <a href={href} className="block" onClick={onClick}>
+            {content}
+          </a>
         </SheetClose>
       );
     }
@@ -308,13 +345,20 @@ const Navbar: React.FC = () => {
                 ) : item.type === "dropdown" ? (
                   <NavDropdown item={item} />
                 ) : (
-                  <button 
-                    onClick={item.action}
+                  <a
+                    href={item.href}
+                    onClick={(event) => {
+                      item.onSelect?.();
+                      if (location.pathname === "/") {
+                        event.preventDefault();
+                        item.action();
+                      }
+                    }}
                     className="text-base font-medium px-4 py-2 text-gray-700 hover:text-belize-blue transition-colors flex items-center gap-1"
                   >
                     {item.icon && <span className="inline-block">{item.icon}</span>}
                     {item.label}
-                  </button>
+                  </a>
                 )}
               </div>
             ))}
@@ -326,6 +370,7 @@ const Navbar: React.FC = () => {
             <Button 
               variant="belizeCoral"
               className="transition-all hover:shadow-md flex items-center gap-2"
+              onClick={() => trackInvestmentClick("navbar_primary", "monthly_investment")}
             >
               <PiggyBank className="h-4 w-4" />
               Invest Today
@@ -355,7 +400,7 @@ const Navbar: React.FC = () => {
               <div className="flex-1 overflow-auto py-2 px-1">
                 <div className="space-y-1">
                   {mainNavItems.map((item, index) => {
-                    if (item.type === "dropdown") {
+                    if (isNavDropdown(item)) {
                       return (
                         <MobileMenuItem 
                           key={index}
@@ -371,8 +416,18 @@ const Navbar: React.FC = () => {
                         <MobileMenuItem 
                           key={index}
                           icon={item.icon}
-                          to={item.type === "link" ? item.to : undefined}
-                          onClick={item.type === "scroll" ? item.action : undefined}
+                          to={isNavLink(item) ? item.to : undefined}
+                          href={!isNavLink(item) ? item.href : undefined}
+                          onClick={
+                            isNavLink(item)
+                              ? item.onSelect
+                              : () => {
+                                  item.onSelect?.();
+                                  if (location.pathname === "/") {
+                                    item.action();
+                                  }
+                                }
+                          }
                         >
                           {item.label}
                         </MobileMenuItem>
@@ -388,6 +443,7 @@ const Navbar: React.FC = () => {
                     <Button 
                       variant="belizeCoral"
                       className="w-full py-5"
+                      onClick={() => trackInvestmentClick("navbar_mobile_footer", "monthly_investment")}
                     >
                       Invest Today
                     </Button>

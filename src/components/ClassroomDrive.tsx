@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { trackDonateClick } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
@@ -179,7 +180,10 @@ const ClassroomDrive: React.FC = () => {
                 <Button 
                   variant="belizeCoral"
                   className="w-full py-6 text-lg"
-                  onClick={scrollToDonate}
+                  onClick={() => {
+                    trackDonateClick("classroom_drive", "donate_section");
+                    scrollToDonate();
+                  }}
                 >
                   <DollarSign className="mr-2 h-5 w-5" />
                   Donate Now

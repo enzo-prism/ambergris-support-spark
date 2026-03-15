@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { trackAppointmentConfirmed } from "@/lib/analytics";
 
 interface Doctor {
   id: number;
@@ -37,6 +38,7 @@ const AppointmentConfirmation: React.FC<AppointmentConfirmationProps> = ({
   const { toast } = useToast();
   
   const handleConfirm = () => {
+    trackAppointmentConfirmed(doctorName, specialty ?? "eye_care");
     toast({
       title: "Eye Care Appointment Confirmed",
       description: `Your appointment with ${doctorName} has been booked for ${format(selectedDate, 'EEEE, MMMM d, yyyy')} at ${time}.`,

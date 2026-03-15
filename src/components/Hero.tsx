@@ -5,6 +5,10 @@ import { ArrowRight, Clock, CalendarClock } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Image } from "@/components/ui/image";
+import {
+  trackDoctorAppointmentClick,
+  trackInvestmentClick,
+} from "@/lib/analytics";
 
 const Hero: React.FC = () => {
   const isMobile = useIsMobile();
@@ -42,29 +46,24 @@ const Hero: React.FC = () => {
               <Button 
                 variant="belizeCoral"
                 className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+                onClick={() => trackInvestmentClick("hero_primary", "monthly_investment")}
               >
                 Invest Today
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Button 
-              variant="outlineBelize" 
-              className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full sm:w-auto mt-2 sm:mt-0" 
-              onClick={() => {
-                const aboutElement = document.getElementById("about");
-                if (aboutElement) {
-                  aboutElement.scrollIntoView({
-                    behavior: "smooth"
-                  });
-                }
-              }}
+            <Button
+              asChild
+              variant="outlineBelize"
+              className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full sm:w-auto mt-2 sm:mt-0"
             >
-              Our Impact
+              <a href="/#about">Our Impact</a>
             </Button>
             <Link to="/doctors" className="w-full sm:w-auto mt-2 sm:mt-0">
               <Button 
                 variant="outlineTeal" 
                 className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+                onClick={() => trackDoctorAppointmentClick("hero_secondary", "doctors")}
               >
                 <CalendarClock className="mr-2 h-4 w-4" />
                 Schedule Eye Doctor

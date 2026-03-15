@@ -1,25 +1,98 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  trackContactFormReady,
+  trackContactFormSubmitted,
+} from "@/lib/analytics";
 
-// Extend the Window interface to include the tf property
 declare global {
   interface Window {
-    tf?: any;
+    tf?: {
+      createWidget?: (
+        formId: string,
+        options: {
+          container: HTMLElement;
+          hideHeaders?: boolean;
+          onReady?: () => void;
+          onStarted?: () => void;
+          onSubmit?: () => void;
+        },
+      ) => unknown;
+    };
   }
 }
 
+const TYPEFORM_FORM_ID = "Zovvt0T2";
+const TYPEFORM_FORM_URL = `https://form.typeform.com/to/${TYPEFORM_FORM_ID}`;
+
 const ContactSection: React.FC = () => {
+  const widgetContainerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
-    // Load Typeform embed script if not already loaded
-    if (!window.tf) {
-      const script = document.createElement('script');
-      script.src = '//embed.typeform.com/next/embed.js';
-      script.async = true;
-      document.head.appendChild(script);
+    const container = widgetContainerRef.current;
+    if (!container) {
+      return;
     }
+
+    let cancelled = false;
+    let scriptElement: HTMLScriptElement | null = null;
+
+    const initializeWidget = () => {
+      if (cancelled || !container || !window.tf?.createWidget) {
+        return;
+      }
+
+      container.innerHTML = "";
+      window.tf.createWidget(TYPEFORM_FORM_ID, {
+        container,
+        hideHeaders: true,
+        onReady: () => trackContactFormReady("contact_section", "typeform"),
+        onSubmit: () =>
+          trackContactFormSubmitted("contact_section", "typeform"),
+      });
+    };
+
+    const handleScriptLoad = () => {
+      scriptElement?.setAttribute("data-loaded", "true");
+      initializeWidget();
+    };
+
+    if (window.tf?.createWidget) {
+      initializeWidget();
+    } else {
+      const existingScript = document.getElementById(
+        "typeform-embed-script",
+      ) as HTMLScriptElement | null;
+
+      scriptElement = existingScript;
+
+      const handleScriptLoad = () => {
+        initializeWidget();
+      };
+
+      if (existingScript) {
+        existingScript.addEventListener("load", handleScriptLoad);
+        if (existingScript.getAttribute("data-loaded") === "true") {
+          initializeWidget();
+        }
+      } else {
+        scriptElement = document.createElement("script");
+        scriptElement.id = "typeform-embed-script";
+        scriptElement.src = "https://embed.typeform.com/next/embed.js";
+        scriptElement.async = true;
+        scriptElement.addEventListener("load", handleScriptLoad);
+        document.head.appendChild(scriptElement);
+      }
+    }
+
+    return () => {
+      cancelled = true;
+      scriptElement?.removeEventListener("load", handleScriptLoad);
+      container.innerHTML = "";
+    };
   }, []);
 
   return (
@@ -90,8 +163,13 @@ const ContactSection: React.FC = () => {
                 <div>
                   <p className="text-white/90 font-medium mb-4">Connect With Us</p>
                   <div className="flex">
-                    <Button variant="outline" size="icon" className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white">
-                      <a 
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="icon"
+                      className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white"
+                    >
+                      <a
                         href="https://www.facebook.com/profile.php?id=100064824399858" 
                         target="_blank" 
                         rel="noreferrer" 
@@ -110,9 +188,25 @@ const ContactSection: React.FC = () => {
             <Card className="border-none shadow-lg p-1 overflow-hidden">
               <CardContent className="p-7">
                 <h3 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h3>
+                <p className="mb-4 text-sm text-gray-600">
+                  Prefer a direct link? Use our secure contact form at{" "}
+                  <a
+                    href={TYPEFORM_FORM_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-medium text-belize-blue underline-offset-4 hover:underline"
+                  >
+                    form.typeform.com
+                  </a>
+                  .
+                </p>
                 <div className="w-full h-[600px] bg-gray-50 rounded-lg">
-                  <div data-tf-live="01JXV3ZMFT7JMW7M0ZSASG5NST"></div>
-                  <script src="//embed.typeform.com/next/embed.js"></script>
+                  <div ref={widgetContainerRef} className="h-full w-full"></div>
+                  <noscript>
+                    <div className="flex h-full items-center justify-center px-6 text-center text-sm text-gray-600">
+                      JavaScript is disabled. Please use the direct contact form link above to send us a message.
+                    </div>
+                  </noscript>
                 </div>
               </CardContent>
             </Card>

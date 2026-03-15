@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LeaderCard from "@/components/leadership/LeaderCard";
@@ -8,6 +8,7 @@ import BoardSection from "@/components/leadership/BoardSection";
 import SharedCommitment from "@/components/leadership/SharedCommitment";
 import { Separator } from "@/components/ui/separator";
 import { Briefcase, HeartHandshake, GraduationCap, Globe, Lightbulb, UserCog } from "lucide-react";
+import { buildSiteUrl } from "@/lib/site";
 
 const Leadership: React.FC = () => {
   const boardMembers = [{
@@ -27,10 +28,10 @@ const Leadership: React.FC = () => {
         <meta name="description" content="Meet our leadership team: Don Listwin (tech entrepreneur), Hilary Valentine (philanthropist), Rebecca Coutant (local expert), and dedicated board members working to improve children's lives in Belize." />
         <meta property="og:title" content="Leadership Team - Experienced Founders & Board Members | Belize Kids" />
         <meta property="og:description" content="Meet our leadership team: Don Listwin (tech entrepreneur), Hilary Valentine (philanthropist), Rebecca Coutant (local expert), and dedicated board members working to improve children's lives in Belize." />
-        <meta property="og:image" content="/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png" />
+        <meta property="og:image" content={buildSiteUrl("/lovable-uploads/812b0d25-46e7-4113-9dde-e057f9d49833.png")} />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="Belize Kids leadership, Don Listwin, Hilary Valentine, charity founders, nonprofit board, philanthropy leaders" />
-        <link rel="canonical" href="https://belizekids.org/leadership" />
+        <link rel="canonical" href={buildSiteUrl("/leadership")} />
       </Helmet>
       
       <Navbar />

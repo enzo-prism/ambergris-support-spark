@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
+import { buildSiteUrl } from "@/lib/site";
+import { trackContactClick } from "@/lib/analytics";
 
 const InvestmentForm: React.FC = () => {
   return (
@@ -81,22 +83,28 @@ const InvestmentForm: React.FC = () => {
                     <p className="text-gray-700 mb-3">
                       For questions about monthly investment options, please reach out to us using the contact form.
                     </p>
-                    <Button 
-                      variant="outlineBelize"
-                      onClick={() => window.location.href = "/#contact"}
-                    >
-                      <Mail className="mr-2 h-4 w-4" />
-                      Contact Us
+                    <Button asChild variant="outlineBelize">
+                      <a
+                        href="/#contact"
+                        onClick={() =>
+                          trackContactClick("investment_form", "contact_section")
+                        }
+                      >
+                        <Mail className="mr-2 h-4 w-4" />
+                        Contact Us
+                      </a>
                     </Button>
                   </div>
                   
-                  <Button 
+                  <Button
+                    asChild
                     variant="belizeBlue"
                     className="w-full mt-4 py-6 flex items-center justify-center"
-                    onClick={() => window.location.href = "https://belizekids.org"}
                   >
-                    <ExternalLink className="mr-2 h-5 w-5" />
-                    Visit Our Main Website
+                    <a href={buildSiteUrl("/")}>
+                      <ExternalLink className="mr-2 h-5 w-5" />
+                      Visit Our Main Website
+                    </a>
                   </Button>
                 </div>
                 

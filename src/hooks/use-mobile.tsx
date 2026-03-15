@@ -2,9 +2,15 @@
 import * as React from "react"
 
 const MOBILE_BREAKPOINT = 768
+const getViewportWidth = () =>
+  typeof window === "undefined" ? MOBILE_BREAKPOINT : window.innerWidth
+const getViewportHeight = () =>
+  typeof window === "undefined" ? 900 : window.innerHeight
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+  const [isMobile, setIsMobile] = React.useState<boolean>(
+    getViewportWidth() < MOBILE_BREAKPOINT,
+  )
 
   React.useEffect(() => {
     const updateIsMobile = () => {
@@ -21,12 +27,12 @@ export function useIsMobile() {
     return () => window.removeEventListener("resize", updateIsMobile)
   }, [])
 
-  return !!isMobile
+  return isMobile
 }
 
 // Helper hook to get viewport height for mobile-friendly layouts
 export function useViewportHeight() {
-  const [height, setHeight] = React.useState(window.innerHeight)
+  const [height, setHeight] = React.useState(getViewportHeight())
   
   React.useEffect(() => {
     const handleResize = () => {

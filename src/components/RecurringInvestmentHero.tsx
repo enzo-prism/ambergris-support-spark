@@ -4,14 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Calendar, CreditCard } from "lucide-react";
 import { Image } from "@/components/ui/image";
+import { trackInvestmentClick } from "@/lib/analytics";
 
 const RecurringInvestmentHero: React.FC = () => {
-  const scrollToForm = () => {
-    const formElement = document.getElementById("investment-form");
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   return (
     <div className="relative min-h-[80vh] flex items-center pt-24 sm:pt-28 pb-16 sm:pb-10 px-6 md:px-0 bg-gradient-to-b from-belize-blue/20 via-white to-white overflow-hidden">
@@ -34,14 +29,24 @@ const RecurringInvestmentHero: React.FC = () => {
             Create lasting change for children in Belize through consistent monthly support. Your recurring investment helps provide sustainable healthcare and education.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
-            <Button 
-              onClick={scrollToForm}
+            <Button
+              asChild
               variant="belizeBlue"
               className="text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto"
             >
-              <CreditCard className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              Start Monthly Investment
-              <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <a
+                href="/monthly-investment#investment-form"
+                onClick={() =>
+                  trackInvestmentClick(
+                    "recurring_investment_hero",
+                    "investment_form",
+                  )
+                }
+              >
+                <CreditCard className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                Start Monthly Investment
+                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+              </a>
             </Button>
           </div>
         </div>

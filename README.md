@@ -1,69 +1,139 @@
-# Welcome to your Lovable project
+# Belize Kids Website
 
-## Project info
+Production website for Belize Kids, a nonprofit supporting children in Belize through transparent investments in education, healthcare, and community development.
 
-**URL**: https://lovable.dev/projects/1fbe5b4d-b77d-4386-87ed-fe0149ae07bb
+Live properties:
+- Production site: [www.belizekids.org](https://www.belizekids.org)
+- Vercel project: `belize-kids`
+- GitHub repo: `enzo-prism/ambergris-support-spark`
 
-## How can I edit this code?
+## What Changed
 
-There are several ways of editing your application.
+This site is no longer shipped as a plain client-rendered SPA for production SEO.
 
-**Use Lovable**
+It now uses a **static-first prerender pipeline**:
+- Vite builds the client bundle
+- Vite builds a lightweight SSR entry
+- `scripts/prerender.mjs` renders the important routes to HTML at build time
+- Vercel serves those generated HTML files directly
+- React hydrates on the client for interactivity
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1fbe5b4d-b77d-4386-87ed-fe0149ae07bb) and start prompting.
+That means Google and other crawlers get real content, metadata, canonicals, and structured data in the initial HTML response instead of having to wait for browser-side rendering.
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+## Stack
 
 - Vite
+- React 18
 - TypeScript
-- React
-- shadcn-ui
+- React Router
 - Tailwind CSS
+- shadcn/ui
+- `react-helmet-async` for route metadata
+- Vercel Analytics
+- Google Analytics
+- Hotjar
 
-## How can I deploy this project?
+## Key Architecture
 
-Simply open [Lovable](https://lovable.dev/projects/1fbe5b4d-b77d-4386-87ed-fe0149ae07bb) and click on Share -> Publish.
+- Route definitions: [`/Users/enzo/belizekids/src/App.tsx`](/Users/enzo/belizekids/src/App.tsx)
+- Client bootstrap + hydration: [`/Users/enzo/belizekids/src/main.tsx`](/Users/enzo/belizekids/src/main.tsx)
+- SSR/prerender entry: [`/Users/enzo/belizekids/src/entry-server.tsx`](/Users/enzo/belizekids/src/entry-server.tsx)
+- Static prerender script: [`/Users/enzo/belizekids/scripts/prerender.mjs`](/Users/enzo/belizekids/scripts/prerender.mjs)
+- Shared site metadata: [`/Users/enzo/belizekids/src/lib/site.ts`](/Users/enzo/belizekids/src/lib/site.ts)
+- Project content source of truth: [`/Users/enzo/belizekids/src/content/projects.ts`](/Users/enzo/belizekids/src/content/projects.ts)
+- Vercel production config: [`/Users/enzo/belizekids/vercel.json`](/Users/enzo/belizekids/vercel.json)
+- CI validation: [`/Users/enzo/belizekids/.github/workflows/ci.yml`](/Users/enzo/belizekids/.github/workflows/ci.yml)
 
-## I want to use a custom domain - is that possible?
+## Routes
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+Primary routes:
+- `/`
+- `/projects`
+- `/projects/:slug`
+- `/leadership`
+- `/doctors`
+- `/monthly-investment`
+- `/privacy`
+- `/terms`
+
+Redirects:
+- `/membership` permanently redirects to `/monthly-investment`
+
+Generated static pages are emitted into `dist/` for each route during `npm run build`.
+
+## Scripts
+
+```bash
+npm install
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
+
+Build pipeline:
+- `npm run build:client` builds the browser bundle
+- `npm run build:ssr` builds the server-render entry used for prerendering
+- `npm run prerender` renders static HTML plus SEO support files
+
+## SEO Notes
+
+Production SEO depends on keeping the build static-first.
+
+Important rules:
+- Do not replace the generated static route files with SPA rewrites
+- Do not move critical content behind client-only rendering
+- Keep route titles, descriptions, canonicals, and structured data in the page components
+- Keep project copy centralized in [`/Users/enzo/belizekids/src/content/projects.ts`](/Users/enzo/belizekids/src/content/projects.ts)
+
+Generated SEO assets:
+- `dist/sitemap.xml`
+- `dist/robots.txt`
+- `dist/llms.txt`
+
+The copies in `public/` are kept aligned with the generated output for repo clarity, but the build step is the real source of truth.
+
+## Analytics
+
+Current analytics integrations:
+- Vercel Analytics
+- Google Analytics (`G-ESGDVFXLGZ`)
+- Hotjar (`6410191`)
+
+Localhost is intentionally excluded from analytics bootstrapping so local QA and static verification do not generate noise or throw analytics errors.
+
+## Deploying
+
+Local verification before shipping:
+
+```bash
+npm run lint
+npm run build
+```
+
+Production deployment is handled through Vercel. The site is expected to deploy from `main`.
+
+Recommended release flow:
+1. Commit changes on `main`
+2. Push to GitHub
+3. Deploy to Vercel production
+4. Verify:
+   - homepage HTML contains real content
+   - deep routes load directly
+   - `/membership` redirects correctly
+   - `robots.txt` and `sitemap.xml` resolve
+   - analytics events fire on production
+
+## Maintenance Checklist
+
+When editing this project, verify:
+- `npm run lint` passes
+- `npm run build` passes
+- prerendered HTML exists for important routes
+- canonical URLs use `https://www.belizekids.org`
+- Open Graph images are stable and first-party
+- navigation still works without relying on JavaScript for basic links
+
+## Additional Docs
+
+Detailed implementation notes live in [`/Users/enzo/belizekids/docs/architecture.md`](/Users/enzo/belizekids/docs/architecture.md).

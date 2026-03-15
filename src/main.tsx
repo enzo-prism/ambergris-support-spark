@@ -1,27 +1,37 @@
 
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
-import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import React from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
+import { inject as injectVercelAnalytics } from "@vercel/analytics";
 
-// Set up browser history
-const history = createBrowserHistory();
+import App from "./App.tsx";
+import "./index.css";
+import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
 
-// Track page views when the location changes
-history.listen(({ location }) => {
-  if (window.gtag) {
-    window.gtag('config', 'G-ESGDVFXLGZ', {
-      page_path: location.pathname + location.search
-    });
-  }
-});
+if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+  injectVercelAnalytics({ framework: "react" });
+}
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("Belize Kids app root not found");
+}
+
+const app = (
   <React.StrictMode>
-    <HistoryRouter history={history as any}>
-      <App />
-    </HistoryRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AnalyticsBootstrap />
+        <App />
+      </BrowserRouter>
+    </HelmetProvider>
   </React.StrictMode>
 );
+
+if (rootElement.hasChildNodes()) {
+  hydrateRoot(rootElement, app);
+} else {
+  createRoot(rootElement).render(app);
+}

@@ -1,29 +1,21 @@
-# Belize Kids Web App (Vite + React)
+# Belize Kids
 
-## Project
-Belize Kids website built with Vite, React, TypeScript, Tailwind CSS, and shadcn/ui.
+Belize Kids is a nonprofit supporting children in Belize through transparent investments in healthcare, education, and community development.
 
-## Repo Layout
-- src/pages: route-level pages (React Router).
-- src/components: reusable sections and feature components.
-- src/components/ui: shadcn/ui components.
-- src/index.css: Tailwind base + theme variables.
-- src/lib/utils.ts: shared helpers (e.g., `cn`).
-
-## Running
-- npm install
-- npm run dev
-
-## Conventions
-- Use `@` alias for `src` (see `vite.config.ts`).
-- Prefer shadcn/ui components from `src/components/ui`.
-- Use button/badge variants defined in `src/components/ui/button.tsx` and `src/components/ui/badge.tsx` for Belize brand colors.
-- Keep styling in Tailwind; avoid adding new global CSS unless necessary.
-
-## Routing
-Routes are defined in `src/App.tsx`:
-- `/`, `/projects`, `/projects/:slug`, `/leadership`, `/doctors`, `/monthly-investment`,
-  `/privacy`, `/terms`, `/sitemap.xml`.
-
-## Theme
-Brand palette is defined in `tailwind.config.ts` under `colors.belize`, with CSS variables in `src/index.css`.
+Primary website: https://www.belizekids.org
+Key routes:
+- /
+- /projects
+- /leadership
+- /doctors
+- /monthly-investment
+- /privacy
+- /terms
+- /projects/october-vision-clinic
+- /projects/dollar-a-dive-program
+- /projects/second-vision-screening-machine
+- /projects/camp-basil-jones
+- /projects/eye-screening-equipment
+- /projects/fundraising-camp-basil-jones
+- /projects/sprc-primary-school
+- /projects/equipment-donation-hol-chan

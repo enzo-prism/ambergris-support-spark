@@ -5,6 +5,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CreditCard, Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
 import { Link } from "react-router-dom";
+import {
+  trackContactClick,
+  trackInvestmentClick,
+} from "@/lib/analytics";
 
 const InvestmentOptions: React.FC = () => {
   return (
@@ -114,7 +118,10 @@ const InvestmentOptions: React.FC = () => {
                     </p>
                     <Button 
                       variant="outlineBelize"
-                      onClick={() => window.location.href = "/#contact"}
+                      onClick={() => {
+                        trackContactClick("investment_options", "contact_section");
+                        window.location.href = "/#contact";
+                      }}
                     >
                       <Mail className="mr-2 h-4 w-4" />
                       Contact Us
@@ -125,6 +132,9 @@ const InvestmentOptions: React.FC = () => {
                     <Button 
                       variant="belizeBlue"
                       className="w-full mt-4 py-6 flex items-center justify-center"
+                      onClick={() =>
+                        trackInvestmentClick("investment_options", "monthly_investment")
+                      }
                     >
                       <PiggyBank className="mr-2 h-5 w-5" />
                       Learn About Monthly Investing

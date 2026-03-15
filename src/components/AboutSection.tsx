@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
+import { trackInvestmentClick } from "@/lib/analytics";
 
 const AboutSection: React.FC = () => {
   const isMobile = useIsMobile();
@@ -187,7 +188,11 @@ const AboutSection: React.FC = () => {
             </div>
             <div className="md:w-4/12 flex justify-center md:justify-end w-full">
               <Link to="/monthly-investment" className="w-full md:w-auto">
-                <Button variant="belizeGreen" className="w-full md:w-auto group transition-all duration-300">
+                <Button
+                  variant="belizeGreen"
+                  className="w-full md:w-auto group transition-all duration-300"
+                  onClick={() => trackInvestmentClick("about_section", "monthly_investment")}
+                >
                   Become an Investor
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>

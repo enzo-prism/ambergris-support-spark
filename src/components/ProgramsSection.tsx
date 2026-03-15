@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Image } from "@/components/ui/image";
+import { trackDoctorAppointmentClick } from "@/lib/analytics";
 
 const ProgramsSection: React.FC = () => {
   const programs = [
@@ -38,7 +39,7 @@ const ProgramsSection: React.FC = () => {
       description: "Constructing facilities such as internet centers in remote villages to bridge the digital divide and provide access to technology.",
       color: "bg-belize-blue",
       hoverColor: "hover:bg-belize-blue/90",
-      category: "development"
+      category: "all"
     }
   ];
 
@@ -162,7 +163,15 @@ const ProgramsSection: React.FC = () => {
                     </Button>
                   </Link>
                   <Link to="/doctors">
-                    <Button variant="belizeTeal">
+                    <Button
+                      variant="belizeTeal"
+                      onClick={() =>
+                        trackDoctorAppointmentClick(
+                          "programs_featured_initiative",
+                          "doctors",
+                        )
+                      }
+                    >
                       <User className="mr-2 h-4 w-4" />
                       Available Doctors
                     </Button>

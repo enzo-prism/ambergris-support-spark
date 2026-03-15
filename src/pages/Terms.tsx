@@ -1,8 +1,9 @@
 
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { buildSiteUrl } from "@/lib/site";
 
 const Terms: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const Terms: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta name="keywords" content="terms of service, donation terms, website terms, legal agreement, nonprofit terms, user agreement" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://belizekids.org/terms" />
+        <link rel="canonical" href={buildSiteUrl("/terms")} />
       </Helmet>
       
       <div className="min-h-screen bg-white">

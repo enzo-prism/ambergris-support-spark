@@ -6,52 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { 
   Calendar, 
   User, 
-  ArrowRight,
-  Heart,
-  BookOpen,
-  FileText,
-  Leaf
+  ArrowRight
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { featuredProjects, projectCategoryConfig } from "@/content/projects";
 
 const ProjectsPreview: React.FC = () => {
-  // Recent project posts for preview (just showing the latest 3)
-  const recentPosts = [
-    {
-      id: 1,
-      title: "October Vision Clinic is a Huge Success",
-      author: "Rebecca Coutant",
-      date: "October 30, 2017",
-      excerpt: "BelizeKids.org, in conjunction with BCVI and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro.",
-      slug: "october-vision-clinic",
-      category: "healthcare",
-      icon: Heart,
-      color: "bg-rose-500"
-    },
-    {
-      id: 2,
-      title: "Belize Kids is Excited to Announce Our #DollaADive Program",
-      author: "Rebecca Coutant",
-      date: "November 22, 2022",
-      excerpt: "If you have visited, you know that no single activity has been more important to tourism on Ambergris Caye than scuba diving.",
-      slug: "dollar-a-dive-program",
-      category: "fundraising",
-      icon: FileText,
-      color: "bg-amber-500"
-    },
-    {
-      id: 3,
-      title: "Belize Kids.Org Donates a Second Vision Screening Machine",
-      author: "Rebecca Coutant",
-      date: "August 27, 2022",
-      excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week.",
-      slug: "second-vision-screening-machine",
-      category: "healthcare",
-      icon: Heart,
-      color: "bg-rose-500"
-    },
-  ];
 
   const container = {
     hidden: { opacity: 0 },
@@ -71,21 +32,6 @@ const ProjectsPreview: React.FC = () => {
       transition: {
         duration: 0.5
       }
-    }
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch(category) {
-      case "healthcare":
-        return <Heart className="h-5 w-5 text-white" />;
-      case "education":
-        return <BookOpen className="h-5 w-5 text-white" />;
-      case "environment":
-        return <Leaf className="h-5 w-5 text-white" />;
-      case "fundraising":
-        return <FileText className="h-5 w-5 text-white" />;
-      default:
-        return <FileText className="h-5 w-5 text-white" />;
     }
   };
 
@@ -119,14 +65,19 @@ const ProjectsPreview: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {recentPosts.map((post) => (
-            <motion.div key={post.id} variants={item}>
+          {featuredProjects.map((post) => (
+            <motion.div key={post.slug} variants={item}>
+              {(() => {
+                const categoryConfig = projectCategoryConfig[post.category];
+                const CategoryIcon = categoryConfig.icon;
+
+                return (
               <Card className="overflow-hidden transition-all hover:shadow-lg">
-                <div className="h-2 w-full" style={{ backgroundColor: post.color === "bg-rose-500" ? "#f43f5e" : post.color === "bg-amber-500" ? "#f59e0b" : post.color === "bg-blue-500" ? "#3b82f6" : post.color === "bg-green-500" ? "#22c55e" : "#6b7280" }}></div>
+                <div className={`h-2 w-full ${categoryConfig.color}`} />
                 <CardContent className="pt-5">
                 <div className="flex items-center mb-4">
-                  <div className={`${post.color} p-1.5 rounded-md mr-3`}>
-                    {getCategoryIcon(post.category)}
+                  <div className={`${categoryConfig.color} p-1.5 rounded-md mr-3`}>
+                    <CategoryIcon className="h-5 w-5 text-white" />
                   </div>
                   <Badge variant="outline" className="border-gray-200 text-gray-700 capitalize">
                     {post.category}
@@ -143,13 +94,19 @@ const ProjectsPreview: React.FC = () => {
                       <span>{post.author}</span>
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-belize-blue mb-2">{post.title}</h3>
-                  <p className="text-gray-700 mb-4 text-sm">{post.excerpt}</p>
+                  <h3 className="text-xl font-bold text-belize-blue mb-2">
+                    {post.previewTitle ?? post.title}
+                  </h3>
+                  <p className="text-gray-700 mb-4 text-sm">
+                    {post.previewExcerpt ?? post.excerpt}
+                  </p>
                   <Link to={`/projects/${post.slug}`} className="text-belize-blue font-medium hover:underline inline-flex items-center">
                     Read More <ArrowRight className="ml-1 h-3 w-3" />
                   </Link>
                 </CardContent>
               </Card>
+                );
+              })()}
             </motion.div>
           ))}
         </motion.div>

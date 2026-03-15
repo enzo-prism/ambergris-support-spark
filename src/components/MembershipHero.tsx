@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Users, CreditCard, Award, CheckCircle2 } from "lucide-react";
 import { Image } from "@/components/ui/image";
+import { trackInvestmentClick } from "@/lib/analytics";
 
 const MembershipHero: React.FC = () => {
   const scrollToForm = () => {
@@ -55,7 +56,10 @@ const MembershipHero: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
             <Button 
-              onClick={scrollToForm}
+              onClick={() => {
+                trackInvestmentClick("membership_hero", "membership_form");
+                scrollToForm();
+              }}
               variant="belizeBlue"
               className="text-base sm:text-lg px-6 py-2 sm:px-8 sm:py-6 w-full sm:w-auto"
             >

@@ -5,13 +5,9 @@ import {
   User, 
   ArrowRight,
   Grid,
-  LayoutList,
-  FileText,
-  BookOpen,
-  Heart,
-  Leaf
+  LayoutList
 } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Badge } from "@/components/ui/badge";
@@ -19,91 +15,18 @@ import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-
-const projectPosts = [
-  {
-    id: 1,
-    title: "October Vision Clinic is a Huge Success",
-    author: "Rebecca Coutant",
-    date: "October 30, 2017",
-    excerpt: "BelizeKids.org, in conjunction with BCVI (the Belize Council for the Visually Impaired) and the San Pedro Lions Den, just completed another very successful free clinic for San Pedro. Kids and adults came for examinations with doctors from Stanford Medicine in the brand new office installed and operated by BelizeKids.",
-    slug: "october-vision-clinic",
-    category: "healthcare",
-    icon: Heart,
-    color: "bg-rose-500"
-  },
-  {
-    id: 3,
-    title: "Belize Kids Donates a Second Vision Screening Machine To San Pedro's Lions Club",
-    author: "Rebecca Coutant",
-    date: "August 27, 2022",
-    excerpt: "Belize Kids.org was so proud to donate a 2nd Vision Screening Device to San Pedro's Lions Club last week. The organization donated the first Plus Optix machine in July of this year.",
-    slug: "second-vision-screening-machine",
-    category: "healthcare",
-    icon: Heart,
-    color: "bg-rose-500"
-  },
-  {
-    id: 4,
-    title: "Belize Kids and Finn & Martini Sponsor Week Four of Camp Basil Jones",
-    author: "Rebecca Coutant",
-    date: "August 7, 2022",
-    excerpt: "Summer camp on North Ambergris Caye's Camp Basil Jones has officially come to an end. Four successful weeks with the final week sponsored by the joint fundraising effort between Belize Kids.Org and Finn & Martini Lounge and Restaurant.",
-    slug: "camp-basil-jones",
-    category: "education",
-    icon: BookOpen,
-    color: "bg-blue-500"
-  },
-  {
-    id: 5,
-    title: "Belize Kids Donates Eye Screening Equipment to the Lions' Den in San Pedro",
-    author: "Rebecca Coutant",
-    date: "July 20, 2022",
-    excerpt: "Just last week Belize Kids.org answered the request of Melanie Paz and Jan Brown of the Lions' Den in San Pedro. They have been working since November 2021 to screen and diagnose eye-sight issues for the children on the island.",
-    slug: "eye-screening-equipment",
-    category: "healthcare",
-    icon: Heart,
-    color: "bg-rose-500"
-  },
-  {
-    id: 6,
-    title: "Belize Kids and Finn & Martini Raise Money for Ambergris Caye's Camp Basil Jones",
-    author: "Rebecca Coutant",
-    date: "July 9, 2022",
-    excerpt: "Each year, Mito Paz seeks grants and raises money to make Camp Basil Jones happen. It is a 4 week summer camp where kids from around Belize come to learn about our ocean, our reef and how important it is to us in Belize and to the world.",
-    slug: "fundraising-camp-basil-jones",
-    category: "education",
-    icon: BookOpen,
-    color: "bg-blue-500"
-  },
-  {
-    id: 7,
-    title: "Working with SPRC Primary, San Pedro, Belize's Largest Public School",
-    author: "Rebecca Coutant",
-    date: "June 14, 2022",
-    excerpt: "San Pedro Roman Catholic Primary School is the largest on the island with over 700 kids ranging from Kindergarten to Standard 6 (or the US equivalent of 8th grade). To say that the school is 'bursting at the seams' is an understatement.",
-    slug: "sprc-primary-school",
-    category: "education",
-    icon: BookOpen,
-    color: "bg-blue-500"
-  },
-  {
-    id: 8,
-    title: "Canary Cove Donates Equipment to San Pedro Tour Guide Association & Hol Chan Marine Reserve",
-    author: "Rebecca Coutant",
-    date: "October 1, 2021",
-    excerpt: "In October of 2021, after the expansion of the Hol Chan Marine Reserve, Canary Cove donated 20 mooring buoys to the San Pedro Tour Guide Association. The buoys were donated and presented to Hol Chan for use at Mexico Rocks snorkel and dive site.",
-    slug: "equipment-donation-hol-chan",
-    category: "environment",
-    icon: Leaf,
-    color: "bg-green-500"
-  },
-];
+import {
+  projectCategories,
+  projectCategoryConfig,
+  projects as projectPosts,
+} from "@/content/projects";
 
 interface ProjectsListProps {
   initialTab?: string;
   onTabChange?: (tab: string) => void;
 }
+
+const supportedTabs = ["all", ...projectCategories];
 
 const ProjectsList: React.FC<ProjectsListProps> = ({ 
   initialTab = "all", 
@@ -122,7 +45,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   }, [isMobile]);
 
   useEffect(() => {
-    if (initialTab && ['healthcare', 'education', 'environment', 'fundraising', 'all'].includes(initialTab)) {
+    if (initialTab && supportedTabs.includes(initialTab as (typeof supportedTabs)[number])) {
       setActiveTab(initialTab);
     }
   }, [initialTab]);
@@ -169,36 +92,6 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
       transition: {
         duration: 0.5
       }
-    }
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch(category) {
-      case "healthcare":
-        return <Heart className="h-5 w-5 text-white" />;
-      case "education":
-        return <BookOpen className="h-5 w-5 text-white" />;
-      case "environment":
-        return <Leaf className="h-5 w-5 text-white" />;
-      case "fundraising":
-        return <FileText className="h-5 w-5 text-white" />;
-      default:
-        return <FileText className="h-5 w-5 text-white" />;
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch(category) {
-      case "healthcare":
-        return "bg-rose-500";
-      case "education":
-        return "bg-blue-500";
-      case "environment":
-        return "bg-green-500";
-      case "fundraising":
-        return "bg-amber-500";
-      default:
-        return "bg-gray-500";
     }
   };
 
@@ -301,11 +194,16 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
           >
             {currentPosts.length > 0 ? (
               currentPosts.map((post) => (
-                <motion.div key={post.id} variants={item}>
+                <motion.div key={post.slug} variants={item}>
+                  {(() => {
+                    const categoryConfig = projectCategoryConfig[post.category];
+                    const CategoryIcon = categoryConfig.icon;
+
+                    return (
                   <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white h-full">
                     <div className="h-12 flex items-center px-4 border-b border-gray-100">
-                      <div className={`${getCategoryColor(post.category)} p-1.5 rounded-md mr-3`}>
-                        {getCategoryIcon(post.category)}
+                      <div className={`${categoryConfig.color} p-1.5 rounded-md mr-3`}>
+                        <CategoryIcon className="h-5 w-5 text-white" />
                       </div>
                       <Badge variant="outline" className="border-gray-200 text-gray-700 capitalize">
                         {post.category}
@@ -323,7 +221,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                         </div>
                       </div>
                       <h3 className="text-lg font-bold text-belize-green mb-2 line-clamp-2">
-                        {post.title}
+                        {post.previewTitle ?? post.title}
                       </h3>
                       <p className="text-sm text-gray-600 mb-4 line-clamp-3">
                         {post.excerpt}
@@ -333,6 +231,8 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                       </Link>
                     </CardContent>
                   </Card>
+                    );
+                  })()}
                 </motion.div>
               ))
             ) : (
@@ -352,12 +252,17 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
           >
             {currentPosts.length > 0 ? (
               currentPosts.map((post) => (
-                <motion.div key={post.id} variants={item}>
+                <motion.div key={post.slug} variants={item}>
+                  {(() => {
+                    const categoryConfig = projectCategoryConfig[post.category];
+                    const CategoryIcon = categoryConfig.icon;
+
+                    return (
                   <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
                     <div className="flex flex-row">
                       <div className="w-16 h-auto flex items-center justify-center p-3 bg-gray-50 border-r border-gray-100">
-                        <div className={`${getCategoryColor(post.category)} p-2 rounded-md`}>
-                          {getCategoryIcon(post.category)}
+                        <div className={`${categoryConfig.color} p-2 rounded-md`}>
+                          <CategoryIcon className="h-5 w-5 text-white" />
                         </div>
                       </div>
                       <div className="p-4 flex-1">
@@ -371,7 +276,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                           </span>
                         </div>
                         <h3 className="text-base font-bold text-belize-green mb-1.5">
-                          {post.title}
+                          {post.previewTitle ?? post.title}
                         </h3>
                         <p className="text-sm text-gray-600 mb-3 line-clamp-2">
                           {post.excerpt}
@@ -388,6 +293,8 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                       </div>
                     </div>
                   </Card>
+                    );
+                  })()}
                 </motion.div>
               ))
             ) : (
