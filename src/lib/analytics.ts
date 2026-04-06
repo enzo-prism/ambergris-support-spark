@@ -15,7 +15,6 @@ const HOTJAR_SITE_ID = 6410191;
 const HOTJAR_VERSION = 6;
 
 let analyticsInitialized = false;
-let latestPath = "/";
 
 const isLocalAnalyticsHost = () => {
   if (typeof window === "undefined") {
@@ -75,23 +74,6 @@ const runWhenIdle = (callback: () => void) => {
   window.addEventListener("load", schedule, { once: true });
 };
 
-const initializeGoogleAnalytics = () => {
-  injectScript({
-    id: "gtag-script",
-    src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
-  });
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = (...args) => {
-    window.dataLayer.push(args);
-  };
-
-  window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
-
-  trackPageView(latestPath);
-};
-
 const initializeHotjar = () => {
   if (window.hj) {
     return;
@@ -119,14 +101,11 @@ export const initializeAnalytics = () => {
   analyticsInitialized = true;
 
   runWhenIdle(() => {
-    initializeGoogleAnalytics();
     initializeHotjar();
   });
 };
 
 export const trackPageView = (path: string) => {
-  latestPath = path;
-
   if (!window.gtag) {
     return;
   }
