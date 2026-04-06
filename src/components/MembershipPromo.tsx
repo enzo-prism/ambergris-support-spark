@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { ArrowRight, PiggyBank } from "lucide-react";
+import { trackInvestmentClick } from "@/lib/analytics";
 
 const MembershipPromo: React.FC = () => {
   return (
@@ -24,7 +25,13 @@ const MembershipPromo: React.FC = () => {
           </div>
           <div>
             <Link to="/monthly-investment">
-              <Button variant="belizeBlue" className="text-lg px-6 py-6 mt-2">
+              <Button
+                variant="belizeBlue"
+                className="text-lg px-6 py-6 mt-2"
+                onClick={() =>
+                  trackInvestmentClick("membership_promo", "monthly_investment")
+                }
+              >
                 <PiggyBank className="mr-2 h-5 w-5" />
                 Learn About Investing
                 <ArrowRight className="ml-2 h-5 w-5" />

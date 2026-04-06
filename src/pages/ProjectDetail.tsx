@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
@@ -14,11 +14,23 @@ import ProjectSEOContent from "@/components/ProjectSEOContent";
 import SEOBreadcrumbs from "@/components/SEOBreadcrumbs";
 import { projectCategoryConfig, projects, getProjectBySlug } from "@/content/projects";
 import { buildSiteUrl, SITE_DESCRIPTION, SITE_NAME, SITE_OG_IMAGE, SITE_OG_IMAGE_URL } from "@/lib/site";
-import { trackDonateClick, trackInvestmentClick } from "@/lib/analytics";
+import {
+  trackDonateClick,
+  trackInvestmentClick,
+  trackProjectReferenceClick,
+  trackProjectSelect,
+  trackProjectView,
+} from "@/lib/analytics";
 
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = getProjectBySlug(slug);
+
+  useEffect(() => {
+    if (project) {
+      trackProjectView(project);
+    }
+  }, [project]);
 
   if (!project) {
     return (
@@ -237,6 +249,13 @@ const ProjectDetail: React.FC = () => {
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="flex items-center gap-3 bg-white p-4 rounded-lg border border-gray-100 hover:border-belize-blue transition-colors"
+                        onClick={() =>
+                          trackProjectReferenceClick(
+                            project,
+                            reference.url,
+                            index + 1,
+                          )
+                        }
                       >
                         <ExternalLink className="h-5 w-5 text-belize-blue shrink-0" />
                         <p className="text-belize-blue">{reference.text}</p>
@@ -299,6 +318,14 @@ const ProjectDetail: React.FC = () => {
                           key={index} 
                           to={`/projects/${relatedProject.slug}`}
                           className="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                          onClick={() =>
+                            trackProjectSelect(relatedProject, {
+                              listId: "related_projects",
+                              listName: "More Projects",
+                              source: "project_detail_related",
+                              index: index + 1,
+                            })
+                          }
                         >
                           <div
                             className={`${projectCategoryConfig[relatedProject.category].color} p-1.5 rounded-md mr-3 shrink-0`}
@@ -334,7 +361,10 @@ const ProjectDetail: React.FC = () => {
               <Button 
                 variant="belizeCoral"
                 onClick={() => {
-                  trackDonateClick("project_detail", "donate_section");
+                  trackDonateClick("project_detail", "donate_section", {
+                    project_slug: project.slug,
+                    project_category: project.category,
+                  });
                   const donateElement = document.getElementById("donate");
                   if (donateElement) {
                     donateElement.scrollIntoView({ behavior: "smooth" });
@@ -353,7 +383,10 @@ const ProjectDetail: React.FC = () => {
               <Button 
                 variant="outlineBlue"
                 onClick={() => {
-                  trackInvestmentClick("project_detail", "monthly_investment");
+                  trackInvestmentClick("project_detail", "monthly_investment", {
+                    project_slug: project.slug,
+                    project_category: project.category,
+                  });
                   window.location.href = "/monthly-investment";
                 }}
               >

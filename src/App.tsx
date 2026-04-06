@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigate, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteAnalytics from "./components/RouteAnalytics";
+import ScrollDepthAnalytics from "./components/ScrollDepthAnalytics";
+import SectionViewAnalytics from "./components/SectionViewAnalytics";
 
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
@@ -24,6 +26,8 @@ const App: React.FC = () => {
       <Sonner />
       <ScrollToTop />
       <RouteAnalytics />
+      <ScrollDepthAnalytics />
+      <SectionViewAnalytics />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/projects" element={<Projects />} />

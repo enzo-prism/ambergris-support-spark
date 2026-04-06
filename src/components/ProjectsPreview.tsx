@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -11,8 +10,19 @@ import {
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { featuredProjects, projectCategoryConfig } from "@/content/projects";
+import {
+  trackProjectListView,
+  trackProjectSelect,
+} from "@/lib/analytics";
 
 const ProjectsPreview: React.FC = () => {
+  useEffect(() => {
+    trackProjectListView(featuredProjects, {
+      listId: "home_featured_projects",
+      listName: "Recent Projects",
+      source: "home_recent_projects",
+    });
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
@@ -65,7 +75,7 @@ const ProjectsPreview: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {featuredProjects.map((post) => (
+          {featuredProjects.map((post, index) => (
             <motion.div key={post.slug} variants={item}>
               {(() => {
                 const categoryConfig = projectCategoryConfig[post.category];
@@ -100,7 +110,18 @@ const ProjectsPreview: React.FC = () => {
                   <p className="text-gray-700 mb-4 text-sm">
                     {post.previewExcerpt ?? post.excerpt}
                   </p>
-                  <Link to={`/projects/${post.slug}`} className="text-belize-blue font-medium hover:underline inline-flex items-center">
+                  <Link
+                    to={`/projects/${post.slug}`}
+                    className="text-belize-blue font-medium hover:underline inline-flex items-center"
+                    onClick={() =>
+                      trackProjectSelect(post, {
+                        listId: "home_featured_projects",
+                        listName: "Recent Projects",
+                        source: "home_recent_projects",
+                        index: index + 1,
+                      })
+                    }
+                  >
                     Read More <ArrowRight className="ml-1 h-3 w-3" />
                   </Link>
                 </CardContent>

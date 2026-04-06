@@ -3,7 +3,7 @@ import React from "react";
 import { MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -11,6 +11,7 @@ import {
   DialogTrigger,
   DialogDescription
 } from "@/components/ui/dialog";
+import { trackMapOpen } from "@/lib/analytics";
 
 interface ClinicLocationProps {
   minimal?: boolean;
@@ -20,6 +21,10 @@ const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
   const address = "Second Floor, San Pedro Lions Den, Barrier Reef Drive, San Pedro, Ambergris Caye, Belize";
   // Using a more reliable Google Maps link format with properly encoded address
   const mapUrl = "https://www.google.com/maps/search/?api=1&query=San+Pedro+Lions+Den+Barrier+Reef+Drive+San+Pedro+Belize";
+  const openMap = (target: "minimal_card" | "dialog_button") => {
+    trackMapOpen("sbvc_san_pedro_lions_den", target);
+    window.open(mapUrl, "_blank");
+  };
 
   if (minimal) {
     return (
@@ -32,7 +37,7 @@ const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
           variant="ghost" 
           size="sm" 
           className="text-belize-blue px-2"
-          onClick={() => window.open(mapUrl, '_blank')}
+          onClick={() => openMap("minimal_card")}
         >
           <ExternalLink className="h-4 w-4" />
         </Button>
@@ -85,7 +90,7 @@ const ClinicLocation: React.FC<ClinicLocationProps> = ({ minimal = false }) => {
             <Button 
               variant="belizeBlue"
               className="w-full"
-              onClick={() => window.open(mapUrl, '_blank')}
+              onClick={() => openMap("dialog_button")}
             >
               <MapPin className="h-4 w-4 mr-2" />
               Open in Maps

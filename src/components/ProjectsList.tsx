@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Calendar, 
@@ -20,6 +20,13 @@ import {
   projectCategoryConfig,
   projects as projectPosts,
 } from "@/content/projects";
+import {
+  trackProjectFilterChange,
+  trackProjectListView,
+  trackProjectPagination,
+  trackProjectSelect,
+  trackProjectViewModeChange,
+} from "@/lib/analytics";
 
 interface ProjectsListProps {
   initialTab?: string;
@@ -32,11 +39,13 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   initialTab = "all", 
   onTabChange 
 }) => {
-  const [activeView, setActiveView] = useState<"grid" | "list">("grid");
+  const isMobile = useIsMobile();
+  const [activeView, setActiveView] = useState<"grid" | "list">(
+    isMobile ? "list" : "grid",
+  );
   const [activeTab, setActiveTab] = useState<string>(initialTab);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 6;
-  const isMobile = useIsMobile();
   
   useEffect(() => {
     if (isMobile) {
@@ -51,6 +60,12 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   }, [initialTab]);
 
   const handleTabChange = (value: string) => {
+    const resultCount =
+      value === "all"
+        ? projectPosts.length
+        : projectPosts.filter((project) => project.category === value).length;
+
+    trackProjectFilterChange(value, resultCount);
     setActiveTab(value);
     setCurrentPage(1);
     if (onTabChange) {
@@ -58,17 +73,45 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
     }
   };
 
-  const filteredProjects = activeTab === "all" 
-    ? projectPosts 
-    : projectPosts.filter(project => project.category === activeTab);
+  const filteredProjects = useMemo(
+    () =>
+      activeTab === "all"
+        ? projectPosts
+        : projectPosts.filter((project) => project.category === activeTab),
+    [activeTab],
+  );
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredProjects.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(filteredProjects.length / postsPerPage);
+  const currentPosts = useMemo(
+    () => filteredProjects.slice(indexOfFirstPost, indexOfLastPost),
+    [filteredProjects, indexOfFirstPost, indexOfLastPost],
+  );
+  const totalPages = useMemo(
+    () => Math.ceil(filteredProjects.length / postsPerPage),
+    [filteredProjects.length, postsPerPage],
+  );
+  const projectListName =
+    activeTab === "all"
+      ? "All Projects"
+      : `${activeTab.charAt(0).toUpperCase()}${activeTab.slice(1)} Projects`;
+  const projectListId = `projects_${activeTab}_${activeView}_page_${currentPage}`;
+  const projectListKey = currentPosts.map((project) => project.slug).join("|");
+
+  useEffect(() => {
+    trackProjectListView(currentPosts, {
+      listId: projectListId,
+      listName: projectListName,
+      source: "projects_page",
+      pageNumber: currentPage,
+      viewMode: activeView,
+      projectFilter: activeTab,
+    });
+  }, [activeTab, activeView, currentPage, currentPosts, projectListId, projectListKey, projectListName]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage > 0 && newPage <= totalPages) {
+      trackProjectPagination(newPage, totalPages, activeTab);
       setCurrentPage(newPage);
       window.scrollTo({ top: document.getElementById('projects-list')?.offsetTop || 0, behavior: 'smooth' });
     }
@@ -159,7 +202,11 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
               variant="outline"
               value={activeView}
               onValueChange={(value) => {
-                if (value) setActiveView(value as "grid" | "list");
+                if (value) {
+                  const selectedView = value as "grid" | "list";
+                  trackProjectViewModeChange(selectedView, activeTab);
+                  setActiveView(selectedView);
+                }
               }}
               className="gap-2"
             >
@@ -193,7 +240,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             key={`grid-${activeTab}-${currentPage}`}
           >
             {currentPosts.length > 0 ? (
-              currentPosts.map((post) => (
+              currentPosts.map((post, index) => (
                 <motion.div key={post.slug} variants={item}>
                   {(() => {
                     const categoryConfig = projectCategoryConfig[post.category];
@@ -226,7 +273,18 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                       <p className="text-sm text-gray-600 mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm font-medium mt-auto">
+                      <Link
+                        to={`/projects/${post.slug}`}
+                        className="text-belize-blue hover:underline inline-flex items-center text-sm font-medium mt-auto"
+                        onClick={() =>
+                          trackProjectSelect(post, {
+                            listId: projectListId,
+                            listName: projectListName,
+                            source: "projects_page",
+                            index: indexOfFirstPost + index + 1,
+                          })
+                        }
+                      >
                         Read More <ArrowRight className="ml-1 h-3.5 w-3.5" />
                       </Link>
                     </CardContent>
@@ -251,7 +309,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
             key={`list-${activeTab}-${currentPage}`}
           >
             {currentPosts.length > 0 ? (
-              currentPosts.map((post) => (
+              currentPosts.map((post, index) => (
                 <motion.div key={post.slug} variants={item}>
                   {(() => {
                     const categoryConfig = projectCategoryConfig[post.category];
@@ -286,7 +344,18 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                             <User className="h-3 w-3 mr-1 flex-shrink-0" />
                             {post.author}
                           </span>
-                          <Link to={`/projects/${post.slug}`} className="text-belize-blue hover:underline inline-flex items-center text-sm font-medium">
+                          <Link
+                            to={`/projects/${post.slug}`}
+                            className="text-belize-blue hover:underline inline-flex items-center text-sm font-medium"
+                            onClick={() =>
+                              trackProjectSelect(post, {
+                                listId: projectListId,
+                                listName: projectListName,
+                                source: "projects_page",
+                                index: indexOfFirstPost + index + 1,
+                              })
+                            }
+                          >
                             Read More <ArrowRight className="ml-1 h-3.5 w-3.5" />
                           </Link>
                         </div>

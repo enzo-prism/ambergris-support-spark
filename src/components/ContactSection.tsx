@@ -4,8 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
+  trackContactFormStarted,
+  trackFormLinkClick,
   trackContactFormReady,
   trackContactFormSubmitted,
+  trackSocialClick,
 } from "@/lib/analytics";
 
 declare global {
@@ -50,6 +53,7 @@ const ContactSection: React.FC = () => {
         container,
         hideHeaders: true,
         onReady: () => trackContactFormReady("contact_section", "typeform"),
+        onStarted: () => trackContactFormStarted("contact_section", "typeform"),
         onSubmit: () =>
           trackContactFormSubmitted("contact_section", "typeform"),
       });
@@ -174,6 +178,9 @@ const ContactSection: React.FC = () => {
                         target="_blank" 
                         rel="noreferrer" 
                         aria-label="Facebook"
+                        onClick={() =>
+                          trackSocialClick("facebook", "contact_section")
+                        }
                       >
                         <Facebook size={18} />
                       </a>
@@ -195,6 +202,9 @@ const ContactSection: React.FC = () => {
                     target="_blank"
                     rel="noreferrer"
                     className="font-medium text-belize-blue underline-offset-4 hover:underline"
+                    onClick={() =>
+                      trackFormLinkClick("contact_section", "typeform")
+                    }
                   >
                     form.typeform.com
                   </a>
