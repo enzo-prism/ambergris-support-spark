@@ -35,14 +35,14 @@ That means Google and other crawlers get real content, metadata, canonicals, and
 
 ## Key Architecture
 
-- Route definitions: [`/Users/enzo/belizekids/src/App.tsx`](/Users/enzo/belizekids/src/App.tsx)
-- Client bootstrap + hydration: [`/Users/enzo/belizekids/src/main.tsx`](/Users/enzo/belizekids/src/main.tsx)
-- SSR/prerender entry: [`/Users/enzo/belizekids/src/entry-server.tsx`](/Users/enzo/belizekids/src/entry-server.tsx)
-- Static prerender script: [`/Users/enzo/belizekids/scripts/prerender.mjs`](/Users/enzo/belizekids/scripts/prerender.mjs)
-- Shared site metadata: [`/Users/enzo/belizekids/src/lib/site.ts`](/Users/enzo/belizekids/src/lib/site.ts)
-- Project content source of truth: [`/Users/enzo/belizekids/src/content/projects.ts`](/Users/enzo/belizekids/src/content/projects.ts)
-- Vercel production config: [`/Users/enzo/belizekids/vercel.json`](/Users/enzo/belizekids/vercel.json)
-- CI validation: [`/Users/enzo/belizekids/.github/workflows/ci.yml`](/Users/enzo/belizekids/.github/workflows/ci.yml)
+- Route definitions: [`src/App.tsx`](src/App.tsx)
+- Client bootstrap + hydration: [`src/main.tsx`](src/main.tsx)
+- SSR/prerender entry: [`src/entry-server.tsx`](src/entry-server.tsx)
+- Static prerender script: [`scripts/prerender.mjs`](scripts/prerender.mjs)
+- Shared site metadata: [`src/lib/site.ts`](src/lib/site.ts)
+- Project content source of truth: [`src/content/projects.ts`](src/content/projects.ts)
+- Vercel production config: [`vercel.json`](vercel.json)
+- CI validation: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
 
 ## Routes
 
@@ -64,12 +64,18 @@ Generated static pages are emitted into `dist/` for each route during `npm run b
 ## Scripts
 
 ```bash
+nvm use
 npm install
 npm run dev
 npm run lint
 npm run build
 npm run preview
 ```
+
+Local setup notes:
+- CI and Vercel both run on Node 24.x. Use [`.nvmrc`](.nvmrc) to match production locally.
+- If the local directory is not linked to Vercel yet, run `vercel link --yes --scope enzo-design-prisms-projects --project belize-kids`.
+- Pull local environment metadata with `vercel pull --yes --environment=development --scope enzo-design-prisms-projects`.
 
 Build pipeline:
 - `npm run build:client` builds the browser bundle
@@ -84,7 +90,7 @@ Important rules:
 - Do not replace the generated static route files with SPA rewrites
 - Do not move critical content behind client-only rendering
 - Keep route titles, descriptions, canonicals, and structured data in the page components
-- Keep project copy centralized in [`/Users/enzo/belizekids/src/content/projects.ts`](/Users/enzo/belizekids/src/content/projects.ts)
+- Keep project copy centralized in [`src/content/projects.ts`](src/content/projects.ts)
 
 Generated SEO assets:
 - `dist/sitemap.xml`
@@ -100,7 +106,16 @@ Current analytics integrations:
 - Google Analytics (`G-ESGDVFXLGZ`)
 - Hotjar (`6410191`)
 
-Localhost is intentionally excluded from analytics bootstrapping so local QA and static verification do not generate noise or throw analytics errors.
+Analytics collection is intentionally production-only. Events are sent only from `www.belizekids.org`, so local development, Vercel previews, branch aliases, and the bare domain do not pollute reporting.
+
+GA4 pageviews are managed manually:
+- `index.html` loads the Google tag with `send_page_view: false`
+- `src/components/RouteAnalytics.tsx` sends the initial pageview and each React Router navigation
+- `src/lib/analytics.ts` centralizes GA4, Vercel Analytics, Hotjar bootstrap, event names, and shared event parameters
+
+Use `?ga_debug=1` on production URLs when checking events in GA4 DebugView.
+
+More detail lives in [`docs/analytics.md`](docs/analytics.md).
 
 ## Deploying
 
@@ -136,4 +151,5 @@ When editing this project, verify:
 
 ## Additional Docs
 
-Detailed implementation notes live in [`/Users/enzo/belizekids/docs/architecture.md`](/Users/enzo/belizekids/docs/architecture.md).
+Detailed implementation notes live in [`docs/architecture.md`](docs/architecture.md).
+Analytics notes live in [`docs/analytics.md`](docs/analytics.md).

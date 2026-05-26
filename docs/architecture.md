@@ -6,14 +6,14 @@ The production site is a **prerendered React site** hosted as static files on Ve
 
 At build time:
 1. Vite builds the client bundle
-2. Vite builds an SSR entry from [`/Users/enzo/belizekids/src/entry-server.tsx`](/Users/enzo/belizekids/src/entry-server.tsx)
-3. [`/Users/enzo/belizekids/scripts/prerender.mjs`](/Users/enzo/belizekids/scripts/prerender.mjs) renders each SEO-important route to HTML
+2. Vite builds an SSR entry from [`src/entry-server.tsx`](../src/entry-server.tsx)
+3. [`scripts/prerender.mjs`](../scripts/prerender.mjs) renders each SEO-important route to HTML
 4. The script also generates `sitemap.xml`, `robots.txt`, and `llms.txt`
 5. The temporary server bundle is removed from `dist/`
 
 At runtime:
 - Vercel serves the generated HTML directly
-- React hydrates through [`/Users/enzo/belizekids/src/main.tsx`](/Users/enzo/belizekids/src/main.tsx)
+- React hydrates through [`src/main.tsx`](../src/main.tsx)
 - The site behaves like a normal React app after hydration, but the initial response already contains the real page
 
 ## Why This Approach
@@ -30,7 +30,7 @@ The prerendered approach gives us:
 ## Content Sources
 
 Project content is centralized in:
-- [`/Users/enzo/belizekids/src/content/projects.ts`](/Users/enzo/belizekids/src/content/projects.ts)
+- [`src/content/projects.ts`](../src/content/projects.ts)
 
 That file drives:
 - project listing pages
@@ -58,7 +58,7 @@ Metadata is still declared in page components with `react-helmet-async`, but bec
 
 The project is deployed as a static output on Vercel.
 
-[`/Users/enzo/belizekids/vercel.json`](/Users/enzo/belizekids/vercel.json) is responsible for:
+[`vercel.json`](../vercel.json) is responsible for:
 - security headers
 - the permanent redirect from `/membership` to `/monthly-investment`
 
@@ -73,10 +73,17 @@ Production tracking includes:
 - Google Analytics
 - Hotjar
 
-Analytics are disabled on localhost to avoid:
-- noisy test data
-- local static preview console errors
-- misleading event volumes during development
+Analytics are production-only and are gated to `www.belizekids.org`.
+
+This prevents:
+- local QA noise
+- Vercel preview traffic in reports
+- duplicate data from alternate hostnames
+- misleading event volume during development
+
+GA4 automatic pageviews are disabled in `index.html`. Route pageviews are sent from [`RouteAnalytics`](../src/components/RouteAnalytics.tsx), and shared event logic lives in [`src/lib/analytics.ts`](../src/lib/analytics.ts).
+
+See [`docs/analytics.md`](analytics.md) for event names, debug steps, and future guardrails.
 
 ## Known Tradeoffs
 

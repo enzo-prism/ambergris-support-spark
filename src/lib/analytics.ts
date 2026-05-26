@@ -15,15 +15,18 @@ declare global {
 const GA_MEASUREMENT_ID = "G-ESGDVFXLGZ";
 const HOTJAR_SITE_ID = 6410191;
 const HOTJAR_VERSION = 6;
+const PRODUCTION_ANALYTICS_HOSTS = new Set(["www.belizekids.org"]);
+const ANALYTICS_DEBUG_QUERY_PARAM = "ga_debug";
 
 let analyticsInitialized = false;
+let lastPageLocation: string | undefined;
 
-const isLocalAnalyticsHost = () => {
+export const shouldCollectAnalytics = () => {
   if (typeof window === "undefined") {
     return false;
   }
 
-  return ["localhost", "127.0.0.1"].includes(window.location.hostname);
+  return PRODUCTION_ANALYTICS_HOSTS.has(window.location.hostname);
 };
 
 type EventPropertyValue = string | number | boolean | null | undefined;
@@ -49,7 +52,9 @@ const sanitizeGoogleParameters = (parameters?: AnalyticsParameters) => {
   }
 
   return Object.fromEntries(
-    Object.entries(parameters).filter(([, value]) => value !== undefined),
+    Object.entries(parameters).filter(
+      ([, value]) => value !== undefined && value !== null,
+    ),
   );
 };
 
@@ -83,6 +88,14 @@ const getCurrentPath = () => {
   }
 
   return `${window.location.pathname}${window.location.search}`;
+};
+
+const buildPageLocation = (path: string) => {
+  if (typeof window === "undefined") {
+    return path;
+  }
+
+  return new URL(path || "/", window.location.origin).toString();
 };
 
 const resolvePageType = (path: string) => {
@@ -128,19 +141,32 @@ const getPageContext = (path = getCurrentPath()) => ({
   page_type: resolvePageType(path),
 });
 
+const isAnalyticsDebugEnabled = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.get(ANALYTICS_DEBUG_QUERY_PARAM) === "1";
+};
+
+const getDebugParameters = () =>
+  isAnalyticsDebugEnabled() ? { debug_mode: true } : {};
+
 const sendGoogleEvent = (name: string, parameters?: AnalyticsParameters) => {
-  if (typeof window === "undefined" || isLocalAnalyticsHost() || !window.gtag) {
+  if (typeof window === "undefined" || !shouldCollectAnalytics() || !window.gtag) {
     return;
   }
 
   window.gtag("event", name, {
     send_to: GA_MEASUREMENT_ID,
     ...sanitizeGoogleParameters(parameters),
+    ...getDebugParameters(),
   });
 };
 
 const sendAnalyticsEvent = (name: string, parameters?: AnalyticsParameters) => {
-  if (typeof window === "undefined" || isLocalAnalyticsHost()) {
+  if (typeof window === "undefined" || !shouldCollectAnalytics()) {
     return;
   }
 
@@ -222,7 +248,7 @@ const initializeHotjar = () => {
 };
 
 export const initializeAnalytics = () => {
-  if (analyticsInitialized || typeof window === "undefined" || isLocalAnalyticsHost()) {
+  if (analyticsInitialized || typeof window === "undefined" || !shouldCollectAnalytics()) {
     return;
   }
 
@@ -234,16 +260,25 @@ export const initializeAnalytics = () => {
 };
 
 export const trackPageView = (path: string) => {
-  if (typeof window === "undefined" || isLocalAnalyticsHost()) {
+  if (typeof window === "undefined" || !shouldCollectAnalytics()) {
     return;
   }
 
+  const pagePath = path || getCurrentPath();
+  const pageLocation = buildPageLocation(pagePath);
+  const pageType = resolvePageType(pagePath);
+  const pageReferrer = lastPageLocation ?? (document.referrer || undefined);
+
   sendGoogleEvent("page_view", {
-    page_location: window.location.href,
-    page_path: path,
+    page_location: pageLocation,
+    page_path: pagePath,
     page_title: document.title,
-    page_type: resolvePageType(path),
+    page_type: pageType,
+    content_group: pageType,
+    page_referrer: pageReferrer,
   });
+
+  lastPageLocation = pageLocation;
 };
 
 export const trackInvestmentClick = (

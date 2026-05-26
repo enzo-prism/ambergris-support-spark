@@ -8,8 +8,9 @@ import { inject as injectVercelAnalytics } from "@vercel/analytics";
 import App from "./App.tsx";
 import "./index.css";
 import AnalyticsBootstrap from "@/components/AnalyticsBootstrap";
+import { shouldCollectAnalytics } from "@/lib/analytics";
 
-if (!["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+if (shouldCollectAnalytics()) {
   injectVercelAnalytics({ framework: "react" });
 }
 
