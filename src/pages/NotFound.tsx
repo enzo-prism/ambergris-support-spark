@@ -14,7 +14,7 @@ const NotFound = () => {
         <meta property="og:description" content="Sorry, the page you are looking for cannot be found. Return to the Belize Kids homepage to explore our projects helping children in Belize through education, healthcare, and community development." />
         <meta property="og:image" content={buildSiteUrl("/lovable-uploads/b627ac31-d9fd-4dbb-bb4d-8a4881b3813d.png")} />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="noindex, follow" />
       </Helmet>
       <div className="text-center bg-white p-6 sm:p-8 rounded-lg shadow-md max-w-md w-full">

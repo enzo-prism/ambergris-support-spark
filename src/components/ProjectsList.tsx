@@ -13,7 +13,6 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   projectCategories,
@@ -40,10 +39,8 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
   onTabChange 
 }) => {
   const isMobile = useIsMobile();
-  const [activeView, setActiveView] = useState<"grid" | "list">(
-    isMobile ? "list" : "grid",
-  );
-  const [activeTab, setActiveTab] = useState<string>(initialTab);
+  const [activeView, setActiveView] = useState<"grid" | "list">("grid");
+  const [activeTab, setActiveTab] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const postsPerPage = 6;
   
@@ -117,44 +114,16 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
     }
   };
 
-  const container = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   return (
     <div id="projects-list" className="py-8 md:py-16 bg-gray-50">
       <div className="container px-4 md:px-6 max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, amount: 0.3 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <div className="mb-6">
             <h2 className="text-lg font-medium mb-3 text-gray-800">Filter Projects</h2>
             <div className="overflow-x-auto -mx-4 px-4 scrollbar-hide pb-2">
               <Tabs 
                 value={activeTab} 
                 onValueChange={handleTabChange}
-                defaultValue={initialTab}
               >
                 <TabsList className="w-auto inline-flex h-12 p-1 bg-white border rounded-md">
                   <TabsTrigger 
@@ -228,20 +197,16 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
-        </motion.div>
+        </div>
         
         {activeView === "grid" ? (
-          <motion.div 
+          <div
             className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
             key={`grid-${activeTab}-${currentPage}`}
           >
             {currentPosts.length > 0 ? (
               currentPosts.map((post, index) => (
-                <motion.div key={post.slug} variants={item}>
+                <div key={post.slug}>
                   {(() => {
                     const categoryConfig = projectCategoryConfig[post.category];
                     const CategoryIcon = categoryConfig.icon;
@@ -291,26 +256,22 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                   </Card>
                     );
                   })()}
-                </motion.div>
+                </div>
               ))
             ) : (
               <div className="col-span-2 py-8 text-center">
                 <p className="text-gray-500">No projects found for this category.</p>
               </div>
             )}
-          </motion.div>
+          </div>
         ) : (
-          <motion.div 
+          <div
             className="flex flex-col gap-4 mb-8 md:mb-12"
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
             key={`list-${activeTab}-${currentPage}`}
           >
             {currentPosts.length > 0 ? (
               currentPosts.map((post, index) => (
-                <motion.div key={post.slug} variants={item}>
+                <div key={post.slug}>
                   {(() => {
                     const categoryConfig = projectCategoryConfig[post.category];
                     const CategoryIcon = categoryConfig.icon;
@@ -364,24 +325,18 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                   </Card>
                     );
                   })()}
-                </motion.div>
+                </div>
               ))
             ) : (
               <div className="py-8 text-center">
                 <p className="text-gray-500">No projects found for this category.</p>
               </div>
             )}
-          </motion.div>
+          </div>
         )}
         
         {filteredProjects.length > 0 && totalPages > 1 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex justify-center mt-6"
-          >
+          <div className="flex justify-center mt-6">
             <Pagination>
               <PaginationContent className="flex-wrap justify-center gap-1">
                 <PaginationItem>
@@ -422,7 +377,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
-          </motion.div>
+          </div>
         )}
       </div>
     </div>

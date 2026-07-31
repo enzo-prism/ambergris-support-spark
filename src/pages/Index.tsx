@@ -27,8 +27,8 @@ const Index: React.FC = () => {
         <meta property="og:description" content="BelizeKids.org invests in schools, parks, healthcare, and scholarships to improve the lives of Belizean children with complete transparency. Join our mission to create lasting change through education and community development." />
         <meta property="og:image" content={SITE_OG_IMAGE_URL} />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-        <meta name="theme-color" content="#3CB371" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#16784C" />
         <meta name="keywords" content="Belize children charity, education support Belize, healthcare programs, transparent nonprofit, child welfare, community development, scholarships, school improvement" />
         <link rel="canonical" href={buildSiteUrl("/")} />
       </Helmet>

@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
 import { trackInvestmentClick } from "@/lib/analytics";
 
 const AboutSection: React.FC = () => {
-  const isMobile = useIsMobile();
-  
   const features = [{
     icon: <HeartHandshake className="h-6 w-6 text-belize-green" />,
     title: "100% Investment Model",
@@ -126,12 +123,12 @@ const AboutSection: React.FC = () => {
               </div>
               
               <div className="pt-2 mt-auto">
-                <Link to="/leadership" className="w-full sm:w-auto inline-block">
-                  <Button variant="outlineBelize" className="group transition-all duration-300 w-full sm:w-auto">
+                <Button asChild variant="outlineBelize" className="group transition-all duration-300 w-full sm:w-auto">
+                  <Link to="/leadership" className="w-full sm:w-auto inline-block">
                     Meet Our Team
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </Card>
           </motion.div>
@@ -187,16 +184,20 @@ const AboutSection: React.FC = () => {
               </p>
             </div>
             <div className="md:w-4/12 flex justify-center md:justify-end w-full">
-              <Link to="/monthly-investment" className="w-full md:w-auto">
-                <Button
+              <Button
+                asChild
                   variant="belizeGreen"
                   className="w-full md:w-auto group transition-all duration-300"
+              >
+                <Link
+                  to="/monthly-investment"
+                  className="w-full md:w-auto"
                   onClick={() => trackInvestmentClick("about_section", "monthly_investment")}
                 >
                   Become an Investor
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </motion.div>

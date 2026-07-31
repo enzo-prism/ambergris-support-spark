@@ -40,7 +40,7 @@ const ScrollDepthAnalytics = () => {
             trackedDepths.add(threshold);
             trackScrollDepth(
               threshold,
-              `${location.pathname}${location.search}`,
+              location.pathname,
             );
           }
         });
@@ -55,7 +55,7 @@ const ScrollDepthAnalytics = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [location.pathname, location.search]);
+  }, [location.pathname]);
 
   return null;
 };

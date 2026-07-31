@@ -14,7 +14,7 @@ const Privacy: React.FC = () => {
         <meta property="og:title" content="Privacy Policy - Data Protection & Security | BelizeKIDS.ORG" />
         <meta property="og:description" content="Read our comprehensive privacy policy outlining how Belize Kids protects donor information, website data collection practices, and your rights regarding personal information." />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="keywords" content="privacy policy, data protection, donor privacy, information security, GDPR compliance" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={buildSiteUrl("/privacy")} />
@@ -116,7 +116,7 @@ const Privacy: React.FC = () => {
                       <li><strong>The right to object to processing:</strong> You have the right to object to our processing of your personal data, under certain conditions.</li>
                     </ul>
                     <p className="text-gray-700 leading-relaxed mt-4">
-                      To exercise any of these rights, please contact us at the email address provided below.
+                      To exercise any of these rights, please use the contact form on our homepage.
                     </p>
                   </section>
 

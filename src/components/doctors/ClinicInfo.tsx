@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -26,6 +27,9 @@ const ClinicInfo: React.FC = () => {
       <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto">
         <SheetHeader className="text-left mb-4">
           <SheetTitle>Stanford Belize Vision Clinic</SheetTitle>
+          <SheetDescription className="sr-only">
+            Background information about the clinic, its partners, and the services it offers.
+          </SheetDescription>
         </SheetHeader>
         
         <div className="space-y-6">

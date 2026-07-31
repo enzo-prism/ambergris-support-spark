@@ -150,14 +150,6 @@ export const projects: ProjectRecord[] = [
     ],
     references: [
       {
-        text: "Stanford Belize Vision Clinic (SBVC)",
-        url: "https://med.stanford.edu/ophthalmology/news-and-media/news-archive/2017_Stories/SBVC.html",
-      },
-      {
-        text: "Training the next generation of eye care providers",
-        url: "https://med.stanford.edu/ophthalmology/news-and-media/annual-reports/annualreport_2021/Belize-update.html",
-      },
-      {
         text: "Free Eye Exams by BelizeKids.Org",
         url: "https://ambergristoday.com/community-bulletin/2020/02/03/free-eye-exams-by-belizekids-org-at-the-lions-den/",
       },

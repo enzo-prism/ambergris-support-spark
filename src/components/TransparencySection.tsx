@@ -76,7 +76,6 @@ const TransparencySection: React.FC = () => {
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-16">
           <Tabs 
-            defaultValue="promise" 
             value={selectedTab} 
             onValueChange={setSelectedTab}
             className="w-full"
@@ -270,7 +269,7 @@ const TransparencySection: React.FC = () => {
                     
                     <div className="overflow-x-auto">
                       <h5 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                        <span className="w-8 h-8 bg-belize-yellow text-white rounded-full flex items-center justify-center text-sm">$</span>
+                        <span className="w-8 h-8 bg-belize-coral text-white rounded-full flex items-center justify-center text-sm">$</span>
                         Expenditures
                       </h5>
                       <div className="overflow-x-auto -mx-4 sm:mx-0">

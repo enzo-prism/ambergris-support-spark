@@ -19,8 +19,8 @@ const ProjectsPreview: React.FC = () => {
   useEffect(() => {
     trackProjectListView(featuredProjects, {
       listId: "home_featured_projects",
-      listName: "Recent Projects",
-      source: "home_recent_projects",
+      listName: "Featured Projects",
+      source: "home_featured_projects",
     });
   }, []);
 
@@ -56,16 +56,16 @@ const ProjectsPreview: React.FC = () => {
           transition={{ duration: 0.5 }}
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-3">Recent Projects</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-3">Featured Projects</h2>
             <p className="text-lg text-gray-700 max-w-2xl">
-              Stay updated with our latest initiatives and success stories from Belize
+              Explore selected Belize Kids initiatives and project updates
             </p>
           </div>
-          <Link to="/projects">
-            <Button variant="belizeBlue" className="mt-4 md:mt-0">
+          <Button asChild variant="belizeBlue" className="mt-4 md:mt-0">
+            <Link to="/projects">
               View All Projects <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </motion.div>
 
         <motion.div 
@@ -116,8 +116,8 @@ const ProjectsPreview: React.FC = () => {
                     onClick={() =>
                       trackProjectSelect(post, {
                         listId: "home_featured_projects",
-                        listName: "Recent Projects",
-                        source: "home_recent_projects",
+                        listName: "Featured Projects",
+                        source: "home_featured_projects",
                         index: index + 1,
                       })
                     }

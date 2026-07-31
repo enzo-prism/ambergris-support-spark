@@ -128,18 +128,21 @@ const InvestmentOptions: React.FC = () => {
                     </Button>
                   </div>
                   
-                  <Link to="/monthly-investment">
-                    <Button 
+                  <Button
+                    asChild
                       variant="belizeBlue"
                       className="w-full mt-4 py-6 flex items-center justify-center"
+                  >
+                    <Link
+                      to="/monthly-investment"
                       onClick={() =>
                         trackInvestmentClick("investment_options", "monthly_investment")
                       }
                     >
                       <PiggyBank className="mr-2 h-5 w-5" />
                       Learn About Monthly Investing
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                   
                   <p className="text-xs text-gray-500 text-center mt-4">
                     Belize Kids | TAX ID 81-2841433 | PO BOX 620134, Woodside, CA 94062

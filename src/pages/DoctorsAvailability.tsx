@@ -28,10 +28,10 @@ const DoctorsAvailability: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Free Eye Care Appointments - Stanford Belize Vision Clinic | San Pedro, Belize</title>
-        <meta name="description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
-        <meta property="og:title" content="Free Eye Care Appointments - Stanford Belize Vision Clinic | San Pedro, Belize" />
-        <meta property="og:description" content="Schedule free eye examinations at the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye. Professional eye care services for children and adults provided by Stanford University ophthalmologists." />
+        <title>Stanford Belize Vision Clinic Updates | San Pedro, Belize</title>
+        <meta name="description" content="Find clinic information and upcoming doctor visit updates for the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye." />
+        <meta property="og:title" content="Stanford Belize Vision Clinic Updates | San Pedro, Belize" />
+        <meta property="og:description" content="Find clinic information and upcoming doctor visit updates for the Stanford Belize Vision Clinic in San Pedro, Ambergris Caye." />
         <meta property="og:image" content={SITE_OG_IMAGE_URL} />
         <meta property="og:type" content="website" />
         <meta name="keywords" content="eye care Belize, free eye exams, Stanford vision clinic, San Pedro ophthalmologist, children eye care, Ambergris Caye medical services" />
@@ -47,7 +47,7 @@ const DoctorsAvailability: React.FC = () => {
               Stanford Belize Vision Clinic
             </h1>
             <p className="text-gray-600 text-sm md:text-base">
-              Free eye care services in San Pedro, Ambergris Caye, Belize
+              Clinic information and visiting doctor updates for San Pedro, Ambergris Caye, Belize
             </p>
           </div>
 
@@ -56,10 +56,10 @@ const DoctorsAvailability: React.FC = () => {
               <CardHeader className="pb-2">
                 <CardTitle className="text-xl md:text-2xl flex items-center gap-2">
                   <Calendar className="h-5 w-5 text-belize-green" />
-                  Upcoming Doctor Visits
+                  Visiting Doctor Updates
                 </CardTitle>
                 <CardDescription>
-                  Our visiting doctors provide free eye exams and treatments for both children and adults
+                  We share confirmed clinic visit information here when upcoming schedules are available.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -86,7 +86,7 @@ const DoctorsAvailability: React.FC = () => {
               </CardContent>
               <CardFooter className="flex justify-center pt-2 pb-4">
                 <p className="text-center text-sm text-gray-600 max-w-md">
-                  The Stanford Belize Vision Clinic provides free eye care services to residents of San Pedro and surrounding areas twice a year.
+                  This page is for clinic information and schedule updates. Please check back for confirmed future visits.
                 </p>
               </CardFooter>
             </Card>
@@ -105,8 +105,8 @@ const DoctorsAvailability: React.FC = () => {
 
           <div className="flex justify-center">
             <Image 
-              src="https://imgur.com/0Qjoc64" 
-              alt="Stanford Belize Vision Clinic" 
+              src="/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png"
+              alt="A clinician performing an eye examination for a student at the Stanford Belize Vision Clinic"
               className="rounded-lg shadow-md max-h-64 object-cover w-full"
             />
           </div>

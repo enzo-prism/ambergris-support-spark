@@ -21,6 +21,7 @@ import {
   trackProjectSelect,
   trackProjectView,
 } from "@/lib/analytics";
+import NotFound from "@/pages/NotFound";
 
 const ProjectDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -33,32 +34,15 @@ const ProjectDetail: React.FC = () => {
   }, [project]);
 
   if (!project) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-        <Helmet>
-          <title>Not Found</title>
-          <meta name="description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
-          <meta property="og:title" content="Not Found" />
-          <meta property="og:description" content="The project you are looking for cannot be found. Explore our other initiatives helping children in Belize." />
-          <meta property="og:type" content="article" />
-        </Helmet>
-        <Navbar />
-        <div className="container-custom py-32 text-center">
-          <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
-          <p className="mb-8">The project you're looking for doesn't exist or has been moved.</p>
-          <Link to="/projects">
-            <Button>
-              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Projects
-            </Button>
-          </Link>
-        </div>
-        <Footer />
-      </div>
-    );
+    return <NotFound />;
   }
 
   const categoryConfig = projectCategoryConfig[project.category];
   const CategoryIcon = categoryConfig.icon;
+  const parsedPublishedDate = Date.parse(project.date);
+  const publishedDate = Number.isNaN(parsedPublishedDate)
+    ? project.date
+    : new Date(parsedPublishedDate).toISOString().slice(0, 10);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -81,7 +65,7 @@ const ProjectDetail: React.FC = () => {
         />
         <meta property="og:type" content="article" />
         <meta property="og:image" content={SITE_OG_IMAGE_URL} />
-        <meta name="article:published_time" content={project.date} />
+        <meta name="article:published_time" content={publishedDate} />
         <meta name="article:author" content={project.author} />
         <meta name="article:section" content={project.category} />
         <meta
@@ -112,8 +96,8 @@ const ProjectDetail: React.FC = () => {
                 "url": buildSiteUrl(SITE_OG_IMAGE)
               }
             },
-            "datePublished": project.date,
-            "dateModified": "2025-08-20",
+            "datePublished": publishedDate,
+            "dateModified": publishedDate,
             "mainEntityOfPage": {
               "@type": "WebPage",
               "@id": buildSiteUrl(`/projects/${project.slug}`)
@@ -357,7 +341,7 @@ const ProjectDetail: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
             <div>
               <h3 className="text-xl font-bold mb-4 text-belize-green">Help Support Our Work</h3>
-              <p className="mb-6 text-gray-700">Your donations help us improve the lives of children in Belize through investments in schools, parks, healthcare, and scholarships.</p>
+              <p className="mb-6 text-gray-700">Your donations help improve children’s lives in Belize through education, healthcare, and environmental programs.</p>
               <Button 
                 variant="belizeCoral"
                 onClick={() => {

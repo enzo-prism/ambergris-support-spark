@@ -33,7 +33,7 @@ const SectionViewAnalytics = () => {
           }
 
           trackedSections.add(sectionId);
-          trackSectionView(sectionId, `${location.pathname}${location.search}`);
+          trackSectionView(sectionId, location.pathname);
         });
       },
       {
@@ -52,7 +52,7 @@ const SectionViewAnalytics = () => {
     return () => {
       observer.disconnect();
     };
-  }, [location.pathname, location.search]);
+  }, [location.pathname]);
 
   return null;
 };

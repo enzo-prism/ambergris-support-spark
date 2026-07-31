@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,6 +33,7 @@ const TYPEFORM_FORM_URL = `https://form.typeform.com/to/${TYPEFORM_FORM_ID}`;
 
 const ContactSection: React.FC = () => {
   const widgetContainerRef = useRef<HTMLDivElement | null>(null);
+  const [widgetStatus, setWidgetStatus] = useState<"loading" | "ready" | "error">("loading");
 
   useEffect(() => {
     const container = widgetContainerRef.current;
@@ -42,9 +43,13 @@ const ContactSection: React.FC = () => {
 
     let cancelled = false;
     let scriptElement: HTMLScriptElement | null = null;
+    const timeoutId = window.setTimeout(() => {
+      if (!cancelled) setWidgetStatus("error");
+    }, 10_000);
 
     const initializeWidget = () => {
       if (cancelled || !container || !window.tf?.createWidget) {
+        if (!cancelled) setWidgetStatus("error");
         return;
       }
 
@@ -52,7 +57,15 @@ const ContactSection: React.FC = () => {
       window.tf.createWidget(TYPEFORM_FORM_ID, {
         container,
         hideHeaders: true,
-        onReady: () => trackContactFormReady("contact_section", "typeform"),
+        onReady: () => {
+          window.clearTimeout(timeoutId);
+          const iframe = container.querySelector("iframe");
+          if (iframe) {
+            iframe.title = "Belize Kids secure contact form";
+          }
+          setWidgetStatus("ready");
+          trackContactFormReady("contact_section", "typeform");
+        },
         onStarted: () => trackContactFormStarted("contact_section", "typeform"),
         onSubmit: () =>
           trackContactFormSubmitted("contact_section", "typeform"),
@@ -62,6 +75,10 @@ const ContactSection: React.FC = () => {
     const handleScriptLoad = () => {
       scriptElement?.setAttribute("data-loaded", "true");
       initializeWidget();
+    };
+    const handleScriptError = () => {
+      window.clearTimeout(timeoutId);
+      if (!cancelled) setWidgetStatus("error");
     };
 
     if (window.tf?.createWidget) {
@@ -73,12 +90,9 @@ const ContactSection: React.FC = () => {
 
       scriptElement = existingScript;
 
-      const handleScriptLoad = () => {
-        initializeWidget();
-      };
-
       if (existingScript) {
-        existingScript.addEventListener("load", handleScriptLoad);
+        existingScript.addEventListener("load", handleScriptLoad, { once: true });
+        existingScript.addEventListener("error", handleScriptError, { once: true });
         if (existingScript.getAttribute("data-loaded") === "true") {
           initializeWidget();
         }
@@ -87,14 +101,17 @@ const ContactSection: React.FC = () => {
         scriptElement.id = "typeform-embed-script";
         scriptElement.src = "https://embed.typeform.com/next/embed.js";
         scriptElement.async = true;
-        scriptElement.addEventListener("load", handleScriptLoad);
+        scriptElement.addEventListener("load", handleScriptLoad, { once: true });
+        scriptElement.addEventListener("error", handleScriptError, { once: true });
         document.head.appendChild(scriptElement);
       }
     }
 
     return () => {
       cancelled = true;
+      window.clearTimeout(timeoutId);
       scriptElement?.removeEventListener("load", handleScriptLoad);
+      scriptElement?.removeEventListener("error", handleScriptError);
       container.innerHTML = "";
     };
   }, []);
@@ -210,8 +227,36 @@ const ContactSection: React.FC = () => {
                   </a>
                   .
                 </p>
-                <div className="w-full h-[600px] bg-gray-50 rounded-lg">
-                  <div ref={widgetContainerRef} className="h-full w-full"></div>
+                <div className="relative w-full h-[600px] bg-gray-50 rounded-lg">
+                  <div
+                    ref={widgetContainerRef}
+                    className={`h-full w-full ${widgetStatus === "ready" ? "" : "invisible"}`}
+                  ></div>
+                  {widgetStatus !== "ready" && (
+                    <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+                      <div>
+                        <p className="font-medium text-gray-800">
+                          {widgetStatus === "loading"
+                            ? "Loading the secure contact form…"
+                            : "The embedded form could not be loaded."}
+                        </p>
+                        {widgetStatus === "error" && (
+                          <Button asChild variant="belizeBlue" className="mt-4">
+                            <a
+                              href={TYPEFORM_FORM_URL}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={() =>
+                                trackFormLinkClick("contact_section_fallback", "typeform")
+                              }
+                            >
+                              Open the contact form
+                            </a>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                   <noscript>
                     <div className="flex h-full items-center justify-center px-6 text-center text-sm text-gray-600">
                       JavaScript is disabled. Please use the direct contact form link above to send us a message.

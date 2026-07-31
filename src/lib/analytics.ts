@@ -87,7 +87,7 @@ const getCurrentPath = () => {
     return "/";
   }
 
-  return `${window.location.pathname}${window.location.search}`;
+  return window.location.pathname;
 };
 
 const buildPageLocation = (path: string) => {
@@ -96,6 +96,23 @@ const buildPageLocation = (path: string) => {
   }
 
   return new URL(path || "/", window.location.origin).toString();
+};
+
+const sanitizeAnalyticsPath = (path: string) => {
+  try {
+    return new URL(path || "/", "https://www.belizekids.org").pathname;
+  } catch {
+    return "/";
+  }
+};
+
+const sanitizeReferrer = (referrer: string) => {
+  try {
+    const url = new URL(referrer);
+    return `${url.origin}${url.pathname}`;
+  } catch {
+    return undefined;
+  }
 };
 
 const resolvePageType = (path: string) => {
@@ -137,8 +154,8 @@ const resolvePageType = (path: string) => {
 };
 
 const getPageContext = (path = getCurrentPath()) => ({
-  page_path: path,
-  page_type: resolvePageType(path),
+  page_path: sanitizeAnalyticsPath(path),
+  page_type: resolvePageType(sanitizeAnalyticsPath(path)),
 });
 
 const isAnalyticsDebugEnabled = () => {
@@ -264,10 +281,11 @@ export const trackPageView = (path: string) => {
     return;
   }
 
-  const pagePath = path || getCurrentPath();
+  const pagePath = sanitizeAnalyticsPath(path || getCurrentPath());
   const pageLocation = buildPageLocation(pagePath);
   const pageType = resolvePageType(pagePath);
-  const pageReferrer = lastPageLocation ?? (document.referrer || undefined);
+  const pageReferrer =
+    lastPageLocation ?? (document.referrer ? sanitizeReferrer(document.referrer) : undefined);
 
   sendGoogleEvent("page_view", {
     page_location: pageLocation,

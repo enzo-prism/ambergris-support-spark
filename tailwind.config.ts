@@ -66,11 +66,11 @@ export default {
 				},
 				// Custom color palette for BelizeKids - replacing coral with dark yellow
 				belize: {
-					blue: '#3CB371', // Green (already changed from blue)
-					teal: '#20B2AA',
-					green: '#3CB371',
+					blue: '#16784C',
+					teal: '#0F766E',
+					green: '#16784C',
 					sand: '#F5DEB3',
-					coral: '#E6B800', // Changed from #FF7F50 (coral) to #E6B800 (dark yellow)
+					coral: '#8A6500',
 					light: '#E6FFF0'  // Light green tint
 				}
 			},

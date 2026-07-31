@@ -33,7 +33,7 @@ const ImpactSection: React.FC = () => {
       name: "Vision Clinic",
       age: "",
       story: "Our Stanford Belize Vision Clinic provides free eye screenings and subsidized eyewear for families in need, significantly improving children's ability to learn.",
-      image: "https://imgur.com/0Qjoc64",
+      image: "/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png",
     },
     {
       name: "ACB School Classroom",
@@ -130,7 +130,7 @@ const ImpactSection: React.FC = () => {
                   <span className="font-medium">Stanford University</span>
                   <span className="font-medium text-belize-green">Medical Expertise</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" />
+                <Progress value={100} className="h-3 bg-gray-100" aria-label="Stanford University partnership: medical expertise" />
                 <p className="text-sm text-gray-500 mt-1">Provides medical expertise for the Vision Clinic</p>
               </div>
               <div>
@@ -138,7 +138,7 @@ const ImpactSection: React.FC = () => {
                   <span className="font-medium">Belize Council for the Visually Impaired</span>
                   <span className="font-medium text-belize-green">Care Continuity</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" />
+                <Progress value={100} className="h-3 bg-gray-100" aria-label="Belize Council for the Visually Impaired partnership: care continuity" />
                 <p className="text-sm text-gray-500 mt-1">Ensures ongoing eye care through subsidized eyewear</p>
               </div>
             </div>
@@ -148,7 +148,7 @@ const ImpactSection: React.FC = () => {
                   <span className="font-medium">San Pedro Lions Club</span>
                   <span className="font-medium text-belize-green">Logistical Support</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" />
+                <Progress value={100} className="h-3 bg-gray-100" aria-label="San Pedro Lions Club partnership: logistical support" />
                 <p className="text-sm text-gray-500 mt-1">Assists with community-based projects and clinic operations</p>
               </div>
               <div>
@@ -156,7 +156,7 @@ const ImpactSection: React.FC = () => {
                   <span className="font-medium">Local Schools</span>
                   <span className="font-medium text-belize-green">Educational Integration</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" />
+                <Progress value={100} className="h-3 bg-gray-100" aria-label="Local schools partnership: educational integration" />
                 <p className="text-sm text-gray-500 mt-1">Facilitates scholarship programs and educational initiatives</p>
               </div>
             </div>

@@ -1,9 +1,8 @@
 
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Clock, CalendarClock } from "lucide-react";
+import { ArrowRight, CalendarClock } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Image } from "@/components/ui/image";
 import {
   trackDoctorAppointmentClick,
@@ -11,17 +10,6 @@ import {
 } from "@/lib/analytics";
 
 const Hero: React.FC = () => {
-  const isMobile = useIsMobile();
-  
-  const scrollToDonate = () => {
-    const donateElement = document.getElementById("donate");
-    if (donateElement) {
-      donateElement.scrollIntoView({
-        behavior: "smooth"
-      });
-    }
-  };
-
   return (
     <div className="relative min-h-[90vh] sm:min-h-screen flex items-center pt-20 md:pt-16 pb-12 md:pb-8 px-4 sm:px-6 md:px-0 bg-gradient-to-b from-belize-light via-white to-white overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10">
@@ -42,16 +30,20 @@ const Hero: React.FC = () => {
             Investing in Belizean children's education, health, and well-being with complete transparency and care.
           </p>
           <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
-            <Link to="/monthly-investment" className="w-full sm:w-auto">
-              <Button 
+            <Button
+              asChild
                 variant="belizeCoral"
                 className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+            >
+              <Link
+                to="/monthly-investment"
+                className="w-full sm:w-auto"
                 onClick={() => trackInvestmentClick("hero_primary", "monthly_investment")}
               >
                 Invest Today
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
             <Button
               asChild
               variant="outlineBelize"
@@ -59,21 +51,25 @@ const Hero: React.FC = () => {
             >
               <a href="/#about">Our Impact</a>
             </Button>
-            <Link to="/doctors" className="w-full sm:w-auto mt-2 sm:mt-0">
-              <Button 
+            <Button
+              asChild
                 variant="outlineTeal" 
                 className="text-base sm:text-lg px-4 py-2 sm:px-6 sm:py-2.5 h-auto w-full"
+            >
+              <Link
+                to="/doctors"
+                className="w-full sm:w-auto mt-2 sm:mt-0"
                 onClick={() => trackDoctorAppointmentClick("hero_secondary", "doctors")}
               >
                 <CalendarClock className="mr-2 h-4 w-4" />
-                Schedule Eye Doctor
-              </Button>
-            </Link>
+                Vision Clinic Updates
+              </Link>
+            </Button>
           </div>
         </div>
         <div className="flex-1 relative mt-8 lg:mt-0">
           <div className="relative w-full max-w-xs mx-auto sm:max-w-sm animate-float">
-            <div className="aspect-w-4 aspect-h-3 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
+            <div className="aspect-[4/3] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <Image 
                 src="https://imgur.com/aFMdr3v" 
                 alt="Belizean children at school" 

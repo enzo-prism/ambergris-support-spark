@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ArrowLeft, ArrowRight, X, ZoomIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Image } from "@/components/ui/image";
@@ -76,7 +76,11 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
             if (open) setCurrentImageIndex(index);
           }}>
             <DialogTrigger asChild>
-              <div className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors relative group">
+              <button
+                type="button"
+                aria-label={`Open image ${index + 1}: ${image.alt}`}
+                className="cursor-pointer overflow-hidden rounded-md border border-gray-200 hover:border-belize-blue transition-colors relative group"
+              >
                 <AspectRatio ratio={1/1} className="bg-gray-100">
                   <Image 
                     src={image.src} 
@@ -87,15 +91,19 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                     <ZoomIn className="text-white h-8 w-8" />
                   </div>
                 </AspectRatio>
-              </div>
+              </button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-screen-lg max-h-[90vh] p-0 overflow-hidden bg-black/95 border-none">
+              <DialogTitle className="sr-only">
+                {galleryImages[currentImageIndex].alt}
+              </DialogTitle>
               <div className="relative w-full h-full flex items-center justify-center">
                 <Button 
                   variant="ghost" 
                   size="icon" 
                   className="absolute top-2 right-2 z-50 rounded-full bg-black/50 hover:bg-black/70 text-white"
                   onClick={() => setIsDialogOpen(false)}
+                  aria-label="Close image viewer"
                 >
                   <X className="h-5 w-5" />
                 </Button>
@@ -105,6 +113,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                   size="icon" 
                   className="absolute left-2 z-50 rounded-full bg-black/50 hover:bg-black/70 text-white"
                   onClick={handlePrevious}
+                  aria-label="Previous image"
                 >
                   <ArrowLeft className="h-5 w-5" />
                 </Button>
@@ -123,6 +132,7 @@ const ProjectDetailGallery: React.FC<ProjectGalleryProps> = ({
                   size="icon" 
                   className="absolute right-2 z-50 rounded-full bg-black/50 hover:bg-black/70 text-white"
                   onClick={handleNext}
+                  aria-label="Next image"
                 >
                   <ArrowRight className="h-5 w-5" />
                 </Button>

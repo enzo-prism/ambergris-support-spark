@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <Image 
-                src="https://imgur.com/BWTq83b" 
+                src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png"
                 alt="Belize Kids Logo" 
                 className="h-12 w-auto" 
               />
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/doctors" className="text-sm text-gray-600 hover:text-belize-blue transition-colors">
-                  Eye Care Appointments
+                  Vision Clinic Updates
                 </Link>
               </li>
               <li>
@@ -109,4 +109,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-

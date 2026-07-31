@@ -18,7 +18,7 @@ const Membership: React.FC = () => {
         <meta property="og:description" content="Join our monthly investment program starting at $20/month to create lasting change for children in Belize. Support healthcare, education, and community development with complete transparency and regular impact updates." />
         <meta property="og:image" content={SITE_OG_IMAGE_URL} />
         <meta property="og:type" content="website" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="keywords" content="Belize children charity, monthly donation, recurring giving, child welfare Belize, education support, healthcare programs, community development" />
         <link rel="canonical" href={buildSiteUrl("/monthly-investment")} />
       </Helmet>

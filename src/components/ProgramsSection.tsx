@@ -31,7 +31,7 @@ const ProgramsSection: React.FC = () => {
       description: "Building and maintaining safe recreational spaces where children can play, exercise, and develop social skills.",
       color: "bg-belize-coral",
       hoverColor: "hover:bg-belize-coral/90",
-      category: "environment"
+      category: "all"
     },
     {
       icon: <Laptop className="h-12 w-12 text-white" />,
@@ -78,11 +78,11 @@ const ProgramsSection: React.FC = () => {
                 </CardDescription>
               </CardContent>
               <CardFooter className="px-6 pb-6">
-                <Link to={`/projects?tab=${program.category}`}>
-                  <Button variant="ghost" className="p-0 h-auto text-belize-green hover:text-belize-blue hover:bg-transparent">
+                <Button asChild variant="ghost" className="p-0 h-auto text-belize-green hover:text-belize-blue hover:bg-transparent">
+                  <Link to={`/projects?tab=${program.category}`}>
                     Learn more <ArrowRight className="ml-1 h-4 w-4" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </CardFooter>
             </Card>
           ))}
@@ -157,14 +157,17 @@ const ProgramsSection: React.FC = () => {
                   </li>
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Link to="/projects/october-vision-clinic">
-                    <Button variant="belizeBlue">
+                  <Button asChild variant="belizeBlue">
+                    <Link to="/projects/october-vision-clinic">
                       Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link to="/doctors">
-                    <Button
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
                       variant="belizeTeal"
+                  >
+                    <Link
+                      to="/doctors"
                       onClick={() =>
                         trackDoctorAppointmentClick(
                           "programs_featured_initiative",
@@ -173,19 +176,16 @@ const ProgramsSection: React.FC = () => {
                       }
                     >
                       <User className="mr-2 h-4 w-4" />
-                      Available Doctors
-                    </Button>
-                  </Link>
+                      Clinic Updates
+                    </Link>
+                  </Button>
                 </div>
               </div>
               <div className="h-full">
                 <img 
-                  src="https://med.stanford.edu/ophthalmology/news-and-media/annual-reports/annualreport_2021/Belize-update/_jcr_content/main/panel_builder/panel_1/image_771439370.img.476.high.jpeg/Natacha_Villegas_SBVC.jpeg" 
-                  alt="Dr. Natacha Villegas performing an eye examination at the Stanford Belize Vision Clinic" 
+                  src="/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png"
+                  alt="A clinician performing an eye examination for a student at the Stanford Belize Vision Clinic"
                   className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f0f0'/%3E%3Ctext x='200' y='150' font-family='Arial' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='%23999999'%3EImage not available%3C/text%3E%3C/svg%3E";
-                  }}
                 />
               </div>
             </div>
@@ -235,12 +235,12 @@ const ProgramsSection: React.FC = () => {
                 <span>Constructed Internet Center in San Lucas Village (2022)</span>
               </li>
             </ul>
-            <Link to="/projects">
-              <Button variant="belizeGreen">
+            <Button asChild variant="belizeGreen">
+              <Link to="/projects">
                 View Our Projects
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
           <div className="md:w-1/2">
             <Image 

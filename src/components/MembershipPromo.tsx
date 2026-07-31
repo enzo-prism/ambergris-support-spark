@@ -24,10 +24,13 @@ const MembershipPromo: React.FC = () => {
             </p>
           </div>
           <div>
-            <Link to="/monthly-investment">
-              <Button
+            <Button
+              asChild
                 variant="belizeBlue"
                 className="text-lg px-6 py-6 mt-2"
+            >
+              <Link
+                to="/monthly-investment"
                 onClick={() =>
                   trackInvestmentClick("membership_promo", "monthly_investment")
                 }
@@ -35,8 +38,8 @@ const MembershipPromo: React.FC = () => {
                 <PiggyBank className="mr-2 h-5 w-5" />
                 Learn About Investing
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

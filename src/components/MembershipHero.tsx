@@ -71,7 +71,7 @@ const MembershipHero: React.FC = () => {
         </div>
         <div className="flex-1 relative mt-8 lg:mt-0">
           <div className="relative w-full max-w-sm mx-auto animate-float">
-            <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
               <Image 
                 src="https://imgur.com/NVF6d3J" 
                 alt="Belizean children representing the beneficiaries of the membership program" 
