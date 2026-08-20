@@ -1,0 +1,11 @@
+{
+  "name": "Belize Kids Website",
+  "install": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm install 24 >/dev/null; nvm use 24; npm ci",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm use 24; npm run dev"
+    }
+  ],
+  "ports": [8080]
+}
