@@ -1,10 +1,10 @@
 {
   "name": "Belize Kids Website",
-  "install": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm install 24 >/dev/null; nvm use 24; npm ci",
+  "install": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm install 24 >/dev/null; export PATH=\"$NVM_DIR/versions/node/$(nvm version 24)/bin:$PATH\"; npm ci",
   "terminals": [
     {
       "name": "dev",
-      "command": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm use 24; npm run dev"
+      "command": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; export PATH=\"$NVM_DIR/versions/node/$(nvm version 24)/bin:$PATH\"; npm run dev"
     }
   ],
   "ports": [8080]
