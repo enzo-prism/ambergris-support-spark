@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Book, User, School, TrendingUp, Award, BookOpen, GraduationCap, Building } from "lucide-react";
-import { motion } from "framer-motion";
+import { TrendingUp, BookOpen, GraduationCap, Building } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
 import { Image } from "@/components/ui/image";
 import { Badge } from "@/components/ui/badge";
 
@@ -49,156 +49,115 @@ const ImpactSection: React.FC = () => {
     },
   ];
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 }
-  };
+  const partnerships = [
+    {
+      name: "Stanford University",
+      tag: "Medical Expertise",
+      note: "Provides medical expertise for the Vision Clinic",
+    },
+    {
+      name: "Belize Council for the Visually Impaired",
+      tag: "Care Continuity",
+      note: "Ensures ongoing eye care through subsidized eyewear",
+    },
+    {
+      name: "San Pedro Lions Club",
+      tag: "Logistical Support",
+      note: "Assists with community-based projects and clinic operations",
+    },
+    {
+      name: "Local Schools",
+      tag: "Educational Integration",
+      note: "Facilitates scholarship programs and educational initiatives",
+    },
+  ];
 
   return (
-    <section id="impact" className="py-20 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section id="impact" className="section-padding overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-belize-green/20 bg-belize-light px-4 py-1 text-sm font-medium text-belize-green"
-          >
-            Making A Difference
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Impact</h2>
+        <Reveal className="mx-auto mb-14 max-w-3xl text-center">
+          <span className="section-eyebrow mb-4">Making a Difference</span>
+          <h2 className="mb-5 text-3xl font-bold md:text-4xl">Our Impact</h2>
           <p className="text-lg text-gray-700">
             With complete transparency, we show how your investments directly improve the lives of children across Belize.
           </p>
-        </div>
+        </Reveal>
 
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8 mb-16"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
-        >
+        <div className="mb-16 grid gap-8 md:grid-cols-3">
           {impactStats.map((stat, index) => (
-            <motion.div key={index} variants={item}>
-              <Card className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden h-full">
+            <Reveal key={index} delay={index * 120}>
+              <Card className="card-hover h-full overflow-hidden border-none shadow-soft">
                 <CardContent className="p-0">
-                  <div className="flex flex-col h-full">
-                    <div className={`${stat.color} p-6 flex items-center justify-center`}>
-                      <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                  <div className="flex h-full flex-col">
+                    <div className={`${stat.color} flex items-center justify-center p-8`}>
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
                         {stat.icon}
                       </div>
                     </div>
                     <div className="p-6 text-center">
-                      <h3 className="text-4xl font-bold mb-2 text-belize-green">{stat.count}</h3>
-                      <p className="text-gray-700 font-medium">{stat.label}</p>
+                      <h3 className="mb-2 text-4xl font-extrabold text-belize-green">{stat.count}</h3>
+                      <p className="font-medium text-gray-700">{stat.label}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </Reveal>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="bg-white rounded-xl shadow-lg p-8 mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="flex items-center justify-between mb-6">
+        <Reveal className="mb-16 rounded-3xl bg-white p-6 shadow-soft sm:p-8">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <h3 className="text-2xl font-bold text-belize-green">Key Partnerships</h3>
             <Badge variant="outline" className="gap-2 rounded-full border-belize-green/20 bg-belize-light px-3 py-1 text-belize-green">
               <TrendingUp className="h-4 w-4 text-belize-green" />
               <span className="text-sm font-medium">Strategic Collaboration</span>
             </Badge>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Stanford University</span>
-                  <span className="font-medium text-belize-green">Medical Expertise</span>
+
+          <div className="grid gap-x-8 gap-y-6 md:grid-cols-2">
+            {partnerships.map((partner) => (
+              <div key={partner.name}>
+                <div className="mb-2 flex justify-between gap-2">
+                  <span className="font-medium">{partner.name}</span>
+                  <span className="whitespace-nowrap font-medium text-belize-green">{partner.tag}</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" aria-label="Stanford University partnership: medical expertise" />
-                <p className="text-sm text-gray-500 mt-1">Provides medical expertise for the Vision Clinic</p>
+                <Progress value={100} className="h-3 bg-gray-100" aria-label={`${partner.name} partnership: ${partner.tag}`} />
+                <p className="mt-1 text-sm text-gray-500">{partner.note}</p>
               </div>
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Belize Council for the Visually Impaired</span>
-                  <span className="font-medium text-belize-green">Care Continuity</span>
-                </div>
-                <Progress value={100} className="h-3 bg-gray-100" aria-label="Belize Council for the Visually Impaired partnership: care continuity" />
-                <p className="text-sm text-gray-500 mt-1">Ensures ongoing eye care through subsidized eyewear</p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">San Pedro Lions Club</span>
-                  <span className="font-medium text-belize-green">Logistical Support</span>
-                </div>
-                <Progress value={100} className="h-3 bg-gray-100" aria-label="San Pedro Lions Club partnership: logistical support" />
-                <p className="text-sm text-gray-500 mt-1">Assists with community-based projects and clinic operations</p>
-              </div>
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Local Schools</span>
-                  <span className="font-medium text-belize-green">Educational Integration</span>
-                </div>
-                <Progress value={100} className="h-3 bg-gray-100" aria-label="Local schools partnership: educational integration" />
-                <p className="text-sm text-gray-500 mt-1">Facilitates scholarship programs and educational initiatives</p>
-              </div>
-            </div>
+            ))}
           </div>
-        </motion.div>
+        </Reveal>
 
         <div>
-          <div className="flex flex-col md:flex-row justify-between items-center mb-10">
+          <div className="mb-10 flex flex-col items-center justify-between md:flex-row">
             <h3 className="text-2xl font-bold text-belize-green">Success Stories</h3>
-            <p className="text-gray-600 max-w-md mt-2 md:mt-0">
+            <p className="mt-2 max-w-md text-gray-600 md:mt-0">
               See how our initiatives are creating positive change in the lives of children across Belize.
             </p>
           </div>
-          
-          <motion.div 
-            className="grid md:grid-cols-3 gap-8"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-          >
+
+          <div className="grid gap-8 md:grid-cols-3">
             {impactStories.map((story, index) => (
-              <motion.div key={index} variants={item}>
-                <div className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group h-full flex flex-col">
+              <Reveal key={index} delay={index * 120}>
+                <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-soft transition-all duration-300 hover:shadow-glow">
                   <div className="overflow-hidden">
-                    <Image 
-                      src={story.image} 
-                      alt={`${story.name}`} 
-                      className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"
+                    <Image
+                      src={story.image}
+                      alt={`${story.name}`}
+                      className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-6 flex-grow">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-2 h-2 rounded-full bg-belize-green"></div>
-                      <h4 className="font-bold text-xl text-belize-green">{story.name}{story.age ? `, ${story.age}` : ''}</h4>
+                  <div className="flex-grow p-6">
+                    <div className="mb-3 flex items-center gap-2">
+                      <div className="h-2 w-2 rounded-full bg-belize-green"></div>
+                      <h4 className="text-xl font-bold text-belize-green">{story.name}{story.age ? `, ${story.age}` : ''}</h4>
                     </div>
                     <p className="text-gray-700">{story.story}</p>
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

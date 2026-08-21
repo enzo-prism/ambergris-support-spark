@@ -1,14 +1,32 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Scroll-reveal (progressive enhancement; JS adds .is-visible, noscript reveals) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html,
   body {
     scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   *,
@@ -48,9 +66,9 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 142 52% 50%;  /* Green */
+    --ring: 152 68% 30%;  /* Belize green */
 
-    --radius: 0.5rem;
+    --radius: 0.85rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -115,26 +133,72 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans antialiased;
     touch-action: manipulation;
+    text-rendering: optimizeLegibility;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-belize-green;
+    @apply font-heading text-belize-green tracking-tight;
+    text-wrap: balance;
   }
-  
+
+  p {
+    text-wrap: pretty;
+  }
+
   input, button, a {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Consistent scroll offset so anchor targets clear the fixed navbar */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply py-10 md:py-16 lg:py-24;
+    @apply py-14 md:py-20 lg:py-28;
   }
-  
+
   .container-custom {
     @apply container px-4 sm:px-6 md:px-8;
+  }
+
+  /* Small uppercase eyebrow label used above section titles */
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-belize-green/20 bg-belize-light px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-belize-green;
+  }
+}
+
+@layer utilities {
+  .text-gradient-belize {
+    @apply bg-gradient-to-r from-belize-green to-belize-teal bg-clip-text text-transparent;
+  }
+
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px rgba(16, 78, 58, 0.04),
+      0 8px 24px -12px rgba(16, 78, 58, 0.18);
+  }
+
+  .shadow-glow {
+    box-shadow: 0 18px 48px -18px rgba(16, 78, 58, 0.35);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-glow;
+  }
+
+  /* Subtle dotted texture for hero/section backgrounds */
+  .bg-grid-belize {
+    background-image: radial-gradient(rgba(16, 120, 76, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
   }
 }
 

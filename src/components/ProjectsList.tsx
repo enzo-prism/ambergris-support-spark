@@ -125,34 +125,34 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                 value={activeTab} 
                 onValueChange={handleTabChange}
               >
-                <TabsList className="w-auto inline-flex h-12 p-1 bg-white border rounded-md">
+                <TabsList className="inline-flex h-12 w-auto rounded-full border bg-white p-1 shadow-soft">
                   <TabsTrigger 
                     value="all" 
-                    className="px-4 py-2 text-sm font-medium min-w-[80px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                    className="px-4 py-2 text-sm font-medium min-w-[80px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-full"
                   >
                     All
                   </TabsTrigger>
                   <TabsTrigger 
                     value="healthcare" 
-                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-full"
                   >
                     Healthcare
                   </TabsTrigger>
                   <TabsTrigger 
                     value="education" 
-                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-full"
                   >
                     Education
                   </TabsTrigger>
                   <TabsTrigger 
                     value="environment" 
-                    className="px-4 py-2 text-sm font-medium min-w-[110px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                    className="px-4 py-2 text-sm font-medium min-w-[110px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-full"
                   >
                     Environment
                   </TabsTrigger>
                   <TabsTrigger 
                     value="fundraising" 
-                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-sm"
+                    className="px-4 py-2 text-sm font-medium min-w-[100px] data-[state=active]:bg-belize-blue data-[state=active]:text-white rounded-full"
                   >
                     Fundraising
                   </TabsTrigger>
@@ -212,7 +212,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                     const CategoryIcon = categoryConfig.icon;
 
                     return (
-                  <Card className="overflow-hidden border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-gray-200 bg-white h-full">
+                  <Card className="card-hover h-full overflow-hidden border border-gray-100 bg-white shadow-soft hover:border-belize-green/20">
                     <div className="h-12 flex items-center px-4 border-b border-gray-100">
                       <div className={`${categoryConfig.color} p-1.5 rounded-md mr-3`}>
                         <CategoryIcon className="h-5 w-5 text-white" />
@@ -277,7 +277,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                     const CategoryIcon = categoryConfig.icon;
 
                     return (
-                  <Card className="overflow-hidden border border-gray-100 transition-all hover:shadow-md hover:border-gray-200 bg-white">
+                  <Card className="overflow-hidden border border-gray-100 bg-white shadow-soft transition-all hover:border-belize-green/20 hover:shadow-glow">
                     <div className="flex flex-row">
                       <div className="w-16 h-auto flex items-center justify-center p-3 bg-gray-50 border-r border-gray-100">
                         <div className={`${categoryConfig.color} p-2 rounded-md`}>
