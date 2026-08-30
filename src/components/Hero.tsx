@@ -45,8 +45,8 @@ const Hero: React.FC = () => {
             with complete transparency and care.
           </p>
 
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-            <Button asChild variant="belizeGradient" size="lg">
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap lg:justify-start">
+            <Button asChild variant="belizeGradient" size="lg" className="w-full sm:w-auto">
               <Link
                 to="/monthly-investment"
                 onClick={() => trackInvestmentClick("hero_primary", "monthly_investment")}
@@ -55,10 +55,10 @@ const Hero: React.FC = () => {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outlineBelize" size="lg">
+            <Button asChild variant="outlineBelize" size="lg" className="w-full sm:w-auto">
               <a href="/#about">Our Impact</a>
             </Button>
-            <Button asChild variant="outlineTeal" size="lg">
+            <Button asChild variant="outlineTeal" size="lg" className="w-full sm:w-auto">
               <Link
                 to="/doctors"
                 onClick={() => trackDoctorAppointmentClick("hero_secondary", "doctors")}
@@ -82,25 +82,27 @@ const Hero: React.FC = () => {
         </div>
 
         <div className="relative w-full flex-1">
-          <div className="relative mx-auto w-full max-w-md animate-float">
-            <div className="aspect-[4/3] overflow-hidden rounded-3xl border border-white/60 shadow-glow">
-              <Image
-                src="https://imgur.com/aFMdr3v"
-                alt="Belizean children at school"
-                className="h-full w-full object-cover"
-                width={640}
-                height={480}
-                loading="eager"
-                fallbackSrc="/placeholder.svg"
-              />
-            </div>
-            <div className="absolute -bottom-5 -right-3 rounded-2xl border-l-4 border-belize-green bg-white/95 p-4 shadow-lg backdrop-blur sm:-right-6">
-              <p className="text-sm font-bold text-belize-green sm:text-base">100% of Investment</p>
-              <p className="text-xs text-gray-600 sm:text-sm">Directly to programs</p>
-            </div>
-            <div className="absolute -top-5 -left-3 hidden rounded-2xl border-l-4 border-belize-teal bg-white/95 p-4 shadow-lg backdrop-blur sm:block">
-              <p className="text-sm font-bold text-belize-teal">Since 2013</p>
-              <p className="text-xs text-gray-600">Serving Ambergris Caye</p>
+          <div className="relative mx-auto w-full max-w-md px-2 sm:px-6">
+            <div className="relative animate-float">
+              <div className="aspect-[4/3] overflow-hidden rounded-3xl border border-white/60 shadow-glow">
+                <Image
+                  src="https://imgur.com/aFMdr3v"
+                  alt="Belizean children at school"
+                  className="h-full w-full object-cover"
+                  width={640}
+                  height={480}
+                  loading="eager"
+                  fallbackSrc="/placeholder.svg"
+                />
+              </div>
+              <div className="absolute bottom-3 right-3 rounded-2xl border-l-4 border-belize-green bg-white/95 p-3 shadow-lg backdrop-blur sm:bottom-4 sm:right-4 sm:p-4">
+                <p className="text-sm font-bold text-belize-green sm:text-base">100% of Investment</p>
+                <p className="text-xs text-gray-600 sm:text-sm">Directly to programs</p>
+              </div>
+              <div className="absolute left-3 top-3 hidden rounded-2xl border-l-4 border-belize-teal bg-white/95 p-4 shadow-lg backdrop-blur sm:block">
+                <p className="text-sm font-bold text-belize-teal">Since 2013</p>
+                <p className="text-xs text-gray-600">Serving Ambergris Caye</p>
+              </div>
             </div>
           </div>
         </div>

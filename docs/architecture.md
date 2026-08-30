@@ -98,9 +98,16 @@ Do not:
 - add a Vercel rewrite that forces every path back to a single SPA shell
 - move canonical project data into duplicate component-level constants
 - point social metadata to brittle third-party image hosts
+- force every heading to `text-belize-green` in global CSS (breaks contrast on green panels)
+- apply 44×44 min sizes to every link and button (breaks footer, logos, and icon buttons)
+- set `img { height: auto }` globally (breaks `h-full` / `object-cover` crops)
 
 Prefer:
 - real links over JS-only navigation
 - first-party assets
 - build-time generation for crawlable content
 - route-specific metadata with canonical URLs
+- explicit heading color per surface
+- sized image frames with `object-cover` for photo cards
+
+See [`docs/design.md`](design.md) for the visual rules behind those guardrails.

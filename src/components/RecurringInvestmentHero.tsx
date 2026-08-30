@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Calendar, CreditCard } from "lucide-react";
+import { ArrowRight, CreditCard } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import { trackInvestmentClick } from "@/lib/analytics";
 
@@ -22,7 +22,7 @@ const RecurringInvestmentHero: React.FC = () => {
             <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
             Monthly Recurring Investment
           </Badge>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-gray-900 sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl">
             Invest <span className="text-belize-blue">Monthly</span> in Belize's Future
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
@@ -50,19 +50,21 @@ const RecurringInvestmentHero: React.FC = () => {
             </Button>
           </div>
         </div>
-        <div className="flex-1 relative mt-8 lg:mt-0">
-          <div className="relative w-full max-w-sm mx-auto animate-float">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-belize-green/10">
-              <Image 
-                src="https://imgur.com/jbbWRFj" 
-                alt="Group of smiling Belizean children representing the beneficiaries of the monthly investment program" 
-                className="object-cover w-full h-full"
-                fallbackSrc="/placeholder.svg"
-              />
-            </div>
-            <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg shadow-lg border-l-4 border-belize-green">
-              <p className="font-bold text-belize-green text-sm sm:text-base">Monthly</p>
-              <p className="text-xs sm:text-sm">Sustainable impact</p>
+        <div className="relative mt-8 w-full flex-1 lg:mt-0">
+          <div className="relative mx-auto w-full max-w-sm px-2 sm:px-6">
+            <div className="relative animate-float">
+              <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-belize-green/10 shadow-2xl">
+                <Image 
+                  src="https://imgur.com/jbbWRFj" 
+                  alt="Group of smiling Belizean children representing the beneficiaries of the monthly investment program" 
+                  className="h-full w-full object-cover"
+                  fallbackSrc="/placeholder.svg"
+                />
+              </div>
+              <div className="absolute bottom-3 right-3 rounded-lg border-l-4 border-belize-green bg-white p-3 shadow-lg sm:bottom-4 sm:right-4 sm:p-4">
+                <p className="text-sm font-bold text-belize-green sm:text-base">Monthly</p>
+                <p className="text-xs sm:text-sm">Sustainable impact</p>
+              </div>
             </div>
           </div>
         </div>
