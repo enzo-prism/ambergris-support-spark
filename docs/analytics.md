@@ -127,7 +127,7 @@ Do not add a second generic outbound-click tracker. If Enhanced Measurement outb
 
 ### Core Web Vitals
 
-[`web-vitals`](https://github.com/GoogleChrome/web-vitals) sends LCP, INP, CLS, FCP, and TTFB using Google's recommended parameter names:
+[`PerformanceObserver`](https://developer.mozilla.org/docs/Web/API/PerformanceObserver) sends LCP, INP, CLS, FCP, and TTFB using Google's recommended parameter names:
 
 - `value` (integer; CLS is multiplied by 1,000)
 - `metric_id`
