@@ -49,7 +49,7 @@ const ProgramsSection: React.FC = () => {
       <div className="container-custom">
         <Reveal className="mx-auto mb-16 max-w-3xl text-center">
           <span className="section-eyebrow mb-4">Our Focus Areas</span>
-          <h2 className="mb-6 text-3xl font-bold md:text-4xl">Making a Difference Through Our Programs</h2>
+          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">Making a Difference Through Our Programs</h2>
           <p className="text-lg text-gray-700">
             Founded by Don Listwin, BelizeKids.org addresses the diverse needs of children in Belize, 
             focusing on healthcare, education, and community development through strategic partnerships.
@@ -62,7 +62,7 @@ const ProgramsSection: React.FC = () => {
             <Card 
               className="card-hover h-full overflow-hidden border-none shadow-soft"
             >
-              <CardHeader className={`${program.color} flex justify-center rounded-t-lg px-6 py-8`}>
+              <CardHeader className={`${program.color} flex flex-col items-center justify-center rounded-t-lg px-6 py-8`}>
                 <div className="rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
                   {program.icon}
                 </div>
@@ -178,11 +178,11 @@ const ProgramsSection: React.FC = () => {
                   </Button>
                 </div>
               </div>
-              <div className="h-full">
+              <div className="relative min-h-[240px] md:min-h-full">
                 <img 
                   src="/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png"
                   alt="A clinician performing an eye examination for a student at the Stanford Belize Vision Clinic"
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -243,7 +243,7 @@ const ProgramsSection: React.FC = () => {
             <Image 
               src="https://imgur.com/TmGauI4" 
               alt="Belizean students in a classroom" 
-              className="rounded-lg shadow-md w-full h-auto object-cover"
+              className="h-64 w-full rounded-lg object-cover shadow-md md:h-80"
             />
           </div>
         </div>
