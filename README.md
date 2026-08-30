@@ -153,3 +153,4 @@ When editing this project, verify:
 
 Detailed implementation notes live in [`docs/architecture.md`](docs/architecture.md).
 Analytics notes live in [`docs/analytics.md`](docs/analytics.md).
+Design rules and layout pitfalls live in [`docs/design.md`](docs/design.md).

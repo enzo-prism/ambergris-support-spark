@@ -18,7 +18,6 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import {
   trackContactClick,
@@ -59,7 +58,6 @@ const isNavLink = (item: NavItemLink | NavItemScroll): item is NavItemLink =>
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -333,8 +331,7 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        {!isMobile && (
-          <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1">
             {mainNavItems.map((item, index) => (
               <div key={index} className="inline-block">
                 {item.type === "link" ? (
@@ -369,7 +366,6 @@ const Navbar: React.FC = () => {
               </div>
             ))}
           </div>
-        )}
 
         <div className="hidden md:flex items-center ml-4 space-x-2">
           <Button asChild variant="belizeGradient">
@@ -385,7 +381,7 @@ const Navbar: React.FC = () => {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
+            <Button variant="ghost" size="icon" className="h-11 w-11 text-belize-blue md:hidden">
               <Menu size={24} />
               <span className="sr-only">Open main menu</span>
             </Button>
@@ -403,7 +399,7 @@ const Navbar: React.FC = () => {
               </SheetDescription>
             </SheetHeader>
             <div className="flex flex-col h-full bg-white">
-              <div className="flex items-center justify-between border-b p-4">
+              <div className="flex items-center justify-between border-b p-4 pr-14">
                 <Link to="/" className="flex items-center">
                   <img 
                     src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 

@@ -54,7 +54,7 @@ const MembershipForm: React.FC = () => {
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="bg-belize-blue p-8 text-white">
-                <h2 className="text-2xl font-bold mb-4">Member Benefits</h2>
+                <h2 className="mb-4 text-2xl font-bold text-white">Member Benefits</h2>
                 <p className="mb-6">Your monthly membership includes:</p>
                 
                 <ul className="space-y-4">

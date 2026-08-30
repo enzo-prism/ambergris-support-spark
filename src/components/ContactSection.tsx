@@ -132,7 +132,7 @@ const ContactSection: React.FC = () => {
           <div className="md:col-span-5">
             <Card className="h-full border-none shadow-lg overflow-hidden">
               <div className="bg-belize-green text-white p-8">
-                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+                <h3 className="mb-6 text-2xl font-bold text-white">Contact Information</h3>
                 <p className="text-white/90 mb-8">
                   Whether you're interested in volunteering, donating, or learning more about our mission, 
                   we're here to help.

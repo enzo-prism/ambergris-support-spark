@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { CreditCard, Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
+import { Mail, PiggyBank, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
   trackContactClick,
@@ -19,7 +19,7 @@ const InvestmentOptions: React.FC = () => {
             <PiggyBank className="h-5 w-5" />
             Investment Options
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">
             Invest in Belize's Future
           </h2>
           <p className="text-lg text-gray-700">

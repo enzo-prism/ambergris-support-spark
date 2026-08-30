@@ -48,19 +48,19 @@ const AboutSection: React.FC = () => {
 
         {/* Hero Image Section */}
         <Reveal className="mb-12 md:mb-16">
-          <div className="relative overflow-hidden rounded-3xl bg-gray-100 shadow-glow">
-            <div className="flex h-64 w-full items-center justify-center md:h-96">
+          <div className="relative overflow-hidden rounded-3xl bg-gray-900 shadow-glow">
+            <div className="relative h-64 w-full md:h-96">
               <img
                 src="/lovable-uploads/bc7854c3-5f34-4095-955a-566d30b2ad86.png"
                 alt="Belize Kids Vision Clinic event with children and volunteers from San Pedro Lions Club"
-                className="max-h-full max-w-full object-contain"
+                className="h-full w-full object-cover object-center"
                 loading="lazy"
                 decoding="async"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute bottom-4 left-4 right-4 text-white">
-              <p className="text-sm font-medium md:text-base">
+              <p className="text-sm font-medium drop-shadow-sm md:text-base">
                 Community partners working together at a Belize Kids Vision Clinic event, supporting children&apos;s healthcare needs in San Pedro.
               </p>
             </div>

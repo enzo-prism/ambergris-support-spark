@@ -107,7 +107,7 @@ const DoctorsAvailability: React.FC = () => {
             <Image 
               src="/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png"
               alt="A clinician performing an eye examination for a student at the Stanford Belize Vision Clinic"
-              className="rounded-lg shadow-md max-h-64 object-cover w-full"
+              className="h-64 w-full rounded-lg object-cover shadow-md"
             />
           </div>
         </div>

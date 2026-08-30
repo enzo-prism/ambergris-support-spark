@@ -23,7 +23,7 @@ const ProjectsPreview: React.FC = () => {
   return (
     <section id="projects" className="section-padding bg-gray-50">
       <div className="container-custom">
-        <Reveal className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+        <Reveal className="mb-10 flex flex-col items-stretch justify-between gap-4 sm:items-start md:flex-row md:items-center">
           <div>
             <span className="section-eyebrow mb-3">Featured Work</span>
             <h2 className="mb-2 text-3xl font-bold text-belize-blue md:text-4xl">Featured Projects</h2>
@@ -31,7 +31,7 @@ const ProjectsPreview: React.FC = () => {
               Explore selected Belize Kids initiatives and project updates
             </p>
           </div>
-          <Button asChild variant="belizeBlue" className="shrink-0">
+          <Button asChild variant="belizeBlue" className="w-full shrink-0 sm:w-auto">
             <Link to="/projects">
               View All Projects <ArrowRight className="h-4 w-4" />
             </Link>
@@ -70,7 +70,7 @@ const ProjectsPreview: React.FC = () => {
                     <h3 className="mb-2 text-xl font-bold text-belize-blue">
                       {post.previewTitle ?? post.title}
                     </h3>
-                    <p className="mb-4 text-sm text-gray-700">
+                    <p className="mb-4 line-clamp-3 text-sm text-gray-700">
                       {post.previewExcerpt ?? post.excerpt}
                     </p>
                     <Link

@@ -139,7 +139,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading text-belize-green tracking-tight;
+    @apply font-heading tracking-tight;
     text-wrap: balance;
   }
 
@@ -229,33 +229,22 @@
   @apply hidden md:block;
 }
 
-/* Improve touch targets on mobile */
+/* Improve spacing on mobile without forcing every link to 44×44.
+   Blanket min-size on `a`/`button` stretched inline links, logos, and icon buttons. */
 @media (max-width: 768px) {
-  button, 
-  a, 
-  input[type="submit"], 
-  input[type="button"], 
-  .clickable {
-    min-height: 44px;
-    min-width: 44px;
-  }
-  
-  /* Improve spacing on mobile */
   .container-custom {
     @apply px-4;
   }
-  
-  /* Add more padding to page sections on mobile */
+
   .section-padding {
     @apply py-10 md:py-16 lg:py-24;
   }
-  
-  /* Reduce text sizes on mobile */
+
   .mobile-text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
   }
-  
+
   .mobile-text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -269,10 +258,10 @@
   width: 100%;
 }
 
-/* Ensure images don't cause overflow */
+/* Prevent images from overflowing their container without overriding
+   utility heights (h-full + object-cover) used in cards and heroes. */
 img {
   max-width: 100%;
-  height: auto;
 }
 
 /* Better form elements on mobile */

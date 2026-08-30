@@ -259,7 +259,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                 </div>
               ))
             ) : (
-              <div className="col-span-2 py-8 text-center">
+              <div className="col-span-full py-8 text-center">
                 <p className="text-gray-500">No projects found for this category.</p>
               </div>
             )}

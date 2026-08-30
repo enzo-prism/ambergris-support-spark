@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { LucideIcon } from "lucide-react";
 import { Image } from "@/components/ui/image";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface LeaderCardProps {
   name: string;
@@ -20,11 +19,11 @@ const LeaderCard: React.FC<LeaderCardProps> = ({ name, role, bio, icon: Icon, im
       <div className="md:flex">
         <div className={`${imageSrc ? 'md:w-1/3' : ''}`}>
           {imageSrc ? (
-            <div className="h-64 md:h-full relative">
+            <div className="relative h-64 md:h-auto md:min-h-full">
               <Image 
                 src={imageSrc} 
                 alt={name} 
-                className="w-full h-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-top"
               />
             </div>
           ) : null}
