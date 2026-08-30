@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { TrendingUp, BookOpen, GraduationCap, Building } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { Image } from "@/components/ui/image";
@@ -77,7 +76,7 @@ const ImpactSection: React.FC = () => {
       <div className="container-custom">
         <Reveal className="mx-auto mb-14 max-w-3xl text-center">
           <span className="section-eyebrow mb-4">Making a Difference</span>
-          <h2 className="mb-5 text-3xl font-bold md:text-4xl">Our Impact</h2>
+          <h2 className="mb-5 text-3xl font-bold text-gray-900 md:text-4xl">Our Impact</h2>
           <p className="text-lg text-gray-700">
             With complete transparency, we show how your investments directly improve the lives of children across Belize.
           </p>
@@ -114,15 +113,17 @@ const ImpactSection: React.FC = () => {
             </Badge>
           </div>
 
-          <div className="grid gap-x-8 gap-y-6 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             {partnerships.map((partner) => (
-              <div key={partner.name}>
-                <div className="mb-2 flex justify-between gap-2">
-                  <span className="font-medium">{partner.name}</span>
-                  <span className="whitespace-nowrap font-medium text-belize-green">{partner.tag}</span>
+              <div
+                key={partner.name}
+                className="rounded-2xl border border-belize-green/10 bg-belize-light/40 p-4"
+              >
+                <div className="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+                  <span className="font-semibold text-gray-900">{partner.name}</span>
+                  <span className="text-sm font-medium text-belize-green">{partner.tag}</span>
                 </div>
-                <Progress value={100} className="h-3 bg-gray-100" aria-label={`${partner.name} partnership: ${partner.tag}`} />
-                <p className="mt-1 text-sm text-gray-500">{partner.note}</p>
+                <p className="text-sm text-gray-600">{partner.note}</p>
               </div>
             ))}
           </div>
@@ -140,11 +141,11 @@ const ImpactSection: React.FC = () => {
             {impactStories.map((story, index) => (
               <Reveal key={index} delay={index * 120}>
                 <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-soft transition-all duration-300 hover:shadow-glow">
-                  <div className="overflow-hidden">
+                  <div className="relative h-52 overflow-hidden">
                     <Image
                       src={story.image}
                       alt={`${story.name}`}
-                      className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                   <div className="flex-grow p-6">

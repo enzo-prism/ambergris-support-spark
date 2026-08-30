@@ -8,6 +8,9 @@ import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { Image } from "@/components/ui/image";
 
+const RAISED_USD = 13551;
+const GOAL_USD = 12500;
+
 const ClassroomDrive: React.FC = () => {
   const scrollToDonate = () => {
     const donateElement = document.getElementById("donate");
@@ -17,6 +20,10 @@ const ClassroomDrive: React.FC = () => {
       });
     }
   };
+
+  const fundedPercent = Math.round((RAISED_USD / GOAL_USD) * 100);
+  const barPercent = Math.min(fundedPercent, 100);
+  const goalMet = RAISED_USD >= GOAL_USD;
 
   return (
     <section className="section-padding bg-white">
@@ -38,18 +45,18 @@ const ClassroomDrive: React.FC = () => {
             <Card className="overflow-hidden border-none shadow-soft">
               <CardContent className="p-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                  <div className="h-60 md:h-auto">
+                  <div className="relative h-56 md:h-72">
                     <Image 
                       src="https://imgur.com/IJKaTAA" 
                       alt="New Horizon School in Belize" 
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
-                  <div className="h-60 md:h-auto">
+                  <div className="relative h-56 md:h-72">
                     <Image 
                       src="https://imgur.com/44skZfu" 
                       alt="School Construction in Belize" 
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
                 </div>
@@ -90,16 +97,28 @@ const ClassroomDrive: React.FC = () => {
               </div>
               <CardContent className="p-6">
                 <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">Raised</span>
-                    <span className="text-belize-green font-bold">$13,551</span>
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="font-medium text-gray-700">Raised</span>
+                    <span className="font-bold text-belize-green">${RAISED_USD.toLocaleString()}</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                    <div className="bg-belize-green h-full rounded-full" style={{ width: '108%' }}></div>
+                  <div className="h-4 w-full overflow-hidden rounded-full bg-gray-200">
+                    <div
+                      className="h-full rounded-full bg-belize-green"
+                      style={{ width: `${barPercent}%` }}
+                      role="progressbar"
+                      aria-valuenow={barPercent}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`Classroom fundraiser ${fundedPercent}% funded`}
+                    />
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-gray-700 font-medium">Goal</span>
-                    <span className="text-gray-700 font-medium">$12,500</span>
+                  <div className="mt-2 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+                    <span className="font-medium text-gray-700">Goal ${GOAL_USD.toLocaleString()}</span>
+                    {goalMet && (
+                      <Badge variant="default" className="whitespace-nowrap bg-belize-green text-white">
+                        Goal reached · {fundedPercent}% funded
+                      </Badge>
+                    )}
                   </div>
                 </div>
 
