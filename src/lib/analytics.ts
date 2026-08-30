@@ -1,6 +1,7 @@
 import { track as trackVercelEvent } from "@vercel/analytics";
 
 import type { ProjectRecord } from "@/content/projects";
+import { initializeSiteWebVitals, type SiteWebVital } from "@/lib/web-vitals";
 
 declare global {
   interface Window {
@@ -75,15 +76,7 @@ type AnalyticsParameterValue =
 
 type AnalyticsParameters = Record<string, AnalyticsParameterValue>;
 
-type WebVitalMetric = {
-  name: string;
-  id: string;
-  value: number;
-  delta: number;
-  rating?: string;
-  navigationType?: string;
-  attribution?: unknown;
-};
+type WebVitalMetric = SiteWebVital;
 
 const sanitizeGoogleParameters = (parameters?: AnalyticsParameters) => {
   if (!parameters) {
@@ -420,19 +413,7 @@ const resolveWebVitalDebugTarget = (metric: WebVitalMetric) => {
 };
 
 const initializeWebVitals = () => {
-  void import("web-vitals/attribution").then(
-    ({ onCLS, onFCP, onINP, onLCP, onTTFB }) => {
-      const report = (metric: WebVitalMetric) => {
-        trackWebVital(metric);
-      };
-
-      onCLS(report);
-      onFCP(report);
-      onINP(report);
-      onLCP(report);
-      onTTFB(report);
-    },
-  );
+  initializeSiteWebVitals(trackWebVital);
 };
 
 const initializeErrorTracking = () => {
