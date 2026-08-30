@@ -7,8 +7,16 @@ const RouteAnalytics = () => {
   const location = useLocation();
 
   useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location.pathname]);
+    // Helmet writes the route title in another effect. Wait a tick so GA4
+    // receives the real page title instead of the previous route's title.
+    const timeoutId = window.setTimeout(() => {
+      trackPageView(location.pathname, location.search);
+    }, 0);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [location.pathname, location.search]);
 
   return null;
 };

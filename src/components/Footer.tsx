@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Facebook, ArrowRight } from "lucide-react";
 import { Image } from "@/components/ui/image";
 import { Button } from "@/components/ui/button";
+import { trackInvestmentClick, trackSocialClick } from "@/lib/analytics";
 
 const quickLinks = [
   { label: "Home", to: "/" },
@@ -94,7 +95,12 @@ const Footer: React.FC = () => {
               Your monthly investment goes 100% to programs for Belizean children.
             </p>
             <Button asChild variant="belizeGradient" size="sm">
-              <Link to="/monthly-investment">
+              <Link
+                to="/monthly-investment"
+                onClick={() =>
+                  trackInvestmentClick("footer", "monthly_investment")
+                }
+              >
                 Invest Today
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -106,6 +112,7 @@ const Footer: React.FC = () => {
                 rel="noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-belize-green/20 text-belize-green transition-colors hover:bg-belize-green hover:text-white"
                 aria-label="Facebook"
+                onClick={() => trackSocialClick("facebook", "footer")}
               >
                 <Facebook className="h-5 w-5" />
               </a>
