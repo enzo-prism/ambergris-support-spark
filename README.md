@@ -112,10 +112,12 @@ GA4 pageviews are managed manually:
 - `index.html` loads the Google tag with `send_page_view: false`
 - `src/components/RouteAnalytics.tsx` sends the initial pageview and each React Router navigation
 - `src/lib/analytics.ts` centralizes GA4, Vercel Analytics, Hotjar bootstrap, event names, and shared event parameters
+- landing pageviews keep UTM and ad click IDs so campaign reports are not collapsed into Direct
+- 404s, Core Web Vitals, and JavaScript exceptions are sent as GA4 events
 
 Use `?ga_debug=1` on production URLs when checking events in GA4 DebugView.
 
-More detail lives in [`docs/analytics.md`](docs/analytics.md).
+After deploy, register the custom dimensions in [`docs/analytics.md`](docs/analytics.md) and turn off Enhanced Measurement "Page changes based on browser history events" so SPA pageviews are not counted twice.
 
 ## Deploying
 

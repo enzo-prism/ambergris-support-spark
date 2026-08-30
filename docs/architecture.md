@@ -83,7 +83,9 @@ This prevents:
 
 GA4 automatic pageviews are disabled in `index.html`. Route pageviews are sent from [`RouteAnalytics`](../src/components/RouteAnalytics.tsx), and shared event logic lives in [`src/lib/analytics.ts`](../src/lib/analytics.ts).
 
-See [`docs/analytics.md`](analytics.md) for event names, debug steps, and future guardrails.
+Pageviews keep campaign query parameters, wait for the real Helmet title, update the Google tag page context after each SPA navigation, and classify 404s as `not_found`. Core Web Vitals and script exceptions are also sent to GA4 so the same property can show traffic quality and site health.
+
+See [`docs/analytics.md`](analytics.md) for event names, the GA4 Admin checklist, debug steps, and guardrails.
 
 ## Known Tradeoffs
 

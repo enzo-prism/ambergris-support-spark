@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex items-center justify-between gap-4 border-t border-gray-200/70 pt-6 md:flex-row flex-col">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200/70 pt-6 md:flex-row">
           <p className="text-sm text-gray-500">
             © {new Date().getFullYear()} Belize Kids. All rights reserved.
           </p>

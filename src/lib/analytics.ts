@@ -17,9 +17,38 @@ const HOTJAR_SITE_ID = 6410191;
 const HOTJAR_VERSION = 6;
 const PRODUCTION_ANALYTICS_HOSTS = new Set(["www.belizekids.org"]);
 const ANALYTICS_DEBUG_QUERY_PARAM = "ga_debug";
+const ANALYTICS_DEBUG_STORAGE_KEY = "belizekids_ga_debug";
+const EXCEPTION_DESCRIPTION_LIMIT = 120;
+const WEB_VITAL_DEBUG_LIMIT = 100;
+
+const ATTRIBUTION_QUERY_PARAMS = new Set([
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "utm_id",
+  "utm_source_platform",
+  "utm_creative_format",
+  "utm_marketing_tactic",
+  "gclid",
+  "gbraid",
+  "wbraid",
+  "dclid",
+  "gclsrc",
+  "fbclid",
+  "msclkid",
+  "ttclid",
+  "twclid",
+  "li_fat_id",
+  "mc_cid",
+  "mc_eid",
+]);
 
 let analyticsInitialized = false;
 let lastPageLocation: string | undefined;
+let isNotFoundPage = false;
+let lastExceptionSignature: string | undefined;
 
 export const shouldCollectAnalytics = () => {
   if (typeof window === "undefined") {
@@ -45,6 +74,16 @@ type AnalyticsParameterValue =
   | AnalyticsItem[];
 
 type AnalyticsParameters = Record<string, AnalyticsParameterValue>;
+
+type WebVitalMetric = {
+  name: string;
+  id: string;
+  value: number;
+  delta: number;
+  rating?: string;
+  navigationType?: string;
+  attribution?: unknown;
+};
 
 const sanitizeGoogleParameters = (parameters?: AnalyticsParameters) => {
   if (!parameters) {
@@ -90,14 +129,6 @@ const getCurrentPath = () => {
   return window.location.pathname;
 };
 
-const buildPageLocation = (path: string) => {
-  if (typeof window === "undefined") {
-    return path;
-  }
-
-  return new URL(path || "/", window.location.origin).toString();
-};
-
 const sanitizeAnalyticsPath = (path: string) => {
   try {
     return new URL(path || "/", "https://www.belizekids.org").pathname;
@@ -115,8 +146,22 @@ const sanitizeReferrer = (referrer: string) => {
   }
 };
 
+const truncateAnalyticsValue = (value: string, limit: number) => {
+  const normalized = value.replace(/\s+/g, " ").trim();
+
+  if (normalized.length <= limit) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, limit - 1)}…`;
+};
+
 const resolvePageType = (path: string) => {
   const pathname = path.split("?")[0];
+
+  if (isNotFoundPage) {
+    return "not_found";
+  }
 
   if (pathname === "/") {
     return "home";
@@ -153,22 +198,80 @@ const resolvePageType = (path: string) => {
   return "other";
 };
 
-const getPageContext = (path = getCurrentPath()) => ({
-  page_path: sanitizeAnalyticsPath(path),
-  page_type: resolvePageType(sanitizeAnalyticsPath(path)),
-});
+const persistAnalyticsDebugFlag = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const searchParams = new URLSearchParams(window.location.search);
+
+  if (searchParams.get(ANALYTICS_DEBUG_QUERY_PARAM) === "1") {
+    window.sessionStorage.setItem(ANALYTICS_DEBUG_STORAGE_KEY, "1");
+  }
+};
 
 const isAnalyticsDebugEnabled = () => {
   if (typeof window === "undefined") {
     return false;
   }
 
+  persistAnalyticsDebugFlag();
+
   const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get(ANALYTICS_DEBUG_QUERY_PARAM) === "1";
+  if (searchParams.get(ANALYTICS_DEBUG_QUERY_PARAM) === "1") {
+    return true;
+  }
+
+  try {
+    return window.sessionStorage.getItem(ANALYTICS_DEBUG_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
 };
 
 const getDebugParameters = () =>
   isAnalyticsDebugEnabled() ? { debug_mode: true } : {};
+
+const sanitizeSearchParams = (search: string) => {
+  const incoming = new URLSearchParams(search.startsWith("?") ? search : search ? `?${search}` : "");
+  const kept = new URLSearchParams();
+
+  incoming.forEach((value, key) => {
+    if (ATTRIBUTION_QUERY_PARAMS.has(key.toLowerCase()) && value) {
+      kept.set(key, value);
+    }
+  });
+
+  const serialized = kept.toString();
+  return serialized ? `?${serialized}` : "";
+};
+
+const buildPageLocation = (path: string, search = "") => {
+  if (typeof window === "undefined") {
+    return path;
+  }
+
+  return `${window.location.origin}${sanitizeAnalyticsPath(path)}${sanitizeSearchParams(search)}`;
+};
+
+const getLandingSection = () => {
+  if (typeof window === "undefined") {
+    return undefined;
+  }
+
+  const section = window.location.hash.replace(/^#/, "").trim();
+  return section || undefined;
+};
+
+const getPageContext = (path = getCurrentPath()) => ({
+  page_path: sanitizeAnalyticsPath(path),
+  page_type: resolvePageType(sanitizeAnalyticsPath(path)),
+  page_title: typeof document === "undefined" ? undefined : document.title,
+  page_location:
+    typeof window === "undefined"
+      ? sanitizeAnalyticsPath(path)
+      : buildPageLocation(path, window.location.search),
+});
 
 const sendGoogleEvent = (name: string, parameters?: AnalyticsParameters) => {
   if (typeof window === "undefined" || !shouldCollectAnalytics() || !window.gtag) {
@@ -178,6 +281,38 @@ const sendGoogleEvent = (name: string, parameters?: AnalyticsParameters) => {
   window.gtag("event", name, {
     send_to: GA_MEASUREMENT_ID,
     ...sanitizeGoogleParameters(parameters),
+    ...getDebugParameters(),
+  });
+};
+
+const syncGooglePageContext = ({
+  pageLocation,
+  pagePath,
+  pageTitle,
+  pageType,
+}: {
+  pageLocation: string;
+  pagePath: string;
+  pageTitle: string;
+  pageType: string;
+}) => {
+  if (typeof window === "undefined" || !shouldCollectAnalytics() || !window.gtag) {
+    return;
+  }
+
+  window.gtag("set", {
+    page_location: pageLocation,
+    page_path: pagePath,
+    page_title: pageTitle,
+  });
+
+  window.gtag("config", GA_MEASUREMENT_ID, {
+    send_page_view: false,
+    update: true,
+    page_location: pageLocation,
+    page_path: pagePath,
+    page_title: pageTitle,
+    content_group: pageType,
     ...getDebugParameters(),
   });
 };
@@ -229,8 +364,15 @@ const injectScript = ({
 
 const runWhenIdle = (callback: () => void) => {
   const schedule = () => {
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(callback, { timeout: 2_000 });
+    const idleWindow = window as Window & {
+      requestIdleCallback?: (
+        idleCallback: () => void,
+        options?: { timeout: number },
+      ) => number;
+    };
+
+    if (typeof idleWindow.requestIdleCallback === "function") {
+      idleWindow.requestIdleCallback(callback, { timeout: 2_000 });
       return;
     }
 
@@ -264,39 +406,151 @@ const initializeHotjar = () => {
   });
 };
 
+const resolveWebVitalDebugTarget = (metric: WebVitalMetric) => {
+  if (!metric.attribution || typeof metric.attribution !== "object") {
+    return undefined;
+  }
+
+  const attribution = metric.attribution as Record<string, unknown>;
+  const target = [attribution.largestShiftTarget, attribution.element, attribution.eventTarget].find(
+    (value): value is string => typeof value === "string" && value.length > 0,
+  );
+
+  return target ? truncateAnalyticsValue(target, WEB_VITAL_DEBUG_LIMIT) : undefined;
+};
+
+const initializeWebVitals = () => {
+  void import("web-vitals/attribution").then(
+    ({ onCLS, onFCP, onINP, onLCP, onTTFB }) => {
+      const report = (metric: WebVitalMetric) => {
+        trackWebVital(metric);
+      };
+
+      onCLS(report);
+      onFCP(report);
+      onINP(report);
+      onLCP(report);
+      onTTFB(report);
+    },
+  );
+};
+
+const initializeErrorTracking = () => {
+  window.addEventListener("error", (event) => {
+    const description = truncateAnalyticsValue(
+      event.message || "script_error",
+      EXCEPTION_DESCRIPTION_LIMIT,
+    );
+    trackException(description, true);
+  });
+
+  window.addEventListener("unhandledrejection", (event) => {
+    const reason =
+      event.reason instanceof Error
+        ? event.reason.message
+        : typeof event.reason === "string"
+          ? event.reason
+          : "unhandled_promise_rejection";
+
+    trackException(
+      truncateAnalyticsValue(reason, EXCEPTION_DESCRIPTION_LIMIT),
+      false,
+    );
+  });
+};
+
+export const markPageNotFound = (isNotFound: boolean) => {
+  isNotFoundPage = isNotFound;
+};
+
 export const initializeAnalytics = () => {
   if (analyticsInitialized || typeof window === "undefined" || !shouldCollectAnalytics()) {
     return;
   }
 
   analyticsInitialized = true;
+  persistAnalyticsDebugFlag();
+  initializeWebVitals();
+  initializeErrorTracking();
 
   runWhenIdle(() => {
     initializeHotjar();
   });
 };
 
-export const trackPageView = (path: string) => {
+export const trackPageView = (path: string, search = "") => {
   if (typeof window === "undefined" || !shouldCollectAnalytics()) {
     return;
   }
 
   const pagePath = sanitizeAnalyticsPath(path || getCurrentPath());
-  const pageLocation = buildPageLocation(pagePath);
+  const pageLocation = buildPageLocation(pagePath, search || window.location.search);
   const pageType = resolvePageType(pagePath);
+  const pageTitle = document.title;
   const pageReferrer =
     lastPageLocation ?? (document.referrer ? sanitizeReferrer(document.referrer) : undefined);
+  const landingSection = getLandingSection();
+
+  syncGooglePageContext({
+    pageLocation,
+    pagePath,
+    pageTitle,
+    pageType,
+  });
 
   sendGoogleEvent("page_view", {
     page_location: pageLocation,
     page_path: pagePath,
-    page_title: document.title,
+    page_title: pageTitle,
     page_type: pageType,
     content_group: pageType,
     page_referrer: pageReferrer,
+    landing_section: landingSection,
   });
 
+  if (pageType === "not_found") {
+    sendAnalyticsEvent("page_not_found", {
+      page_location: pageLocation,
+      page_path: pagePath,
+      page_title: pageTitle,
+      page_type: pageType,
+      page_referrer: pageReferrer,
+    });
+  }
+
   lastPageLocation = pageLocation;
+};
+
+export const trackWebVital = (metric: WebVitalMetric) => {
+  const isCls = metric.name === "CLS";
+  const value = isCls ? Math.round(metric.delta * 1_000) : Math.round(metric.delta);
+
+  sendGoogleEvent(metric.name, {
+    ...getPageContext(),
+    value,
+    metric_id: metric.id,
+    metric_value: Number(metric.value.toFixed(isCls ? 4 : 0)),
+    metric_delta: Number(metric.delta.toFixed(isCls ? 4 : 0)),
+    metric_rating: metric.rating,
+    metric_navigation_type: metric.navigationType,
+    debug_target: resolveWebVitalDebugTarget(metric),
+  });
+};
+
+export const trackException = (description: string, fatal: boolean) => {
+  const signature = `${fatal ? "fatal" : "nonfatal"}:${description}`;
+
+  if (signature === lastExceptionSignature) {
+    return;
+  }
+
+  lastExceptionSignature = signature;
+
+  sendGoogleEvent("exception", {
+    ...getPageContext(),
+    description,
+    fatal,
+  });
 };
 
 export const trackInvestmentClick = (
