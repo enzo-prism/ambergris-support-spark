@@ -75,10 +75,11 @@ const DoctorsAvailability: React.FC = () => {
                       </Alert>
                     ))
                   ) : (
-                    <Alert className="border-belize-green/40 bg-white">
-                      <AlertTitle className="text-belize-green">Upcoming visits</AlertTitle>
+                    <Alert className="border-belize-green/20 bg-belize-light/50">
+                      <Calendar className="h-4 w-4 text-belize-green" />
+                      <AlertTitle className="text-belize-green">No clinic dates posted yet</AlertTitle>
                       <AlertDescription className="text-sm text-gray-600">
-                        Upcoming visits will display here when available.
+                        Confirmed Stanford Belize Vision Clinic visit dates will appear here. Check back soon, or contact us if you need the latest schedule.
                       </AlertDescription>
                     </Alert>
                   )}

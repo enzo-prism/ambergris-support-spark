@@ -63,11 +63,12 @@ const InvestmentForm: React.FC = () => {
               </div>
               
               <div className="p-8">
-                <h3 className="text-xl font-bold text-belize-blue mb-6">Coming Soon: Online Investments</h3>
-                
-                <p className="text-gray-700 mb-6">
-                  We're currently setting up our online payment system. Soon, you'll be able to make monthly investments directly through our website.
-                </p>
+                <div className="mb-6 rounded-2xl border border-belize-green/15 bg-belize-light/70 p-5">
+                  <h3 className="mb-2 text-xl font-bold text-belize-blue">Coming Soon: Online Investments</h3>
+                  <p className="text-gray-700">
+                    We're currently setting up our online payment system. Until then, mail a check or contact us and we'll help you set up a monthly investment.
+                  </p>
+                </div>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-5 rounded-lg">
