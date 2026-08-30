@@ -454,9 +454,10 @@ const Navbar: React.FC = () => {
                   <Button asChild variant="belizeGradient" size="lg" className="w-full">
                     <Link
                       to="/monthly-investment"
-                      className="block w-full"
+                      className="flex w-full items-center justify-center gap-2"
                       onClick={() => trackInvestmentClick("navbar_mobile_footer", "monthly_investment")}
                     >
+                      <PiggyBank className="h-4 w-4" />
                       Invest Today
                     </Link>
                   </Button>

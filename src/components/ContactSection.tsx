@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Mail, MessageSquare, MapPin, Facebook } from "lucide-react";
+import { Mail, MessageSquare, MapPin, Facebook, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -19,6 +19,10 @@ declare global {
         options: {
           container: HTMLElement;
           hideHeaders?: boolean;
+          hideFooter?: boolean;
+          autoResize?: boolean;
+          inlineOnMobile?: boolean;
+          height?: number;
           onReady?: () => void;
           onStarted?: () => void;
           onSubmit?: () => void;
@@ -57,11 +61,19 @@ const ContactSection: React.FC = () => {
       window.tf.createWidget(TYPEFORM_FORM_ID, {
         container,
         hideHeaders: true,
+        hideFooter: true,
+        autoResize: false,
+        inlineOnMobile: true,
+        height: 600,
         onReady: () => {
           window.clearTimeout(timeoutId);
           const iframe = container.querySelector("iframe");
           if (iframe) {
             iframe.title = "Belize Kids secure contact form";
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.minHeight = "560px";
+            iframe.style.border = "0";
           }
           setWidgetStatus("ready");
           trackContactFormReady("contact_section", "typeform");
@@ -211,26 +223,31 @@ const ContactSection: React.FC = () => {
           <div className="md:col-span-7">
             <Card className="border-none shadow-lg p-1 overflow-hidden">
               <CardContent className="p-7">
-                <h3 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h3>
+                <h3 className="mb-3 text-2xl font-bold text-gray-800">Send Us a Message</h3>
                 <p className="mb-4 text-sm text-gray-600">
-                  Prefer a direct link? Use our secure contact form at{" "}
+                  Use the form below to reach Belize Kids. If the first screen shows Continue or OK, tap it to start. You can also open the form in a new tab.
+                </p>
+                <Button
+                  asChild
+                  variant="outlineBelize"
+                  className="mb-5"
+                >
                   <a
                     href={TYPEFORM_FORM_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="font-medium text-belize-blue underline-offset-4 hover:underline"
                     onClick={() =>
                       trackFormLinkClick("contact_section", "typeform")
                     }
                   >
-                    form.typeform.com
+                    Open the contact form
+                    <ExternalLink className="h-4 w-4" />
                   </a>
-                  .
-                </p>
-                <div className="relative w-full h-[600px] bg-gray-50 rounded-lg">
+                </Button>
+                <div className="relative h-[600px] w-full overflow-hidden rounded-lg border border-belize-green/15 bg-belize-light/40">
                   <div
                     ref={widgetContainerRef}
-                    className={`h-full w-full ${widgetStatus === "ready" ? "" : "invisible"}`}
+                    className={`h-full min-h-[560px] w-full [&_iframe]:h-full [&_iframe]:min-h-[560px] [&_iframe]:w-full [&_iframe]:border-0 ${widgetStatus === "ready" ? "" : "invisible"}`}
                   ></div>
                   {widgetStatus !== "ready" && (
                     <div className="absolute inset-0 flex items-center justify-center px-6 text-center">

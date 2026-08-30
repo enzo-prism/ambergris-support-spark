@@ -29,3 +29,7 @@ Visual and layout rules for belizekids.org. Use this when changing UI so the bug
 ## Last visual pass (2026-08-30)
 
 Fixed contrast on green panels, mobile tap-target overflow, hero clipping, privacy/terms overlap with the navbar, classroom fundraiser bar, partnership cards, and cover-image cropping.
+
+Follow-up from the live visual pass:
+- Contact Typeform gets a branded frame, full-height iframe, and a persistent “Open the contact form” action so the welcome/OK screen is not the only path.
+- Coming soon / clinic empty states use the same mint surfaces as the rest of the site instead of bare gray boxes.
