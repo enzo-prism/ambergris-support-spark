@@ -147,9 +147,9 @@ const ContactForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>First name</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <div className="relative">
+                  <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                  <FormControl>
                     <Input
                       className="pl-10"
                       autoComplete="given-name"
@@ -157,8 +157,8 @@ const ContactForm: React.FC = () => {
                       {...field}
                       onFocus={markStarted}
                     />
-                  </div>
-                </FormControl>
+                  </FormControl>
+                </div>
                 <FormMessage />
               </FormItem>
             )}
@@ -170,9 +170,9 @@ const ContactForm: React.FC = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Last name</FormLabel>
-                <FormControl>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <div className="relative">
+                  <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                  <FormControl>
                     <Input
                       className="pl-10"
                       autoComplete="family-name"
@@ -180,8 +180,8 @@ const ContactForm: React.FC = () => {
                       {...field}
                       onFocus={markStarted}
                     />
-                  </div>
-                </FormControl>
+                  </FormControl>
+                </div>
                 <FormMessage />
               </FormItem>
             )}
@@ -194,9 +194,9 @@ const ContactForm: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <div className="relative">
+                <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <FormControl>
                   <Input
                     type="email"
                     className="pl-10"
@@ -205,8 +205,8 @@ const ContactForm: React.FC = () => {
                     {...field}
                     onFocus={markStarted}
                   />
-                </div>
-              </FormControl>
+                </FormControl>
+              </div>
               <FormMessage />
             </FormItem>
           )}
@@ -218,9 +218,9 @@ const ContactForm: React.FC = () => {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Phone (optional)</FormLabel>
-              <FormControl>
-                <div className="relative">
-                  <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+              <div className="relative">
+                <Phone className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <FormControl>
                   <Input
                     type="tel"
                     className="pl-10"
@@ -229,8 +229,8 @@ const ContactForm: React.FC = () => {
                     {...field}
                     onFocus={markStarted}
                   />
-                </div>
-              </FormControl>
+                </FormControl>
+              </div>
               <FormMessage />
             </FormItem>
           )}
