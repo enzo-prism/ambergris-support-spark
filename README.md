@@ -76,6 +76,7 @@ Local setup notes:
 - CI and Vercel both run on Node 24.x. Use [`.nvmrc`](.nvmrc) to match production locally.
 - If the local directory is not linked to Vercel yet, run `vercel link --yes --scope enzo-design-prisms-projects --project belize-kids`.
 - Pull local environment metadata with `vercel pull --yes --environment=development --scope enzo-design-prisms-projects`.
+- Homepage contact posts to Formspree. Copy [`.env.example`](.env.example) and set `VITE_FORMSPREE_CONTACT_ID` locally. Enzo must also add that same variable on the Vercel project `belize-kids` (Production and Preview). Use the Formspree form hash or the full `https://formspree.io/f/...` URL. Do not commit the id. Until it is set, the form still requires a nature of inquiry, but delivery falls back to the Typeform link.
 
 Build pipeline:
 - `npm run build:client` builds the browser bundle
