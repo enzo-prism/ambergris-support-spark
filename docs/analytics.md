@@ -93,6 +93,8 @@ Current high-value events include:
 - `contact_form_ready`
 - `contact_form_start`
 - `contact_form_submit`
+
+Homepage contact events use `form_id` `first_party`. The Typeform fallback link still uses `form_id` `typeform`.
 - `generate_lead`
 - `doctor_appointment_confirmed`
 - `contact_form_link_click`

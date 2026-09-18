@@ -1,131 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Mail, MessageSquare, MapPin, Facebook, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import ContactForm from "@/components/ContactForm";
 import {
-  trackContactFormStarted,
-  trackFormLinkClick,
   trackContactFormReady,
-  trackContactFormSubmitted,
+  trackFormLinkClick,
   trackSocialClick,
 } from "@/lib/analytics";
-
-declare global {
-  interface Window {
-    tf?: {
-      createWidget?: (
-        formId: string,
-        options: {
-          container: HTMLElement;
-          hideHeaders?: boolean;
-          hideFooter?: boolean;
-          autoResize?: boolean;
-          inlineOnMobile?: boolean;
-          height?: number;
-          onReady?: () => void;
-          onStarted?: () => void;
-          onSubmit?: () => void;
-        },
-      ) => unknown;
-    };
-  }
-}
 
 const TYPEFORM_FORM_ID = "Zovvt0T2";
 const TYPEFORM_FORM_URL = `https://form.typeform.com/to/${TYPEFORM_FORM_ID}`;
 
 const ContactSection: React.FC = () => {
-  const widgetContainerRef = useRef<HTMLDivElement | null>(null);
-  const [widgetStatus, setWidgetStatus] = useState<"loading" | "ready" | "error">("loading");
-
   useEffect(() => {
-    const container = widgetContainerRef.current;
-    if (!container) {
-      return;
-    }
-
-    let cancelled = false;
-    let scriptElement: HTMLScriptElement | null = null;
-    const timeoutId = window.setTimeout(() => {
-      if (!cancelled) setWidgetStatus("error");
-    }, 10_000);
-
-    const initializeWidget = () => {
-      if (cancelled || !container || !window.tf?.createWidget) {
-        if (!cancelled) setWidgetStatus("error");
-        return;
-      }
-
-      container.innerHTML = "";
-      window.tf.createWidget(TYPEFORM_FORM_ID, {
-        container,
-        hideHeaders: true,
-        hideFooter: true,
-        autoResize: false,
-        inlineOnMobile: true,
-        height: 600,
-        onReady: () => {
-          window.clearTimeout(timeoutId);
-          const iframe = container.querySelector("iframe");
-          if (iframe) {
-            iframe.title = "Belize Kids secure contact form";
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
-            iframe.style.minHeight = "560px";
-            iframe.style.border = "0";
-          }
-          setWidgetStatus("ready");
-          trackContactFormReady("contact_section", "typeform");
-        },
-        onStarted: () => trackContactFormStarted("contact_section", "typeform"),
-        onSubmit: () =>
-          trackContactFormSubmitted("contact_section", "typeform"),
-      });
-    };
-
-    const handleScriptLoad = () => {
-      scriptElement?.setAttribute("data-loaded", "true");
-      initializeWidget();
-    };
-    const handleScriptError = () => {
-      window.clearTimeout(timeoutId);
-      if (!cancelled) setWidgetStatus("error");
-    };
-
-    if (window.tf?.createWidget) {
-      initializeWidget();
-    } else {
-      const existingScript = document.getElementById(
-        "typeform-embed-script",
-      ) as HTMLScriptElement | null;
-
-      scriptElement = existingScript;
-
-      if (existingScript) {
-        existingScript.addEventListener("load", handleScriptLoad, { once: true });
-        existingScript.addEventListener("error", handleScriptError, { once: true });
-        if (existingScript.getAttribute("data-loaded") === "true") {
-          initializeWidget();
-        }
-      } else {
-        scriptElement = document.createElement("script");
-        scriptElement.id = "typeform-embed-script";
-        scriptElement.src = "https://embed.typeform.com/next/embed.js";
-        scriptElement.async = true;
-        scriptElement.addEventListener("load", handleScriptLoad, { once: true });
-        scriptElement.addEventListener("error", handleScriptError, { once: true });
-        document.head.appendChild(scriptElement);
-      }
-    }
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timeoutId);
-      scriptElement?.removeEventListener("load", handleScriptLoad);
-      scriptElement?.removeEventListener("error", handleScriptError);
-      container.innerHTML = "";
-    };
+    trackContactFormReady("contact_section", "first_party");
   }, []);
 
   return (
@@ -134,8 +24,12 @@ const ContactSection: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-belize-green">Get In Touch</h2>
           <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-            Have questions or want to learn more about Belize Kids? 
+            Have questions or want to learn more about Belize Kids?
             We'd love to hear from you.
+          </p>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto mt-3">
+            Please include a line or two about the nature of your inquiry so we
+            know how to help.
           </p>
           <div className="w-24 h-1 bg-belize-green mx-auto mt-6 rounded-full"></div>
         </div>
@@ -146,10 +40,10 @@ const ContactSection: React.FC = () => {
               <div className="bg-belize-green text-white p-8">
                 <h3 className="mb-6 text-2xl font-bold text-white">Contact Information</h3>
                 <p className="text-white/90 mb-8">
-                  Whether you're interested in volunteering, donating, or learning more about our mission, 
+                  Whether you're interested in volunteering, donating, or learning more about our mission,
                   we're here to help.
                 </p>
-                
+
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
@@ -160,7 +54,7 @@ const ContactSection: React.FC = () => {
                       <p className="text-white font-medium">Contact us through the form</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
                       <MapPin className="h-6 w-6 text-white" />
@@ -173,7 +67,7 @@ const ContactSection: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
                       <MessageSquare className="h-6 w-6 text-white" />
@@ -192,7 +86,7 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <Separator className="my-8 bg-white/30" />
-                
+
                 <div>
                   <p className="text-white/90 font-medium mb-4">Connect With Us</p>
                   <div className="flex">
@@ -203,9 +97,9 @@ const ContactSection: React.FC = () => {
                       className="bg-transparent text-white border-white/30 hover:bg-white/20 hover:text-white"
                     >
                       <a
-                        href="https://www.facebook.com/profile.php?id=100064824399858" 
-                        target="_blank" 
-                        rel="noreferrer" 
+                        href="https://www.facebook.com/profile.php?id=100064824399858"
+                        target="_blank"
+                        rel="noreferrer"
                         aria-label="Facebook"
                         onClick={() =>
                           trackSocialClick("facebook", "contact_section")
@@ -219,66 +113,34 @@ const ContactSection: React.FC = () => {
               </div>
             </Card>
           </div>
-          
+
           <div className="md:col-span-7">
             <Card className="border-none shadow-lg p-1 overflow-hidden">
               <CardContent className="p-7">
                 <h3 className="mb-3 text-2xl font-bold text-gray-800">Send Us a Message</h3>
-                <p className="mb-4 text-sm text-gray-600">
-                  Use the form below to reach Belize Kids. If the first screen shows Continue or OK, tap it to start. You can also open the form in a new tab.
+                <p className="mb-6 text-sm text-gray-600">
+                  Tell us who you are and the nature of your inquiry. A line or
+                  two about why you're writing helps us route your message.
                 </p>
-                <Button
-                  asChild
-                  variant="outlineBelize"
-                  className="mb-5"
-                >
-                  <a
-                    href={TYPEFORM_FORM_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={() =>
-                      trackFormLinkClick("contact_section", "typeform")
-                    }
-                  >
-                    Open the contact form
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Button>
-                <div className="relative h-[600px] w-full overflow-hidden rounded-lg border border-belize-green/15 bg-belize-light/40">
-                  <div
-                    ref={widgetContainerRef}
-                    className={`h-full min-h-[560px] w-full [&_iframe]:h-full [&_iframe]:min-h-[560px] [&_iframe]:w-full [&_iframe]:border-0 ${widgetStatus === "ready" ? "" : "invisible"}`}
-                  ></div>
-                  {widgetStatus !== "ready" && (
-                    <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-                      <div>
-                        <p className="font-medium text-gray-800">
-                          {widgetStatus === "loading"
-                            ? "Loading the secure contact form…"
-                            : "The embedded form could not be loaded."}
-                        </p>
-                        {widgetStatus === "error" && (
-                          <Button asChild variant="belizeBlue" className="mt-4">
-                            <a
-                              href={TYPEFORM_FORM_URL}
-                              target="_blank"
-                              rel="noreferrer"
-                              onClick={() =>
-                                trackFormLinkClick("contact_section_fallback", "typeform")
-                              }
-                            >
-                              Open the contact form
-                            </a>
-                          </Button>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  <noscript>
-                    <div className="flex h-full items-center justify-center px-6 text-center text-sm text-gray-600">
-                      JavaScript is disabled. Please use the direct contact form link above to send us a message.
-                    </div>
-                  </noscript>
+                <ContactForm />
+                <div className="mt-6 border-t border-gray-100 pt-5">
+                  <p className="mb-3 text-sm text-gray-600">
+                    Prefer the previous form? Open it in a new tab and still
+                    include the nature of your inquiry in the message field.
+                  </p>
+                  <Button asChild variant="outlineBelize">
+                    <a
+                      href={TYPEFORM_FORM_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackFormLinkClick("contact_section_fallback", "typeform")
+                      }
+                    >
+                      Open the Typeform
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
