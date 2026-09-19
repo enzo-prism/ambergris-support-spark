@@ -69,6 +69,8 @@ export default {
 					blue: '#16784C',
 					teal: '#0F766E',
 					green: '#16784C',
+					greenDark: '#0F5537',
+					gold: '#C88A04',
 					sand: '#F5DEB3',
 					coral: '#8A6500',
 					light: '#E6FFF0'  // Light green tint
@@ -103,12 +105,20 @@ export default {
 				'float': {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
+				},
+				'fade-in-up': {
+					from: { opacity: '0', transform: 'translateY(16px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'shimmer': {
+					'100%': { transform: 'translateX(100%)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'float': 'float 5s ease-in-out infinite'
+				'float': 'float 5s ease-in-out infinite',
+				'fade-in-up': 'fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both'
 			}
 		}
 	},

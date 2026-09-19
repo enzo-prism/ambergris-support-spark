@@ -23,7 +23,7 @@ const Privacy: React.FC = () => {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
-          <div className="bg-gradient-to-b from-belize-green/10 to-white py-16">
+          <div className="bg-gradient-to-b from-belize-green/10 to-white pb-16 pt-28 md:pt-32">
             <div className="container-custom">
               <div className="max-w-4xl mx-auto">
                 <h1 className="text-4xl md:text-5xl font-bold text-belize-green mb-8">Privacy Policy</h1>

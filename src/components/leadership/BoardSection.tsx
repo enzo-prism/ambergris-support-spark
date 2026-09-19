@@ -26,10 +26,10 @@ const BoardSection: React.FC<BoardSectionProps> = ({ members }) => {
         
         <ul className="grid gap-3 mb-6">
           {members.map((member, index) => (
-            <li key={index} className="flex items-center bg-white p-4 rounded-lg shadow-sm">
-              <span className="text-belize-green mr-2 text-xl">•</span>
+            <li key={index} className="flex flex-wrap items-center gap-x-2 rounded-lg bg-white p-4 shadow-sm">
+              <span className="text-xl text-belize-green">•</span>
               <span className="font-bold text-gray-800">{member.name}</span>
-              <span className="mx-2 text-gray-500">–</span>
+              <span className="text-gray-500">–</span>
               <span className="text-gray-700">{member.role}</span>
             </li>
           ))}

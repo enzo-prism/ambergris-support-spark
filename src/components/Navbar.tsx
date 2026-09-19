@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Calendar, ChevronRight, Home, Users, BookOpen, Folder, Mail, Info, Menu, PiggyBank } from "lucide-react";
+import { Calendar, ChevronDown, ChevronRight, Home, Users, BookOpen, Folder, Mail, Info, Menu, PiggyBank } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,6 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import {
   trackContactClick,
@@ -59,7 +58,6 @@ const isNavLink = (item: NavItemLink | NavItemScroll): item is NavItemLink =>
 const Navbar: React.FC = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -158,15 +156,15 @@ const Navbar: React.FC = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <button className={cn(
-          "flex items-center text-base font-medium text-gray-700 hover:text-belize-blue transition-colors px-4 py-2 gap-1",
+          "group flex items-center gap-1 rounded-full px-4 py-2 text-[15px] font-medium text-gray-700 transition-colors hover:bg-belize-green/5 hover:text-belize-green",
           item.items.some((subItem) => subItem.type === "link" && subItem.to === location.pathname) &&
-            "text-belize-blue font-semibold"
+            "text-belize-green"
         )}>
           {item.label}
-          <ChevronRight className="h-4 w-4 ml-1 rotate-90" />
+          <ChevronDown className="h-4 w-4 opacity-70 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" className="w-[250px] p-2 rounded-md">
+      <DropdownMenuContent align="center" className="w-[250px] rounded-2xl border-belize-green/10 p-2 shadow-glow">
         <div className="space-y-1">
           {item.items.map((subItem, index) => (
             <DropdownMenuItem key={index} className="p-0">
@@ -320,8 +318,8 @@ const Navbar: React.FC = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled 
-          ? "bg-white/95 shadow-md backdrop-blur-sm py-2" 
-          : "bg-white/90 backdrop-blur-sm py-3 md:py-4"
+          ? "border-b border-belize-green/10 bg-white/85 shadow-soft backdrop-blur-md py-2" 
+          : "bg-white/70 backdrop-blur-md py-3 md:py-4"
       )}
     >
       <div className="container-custom flex justify-between items-center">
@@ -333,21 +331,19 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        {!isMobile && (
-          <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1">
             {mainNavItems.map((item, index) => (
               <div key={index} className="inline-block">
                 {item.type === "link" ? (
                   <Link 
                     to={item.to}
                     className={cn(
-                      "text-base font-medium px-4 py-2 transition-colors flex items-center gap-1",
+                      "rounded-full px-4 py-2 text-[15px] font-medium transition-colors",
                       location.pathname === item.to 
-                        ? "text-belize-blue font-semibold" 
-                        : "text-gray-700 hover:text-belize-blue"
+                        ? "text-belize-green" 
+                        : "text-gray-700 hover:bg-belize-green/5 hover:text-belize-green"
                     )}
                   >
-                    {item.icon && <span className="inline-block">{item.icon}</span>}
                     {item.label}
                   </Link>
                 ) : item.type === "dropdown" ? (
@@ -362,23 +358,17 @@ const Navbar: React.FC = () => {
                         item.action();
                       }
                     }}
-                    className="text-base font-medium px-4 py-2 text-gray-700 hover:text-belize-blue transition-colors flex items-center gap-1"
+                    className="rounded-full px-4 py-2 text-[15px] font-medium text-gray-700 transition-colors hover:bg-belize-green/5 hover:text-belize-green"
                   >
-                    {item.icon && <span className="inline-block">{item.icon}</span>}
                     {item.label}
                   </a>
                 )}
               </div>
             ))}
           </div>
-        )}
 
         <div className="hidden md:flex items-center ml-4 space-x-2">
-          <Button
-            asChild
-              variant="belizeCoral"
-              className="transition-all hover:shadow-md flex items-center gap-2"
-          >
+          <Button asChild variant="belizeGradient">
             <Link
               to="/monthly-investment"
               onClick={() => trackInvestmentClick("navbar_primary", "monthly_investment")}
@@ -391,7 +381,7 @@ const Navbar: React.FC = () => {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-belize-blue md:hidden">
+            <Button variant="ghost" size="icon" className="h-11 w-11 text-belize-blue md:hidden">
               <Menu size={24} />
               <span className="sr-only">Open main menu</span>
             </Button>
@@ -409,7 +399,7 @@ const Navbar: React.FC = () => {
               </SheetDescription>
             </SheetHeader>
             <div className="flex flex-col h-full bg-white">
-              <div className="flex items-center justify-between border-b p-4">
+              <div className="flex items-center justify-between border-b p-4 pr-14">
                 <Link to="/" className="flex items-center">
                   <img 
                     src="/lovable-uploads/cc1bb947-c2e0-4bd5-8ffc-d1667dfb614e.png" 
@@ -461,12 +451,13 @@ const Navbar: React.FC = () => {
               
               <div className="p-4 border-t mt-auto">
                 <SheetClose asChild>
-                  <Button asChild variant="belizeCoral" className="w-full py-5">
+                  <Button asChild variant="belizeGradient" size="lg" className="w-full">
                     <Link
                       to="/monthly-investment"
-                      className="block w-full"
+                      className="flex w-full items-center justify-center gap-2"
                       onClick={() => trackInvestmentClick("navbar_mobile_footer", "monthly_investment")}
                     >
+                      <PiggyBank className="h-4 w-4" />
                       Invest Today
                     </Link>
                   </Button>

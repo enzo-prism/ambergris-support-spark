@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Image } from "@/components/ui/image";
+import { Reveal } from "@/components/ui/reveal";
 import { trackDoctorAppointmentClick } from "@/lib/analytics";
 
 const ProgramsSection: React.FC = () => {
@@ -46,28 +47,23 @@ const ProgramsSection: React.FC = () => {
   return (
     <section id="programs" className="section-padding bg-gradient-to-b from-white to-gray-50">
       <div className="container-custom">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <Badge
-            variant="outline"
-            className="mb-4 rounded-full border-belize-green/20 bg-belize-light px-4 py-1 text-sm font-medium text-belize-green"
-          >
-            Our Focus Areas
-          </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Making a Difference Through Our Programs</h2>
+        <Reveal className="mx-auto mb-16 max-w-3xl text-center">
+          <span className="section-eyebrow mb-4">Our Focus Areas</span>
+          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">Making a Difference Through Our Programs</h2>
           <p className="text-lg text-gray-700">
             Founded by Don Listwin, BelizeKids.org addresses the diverse needs of children in Belize, 
             focusing on healthcare, education, and community development through strategic partnerships.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {programs.map((program, index) => (
+            <Reveal key={index} delay={index * 100} className="h-full">
             <Card 
-              key={index} 
-              className="border-none shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+              className="card-hover h-full overflow-hidden border-none shadow-soft"
             >
-              <CardHeader className={`${program.color} rounded-t-lg px-6 py-8 flex justify-center`}>
-                <div className="p-4 rounded-full bg-white/20 backdrop-blur-sm">
+              <CardHeader className={`${program.color} flex flex-col items-center justify-center rounded-t-lg px-6 py-8`}>
+                <div className="rounded-2xl bg-white/20 p-4 backdrop-blur-sm">
                   {program.icon}
                 </div>
               </CardHeader>
@@ -85,6 +81,7 @@ const ProgramsSection: React.FC = () => {
                 </Button>
               </CardFooter>
             </Card>
+            </Reveal>
           ))}
         </div>
         
@@ -181,11 +178,11 @@ const ProgramsSection: React.FC = () => {
                   </Button>
                 </div>
               </div>
-              <div className="h-full">
+              <div className="relative min-h-[240px] md:min-h-full">
                 <img 
                   src="/lovable-uploads/5c98d9b7-c36a-4f65-a62f-e9a9f52e87f0.png"
                   alt="A clinician performing an eye examination for a student at the Stanford Belize Vision Clinic"
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -246,7 +243,7 @@ const ProgramsSection: React.FC = () => {
             <Image 
               src="https://imgur.com/TmGauI4" 
               alt="Belizean students in a classroom" 
-              className="rounded-lg shadow-md w-full h-auto object-cover"
+              className="h-64 w-full rounded-lg object-cover shadow-md md:h-80"
             />
           </div>
         </div>

@@ -22,7 +22,7 @@ const Terms: React.FC = () => {
       <div className="min-h-screen bg-white">
         <Navbar />
         
-        <main className="pt-20 pb-16">
+        <main className="pt-28 pb-16 md:pt-32">
           <div className="container-custom max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg max-w-none">
               <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>

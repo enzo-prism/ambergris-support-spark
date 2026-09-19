@@ -8,7 +8,19 @@ interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 const Image = React.forwardRef<HTMLImageElement, ImageProps>(
-  ({ className, src, alt, fallbackSrc, fallbackClassName, ...props }, ref) => {
+  (
+    {
+      className,
+      src,
+      alt,
+      fallbackSrc,
+      fallbackClassName,
+      loading = "lazy",
+      decoding = "async",
+      ...props
+    },
+    ref,
+  ) => {
     const [hasError, setHasError] = useState(false);
     const [imageSrc, setImageSrc] = useState<string | undefined>(src);
     
@@ -65,7 +77,8 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
           setHasError(true);
           props.onError?.(e);
         }}
-        loading="lazy"
+        loading={loading}
+        decoding={decoding}
         {...props}
       />
     );

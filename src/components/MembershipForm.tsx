@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Lock, CreditCard, Mail, User, Phone, Users, CheckCircle2, Loader2 } from "lucide-react";
-import { FORMSPREE_MEMBERSHIP_ENDPOINT, submitToFormspree } from "@/lib/forms";
+import { submitMembershipForm } from "@/lib/membershipForm";
 
 const formSchema = z.object({
   firstName: z
@@ -64,15 +64,14 @@ const MembershipForm: React.FC = () => {
   }, [submitted]);
 
   const onSubmit = async (data: FormValues) => {
-    const result = await submitToFormspree(FORMSPREE_MEMBERSHIP_ENDPOINT, {
+    const result = await submitMembershipForm({
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
       phone: data.phone ?? "",
-      _subject: "New membership signup from belizekids.org",
     });
 
-    if (result.ok) {
+    if (result.status === "success") {
       toast({
         title: "Membership registration started",
         description: "Thank you for your interest! We'll contact you shortly to complete your membership setup.",
@@ -80,10 +79,16 @@ const MembershipForm: React.FC = () => {
 
       form.reset();
       setSubmitted(true);
+    } else if (result.status === "unconfigured") {
+      toast({
+        title: "Submission failed",
+        description: "Online signup is not connected yet. Please try again later.",
+        variant: "destructive",
+      });
     } else {
       toast({
         title: "Submission failed",
-        description: result.error ?? "Something went wrong. Please try again.",
+        description: result.message,
         variant: "destructive",
       });
     }
@@ -104,7 +109,7 @@ const MembershipForm: React.FC = () => {
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="bg-belize-blue p-8 text-white">
-                <h2 className="text-2xl font-bold mb-4">Member Benefits</h2>
+                <h2 className="mb-4 text-2xl font-bold text-white">Member Benefits</h2>
                 <p className="mb-6">Your monthly membership includes:</p>
                 
                 <ul className="space-y-4">

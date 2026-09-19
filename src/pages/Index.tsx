@@ -14,9 +14,6 @@ import Footer from "@/components/Footer";
 import ClassroomDrive from "@/components/ClassroomDrive";
 import { buildSiteUrl, SITE_OG_IMAGE_URL } from "@/lib/site";
 
-// Import the Image component
-import { Image } from "@/components/ui/image";
-
 const Index: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-hidden overflow-fix">

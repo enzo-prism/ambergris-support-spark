@@ -25,9 +25,6 @@ const App: React.FC = () => {
       <Toaster />
       <Sonner />
       <ScrollToTop />
-      <RouteAnalytics />
-      <ScrollDepthAnalytics />
-      <SectionViewAnalytics />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/projects" element={<Projects />} />
@@ -43,6 +40,9 @@ const App: React.FC = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <RouteAnalytics />
+      <ScrollDepthAnalytics />
+      <SectionViewAnalytics />
     </TooltipProvider>
   );
 };

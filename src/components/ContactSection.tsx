@@ -1,140 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Mail, MessageSquare, MapPin, Facebook, Send, CheckCircle2, Loader2 } from "lucide-react";
+import React, { useEffect } from "react";
+import { Mail, MessageSquare, MapPin, Facebook, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import ContactForm from "@/components/ContactForm";
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  trackContactFormStarted,
   trackContactFormReady,
-  trackContactFormSubmitted,
+  trackFormLinkClick,
   trackSocialClick,
 } from "@/lib/analytics";
-import { FORMSPREE_CONTACT_ENDPOINT, submitToFormspree } from "@/lib/forms";
 
-const REASONS = [
-  { value: "general", label: "General question" },
-  { value: "volunteering", label: "Volunteering" },
-  { value: "donating", label: "Donating" },
-  { value: "programs", label: "Programs & projects" },
-  { value: "partnership", label: "Partnership" },
-  { value: "press", label: "Press & media" },
-  { value: "other", label: "Other" },
-] as const;
-
-const REASON_LABELS: Record<string, string> = Object.fromEntries(
-  REASONS.map((reason) => [reason.value, reason.label]),
-);
-
-const MESSAGE_MAX_LENGTH = 2000;
-
-const contactSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, { message: "Please enter your name" })
-    .max(100, { message: "Please keep your name under 100 characters" }),
-  email: z
-    .string()
-    .trim()
-    .email({ message: "Please enter a valid email address" })
-    .max(254, { message: "Please enter a valid email address" }),
-  reason: z.string().trim().min(1, { message: "Please select a reason" }),
-  message: z
-    .string()
-    .trim()
-    .min(10, { message: "Please enter a message (at least 10 characters)" })
-    .max(MESSAGE_MAX_LENGTH, {
-      message: `Please keep your message under ${MESSAGE_MAX_LENGTH} characters`,
-    }),
-});
-
-type ContactValues = z.infer<typeof contactSchema>;
-
-const RequiredMark: React.FC = () => (
-  <span aria-hidden="true" className="text-destructive"> *</span>
-);
+const TYPEFORM_FORM_ID = "Zovvt0T2";
+const TYPEFORM_FORM_URL = `https://form.typeform.com/to/${TYPEFORM_FORM_ID}`;
 
 const ContactSection: React.FC = () => {
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState("");
-  const startedTracked = useRef(false);
-  const gotchaRef = useRef<HTMLInputElement | null>(null);
-  const successHeadingRef = useRef<HTMLHeadingElement | null>(null);
-
-  const form = useForm<ContactValues>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      reason: "",
-      message: "",
-    },
-  });
-
-  const messageLength = form.watch("message").length;
-
   useEffect(() => {
-    trackContactFormReady("contact_section", "formspree");
+    trackContactFormReady("contact_section", "first_party");
   }, []);
-
-  useEffect(() => {
-    if (status === "success") {
-      successHeadingRef.current?.focus();
-    }
-  }, [status]);
-
-  const markStarted = () => {
-    if (!startedTracked.current) {
-      startedTracked.current = true;
-      trackContactFormStarted("contact_section", "formspree");
-    }
-  };
-
-  const onSubmit = async (data: ContactValues) => {
-    setStatus("sending");
-    setErrorMessage("");
-
-    const reasonLabel = REASON_LABELS[data.reason] ?? data.reason;
-
-    const result = await submitToFormspree(FORMSPREE_CONTACT_ENDPOINT, {
-      name: data.name,
-      email: data.email,
-      reason: reasonLabel,
-      message: data.message,
-      _subject: `New contact message (${reasonLabel}) from belizekids.org`,
-      _gotcha: gotchaRef.current?.value ?? "",
-    });
-
-    if (result.ok) {
-      setStatus("success");
-      trackContactFormSubmitted("contact_section", "formspree");
-      form.reset();
-    } else {
-      setStatus("error");
-      setErrorMessage(result.error ?? "Something went wrong. Please try again.");
-    }
-  };
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-white to-gray-50 scroll-mt-20">
@@ -145,6 +27,10 @@ const ContactSection: React.FC = () => {
             Have questions or want to learn more about Belize Kids?
             We'd love to hear from you.
           </p>
+          <p className="text-base text-gray-600 max-w-2xl mx-auto mt-3">
+            Please include a line or two about the nature of your inquiry so we
+            know how to help.
+          </p>
           <div className="w-24 h-1 bg-belize-green mx-auto mt-6 rounded-full"></div>
         </div>
 
@@ -152,7 +38,7 @@ const ContactSection: React.FC = () => {
           <div className="md:col-span-5">
             <Card className="h-full border-none shadow-lg overflow-hidden">
               <div className="bg-belize-green text-white p-8">
-                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+                <h3 className="mb-6 text-2xl font-bold text-white">Contact Information</h3>
                 <p className="text-white/90 mb-8">
                   Whether you're interested in volunteering, donating, or learning more about our mission,
                   we're here to help.
@@ -161,7 +47,7 @@ const ContactSection: React.FC = () => {
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
-                      <Mail className="h-6 w-6 text-white" aria-hidden="true" />
+                      <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-white/90 text-sm">Email</p>
@@ -171,7 +57,7 @@ const ContactSection: React.FC = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
-                      <MapPin className="h-6 w-6 text-white" aria-hidden="true" />
+                      <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-white/90 text-sm">Office</p>
@@ -184,7 +70,7 @@ const ContactSection: React.FC = () => {
 
                   <div className="flex items-center gap-4">
                     <div className="bg-white/20 p-3 rounded-full">
-                      <MessageSquare className="h-6 w-6 text-white" aria-hidden="true" />
+                      <MessageSquare className="h-6 w-6 text-white" />
                     </div>
                     <div>
                       <p className="text-white/90 text-sm">US Mailing</p>
@@ -219,7 +105,7 @@ const ContactSection: React.FC = () => {
                           trackSocialClick("facebook", "contact_section")
                         }
                       >
-                        <Facebook size={18} aria-hidden="true" />
+                        <Facebook size={18} />
                       </a>
                     </Button>
                   </div>
@@ -231,159 +117,31 @@ const ContactSection: React.FC = () => {
           <div className="md:col-span-7">
             <Card className="border-none shadow-lg p-1 overflow-hidden">
               <CardContent className="p-7">
-                <h3 className="text-2xl font-bold mb-6 text-gray-800">Send Us a Message</h3>
-                {status === "success" ? (
-                  <div role="status" className="flex flex-col items-center justify-center py-12 text-center">
-                    <CheckCircle2 className="h-12 w-12 text-belize-green mb-4" aria-hidden="true" />
-                    <h3
-                      ref={successHeadingRef}
-                      tabIndex={-1}
-                      className="text-xl font-bold text-gray-800 mb-2 focus:outline-none"
+                <h3 className="mb-3 text-2xl font-bold text-gray-800">Send Us a Message</h3>
+                <p className="mb-6 text-sm text-gray-600">
+                  Tell us who you are and the nature of your inquiry. A line or
+                  two about why you're writing helps us route your message.
+                </p>
+                <ContactForm />
+                <div className="mt-6 border-t border-gray-100 pt-5">
+                  <p className="mb-3 text-sm text-gray-600">
+                    Prefer the previous form? Open it in a new tab and still
+                    include the nature of your inquiry in the message field.
+                  </p>
+                  <Button asChild variant="outlineBelize">
+                    <a
+                      href={TYPEFORM_FORM_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={() =>
+                        trackFormLinkClick("contact_section_fallback", "typeform")
+                      }
                     >
-                      Message sent!
-                    </h3>
-                    <p className="text-gray-600 mb-6">
-                      Thank you for reaching out. We&apos;ll get back to you soon.
-                    </p>
-                    <Button
-                      variant="belizeGreen"
-                      onClick={() => setStatus("idle")}
-                    >
-                      Send another message
-                    </Button>
-                  </div>
-                ) : (
-                  <Form {...form}>
-                    <form
-                      onSubmit={form.handleSubmit(onSubmit)}
-                      onChange={markStarted}
-                      noValidate
-                      className="space-y-4"
-                    >
-                      <input
-                        ref={gotchaRef}
-                        type="text"
-                        name="_gotcha"
-                        tabIndex={-1}
-                        autoComplete="off"
-                        aria-hidden="true"
-                        className="absolute h-0 w-0 opacity-0"
-                      />
-                      <p className="text-sm text-muted-foreground">
-                        <RequiredMark /> Required fields
-                      </p>
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name<RequiredMark /></FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Your name"
-                                autoComplete="name"
-                                maxLength={100}
-                                aria-required="true"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email Address<RequiredMark /></FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="you@example.com"
-                                type="email"
-                                inputMode="email"
-                                autoComplete="email"
-                                maxLength={254}
-                                aria-required="true"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="reason"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Reason for contacting<RequiredMark /></FormLabel>
-                            <Select onValueChange={field.onChange} value={field.value}>
-                              <FormControl>
-                                <SelectTrigger aria-required="true">
-                                  <SelectValue placeholder="Select a reason" />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent>
-                                {REASONS.map((reason) => (
-                                  <SelectItem key={reason.value} value={reason.value}>
-                                    {reason.label}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      <FormField
-                        control={form.control}
-                        name="message"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Message<RequiredMark /></FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="How can we help?"
-                                rows={6}
-                                maxLength={MESSAGE_MAX_LENGTH}
-                                aria-required="true"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormDescription className="text-right text-xs">
-                              {messageLength} / {MESSAGE_MAX_LENGTH}
-                            </FormDescription>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-
-                      {status === "error" && (
-                        <p role="alert" className="text-sm font-medium text-destructive">
-                          {errorMessage}
-                        </p>
-                      )}
-
-                      <Button
-                        type="submit"
-                        variant="belizeGreen"
-                        className="w-full py-6 flex items-center justify-center"
-                        disabled={status === "sending"}
-                      >
-                        {status === "sending" ? (
-                          <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
-                        ) : (
-                          <Send className="mr-2 h-5 w-5" aria-hidden="true" />
-                        )}
-                        {status === "sending" ? "Sending…" : "Send Message"}
-                      </Button>
-                    </form>
-                  </Form>
-                )}
+                      Open the Typeform
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </div>

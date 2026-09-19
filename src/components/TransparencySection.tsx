@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -21,11 +22,9 @@ import {
   TableRow
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 const TransparencySection: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState("promise");
-  const isMobile = useIsMobile();
 
   const transparencyFeatures = [
     {
@@ -52,7 +51,7 @@ const TransparencySection: React.FC = () => {
           <Badge variant="outline" className="mb-4 rounded-full border-belize-green/20 bg-belize-green/10 text-belize-green">
             100% Transparent
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Transparency Promise</h2>
+          <h2 className="mb-6 text-3xl font-bold text-gray-900 md:text-4xl">Our Transparency Promise</h2>
           <p className="text-lg text-gray-700">
             We believe in complete transparency. Every dollar is accounted for, and we're proud to share 
             how your donations are making an impact.
@@ -81,7 +80,7 @@ const TransparencySection: React.FC = () => {
             className="w-full"
           >
             <div className="bg-belize-blue/5 px-4 sm:px-6 pt-4">
-              <TabsList className={`grid ${isMobile ? 'grid-cols-1 gap-2' : 'grid-cols-3'} bg-transparent h-auto p-0 mb-0`}>
+              <TabsList className="mb-0 grid h-auto grid-cols-1 gap-2 bg-transparent p-0 sm:grid-cols-3 sm:gap-0">
                 <TabsTrigger 
                   value="promise" 
                   className={`py-3 text-sm sm:text-base ${selectedTab === "promise" ? 'text-belize-green border-b-2 border-belize-green' : 'text-gray-600 border-b-2 border-transparent'}`}
@@ -208,8 +207,10 @@ const TransparencySection: React.FC = () => {
               <div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
                   <h3 className="text-xl sm:text-2xl font-bold">Sample Project Breakdown</h3>
-                  <Button variant="outlineBelize" className="flex items-center justify-center gap-2 w-full sm:w-auto">
-                    View All Projects <ArrowUpRight className="h-4 w-4" />
+                  <Button asChild variant="outlineBelize" className="flex w-full items-center justify-center gap-2 sm:w-auto">
+                    <Link to="/projects">
+                      View All Projects <ArrowUpRight className="h-4 w-4" />
+                    </Link>
                   </Button>
                 </div>
                 

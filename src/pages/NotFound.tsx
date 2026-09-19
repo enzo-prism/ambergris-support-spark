@@ -1,10 +1,22 @@
 
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import { markPageNotFound } from "@/lib/analytics";
 import { buildSiteUrl } from "@/lib/site";
 
 const NotFound = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    markPageNotFound(true);
+
+    return () => {
+      markPageNotFound(false);
+    };
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <Helmet>

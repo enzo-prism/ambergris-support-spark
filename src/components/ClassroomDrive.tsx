@@ -5,30 +5,13 @@ import { trackDonateClick } from "@/lib/analytics";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, School, DollarSign, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/reveal";
 import { Image } from "@/components/ui/image";
 
+const RAISED_USD = 13551;
+const GOAL_USD = 12500;
+
 const ClassroomDrive: React.FC = () => {
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-
   const scrollToDonate = () => {
     const donateElement = document.getElementById("donate");
     if (donateElement) {
@@ -38,50 +21,42 @@ const ClassroomDrive: React.FC = () => {
     }
   };
 
+  const fundedPercent = Math.round((RAISED_USD / GOAL_USD) * 100);
+  const barPercent = Math.min(fundedPercent, 100);
+  const goalMet = RAISED_USD >= GOAL_USD;
+
   return (
-    <section className="py-16 bg-white">
+    <section className="section-padding bg-white">
       <div className="container-custom">
-        <motion.div 
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
+        <Reveal className="mb-10 text-center">
           <Badge variant="coral" className="mb-4 gap-2 px-4 py-2 text-sm font-semibold">
             <School className="h-5 w-5" />
             Current Initiative
           </Badge>
-          <h2 className="text-3xl md:text-4xl font-bold text-belize-blue mb-4">New Horizon School Classroom Addition</h2>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+          <h2 className="mb-4 text-3xl font-bold text-belize-blue md:text-4xl">New Horizon School Classroom Addition</h2>
+          <p className="mx-auto max-w-3xl text-lg text-gray-700">
             Help us build an additional classroom at ACB school to support the growing educational needs in San Pedro.
           </p>
-        </motion.div>
+        </Reveal>
 
-        <motion.div 
-          className="grid md:grid-cols-12 gap-8 items-start"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <div className="grid items-start gap-8 md:grid-cols-12">
           {/* Left Content */}
-          <motion.div className="md:col-span-7" variants={itemVariants}>
-            <Card className="overflow-hidden shadow-lg border-none">
+          <Reveal className="md:col-span-7">
+            <Card className="overflow-hidden border-none shadow-soft">
               <CardContent className="p-0">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                  <div className="h-60 md:h-auto">
+                  <div className="relative h-56 md:h-72">
                     <Image 
                       src="https://imgur.com/IJKaTAA" 
                       alt="New Horizon School in Belize" 
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
-                  <div className="h-60 md:h-auto">
+                  <div className="relative h-56 md:h-72">
                     <Image 
                       src="https://imgur.com/44skZfu" 
                       alt="School Construction in Belize" 
-                      className="w-full h-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
                 </div>
@@ -109,11 +84,11 @@ const ClassroomDrive: React.FC = () => {
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </Reveal>
 
           {/* Right Content */}
-          <motion.div className="md:col-span-5" variants={itemVariants}>
-            <Card className="overflow-hidden shadow-lg border-none h-full">
+          <Reveal className="md:col-span-5" delay={120}>
+            <Card className="h-full overflow-hidden border-none shadow-soft">
               <div className="bg-gradient-to-r from-belize-green to-belize-blue p-6">
                 <h3 className="text-2xl font-bold text-white flex items-center gap-2">
                   <DollarSign className="h-6 w-6" />
@@ -122,16 +97,28 @@ const ClassroomDrive: React.FC = () => {
               </div>
               <CardContent className="p-6">
                 <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-gray-700 font-medium">Raised</span>
-                    <span className="text-belize-green font-bold">$13,551</span>
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="font-medium text-gray-700">Raised</span>
+                    <span className="font-bold text-belize-green">${RAISED_USD.toLocaleString()}</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
-                    <div className="bg-belize-green h-full rounded-full" style={{ width: '108%' }}></div>
+                  <div className="h-4 w-full overflow-hidden rounded-full bg-gray-200">
+                    <div
+                      className="h-full rounded-full bg-belize-green"
+                      style={{ width: `${barPercent}%` }}
+                      role="progressbar"
+                      aria-valuenow={barPercent}
+                      aria-valuemin={0}
+                      aria-valuemax={100}
+                      aria-label={`Classroom fundraiser ${fundedPercent}% funded`}
+                    />
                   </div>
-                  <div className="flex justify-between items-center mt-2">
-                    <span className="text-gray-700 font-medium">Goal</span>
-                    <span className="text-gray-700 font-medium">$12,500</span>
+                  <div className="mt-2 flex flex-col items-start justify-between gap-2 sm:flex-row sm:items-center">
+                    <span className="font-medium text-gray-700">Goal ${GOAL_USD.toLocaleString()}</span>
+                    {goalMet && (
+                      <Badge variant="default" className="whitespace-nowrap bg-belize-green text-white">
+                        Goal reached · {fundedPercent}% funded
+                      </Badge>
+                    )}
                   </div>
                 </div>
 
@@ -179,19 +166,20 @@ const ClassroomDrive: React.FC = () => {
 
                 <Button 
                   variant="belizeCoral"
-                  className="w-full py-6 text-lg"
+                  size="lg"
+                  className="w-full"
                   onClick={() => {
                     trackDonateClick("classroom_drive", "donate_section");
                     scrollToDonate();
                   }}
                 >
-                  <DollarSign className="mr-2 h-5 w-5" />
+                  <DollarSign className="h-5 w-5" />
                   Donate Now
                 </Button>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );

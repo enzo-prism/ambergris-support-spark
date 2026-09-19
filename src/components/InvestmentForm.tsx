@@ -3,8 +3,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Mail, ExternalLink, CheckCircle2, PiggyBank } from "lucide-react";
-import { buildSiteUrl } from "@/lib/site";
+import { Mail, PiggyBank } from "lucide-react";
+import { Link } from "react-router-dom";
 import { trackContactClick } from "@/lib/analytics";
 
 const InvestmentForm: React.FC = () => {
@@ -23,7 +23,7 @@ const InvestmentForm: React.FC = () => {
           <div className="bg-white rounded-xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2">
               <div className="bg-belize-blue p-8 text-white">
-                <h2 className="text-2xl font-bold mb-4">Investment Benefits</h2>
+                <h2 className="mb-4 text-2xl font-bold text-white">Investment Benefits</h2>
                 <p className="mb-6">Your monthly investment includes:</p>
                 
                 <ul className="space-y-4">
@@ -63,11 +63,12 @@ const InvestmentForm: React.FC = () => {
               </div>
               
               <div className="p-8">
-                <h3 className="text-xl font-bold text-belize-blue mb-6">Coming Soon: Online Investments</h3>
-                
-                <p className="text-gray-700 mb-6">
-                  We're currently setting up our online payment system. Soon, you'll be able to make monthly investments directly through our website.
-                </p>
+                <div className="mb-6 rounded-2xl border border-belize-green/15 bg-belize-light/70 p-5">
+                  <h3 className="mb-2 text-xl font-bold text-belize-blue">Coming Soon: Online Investments</h3>
+                  <p className="text-gray-700">
+                    We're currently setting up our online payment system. Until then, mail a check or contact us and we'll help you set up a monthly investment.
+                  </p>
+                </div>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-5 rounded-lg">
@@ -99,12 +100,11 @@ const InvestmentForm: React.FC = () => {
                   <Button
                     asChild
                     variant="belizeBlue"
-                    className="w-full mt-4 py-6 flex items-center justify-center"
+                    className="mt-4 flex w-full items-center justify-center py-6"
                   >
-                    <a href={buildSiteUrl("/")}>
-                      <ExternalLink className="mr-2 h-5 w-5" />
-                      Visit Our Main Website
-                    </a>
+                    <Link to="/">
+                      Return to Homepage
+                    </Link>
                   </Button>
                 </div>
                 

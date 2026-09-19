@@ -34,7 +34,7 @@ const ClinicInfo: React.FC = () => {
         
         <div className="space-y-6">
           <div>
-            <h3 className="text-sm font-medium mb-2">About the Clinic</h3>
+            <h3 className="mb-2 text-sm font-medium text-gray-900">About the Clinic</h3>
             <p className="text-sm text-gray-600 mb-3">
               The Stanford Belize Vision Clinic (SBVC) operates through a partnership with Stanford University's 
               Department of Ophthalmology, providing essential eye care services to the San Pedro community and 
@@ -47,7 +47,7 @@ const ClinicInfo: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-medium mb-2">Partnership</h3>
+            <h3 className="mb-2 text-sm font-medium text-gray-900">Partnership</h3>
             <div className="flex flex-wrap gap-2 mb-3">
               <Badge className="bg-belize-green/10 text-belize-green hover:bg-belize-green/20 px-3 py-1">
                 Stanford University Partnership
@@ -65,7 +65,7 @@ const ClinicInfo: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-medium mb-2">Services Provided</h3>
+            <h3 className="mb-2 text-sm font-medium text-gray-900">Services Provided</h3>
             <ul className="space-y-1">
               <li className="flex items-start">
                 <CheckCircle className="h-3.5 w-3.5 text-belize-green mr-2 mt-0.5" />
@@ -91,7 +91,7 @@ const ClinicInfo: React.FC = () => {
           </div>
           
           <div>
-            <h3 className="text-sm font-medium mb-2">Contact</h3>
+            <h3 className="mb-2 text-sm font-medium text-gray-900">Contact</h3>
             <div className="flex items-start">
               <MapPin className="h-4 w-4 text-belize-blue mr-2 mt-0.5" />
               <div>

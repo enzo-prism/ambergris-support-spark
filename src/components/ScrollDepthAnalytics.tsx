@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { trackScrollDepth } from "@/lib/analytics";
 
-const SCROLL_THRESHOLDS = [25, 50, 75] as const;
+const SCROLL_THRESHOLDS = [25, 50, 75, 90] as const;
 const MIN_SCROLLABLE_PIXELS = 320;
 
 const ScrollDepthAnalytics = () => {

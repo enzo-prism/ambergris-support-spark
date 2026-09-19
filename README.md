@@ -76,6 +76,7 @@ Local setup notes:
 - CI and Vercel both run on Node 24.x. Use [`.nvmrc`](.nvmrc) to match production locally.
 - If the local directory is not linked to Vercel yet, run `vercel link --yes --scope enzo-design-prisms-projects --project belize-kids`.
 - Pull local environment metadata with `vercel pull --yes --environment=development --scope enzo-design-prisms-projects`.
+- Homepage contact posts to Formspree. Copy [`.env.example`](.env.example) and set `VITE_FORMSPREE_CONTACT_ID` locally. Enzo must also add that same variable on the Vercel project `belize-kids` (Production and Preview). Use the Formspree form hash or the full `https://formspree.io/f/...` URL. Do not commit the id. Until it is set, the form still requires a nature of inquiry, but delivery falls back to the Typeform link.
 
 Build pipeline:
 - `npm run build:client` builds the browser bundle
@@ -112,10 +113,12 @@ GA4 pageviews are managed manually:
 - `index.html` loads the Google tag with `send_page_view: false`
 - `src/components/RouteAnalytics.tsx` sends the initial pageview and each React Router navigation
 - `src/lib/analytics.ts` centralizes GA4, Vercel Analytics, Hotjar bootstrap, event names, and shared event parameters
+- landing pageviews keep UTM and ad click IDs so campaign reports are not collapsed into Direct
+- 404s, Core Web Vitals, and JavaScript exceptions are sent as GA4 events
 
 Use `?ga_debug=1` on production URLs when checking events in GA4 DebugView.
 
-More detail lives in [`docs/analytics.md`](docs/analytics.md).
+After deploy, register the custom dimensions in [`docs/analytics.md`](docs/analytics.md) and turn off Enhanced Measurement "Page changes based on browser history events" so SPA pageviews are not counted twice.
 
 ## Deploying
 
@@ -153,3 +156,4 @@ When editing this project, verify:
 
 Detailed implementation notes live in [`docs/architecture.md`](docs/architecture.md).
 Analytics notes live in [`docs/analytics.md`](docs/analytics.md).
+Design rules and layout pitfalls live in [`docs/design.md`](docs/design.md).
