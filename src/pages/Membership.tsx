@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import RecurringInvestmentHero from "@/components/RecurringInvestmentHero";
 import InvestmentForm from "@/components/InvestmentForm";
+import MembershipForm from "@/components/MembershipForm";
 import RecurringInvestmentBenefits from "@/components/RecurringInvestmentBenefits";
 import { buildSiteUrl, SITE_OG_IMAGE_URL } from "@/lib/site";
 
@@ -29,6 +30,7 @@ const Membership: React.FC = () => {
           <RecurringInvestmentHero />
           <RecurringInvestmentBenefits />
           <InvestmentForm />
+          <MembershipForm />
         </main>
         <Footer />
       </div>
